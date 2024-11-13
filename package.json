@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@icon/icofont": "^1.0.1-alpha.1",
+    "bootstrap": "^5.3.3"
+  }
+}
