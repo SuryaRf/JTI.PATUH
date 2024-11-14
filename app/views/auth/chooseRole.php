@@ -25,15 +25,15 @@
             padding: 1rem;
             color: #fff;
             text-align: start;
-            padding-top: 20px;
-            padding-left: 30px;
+            padding-top: 30px;
+            padding-left: 50px;
         }
 
         .content-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            flex: 1;
+            flex: 0.7;
         }
 
         .container {
@@ -41,14 +41,14 @@
         }
 
         .title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #2F2E41;
+            font-size: 1.7rem;
+            font-weight: bold;
+            color: #223381;
             margin-bottom: 0.5rem;
         }
 
         .subtitle {
-            font-size: 1rem;
+            font-size: 0.8rem;
             color: #6c757d;
             margin-bottom: 2rem;
         }
@@ -56,27 +56,29 @@
         .role-selection {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
         .role-card {
             border: 2px solid #D0D0D0;
-            border-radius: 10px;
-            padding: 1rem;
-            width: 120px;
+            border-radius: 15px;
+            padding: 2rem;
+            width: 150px;
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
+            text-decoration: none;
+            color: inherit;
         }
 
         .role-card:hover {
-            transform: scale(1.05);
+            transform: scale(1.1);
             border-color: #6c63ff;
         }
 
         .role-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 3rem;
+            margin-bottom: 0.75rem;
         }
 
         .admin-icon {
@@ -92,18 +94,25 @@
         }
 
         .role-title {
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 500;
             color: #2F2E41;
+            text-decoration: none;
+        }
+
+        .role-title a {
+            color: inherit;
+            text-decoration: none;
+            display: block;
         }
     </style>
 </head>
 
 <body>
     <header>
-    <div class="logo">
-    <img src="/PBL/Project%20Web/public/svg/logo.svg" alt="Logo" class="logo-image">
-</div>
+        <div class="logo">
+            <img src="/PBL/Project%20Web/public/svg/logo.svg" alt="Logo" class="logo-image">
+        </div>
     </header>
 
     <div class="content-container">
@@ -113,28 +122,26 @@
 
             <div class="role-selection">
                 <!-- Admin Card -->
-                <div class="role-card">
+                <a onclick="window.location.href='/PBL/Project%20Web/app/views/auth/loginAdmin.php'" class="role-card">
                     <div class="role-icon admin-icon">
                         <i class="fas fa-users"></i>
                     </div>
                     <div class="role-title">Admin</div>
-                </div>
-
+                </a>
                 <!-- Dosen Card -->
-                <div class="role-card">
+                <a onclick="window.location.href='/PBL/Project%20Web/app/views/auth/loginDosen.php'" class="role-card">
                     <div class="role-icon dosen-icon">
                         <i class="fas fa-users"></i>
                     </div>
                     <div class="role-title">Dosen</div>
-                </div>
-
+                </a>
                 <!-- Mahasiswa Card -->
-                <div class="role-card">
+                <a onclick="window.location.href='/PBL/Project%20Web/app/views/auth/loginMhs.php'" class="role-card">
                     <div class="role-icon mahasiswa-icon">
                         <i class="fas fa-users"></i>
                     </div>
                     <div class="role-title">Mahasiswa</div>
-                </div>
+                </a>
             </div>
         </div>
     </div>

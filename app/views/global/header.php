@@ -47,4 +47,4 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <li><a href="/PBL/Project%20Web/app/views/global/about.php" class="<?= ($current_page == 'about.php') ? 'active' : '' ?>">Tentang Kami</a></li>
     </ul>
 </nav>
-<button onclick="window.location.href='/PBL/Project%20Web/app/views/auth/choose_role.php'" class="login-button">Login</button>
+<button onclick="window.location.href='/PBL/Project%20Web/app/views/auth/chooseRole.php'" class="login-button">Login</button>

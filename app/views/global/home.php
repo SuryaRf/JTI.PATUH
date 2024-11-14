@@ -58,7 +58,7 @@
 
             <!-- Report Button -->
             <div class="report-button-container">
-                <button onclick="window.location.href='/PBL/Project%20Web/app/views/auth/choose_role.php'" class="report-button">laporkan</button>
+                <button onclick="window.location.href='/PBL/Project%20Web/app/views/auth/chooseRole.php'" class="report-button">laporkan</button>
             </div>
         </div>
 
@@ -140,32 +140,10 @@
     <script src="/PBL/Project%20Web/public/js/jquery-ui.min.js"></script>
     <!-- Easing JS -->
     <script src="/PBL/Project%20Web/public/js/easing.js"></script>
-    <!-- Color JS -->
-    <script src="/PBL/Project%20Web/public/js/colors.js"></script>
-    <!-- Popper JS -->
-    <script src="/PBL/Project%20Web/public/js/popper.min.js"></script>
-    <!-- Bootstrap Datepicker JS -->
-    <script src="/PBL/Project%20Web/public/js/bootstrap-datepicker.js"></script>
     <!-- Jquery Nav JS -->
     <script src="/PBL/Project%20Web/public/js/jquery.nav.js"></script>
-    <!-- Slicknav JS -->
-    <script src="/PBL/Project%20Web/public/js/slicknav.min.js"></script>
-    <!-- ScrollUp JS -->
-    <script src="/PBL/Project%20Web/public/js/jquery.scrollUp.min.js"></script>
-    <!-- Niceselect JS -->
-    <script src="/PBL/Project%20Web/public/js/niceselect.js"></script>
-    <!-- Tilt Jquery JS -->
-    <script src="/PBL/Project%20Web/public/js/tilt.jquery.min.js"></script>
-    <!-- Owl Carousel JS -->
-    <script src="/PBL/Project%20Web/public/js/owl-carousel.js"></script>
     <!-- counterup JS -->
     <script src="/PBL/Project%20Web/public/js/jquery.counterup.min.js"></script>
-    <!-- Steller JS -->
-    <script src="/PBL/Project%20Web/public/js/steller.js"></script>
-    <!-- Wow JS -->
-    <script src="/PBL/Project%20Web/public/js/wow.min.js"></script>
-    <!-- Magnific Popup JS -->
-    <script src="/PBL/Project%20Web/public/js/jquery.magnific-popup.min.js"></script>
     <!-- Counter Up CDN JS -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
     <!-- Bootstrap JS -->
@@ -173,7 +151,6 @@
     <!-- Main JS -->
     <script src="/PBL/Project%20Web/public/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="/PBL/Project%20Web/public/js/script.js"></script>
 </body>
 
 </html>
