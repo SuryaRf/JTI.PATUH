@@ -196,7 +196,7 @@
                             </div>
                             <br>
                             <div class="position-relative-wrapper">
-                                <button class="btn btn-primary btn-lg btn-login" type="submit" onclick="window.location.href='/PBL/Project%20Web/app/views/dashboard/pages/dashboard.php'">Login</button>
+                                <button class="btn btn-primary btn-lg btn-login" type="submit" onclick="window.location.href='/PBL/Project%20Web/app/views/dashboard/dashboardMhs/pages/dashboard.php'">Login</button>
                             </div>
 
                             <hr class="my-4">

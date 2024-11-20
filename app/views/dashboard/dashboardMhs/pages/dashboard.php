@@ -15,7 +15,8 @@
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/js/all.js"></script>
+
   <!-- CSS Files -->
   <link id="pagestyle" href="../../../../../public/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
 </head>
@@ -32,8 +33,8 @@
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" href="../pages/dashboard.php">
+      <li class="nav-item active">
+          <a class="nav-link" href="../pages/dashboard.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-home text-dark text-sm opacity-10"></i> <!-- Ikon Beranda -->
             </div>
@@ -65,15 +66,6 @@
               <i class="fas fa-bell text-dark text-sm opacity-10"></i> <!-- Ganti ikon di sini -->
             </div>
             <span class="nav-link-text ms-1">Notifikasi</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link " href="../pages/rtl.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-world-2 text-dark text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">RTL</span>
           </a>
         </li>
         <li class="nav-item mt-3">
@@ -330,53 +322,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-5">
-          <div class="card card-carousel overflow-hidden h-100 p-0">
-            <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
-              <div class="carousel-inner border-radius-lg h-100">
-                <div class="carousel-item h-100 active" style="background-image: url('../../../../../public/img/carousel-1.jpg');
-      background-size: cover;">
-                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                      <i class="ni ni-camera-compact text-dark opacity-10"></i>
-                    </div>
-                    <h5 class="text-white mb-1">Get started with Argon</h5>
-                    <p>There’s nothing I really wanted to do in life that I wasn’t able to get good at.</p>
-                  </div>
-                </div>
-                <div class="carousel-item h-100" style="background-image: url('../../../../../public/img/carousel-2.jpg');
-      background-size: cover;">
-                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                      <i class="ni ni-bulb-61 text-dark opacity-10"></i>
-                    </div>
-                    <h5 class="text-white mb-1">Faster way to create web pages</h5>
-                    <p>That’s my skill. I’m not really specifically talented at anything except for the ability to learn.</p>
-                  </div>
-                </div>
-                <div class="carousel-item h-100" style="background-image: url('../../../../../public/img/carousel-3.jpg');
-      background-size: cover;">
-                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                      <i class="ni ni-trophy text-dark opacity-10"></i>
-                    </div>
-                    <h5 class="text-white mb-1">Share with us your design tips!</h5>
-                    <p>Don’t be afraid to be wrong because you can’t learn anything from a compliment.</p>
-                  </div>
-                </div>
-              </div>
-              <button class="carousel-control-prev w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+       
       <div class="row mt-4">
         <div class="col-lg-7 mb-lg-0 mb-4">
           <div class="card ">
