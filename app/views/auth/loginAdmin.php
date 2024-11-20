@@ -83,7 +83,7 @@
             cursor: pointer;
             position: absolute;
             right: 10px;
-            top: 50%;
+            top: 47%;
             transform: translateY(-50%);
         }
 
@@ -101,7 +101,7 @@
         }
 
         .btn-login {
-            margin: 0 auto;
+   
             display: block;
         }
 
@@ -131,14 +131,14 @@
 
 
         .role-icon {
-    border: 3px solid #223381; 
-    border-radius: 10%; 
-    padding: 20px;
-    margin-top: 30px;
-    margin-left: 40px; 
-    display: inline-block; 
-    text-align: center; 
-}
+            border: 3px solid #223381;
+            border-radius: 10%;
+            padding: 20px;
+            margin-top: 30px;
+            margin-left: 40px;
+            display: inline-block;
+            text-align: center;
+        }
 
         .admin-icon {
             color: #B23C3C;
@@ -151,6 +151,7 @@
             text-decoration: none;
             margin-left: 47px;
         }
+
         .role-title a {
             color: inherit;
             text-decoration: none;
@@ -161,9 +162,9 @@
 
 <body>
     <header>
-    <div class="role-icon admin-icon">
-        <i class="fas fa-users"></i>
-    </div>
+        <div class="role-icon admin-icon">
+            <i class="fas fa-users"></i>
+        </div>
     </header>
     <div class="role-title">Admin</div>
     <section class="vh-90">
@@ -206,10 +207,12 @@
                                     <div class="form-group">
                                         <input name="password" type="password" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Password" />
                                     </div>
+                                    <br>
                                     <button type="submit" name="login" class="btn btn-primary btn-user btn-block">
                                         Login
                                     </button>
-                               </form>
+                                </form>
+                                <br>
                                 <i class="far fa-eye show-password" onclick="togglePasswordVisibility()"></i>
                                 <button class="btn btn-link btn-forgot" type="button" onclick="forgotPassword()">Lupa Password?</button>
                             </div>

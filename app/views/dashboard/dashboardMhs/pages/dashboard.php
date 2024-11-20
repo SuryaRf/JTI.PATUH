@@ -10,6 +10,7 @@
     Dashboard Admin
   </title>
   <!--     Fonts and icons     -->
+  <link rel="stylesheet" href="/PBL/Project%20Web/public/css/styles.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
