@@ -97,7 +97,8 @@
         <div class="content-section">
             <div class="content-box">
                 <h3>Manfaat JTIPatuh</h3>
-                <p>Untuk mempermudah pengelolaan aturan, meningkatkan kepatuhan, dan memastikan transparansi dalam penegakan peraturan di suatu organisasi. Dengan aplikasi ini, pelanggaran bisa dipantau secara <strong>real-time</strong>, sanksi dan penghargaan diterapkan lebih terstruktur, serta laporan jadi lebih mudah diakses untuk evaluasi.</p>
+                <p>
+                Untuk memberikan akses informasi yang jelas dan mudah diakses mengenai aturan dan kebijakan yang berlaku di Jurusan Teknologi Informasi Politeknik Negeri Malang, sehingga memudahkan mahasiswa untuk memahami dan mengikuti tata tertib yang ditetapkan, serta memastikan terciptanya lingkungan JTI yang tertib dan terorganisir.</p>
             </div>
             <div class="content-box">
                 <h3>Tujuan JTI.Patuh</h3>
