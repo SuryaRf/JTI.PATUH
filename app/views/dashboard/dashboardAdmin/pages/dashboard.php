@@ -28,64 +28,66 @@
       border-radius: 0;
       /* Menghapus sudut melengkung */
     }
+
     .footer {
-    text-align: center;
-    color: #9CA3AF;
-    margin-top: 92px;
-    padding: 16px 0;
-    animation: fadeInFooter 1.5s ease;
-}
+      text-align: center;
+      color: #9CA3AF;
+      margin-top: 92px;
+      padding: 16px 0;
+      animation: fadeInFooter 1.5s ease;
+    }
+
     .card-body {
       text-align: center;
       /* Menempatkan teks di tengah */
     }
-  body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f7f9fc;
-}
 
-.container {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f7f9fc;
+    }
 
-table {
-  border-collapse: separate;
-  border-spacing: 0 10px;
-}
+    .container {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-.table-striped tbody tr {
-  background-color: #f9f9f9;
-}
+    table {
+      border-collapse: separate;
+      border-spacing: 0 10px;
+    }
 
-.table-striped tbody tr:hover {
-  background-color: #eef2f7;
-}
+    .table-striped tbody tr {
+      background-color: #f9f9f9;
+    }
 
-.table thead th {
-  text-transform: uppercase;
-  font-weight: 600;
-  color: #223381;
-}
+    .table-striped tbody tr:hover {
+      background-color: #eef2f7;
+    }
 
-.badge {
-  font-size: 0.875rem;
-  padding: 0.5em 0.75em;
-}
+    .table thead th {
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #223381;
+    }
 
-.btn-primary {
-  background-color: #223381;
-  border: none;
-  border-radius: 12px;
-  margin-top: 15px;
-}
+    .badge {
+      font-size: 0.875rem;
+      padding: 0.5em 0.75em;
+    }
 
-.btn-primary:hover {
-  background-color: #1a285e;
-}
+    .btn-primary {
+      background-color: #223381;
+      border: none;
+      border-radius: 12px;
+      margin-top: 15px;
+    }
 
+    .btn-primary:hover {
+      background-color: #1a285e;
+    }
   </style>
 </head>
 
@@ -157,13 +159,14 @@ table {
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="../pages/logout.php">
+          <a class="nav-link" href="../../../../controllers/logout.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-collection text-dark text-sm opacity-10"></i>
+            <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Keluar</span>
           </a>
         </li>
+
       </ul>
     </div>
   </aside>
@@ -266,85 +269,85 @@ table {
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-    <div class="row justify-content-center" style="margin-right: 10px; margin-top: 10px;">
-  <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-    <div class="card shadow" style="border: 2px solid #223381; border-radius: 15px; background-color: #f7f9fc;">
-      <div class="card-body p-2 d-flex align-items-center justify-content-center">
-        <div class="text-center">
-          <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 18px;">Laporan Hari Ini</p>
-          <h5 class="font-weight-bolder text-primary" style="font-size: 28px;">10</h5>
+      <div class="row justify-content-center" style="margin-right: 10px; margin-top: 10px;">
+        <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
+          <div class="card shadow" style="border: 2px solid #223381; border-radius: 15px; background-color: #f7f9fc;">
+            <div class="card-body p-2 d-flex align-items-center justify-content-center">
+              <div class="text-center">
+                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 18px;">Laporan Hari Ini</p>
+                <h5 class="font-weight-bolder text-primary" style="font-size: 28px;">10</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
+          <div class="card shadow" style="border: 2px solid #223381; border-radius: 15px; background-color: #f7f9fc;">
+            <div class="card-body p-2 d-flex align-items-center justify-content-center">
+              <div class="text-center">
+                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 18px;">Laporan Minggu Ini</p>
+                <h5 class="font-weight-bolder text-primary" style="font-size: 28px;">50</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
+          <div class="card shadow" style="border: 2px solid #223381; border-radius: 15px; background-color: #f7f9fc;">
+            <div class="card-body p-2 d-flex align-items-center justify-content-center">
+              <div class="text-center">
+                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 18px;">Laporan Bulan Ini</p>
+                <h5 class="font-weight-bolder text-primary" style="font-size: 28px;">200</h5>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
-  </div>
-
-  <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-    <div class="card shadow" style="border: 2px solid #223381; border-radius: 15px; background-color: #f7f9fc;">
-      <div class="card-body p-2 d-flex align-items-center justify-content-center">
-        <div class="text-center">
-          <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 18px;">Laporan Minggu Ini</p>
-          <h5 class="font-weight-bolder text-primary" style="font-size: 28px;">50</h5>
-        </div>
-      </div>
+    <div class="container mt-5">
+      <table class="table table-striped table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th class="text-center">No. Pelanggaran</th>
+            <th>Nama Pelanggaran</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center">ABC01</td>
+            <td>Merokok</td>
+            <td class="text-center"><span class="badge bg-warning text-white">Pending</span></td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-primary">Check</button>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">ABC02</td>
+            <td>Merusak sarana prasarana</td>
+            <td class="text-center"><span class="badge bg-warning text-white">Pending</span></td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-primary">Check</button>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">ABC03</td>
+            <td>Judi online</td>
+            <td class="text-center"><span class="badge bg-warning text-white">Pending</span></td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-primary">Check</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </div>
 
-  <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-    <div class="card shadow" style="border: 2px solid #223381; border-radius: 15px; background-color: #f7f9fc;">
-      <div class="card-body p-2 d-flex align-items-center justify-content-center">
-        <div class="text-center">
-          <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 18px;">Laporan Bulan Ini</p>
-          <h5 class="font-weight-bolder text-primary" style="font-size: 28px;">200</h5>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-  </div>
-  <div class="container mt-5">
-  <table class="table table-striped table-hover align-middle">
-    <thead class="table-light">
-      <tr>
-        <th class="text-center">No. Pelanggaran</th>
-        <th>Nama Pelanggaran</th>
-        <th class="text-center">Status</th>
-        <th class="text-center">Detail</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="text-center">ABC01</td>
-        <td>Merokok</td>
-        <td class="text-center"><span class="badge bg-warning text-white">Pending</span></td>
-        <td class="text-center">
-          <button class="btn btn-sm btn-primary">Check</button>
-        </td>
-      </tr>
-      <tr>
-        <td class="text-center">ABC02</td>
-        <td>Merusak sarana prasarana</td>
-        <td class="text-center"><span class="badge bg-warning text-white">Pending</span></td>
-        <td class="text-center">
-          <button class="btn btn-sm btn-primary">Check</button>
-        </td>
-      </tr>
-      <tr>
-        <td class="text-center">ABC03</td>
-        <td>Judi online</td>
-        <td class="text-center"><span class="badge bg-warning text-white">Pending</span></td>
-        <td class="text-center">
-          <button class="btn btn-sm btn-primary">Check</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-  <footer class="footer">
-        Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
+    <footer class="footer">
+      Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
     </footer>
-      
+
     </div>
   </main>
   <div class="fixed-plugin">
@@ -405,108 +408,108 @@ table {
           </div>
         </div>
 
+      </div>
     </div>
-  </div>
-  <!--   Core JS Files   -->
-  <script src="../../../../../public/js/core/popper.min.js"></script>
-  <script src="../../../../../public/js/core/bootstrap.min.js"></script>
+    <!--   Core JS Files   -->
+    <script src="../../../../../public/js/core/popper.min.js"></script>
+    <script src="../../../../../public/js/core/bootstrap.min.js"></script>
 
-  <script>
-    var ctx1 = document.getElementById("chart-line").getContext("2d");
+    <script>
+      var ctx1 = document.getElementById("chart-line").getContext("2d");
 
-    var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+      var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
 
-    gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
-    gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
-    gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
-    new Chart(ctx1, {
-      type: "line",
-      data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-          label: "Mobile apps",
-          tension: 0.4,
-          borderWidth: 0,
-          pointRadius: 0,
-          borderColor: "#5e72e4",
-          backgroundColor: gradientStroke1,
-          borderWidth: 3,
-          fill: true,
-          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-          maxBarThickness: 6
+      gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
+      gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
+      gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
+      new Chart(ctx1, {
+        type: "line",
+        data: {
+          labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+          datasets: [{
+            label: "Mobile apps",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 0,
+            borderColor: "#5e72e4",
+            backgroundColor: gradientStroke1,
+            borderWidth: 3,
+            fill: true,
+            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+            maxBarThickness: 6
 
-        }],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
+          }],
         },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              padding: 10,
-              color: '#fbfbfb',
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-          x: {
-            grid: {
-              drawBorder: false,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
               display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              color: '#ccc',
-              padding: 20,
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
             }
           },
+          interaction: {
+            intersect: false,
+            mode: 'index',
+          },
+          scales: {
+            y: {
+              grid: {
+                drawBorder: false,
+                display: true,
+                drawOnChartArea: true,
+                drawTicks: false,
+                borderDash: [5, 5]
+              },
+              ticks: {
+                display: true,
+                padding: 10,
+                color: '#fbfbfb',
+                font: {
+                  size: 11,
+                  family: "Open Sans",
+                  style: 'normal',
+                  lineHeight: 2
+                },
+              }
+            },
+            x: {
+              grid: {
+                drawBorder: false,
+                display: false,
+                drawOnChartArea: false,
+                drawTicks: false,
+                borderDash: [5, 5]
+              },
+              ticks: {
+                display: true,
+                color: '#ccc',
+                padding: 20,
+                font: {
+                  size: 11,
+                  family: "Open Sans",
+                  style: 'normal',
+                  lineHeight: 2
+                },
+              }
+            },
+          },
         },
-      },
-    });
-  </script>
-  <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
+      });
+    </script>
+    <script>
+      var win = navigator.platform.indexOf('Win') > -1;
+      if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+          damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
       }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script>
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
+    </script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
 
 </html>

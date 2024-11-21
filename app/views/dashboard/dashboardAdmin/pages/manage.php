@@ -26,7 +26,6 @@
             justify-content: center;
             align-items: center;
             border-radius: 0;
-            /* Menghapus sudut melengkung */
         }
 
         .footer {
@@ -52,6 +51,7 @@
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
         }
 
         table {
@@ -89,38 +89,11 @@
             background-color: #1a285e;
         }
 
-        .navbar {
-            max-width: 1200px;
-            /* Atur lebar maksimal navbar */
-            margin: 0 auto;
-            /* Memusatkan navbar */
-        }
 
-        /* Efek hover untuk tautan navbar */
-        .navbar-dark .navbar-nav .nav-link {
-            color: white;
-            transition: all 0.3s ease;
-            /* Transisi efek hover */
-        }
 
-        .navbar-dark .navbar-nav .nav-link:hover {
-            color: #f8f9fa;
-            /* Mengubah warna teks saat hover */
-            background-color: rgba(255, 255, 255, 0.1);
-            /* Latar belakang saat hover */
-            transform: scale(1.1);
-            /* Efek pembesaran sedikit saat hover */
-        }
-
-        /* Menambahkan animasi klik */
-        .navbar-dark .navbar-nav .nav-link:active {
-            transform: scale(0.98);
-            /* Efek sedikit mengecil saat diklik */
-        }
-
-        /* Menambahkan margin bawah pada navbar */
-        .navbar {
-            margin-bottom: 20px;
+        .table-dark th {
+            color: white !important;
+            /* Use !important to override any conflicting styles */
         }
     </style>
 </head>
@@ -193,13 +166,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="../pages/logout.php">
-                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-collection text-dark text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Keluar</span>
-                    </a>
-                </li>
+          <a class="nav-link" href="../../../../controllers/logout.php">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Keluar</span>
+          </a>
+        </li>
             </ul>
         </div>
     </aside>
@@ -301,22 +274,31 @@
             </div>
         </nav>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="customNavbar">
             <a class="navbar-brand" href="#">Sistem Pelaporan</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link text-white" href="#" id="laporanBtn">Laporan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#" id="tataTertibBtn">Tata Tertib</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
+                    <div class="nav-wrapper position-relative end-0">
+                        <ul class="nav nav-pills nav-fill p-1" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link mb-0 px-0 py-1 active d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true " href="#" id="laporanBtn">
+                                <i class="fas fa-file-alt"></i>
+                                    <span class="ms-2">Laporan</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mb-0 px-0 py-1 d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false" href="#" id="tataTertibBtn">
+                                <i class="fas fa-gavel"></i>
+                                    <span class="ms-2">Tata Tertib</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>>
         <!-- Konten -->
         <div class="container mt-5" id="laporanContent">
             <!-- Konten Laporan -->
@@ -366,6 +348,7 @@
                         <th>No.</th>
                         <th>Pelanggaran</th>
                         <th>Tingkat</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -374,7 +357,7 @@
                         <td>Berkomunikasi dengan tidak sopan...</td>
                         <td>V</td>
                         <td>
-                            <div class="ms-auto text-end">
+                            <div class="ms-auto text-center">
                                 <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a>
                                 <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
                             </div>
@@ -384,13 +367,25 @@
                         <td>2</td>
                         <td>Berbusana tidak sopan...</td>
                         <td>IV</td>
+                        <td>
+                            <div class="ms-auto text-center">
+                                <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a>
+                                <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td>3</td>
                         <td>Mahasiswa laki-laki berambut tidak rapi...</td>
                         <td>IV</td>
+                        <td>
+                            <div class="ms-auto text-center">
+                                <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a>
+                                <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
+                            </div>
+                        </td>
                     </tr>
-                    <!-- Tambahkan data tata tertib lainnya sesuai dengan tabel yang kamu punya -->
+                    <!-- Tambahkan data tata tertib lainnya sesuai dengan tabel  -->
                 </tbody>
             </table>
         </div>
@@ -402,68 +397,12 @@
         </footer>
     </main>
     <div class="fixed-plugin">
-        <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
-            <i class="fa fa-cog py-2"> </i>
-        </a>
-        <div class="card shadow-lg">
-            <div class="card-header pb-0 pt-3 ">
-                <div class="float-start">
-                    <h5 class="mt-3 mb-0">Argon Configurator</h5>
-                    <p>See our dashboard options.</p>
-                </div>
-                <div class="float-end mt-4">
-                    <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
-                        <i class="fa fa-close"></i>
-                    </button>
-                </div>
-                <!-- End Toggle Button -->
-            </div>
-            <hr class="horizontal dark my-1">
-            <div class="card-body pt-sm-3 pt-0 overflow-auto">
-                <!-- Sidebar Backgrounds -->
-                <div>
-                    <h6 class="mb-0">Sidebar Colors</h6>
-                </div>
-                <a href="javascript:void(0)" class="switch-trigger background-color">
-                    <div class="badge-colors my-2 text-start">
-                        <span class="badge filter bg-gradient-primary active" data-color="primary" onclick="sidebarColor(this)"></span>
-                        <span class="badge filter bg-gradient-dark" data-color="dark" onclick="sidebarColor(this)"></span>
-                        <span class="badge filter bg-gradient-info" data-color="info" onclick="sidebarColor(this)"></span>
-                        <span class="badge filter bg-gradient-success" data-color="success" onclick="sidebarColor(this)"></span>
-                        <span class="badge filter bg-gradient-warning" data-color="warning" onclick="sidebarColor(this)"></span>
-                        <span class="badge filter bg-gradient-danger" data-color="danger" onclick="sidebarColor(this)"></span>
-                    </div>
-                </a>
-                <!-- Sidenav Type -->
-                <div class="mt-3">
-                    <h6 class="mb-0">Sidenav Type</h6>
-                    <p class="text-sm">Choose between 2 different sidenav types.</p>
-                </div>
-                <div class="d-flex">
-                    <button class="btn bg-gradient-primary w-100 px-3 mb-2 active me-2" data-class="bg-white" onclick="sidebarType(this)">White</button>
-                    <button class="btn bg-gradient-primary w-100 px-3 mb-2" data-class="bg-default" onclick="sidebarType(this)">Dark</button>
-                </div>
-                <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
-                <!-- Navbar Fixed -->
-                <div class="d-flex my-3">
-                    <h6 class="mb-0">Navbar Fixed</h6>
-                    <div class="form-check form-switch ps-0 ms-auto my-auto">
-                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
-                    </div>
-                </div>
-                <hr class="horizontal dark my-sm-4">
-                <div class="mt-2 mb-5 d-flex">
-                    <h6 class="mb-0">Light / Dark</h6>
-                    <div class="form-check form-switch ps-0 ms-auto my-auto">
-                        <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
-                    </div>
-                </div>
 
-            </div>
-        </div>
         <!--   Core JS Files   -->
         <script src="../../../../../public/js/core/popper.min.js"></script>
         <script src="../../../../../public/js/core/bootstrap.min.js"></script>
+        <script src="../../../../../public/js/plugins/perfect-scrollbar.min.js"></script>
+        <script src="../../../../../public/js/plugins/smooth-scrollbar.min.js"></script>
 
         <script>
             document.getElementById('laporanBtn').addEventListener('click', function() {
