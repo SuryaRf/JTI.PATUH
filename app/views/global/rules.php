@@ -265,7 +265,7 @@
     <script src="/PBL/Project%20Web/public/js/jquery.min.js"></script>
     <!-- jquery Migrate JS -->
     <script src="/PBL/Project%20Web/public/js/jquery-migrate-3.0.0.js"></script>
-    <!-- jquery Ui JS -->
+    <!-- jquery Ui JS
     <script src="/PBL/Project%20Web/public/js/jquery-ui.min.js"></script>
     <!-- Jquery Nav JS -->
     <script src="/PBL/Project%20Web/public/js/jquery.nav.js"></script>
