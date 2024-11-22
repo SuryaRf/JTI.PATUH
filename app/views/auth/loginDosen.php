@@ -180,18 +180,42 @@
                                 <img src="/PBL/Project%20Web/public/svg/logo.svg" alt="Logo" class="logo-image">
                             </div>
 
-                            <div class="form-outline mb-4">
-                                <input type="email" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Username" />
-                            </div>
-
                             <div class="form-outline mb-4 position-relative">
-                                <input type="password" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Password" />
+                                <form class="user" action="/PBL/Project%20Web//app/controllers/login.php" method="POST">
+                                    <!-- Pesan error -->
+                                    <?php if (isset($_GET['error'])): ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            <?php
+                                            switch ($_GET['error']) {
+                                                case 'empty_fields':
+                                                    echo "Username dan password tidak boleh kosong.";
+                                                    break;
+                                                case 'wrong_password':
+                                                    echo "Password salah. Silakan coba lagi.";
+                                                    break;
+                                                case 'user_not_found':
+                                                    echo "Username tidak ditemukan.";
+                                                    break;
+                                                default:
+                                                    echo "Terjadi kesalahan. Silakan coba lagi.";
+                                            }
+                                            ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="form-outline mb-4">
+                                        <input name="username" type="username" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Username" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="password" type="password" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Password" />
+                                    </div>
+                                    <br>
+                                    <button type="submit" name="login" class="btn btn-primary btn-user btn-block">
+                                        Login
+                                    </button>
+                                </form>
+                                <br>
                                 <i class="far fa-eye show-password" onclick="togglePasswordVisibility()"></i>
                                 <button class="btn btn-link btn-forgot" type="button" onclick="forgotPassword()">Lupa Password?</button>
-                            </div>
-                            <br>
-                            <div class="position-relative-wrapper">
-                                <button class="btn btn-primary btn-lg btn-login" type="submit">Login</button>
                             </div>
 
                             <hr class="my-4">

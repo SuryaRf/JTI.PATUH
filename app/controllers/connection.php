@@ -1,6 +1,6 @@
 <?php
 // Konfigurasi Koneksi SQL Server
-$serverName = "DESKTOP-VDHPPPR\SQLEXPRESS"; // Sesuaikan dengan nama server Anda
+$serverName = "DEKU"; // Sesuaikan dengan nama server Anda
 $database = "PBL";    // Nama database
 
 // Opsi koneksi
