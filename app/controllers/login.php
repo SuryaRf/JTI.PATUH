@@ -31,11 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 case 'mahasiswa':
                     header("Location: ../views/dashboard/dashboardMhs/pages/dashboard.php");
                     break;
-                case 'adminPerpus':
-                    header("Location: AdminPerpus/home.html");
-                    break;
-                case 'mahasiswa':
-                    header("Location: Mahasiswa/home.html");
+                case 'dosen':
+                    header("Location: ../views/dashboard/dashboardDosen/pages/dashboard.php");
                     break;
                 default:
                     echo "Status tidak dikenal.";
