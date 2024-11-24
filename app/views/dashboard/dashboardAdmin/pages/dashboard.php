@@ -10,7 +10,7 @@
     Dashboard Admin
   </title>
   <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
   <!-- Nucleo Icons -->
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -20,6 +20,15 @@
   <link id="pagestyle" href="../../../../../public/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
 
   <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      /* Pastikan font Poppins digunakan */
+      letter-spacing: 0.3px;
+      /* Menambahkan jarak antar huruf */
+    }
     .card {
       aspect-ratio: 1;
       display: flex;
@@ -91,9 +100,9 @@
   </style>
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
+<body class="g-sidenav-show bg-gray-100" style="min-height: 100vh;">
   <div class="min-height-200 bg-dark position-absolute w-100"></div>
-  <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
+  <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4" id="sidenav-main" style="height: 100vh;">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.php " target="_blank">
@@ -101,7 +110,7 @@
       </a>
     </div>
     <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+    <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main" style="height: calc(100vh - 220px);">
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link active" href="../pages/dashboard.php">
@@ -203,7 +212,7 @@
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New message</span> from Laur
+                          <span class="font-weight-bold">Banding Diajukan</span> oleh Mahasiswa
                         </h6>
                         <p class="text-xs text-secondary mb-0">
                           <i class="fa fa-clock me-1"></i>
@@ -221,7 +230,7 @@
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New album</span> by Travis Scott
+                          <span class="font-weight-bold">Pengajuan Laporan Ditolak</span> by Mahasiswa
                         </h6>
                         <p class="text-xs text-secondary mb-0">
                           <i class="fa fa-clock me-1"></i>
@@ -251,7 +260,7 @@
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                          Payment successfully completed
+                          100 Pengajuan Baru
                         </h6>
                         <p class="text-xs text-secondary mb-0">
                           <i class="fa fa-clock me-1"></i>
@@ -268,36 +277,39 @@
       </div>
     </nav>
     <!-- End Navbar -->
-    <div class="container-fluid py-4">
-      <div class="row justify-content-center" style="margin-right: 10px; margin-top: 10px;">
+    <div class="container-fluid py-1">
+    <div class="row justify-content-center" style="margin-top: 10px; margin-right: 0;">
         <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-          <div class="card shadow" style="border: 2px solid #223381; border-radius: 15px; background-color: #f7f9fc;">
-            <div class="card-body p-2 d-flex align-items-center justify-content-center">
+        <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
+        <div class="card-body p-2 d-flex align-items-center justify-content-center">
               <div class="text-center">
-                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 18px;">Laporan Hari Ini</p>
-                <h5 class="font-weight-bolder text-primary" style="font-size: 28px;">10</h5>
+              <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark"
+              style="font-size: 13px !important; font-weight: 700 !important;">Laporan Hari Ini</p>
+              <h5 class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">10</h5>
               </div>
             </div>
           </div>
         </div>
 
         <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-          <div class="card shadow" style="border: 2px solid #223381; border-radius: 15px; background-color: #f7f9fc;">
-            <div class="card-body p-2 d-flex align-items-center justify-content-center">
+        <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
+        <div class="card-body p-2 d-flex align-items-center justify-content-center">
               <div class="text-center">
-                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 18px;">Laporan Minggu Ini</p>
-                <h5 class="font-weight-bolder text-primary" style="font-size: 28px;">50</h5>
+              <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark"
+              style="font-size: 13px !important; font-weight: 700 !important;">Laporan Selesai</p>
+              <h5 class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">50</h5>
               </div>
             </div>
           </div>
         </div>
 
         <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-          <div class="card shadow" style="border: 2px solid #223381; border-radius: 15px; background-color: #f7f9fc;">
-            <div class="card-body p-2 d-flex align-items-center justify-content-center">
+        <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
+        <div class="card-body p-2 d-flex align-items-center justify-content-center">
               <div class="text-center">
-                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 18px;">Laporan Bulan Ini</p>
-                <h5 class="font-weight-bolder text-primary" style="font-size: 28px;">200</h5>
+              <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark"
+              style="font-size: 13px !important; font-weight: 700 !important;">Laporan Ditolak</p>
+              <h5 class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">30</h5>
               </div>
             </div>
           </div>
@@ -305,8 +317,8 @@
       </div>
 
     </div>
-    <div class="container mt-5">
-      <table class="table table-striped table-hover align-middle">
+    <div class="container mt-5" style="max-width: 1200px;">
+    <table class="table table-striped table-hover align-middle w-100">
         <thead class="table-light">
           <tr>
             <th class="text-center">No. Pelanggaran</th>
@@ -319,25 +331,28 @@
           <tr>
             <td class="text-center">ABC01</td>
             <td>Merokok</td>
-            <td class="text-center"><span class="badge bg-warning text-white">Pending</span></td>
+            <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
+                style="width: 100px; text-align: center;">Pending</span></td>
             <td class="text-center">
-              <button class="btn btn-sm btn-primary">Check</button>
+            <button class="btn btn-primary py-1 px-4 fs-7 w-60 rounded-3">CHECK</button>
             </td>
           </tr>
           <tr>
             <td class="text-center">ABC02</td>
             <td>Merusak sarana prasarana</td>
-            <td class="text-center"><span class="badge bg-warning text-white">Pending</span></td>
+            <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
+                style="width: 100px; text-align: center;">Pending</span></td>
             <td class="text-center">
-              <button class="btn btn-sm btn-primary">Check</button>
+            <button class="btn btn-primary py-1 px-4 fs-7 w-60 rounded-3">CHECK</button>
             </td>
           </tr>
           <tr>
             <td class="text-center">ABC03</td>
             <td>Judi online</td>
-            <td class="text-center"><span class="badge bg-warning text-white">Pending</span></td>
+            <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
+                style="width: 100px; text-align: center;">Pending</span></td>
             <td class="text-center">
-              <button class="btn btn-sm btn-primary">Check</button>
+            <button class="btn btn-primary py-1 px-4 fs-7 w-60 rounded-3">CHECK</button>
             </td>
           </tr>
         </tbody>
