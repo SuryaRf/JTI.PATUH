@@ -1,48 +1,51 @@
 <?php
-// Konfigurasi Koneksi SQL Server
-$serverName = "DESKTOP-VDHPPPR\SQLEXPRESS"; // Sesuaikan dengan nama server Anda
-$database = "PBL";    // Nama database
+session_start();
+include 'connection.php'; // Pastikan file ini benar
 
-// Opsi koneksi
-$connectionOptions = [
-    "Database" => $database,
-    "Uid" => "",       // Username SQL Server (kosongkan jika Windows Authentication)
-    "PWD" => "",       // Password SQL Server (kosongkan jika Windows Authentication)
-];
-
-// Membuat koneksi ke SQL Server
-$conn = sqlsrv_connect($serverName, $connectionOptions);
-
-// Cek apakah koneksi berhasil
-if ($conn === false) {
-    die(print_r(sqlsrv_errors(), true)); // Menampilkan error jika koneksi gagal
+// Cek apakah sesi nim ada
+if (!isset($_SESSION['nim'])) {
+    die(json_encode(['error' => 'NIM tidak ditemukan dalam sesi']));
 }
 
-// Query yang akan dijalankan
+$nim = $_SESSION['nim']; // Ambil NIM dari sesi
+
+// Query untuk mengambil data laporan
 $query = "
     SELECT 
         COUNT(*) AS total_laporan,
         SUM(CASE WHEN status = 'valid' THEN 1 ELSE 0 END) AS laporan_selesai,
         SUM(CASE WHEN status = 'Pending' THEN 1 ELSE 0 END) AS laporan_tertunda
     FROM Pelanggaran p
-    JOIN Mahasiswa m ON p.Mahasiswanim = m.nim
-    WHERE m.nim = '2341760020'; 
+    JOIN Mahasiswa m ON p.nim = m.nim
+    WHERE m.nim = ?;
 ";
+$params = array($nim);
 
 // Menjalankan query
-$result = sqlsrv_query($conn, $query);
+$stmt = sqlsrv_query($conn, $query, $params);
 
-// Cek apakah query berhasil
-if ($result === false) {
-    die(print_r(sqlsrv_errors(), true)); // Menampilkan error jika query gagal
+if ($stmt === false) {
+    die(json_encode(['error' => 'Kesalahan query: ' . print_r(sqlsrv_errors(), true)]));
 }
 
 // Mengambil hasil query
-$data = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC);
+$data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+
+echo json_encode($data);
+// Debugging data
+if ($data) {
+    // Debug: tampilkan data yang diterima
+    error_log("DEBUG: Data yang diterima: " . print_r($data, true));
+} else {
+    error_log("DEBUG: Data tidak ditemukan.");
+}
+
+header("Content-Type: application/json");
 
 // Menampilkan hasil dalam format JSON
-echo json_encode($data);
 
 // Menutup koneksi
 sqlsrv_close($conn);
+
+
 ?>

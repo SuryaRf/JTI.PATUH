@@ -2,13 +2,19 @@
 session_start();
 include 'connection.php';
 
+// Cek apakah sudah login sebelumnya, jika ya, arahkan langsung ke dashboard
+if (isset($_SESSION['nim'])) {
+    // Jika sudah login, arahkan langsung ke halaman dashboard
+    header("Location: ../views/dashboard/dashboardMhs/pages/dashboard.php");
+    exit;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
 
-
     // Query untuk memeriksa username dan password
-    $sql = "SELECT role, username, password FROM [dbo].[Login] WHERE username = ?";
+    $sql = "SELECT nim, role, username, password FROM [dbo].[Login] WHERE username = ?";
     $params = array($username);
     $stmt = sqlsrv_query($conn, $sql, $params);
 
@@ -18,10 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Memeriksa apakah ada hasil
     if ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-        if ($password == $row['password']) {
+        if ($password == $row['password']) { // Gunakan hash_password di real project!
             // Sesi login berhasil
             $_SESSION['username'] = $row['username'];
             $_SESSION['role'] = $row['role'];
+            $_SESSION['nim'] = $row['nim']; // Simpan NIM di sesi
 
             // Pengalihan berdasarkan status
             switch ($row['role']) {

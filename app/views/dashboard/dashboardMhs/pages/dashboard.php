@@ -1,26 +1,29 @@
+
 <?php
-// Perbaikan path include dengan cara absolut atau relatif
-include '../../../../../controllers/totalViolations.php'; // Pastikan path benar
+session_start();
 
-// URL untuk mengambil data dari API
-$url = 'http://localhost/PBL/Project%20Web/app/controllers/totalViolations.php?nim=2341760020';  // Pastikan URL ini benar dan bisa diakses
-
-// Mengambil data dari API
-$response = file_get_contents($url);  // Mendapatkan data dari endpoint API
-
-// Cek apakah response ada dan decode data
-if ($response !== false) {
-    $data = json_decode($response, true);  // Decode JSON ke dalam array asosiatif
-
-    // Pastikan data ada, jika tidak ada, beri nilai default
-    $total_laporan = $data['total_laporan'] ?? 0;
-    $laporan_selesai = $data['laporan_selesai'] ?? 0;
-    $laporan_tertunda = $data['laporan_tertunda'] ?? 0;
-} else {
-    // Handle jika request gagal
-    echo "Error: Tidak bisa mengambil data dari API";
+// Pastikan sesi NIM ada
+if (!isset($_SESSION['nim'])) {
+    // Jika tidak ada, arahkan ke halaman login
+    header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+    exit();
 }
+
+$nim = $_SESSION['nim']; // Ambil NIM dari sesi
+// Mencegah cache halaman
+header("Cache-Control: no-cache, must-revalidate"); // Jangan simpan di cache
+header("Pragma: no-cache"); // Untuk versi lama browser
+header("Expires: 0"); // Waktu kadaluarsa
+
+if (!isset($_SESSION['nim'])) {
+    header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+    exit();
+}
+
+$nim = $_SESSION['nim']; // Ambil NIM dari sesi
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -313,7 +316,7 @@ if ($response !== false) {
       </div>
     </nav>
     <!-- End Navbar -->
-    <div class="container-fluid py-1"> 
+    <div class="container-fluid py-1">
     <div class="row justify-content-center" style="margin-top: 10px; margin-right: 0;">
         <!-- Box 1 -->
         <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
@@ -324,7 +327,7 @@ if ($response !== false) {
                             Total Laporan
                         </p>
                         <h5 id="totalLaporan" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
-                            <?php echo $total_laporan; ?>
+                        Loading...
                         </h5>
                     </div>
                 </div>
@@ -340,7 +343,7 @@ if ($response !== false) {
                             Laporan Selesai
                         </p>
                         <h5 id="laporanSelesai" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
-                            <?php echo $laporan_selesai; ?>
+                        Loading...
                         </h5>
                     </div>
                 </div>
@@ -356,7 +359,7 @@ if ($response !== false) {
                             Laporan Tertunda
                         </p>
                         <h5 id="laporanTertunda" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
-                            <?php echo $laporan_tertunda; ?>
+                        Loading...
                         </h5>
                     </div>
                 </div>
@@ -422,31 +425,29 @@ if ($response !== false) {
   <script src="../../../../../public/js/core/bootstrap.min.js"></script>
 
 
-  <!-- <script>
-    // Fungsi untuk mendapatkan data dari server
-    function fetchData() {
-      const nim = '2341760020'; // Ganti dengan NIM sesuai konteks aplikasi Anda
-      fetch(`../../../../../controllers/totalViolations.php?nim=${nim}`)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Gagal mengambil data. Silakan coba lagi.');
-          }
-          return response.json();
-        })
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    fetch('http://localhost/PBL/Project%20Web/app/controllers/totalViolations.php')
+        .then(response => response.json())  // Parsing respons JSON dari API
         .then(data => {
-          document.getElementById('totalLaporan').textContent = data.total_laporan || 0;
-          document.getElementById('laporanSelesai').textContent = data.laporan_selesai || 0;
-          document.getElementById('laporanTertunda').textContent = data.laporan_tertunda || 0;
+            console.log(data); // Debugging data
+
+            // Pastikan data ada
+            if (data && data.total_laporan !== undefined) {
+                document.getElementById('totalLaporan').innerText = data.total_laporan;
+                document.getElementById('laporanSelesai').innerText = data.laporan_selesai;
+                document.getElementById('laporanTertunda').innerText = data.laporan_tertunda;
+            } else {
+                console.error('Data tidak valid', data);
+            }
         })
         .catch(error => {
-          console.error('Error:', error);
-          alert(error.message);
+            console.error('Error:', error); // Menangani error jika terjadi kesalahan
         });
-    }
+});
 
-    // Panggil fungsi saat halaman dimuat
-    document.addEventListener('DOMContentLoaded', fetchData);
-  </script> -->
+
+</script>
 
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
