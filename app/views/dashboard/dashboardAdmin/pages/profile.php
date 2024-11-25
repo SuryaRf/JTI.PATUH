@@ -102,7 +102,7 @@
         <li class="nav-item">
           <a class="nav-link" href="../../../../controllers/logout.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
+              <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Keluar</span>
           </a>
@@ -116,7 +116,7 @@
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-md-8">
-        <div class="card">
+          <div class="card">
             <div class="card-header pb-0">
               <div class="d-flex align-items-center">
                 <p class="mb-0">Profile</p>
@@ -134,63 +134,54 @@
                   </div>
                   <div class="col-auto my-auto">
                     <div class="h-100">
-                      <h5 class="mb-1">
-                        Sayo Kravits
-                      </h5>
-                      <p class="mb-0 font-weight-bold text-sm">
-                        Mahasiswa
-                      </p>
+                      <h5 class="mb-1" id="nama_admin"></h5>
+                      <p class="mb-0 font-weight-bold text-sm" id="role_admin"></p>
                     </div>
                   </div>
-
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">NIP</label>
-                    <input class="form-control" type="text" value="lucky.jesse">
+                    <label for="nip" class="form-control-label">NIP</label>
+                    <input class="form-control" type="text" id="nip_admin" readonly>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Nama Lengkap</label>
-                    <input class="form-control" type="email" value="jesse@example.com">
+                    <label for="nama" class="form-control-label">Nama Lengkap</label>
+                    <input class="form-control" type="text" id="nama_admin_input" readonly>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Jenis Kelamin</label>
-                    <input class="form-control" type="text" value="Jesse">
+                    <label for="jk" class="form-control-label">Jenis Kelamin</label>
+                    <input class="form-control" type="text" id="jk_admin" readonly>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">No.Handphone</label>
-                    <input class="form-control" type="text" value="Lucky">
+                    <label for="nohp" class="form-control-label">No.Handphone</label>
+                    <input class="form-control" type="text" id="nohp_admin" readonly>
                   </div>
                 </div>
               </div>
               <hr class="horizontal dark">
-
               <div class="row">
-
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Jurusan</label>
-                    <input class="form-control" type="text" value="New York">
+                    <label for="jurusan" class="form-control-label">Jurusan</label>
+                    <input class="form-control" type="text" value="Teknologi Informasi" readonly>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Email</label>
-                    <input class="form-control" type="text" value="United States">
+                    <label for="email" class="form-control-label">Email</label>
+                    <input class="form-control" type="text" id="email_admin" readonly>
                   </div>
                 </div>
-                
               </div>
               <hr class="horizontal dark">
-
             </div>
           </div>
         </div>
@@ -206,6 +197,32 @@
     <script src="../../../../../public/js/core/bootstrap.min.js"></script>
     <script src="../../../../../public/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="../../../../../public/js/plugins/smooth-scrollbar.min.js"></script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Ambil data admin dari server
+    fetch('http://localhost/PBL/Project%20Web/app/controllers/getAdminData.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+            } else {
+                // Isi data ke dalam elemen input
+                document.getElementById('nama_admin').innerText = data.nama_pgw || '';
+                document.getElementById('role_admin').innerText = 'Admin'; // Ganti sesuai role jika diperlukan
+                document.getElementById('nip_admin').value = data.nip || '';
+                document.getElementById('nama_admin_input').value = data.nama_pgw || '';
+                document.getElementById('jk_admin').value = data.jk_pegawai || '';
+                document.getElementById('nohp_admin').value = data.nohp_pgw || '';
+                document.getElementById('email_admin').value = data.email || '';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan saat mengambil data admin.');
+        });
+});
+</script>
 
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
