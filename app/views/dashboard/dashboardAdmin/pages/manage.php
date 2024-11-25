@@ -1,3 +1,28 @@
+<?php
+session_start();
+
+// Pastikan sesi NIM ada
+if (!isset($_SESSION['id_pegawai'])) {
+    // Jika tidak ada, arahkan ke halaman login
+    header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+    exit();
+}
+
+$id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
+// Mencegah cache halaman
+header("Cache-Control: no-cache, must-revalidate"); // Jangan simpan di cache
+header("Pragma: no-cache"); // Untuk versi lama browser
+header("Expires: 0"); // Waktu kadaluarsa
+
+if (!isset($_SESSION['id_pegawai'])) {
+    header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+    exit();
+}
+
+$id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -166,13 +191,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-          <a class="nav-link" href="../../../../controllers/logout.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Keluar</span>
-          </a>
-        </li>
+                    <a class="nav-link" href="../../../../controllers/logout.php">
+                        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Keluar</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </aside>
@@ -285,20 +310,20 @@
                         <ul class="nav nav-pills nav-fill p-1" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link mb-0 px-0 py-1 active d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true " href="#" id="laporanBtn">
-                                <i class="fas fa-file-alt"></i>
+                                    <i class="fas fa-file-alt"></i>
                                     <span class="ms-2">Laporan</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link mb-0 px-0 py-1 d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false" href="#" id="tataTertibBtn">
-                                <i class="fas fa-gavel"></i>
+                                    <i class="fas fa-gavel"></i>
                                     <span class="ms-2">Tata Tertib</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
-            </nav>>
+        </nav>>
         <!-- Konten -->
         <div class="container mt-5" id="laporanContent">
             <!-- Konten Laporan -->
@@ -348,44 +373,12 @@
                         <th>No.</th>
                         <th>Pelanggaran</th>
                         <th>Tingkat</th>
+                        <th>Saksi</th> <!-- Kolom Saksi -->
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Berkomunikasi dengan tidak sopan...</td>
-                        <td>V</td>
-                        <td>
-                            <div class="ms-auto text-center">
-                                <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a>
-                                <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Berbusana tidak sopan...</td>
-                        <td>IV</td>
-                        <td>
-                            <div class="ms-auto text-center">
-                                <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a>
-                                <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Mahasiswa laki-laki berambut tidak rapi...</td>
-                        <td>IV</td>
-                        <td>
-                            <div class="ms-auto text-center">
-                                <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a>
-                                <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- Tambahkan data tata tertib lainnya sesuai dengan tabel  -->
+                    <!-- Data akan dimasukkan melalui JavaScript -->
                 </tbody>
             </table>
         </div>
@@ -414,89 +407,169 @@
                 document.getElementById('laporanContent').style.display = 'none';
                 document.getElementById('tataTertibContent').style.display = 'block';
             });
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                fetch('http://localhost/PBL/Project%20Web/app/controllers/violationsPegawai.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            console.error('Error:', data.error);
+                            alert('Error: ' + data.error);
+                        } else {
+                            // Mengisi data pelanggaran ke dalam tabel
+                            const tbody = document.querySelector('tbody');
+                            tbody.innerHTML = ''; // Menghapus baris tabel yang lama
 
-            var ctx1 = document.getElementById("chart-line").getContext("2d");
-
-            var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
-
-            gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
-            gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
-            gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
-            new Chart(ctx1, {
-                type: "line",
-                data: {
-                    labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                    datasets: [{
-                        label: "Mobile apps",
-                        tension: 0.4,
-                        borderWidth: 0,
-                        pointRadius: 0,
-                        borderColor: "#5e72e4",
-                        backgroundColor: gradientStroke1,
-                        borderWidth: 3,
-                        fill: true,
-                        data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-                        maxBarThickness: 6
-
-                    }],
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false,
+                            data.forEach(violation => {
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
+            <td class="text-center">${violation.id_pelanggaran}</td>
+             <td style="word-wrap: break-word; white-space: normal;">${violation.nama_pelanggaran}</td>
+            <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
+                style="width: 100px; text-align: center;">${violation.status}</span></td>
+            <td class="text-center">
+              <button class="btn btn-primary py-1 px-4 fs-7 w-100 rounded-3">CHECK</button>
+            </td>
+          `;
+                                tbody.appendChild(row);
+                            });
                         }
-                    },
-                    interaction: {
-                        intersect: false,
-                        mode: 'index',
-                    },
-                    scales: {
-                        y: {
-                            grid: {
-                                drawBorder: false,
-                                display: true,
-                                drawOnChartArea: true,
-                                drawTicks: false,
-                                borderDash: [5, 5]
-                            },
-                            ticks: {
-                                display: true,
-                                padding: 10,
-                                color: '#fbfbfb',
-                                font: {
-                                    size: 11,
-                                    family: "Open Sans",
-                                    style: 'normal',
-                                    lineHeight: 2
-                                },
-                            }
-                        },
-                        x: {
-                            grid: {
-                                drawBorder: false,
-                                display: false,
-                                drawOnChartArea: false,
-                                drawTicks: false,
-                                borderDash: [5, 5]
-                            },
-                            ticks: {
-                                display: true,
-                                color: '#ccc',
-                                padding: 20,
-                                font: {
-                                    size: 11,
-                                    family: "Open Sans",
-                                    style: 'normal',
-                                    lineHeight: 2
-                                },
-                            }
-                        },
-                    },
-                },
+                    })
+                    .catch(error => {
+                        console.error('Fetch Error:', error);
+                        alert('Terjadi kesalahan saat mengambil data.');
+                    });
             });
         </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const tataTertibTableBody = document.querySelector("#tataTertibContent tbody");
+
+                // Fetch data from the server
+                fetch("http://localhost/PBL/Project%20Web/app/controllers/getDataRules.php")
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        // Clear existing rows
+                        tataTertibTableBody.innerHTML = "";
+
+                        // Populate the table with the fetched data
+                        data.forEach((item, index) => {
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td style="word-wrap: break-word; white-space: normal;">${item.nama_pelanggaran}</td>
+                    <td>${item.tingkat_pelanggaran}</td>
+                    <td style="width: 200px; word-wrap: break-word; white-space: normal; overflow: hidden;">${item.keterangan_sanksi || 'Tidak ada saksi'}</td>
+                    <td>
+                        <div class="ms-auto text-center">
+                            <button class="btn btn-link text-dark px-3 mb-0 btn-edit" data-id="${item.id_tatib}" data-tingkat="${item.tingkat_pelanggaran}" data-sanksi="${item.keterangan_sanksi || ''}">
+                                <i class="fas fa-pencil-alt text-dark me-2"></i>Edit
+                            </button>
+                            <button class="btn btn-link text-danger text-gradient px-3 mb-0 btn-delete" data-id="${item.id_tatib}">
+                                <i class="far fa-trash-alt me-2"></i>Delete
+                            </button>
+                        </div>
+                    </td>
+                `;
+                            tataTertibTableBody.appendChild(row);
+                        });
+
+                        // Add event listeners for edit and delete buttons
+                        tataTertibTableBody.querySelectorAll(".btn-edit").forEach((btn) => {
+                            btn.addEventListener("click", handleEdit);
+                        });
+
+                        tataTertibTableBody.querySelectorAll(".btn-delete").forEach((btn) => {
+                            btn.addEventListener("click", handleDelete);
+                        });
+                    })
+                    .catch((error) => {
+                        console.error("Terjadi kesalahan saat mengambil data:", error);
+                    });
+
+                // Handle edit action
+                function handleEdit(event) {
+                    const button = event.target.closest("button");
+                    const id = button.dataset.id;
+                    const nama = button.dataset.nama;
+                    const tingkat = button.dataset.tingkat;
+                    const sanksi = button.dataset.sanksi;
+
+                    const newNama = prompt("Edit Nama Pelanggaran:", nama);
+                    const newTingkat = prompt("Edit Tingkat Pelanggaran:", tingkat);
+                    const newSanksi = prompt("Edit Sanksi:", sanksi);
+
+                    if (newNama !== null && newTingkat !== null && newSanksi !== null) {
+                        // Send update request to the server
+                        fetch("http://localhost/PBL/Project%20Web/app/controllers/updateTatib.php", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    id,
+                                    nama: newNama,
+                                    tingkat: newTingkat,
+                                    sanksi: newSanksi
+                                }),
+                            })
+                            .then((response) => {
+                                if (!response.ok) {
+                                    throw new Error(`HTTP error! Status: ${response.status}`);
+                                }
+                                return response.json();
+                            })
+                            .then((result) => {
+                                alert(result.message || "Data berhasil diupdate!");
+                                location.reload(); // Reload data
+                            })
+                            .catch((error) => {
+                                console.error("Terjadi kesalahan saat mengupdate data:", error);
+                            });
+                    }
+                }
+
+
+                // Handle delete action
+                function handleDelete(event) {
+                    const id = event.target.closest("button").dataset.id;
+
+                    if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+                        // Send delete request to the server
+                        fetch("http://localhost/PBL/Project%20Web/app/controllers/deleteTatib.php", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    id
+                                }),
+                            })
+                            .then((response) => {
+                                if (!response.ok) {
+                                    throw new Error(`HTTP error! Status: ${response.status}`);
+                                }
+                                return response.json();
+                            })
+                            .then((result) => {
+                                alert(result.message || "Data berhasil dihapus!");
+                                location.reload(); // Reload data
+                            })
+                            .catch((error) => {
+                                console.error("Terjadi kesalahan saat menghapus data:", error);
+                            });
+                    }
+                }
+            });
+        </script>
+
         <script>
             var win = navigator.platform.indexOf('Win') > -1;
             if (win && document.querySelector('#sidenav-scrollbar')) {
