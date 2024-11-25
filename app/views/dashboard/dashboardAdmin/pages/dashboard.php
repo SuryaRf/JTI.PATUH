@@ -123,7 +123,6 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
     .btn-primary:hover {
       background-color: #1a285e;
     }
-    
   </style>
 </head>
 
@@ -305,72 +304,72 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-1">
-  <div class="row justify-content-center" style="margin-top: 10px; margin-right: 0;">
-    <!-- Box 1 -->
-    <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-      <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
-        <div class="card-body p-2 d-flex align-items-center justify-content-center">
-          <div class="text-center">
-            <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
-              Total Laporan
-            </p>
-            <h5 id="totalLaporan" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
-              Loading...
-            </h5>
+      <div class="row justify-content-center" style="margin-top: 10px; margin-right: 0;">
+        <!-- Box 1 -->
+        <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
+          <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
+            <div class="card-body p-2 d-flex align-items-center justify-content-center">
+              <div class="text-center">
+                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
+                  Total Laporan
+                </p>
+                <h5 id="totalLaporan" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
+                  Loading...
+                </h5>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Box 2 -->
-    <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-      <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
-        <div class="card-body p-2 d-flex align-items-center justify-content-center">
-          <div class="text-center">
-            <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
-              Laporan Selesai
-            </p>
-            <h5 id="laporanSelesai" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
-              Loading...
-            </h5>
+        <!-- Box 2 -->
+        <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
+          <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
+            <div class="card-body p-2 d-flex align-items-center justify-content-center">
+              <div class="text-center">
+                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
+                  Laporan Selesai
+                </p>
+                <h5 id="laporanSelesai" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
+                  Loading...
+                </h5>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Box 3 -->
-    <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-      <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
-        <div class="card-body p-2 d-flex align-items-center justify-content-center">
-          <div class="text-center">
-            <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
-              Laporan Tertunda
-            </p>
-            <h5 id="laporanTertunda" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
-              Loading...
-            </h5>
+        <!-- Box 3 -->
+        <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
+          <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
+            <div class="card-body p-2 d-flex align-items-center justify-content-center">
+              <div class="text-center">
+                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
+                  Laporan Tertunda
+                </p>
+                <h5 id="laporanTertunda" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
+                  Loading...
+                </h5>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Box 4 -->
-    <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-      <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
-        <div class="card-body p-2 d-flex align-items-center justify-content-center">
-          <div class="text-center">
-            <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
-              Laporan Tertolak
-            </p>
-            <h5 id="laporanTertolak" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
-              Loading...
-            </h5>
+        <!-- Box 4 -->
+        <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
+          <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
+            <div class="card-body p-2 d-flex align-items-center justify-content-center">
+              <div class="text-center">
+                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
+                  Laporan Tertolak
+                </p>
+                <h5 id="laporanTertolak" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
+                  Loading...
+                </h5>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
     <div class="container mt-5" style="max-width: 1400px;">
       <table class="table table-striped table-hover align-middle w-150">
@@ -448,20 +447,20 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-  fetch('http://localhost/PBL/Project%20Web/app/controllers/violationsPegawai.php')
-    .then(response => response.json())
-    .then(data => {
-      if (data.error) {
-        console.error('Error:', data.error);
-        alert('Error: ' + data.error);
-      } else {
-        // Mengisi data pelanggaran ke dalam tabel
-        const tbody = document.querySelector('tbody');
-        tbody.innerHTML = ''; // Menghapus baris tabel yang lama
+      fetch('http://localhost/PBL/Project%20Web/app/controllers/violationsPegawai.php')
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            console.error('Error:', data.error);
+            alert('Error: ' + data.error);
+          } else {
+            // Mengisi data pelanggaran ke dalam tabel
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = ''; // Menghapus baris tabel yang lama
 
-        data.forEach(violation => {
-          const row = document.createElement('tr');
-          row.innerHTML = `
+            data.forEach(violation => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
             <td class="text-center">${violation.id_pelanggaran}</td>
              <td style="word-wrap: break-word; white-space: normal;">${violation.nama_pelanggaran}</td>
             <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
@@ -470,16 +469,15 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
               <button class="btn btn-primary py-1 px-4 fs-7 w-100 rounded-3">CHECK</button>
             </td>
           `;
-          tbody.appendChild(row);
+              tbody.appendChild(row);
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Fetch Error:', error);
+          alert('Terjadi kesalahan saat mengambil data.');
         });
-      }
-    })
-    .catch(error => {
-      console.error('Fetch Error:', error);
-      alert('Terjadi kesalahan saat mengambil data.');
     });
-});
-
   </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;

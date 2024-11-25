@@ -1,3 +1,27 @@
+<?php
+session_start();
+
+// Pastikan sesi NIM ada
+if (!isset($_SESSION['id_pegawai'])) {
+    // Jika tidak ada, arahkan ke halaman login
+    header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+    exit();
+}
+
+$id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
+// Mencegah cache halaman
+header("Cache-Control: no-cache, must-revalidate"); // Jangan simpan di cache
+header("Pragma: no-cache"); // Untuk versi lama browser
+header("Expires: 0"); // Waktu kadaluarsa
+
+if (!isset($_SESSION['id_pegawai'])) {
+    header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+    exit();
+}
+
+$id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -338,6 +362,60 @@
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+  // Fetch data dari server
+  fetch('http://localhost/PBL/Project%20Web/app/controllers/violationsPegawai.php')
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        console.error('Error:', data.error);
+        alert('Error: ' + data.error);
+      } else {
+        // Seleksi elemen tbody tabel
+        const tbody = document.querySelector('tbody');
+        tbody.innerHTML = ''; // Kosongkan tabel sebelum memuat data baru
+
+        // Loop melalui data untuk mengisi tabel
+        data.forEach((violation, index) => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td class="text-sm font-weight-bold text-primary">${violation.id_pelanggaran}</td>
+            <td class="text-sm">${violation.nama_pelanggaran}</td>
+            <td class="text-center">
+              <span class="badge ${getBadgeClass(violation.status)} text-white">${violation.status}</span>
+            </td>
+            <td class="align-middle text-center">
+              <button class="btn btn-sm btn-outline-primary">
+                <i class="fas fa-eye me-1"></i>Check
+              </button>
+            </td>
+          `;
+          tbody.appendChild(row);
+        });
+      }
+    })
+    .catch(error => {
+      console.error('Fetch Error:', error);
+      alert('Terjadi kesalahan saat mengambil data.');
+    });
+});
+
+// Fungsi untuk menentukan kelas badge berdasarkan status
+function getBadgeClass(status) {
+  switch (status.toLowerCase()) {
+    case 'pending':
+      return 'bg-warning';
+    case 'valid':
+      return 'bg-success';
+    case 'reject':
+      return 'bg-danger';
+    default:
+      return 'bg-secondary'; // Default untuk status lain
+  }
+}
+
   </script>
 
   <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
