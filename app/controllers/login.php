@@ -47,8 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['nim'] = $row['nim'];
             } elseif ($row['role'] == 'admin') {
                 $_SESSION['id_pegawai'] = $row['id_pegawai'];
-            }elseif ($row['role'] == 'dosen') {
-                $_SESSION['id_pegawai'] = $row['id_pegawai'];
             }
 
             // Pengalihan berdasarkan status
