@@ -366,22 +366,22 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
         </div>
 
         <div class="container mt-5" id="tataTertibContent" style="display: none;">
-    <!-- Konten Tata Tertib -->
-    <table class="table table-bordered table-striped">
-        <thead class="table-dark">
-            <tr>
-                <th>No.</th>
-                <th>Pelanggaran</th>
-                <th>Tingkat</th>
-                <th>Saksi</th> <!-- Kolom Saksi -->
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Data akan dimasukkan melalui JavaScript -->
-        </tbody>
-    </table>
-</div>
+            <!-- Konten Tata Tertib -->
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>No.</th>
+                        <th>Pelanggaran</th>
+                        <th>Tingkat</th>
+                        <th>Saksi</th> <!-- Kolom Saksi -->
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data akan dimasukkan melalui JavaScript -->
+                </tbody>
+            </table>
+        </div>
 
 
         </div>
@@ -444,44 +444,130 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
         </script>
 
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
-    const tataTertibTableBody = document.querySelector("#tataTertibContent tbody");
+            document.addEventListener("DOMContentLoaded", function() {
+                const tataTertibTableBody = document.querySelector("#tataTertibContent tbody");
 
-    // Fetch data from the server
-    fetch("http://localhost/PBL/Project%20Web/app/controllers/getDataRules.php")
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then((data) => {
-            // Clear existing rows
-            tataTertibTableBody.innerHTML = "";
+                // Fetch data from the server
+                fetch("http://localhost/PBL/Project%20Web/app/controllers/getDataRules.php")
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        // Clear existing rows
+                        tataTertibTableBody.innerHTML = "";
 
-            // Populate the table with the fetched data
-            data.forEach((item, index) => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
+                        // Populate the table with the fetched data
+                        data.forEach((item, index) => {
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
                     <td>${index + 1}</td>
                     <td style="word-wrap: break-word; white-space: normal;">${item.nama_pelanggaran}</td>
                     <td>${item.tingkat_pelanggaran}</td>
                     <td style="width: 200px; word-wrap: break-word; white-space: normal; overflow: hidden;">${item.keterangan_sanksi || 'Tidak ada saksi'}</td>
                     <td>
                         <div class="ms-auto text-center">
-                            <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a>
-                            <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
+                            <button class="btn btn-link text-dark px-3 mb-0 btn-edit" data-id="${item.id_tatib}" data-tingkat="${item.tingkat_pelanggaran}" data-sanksi="${item.keterangan_sanksi || ''}">
+                                <i class="fas fa-pencil-alt text-dark me-2"></i>Edit
+                            </button>
+                            <button class="btn btn-link text-danger text-gradient px-3 mb-0 btn-delete" data-id="${item.id_tatib}">
+                                <i class="far fa-trash-alt me-2"></i>Delete
+                            </button>
                         </div>
                     </td>
                 `;
-                tataTertibTableBody.appendChild(row);
-            });
-        })
-        .catch((error) => {
-            console.error("Terjadi kesalahan saat mengambil data:", error);
-        });
-});
+                            tataTertibTableBody.appendChild(row);
+                        });
 
+                        // Add event listeners for edit and delete buttons
+                        tataTertibTableBody.querySelectorAll(".btn-edit").forEach((btn) => {
+                            btn.addEventListener("click", handleEdit);
+                        });
+
+                        tataTertibTableBody.querySelectorAll(".btn-delete").forEach((btn) => {
+                            btn.addEventListener("click", handleDelete);
+                        });
+                    })
+                    .catch((error) => {
+                        console.error("Terjadi kesalahan saat mengambil data:", error);
+                    });
+
+                // Handle edit action
+                function handleEdit(event) {
+                    const button = event.target.closest("button");
+                    const id = button.dataset.id;
+                    const nama = button.dataset.nama;
+                    const tingkat = button.dataset.tingkat;
+                    const sanksi = button.dataset.sanksi;
+
+                    const newNama = prompt("Edit Nama Pelanggaran:", nama);
+                    const newTingkat = prompt("Edit Tingkat Pelanggaran:", tingkat);
+                    const newSanksi = prompt("Edit Sanksi:", sanksi);
+
+                    if (newNama !== null && newTingkat !== null && newSanksi !== null) {
+                        // Send update request to the server
+                        fetch("http://localhost/PBL/Project%20Web/app/controllers/updateTatib.php", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    id,
+                                    nama: newNama,
+                                    tingkat: newTingkat,
+                                    sanksi: newSanksi
+                                }),
+                            })
+                            .then((response) => {
+                                if (!response.ok) {
+                                    throw new Error(`HTTP error! Status: ${response.status}`);
+                                }
+                                return response.json();
+                            })
+                            .then((result) => {
+                                alert(result.message || "Data berhasil diupdate!");
+                                location.reload(); // Reload data
+                            })
+                            .catch((error) => {
+                                console.error("Terjadi kesalahan saat mengupdate data:", error);
+                            });
+                    }
+                }
+
+
+                // Handle delete action
+                function handleDelete(event) {
+                    const id = event.target.closest("button").dataset.id;
+
+                    if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+                        // Send delete request to the server
+                        fetch("http://localhost/PBL/Project%20Web/app/controllers/deleteTatib.php", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    id
+                                }),
+                            })
+                            .then((response) => {
+                                if (!response.ok) {
+                                    throw new Error(`HTTP error! Status: ${response.status}`);
+                                }
+                                return response.json();
+                            })
+                            .then((result) => {
+                                alert(result.message || "Data berhasil dihapus!");
+                                location.reload(); // Reload data
+                            })
+                            .catch((error) => {
+                                console.error("Terjadi kesalahan saat menghapus data:", error);
+                            });
+                    }
+                }
+            });
         </script>
 
         <script>
