@@ -123,6 +123,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
     .btn-primary:hover {
       background-color: #1a285e;
     }
+    
   </style>
 </head>
 
@@ -371,8 +372,8 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
   </div>
 </div>
 
-    <div class="container mt-5" style="max-width: 1200px;">
-      <table class="table table-striped table-hover align-middle w-100">
+    <div class="container mt-5" style="max-width: 1400px;">
+      <table class="table table-striped table-hover align-middle w-150">
         <thead class="table-light">
           <tr>
             <th class="text-center">No. Pelanggaran</th>
@@ -444,6 +445,41 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
           alert('Terjadi kesalahan saat mengambil data.');
         });
     });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  fetch('http://localhost/PBL/Project%20Web/app/controllers/violationsPegawai.php')
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        console.error('Error:', data.error);
+        alert('Error: ' + data.error);
+      } else {
+        // Mengisi data pelanggaran ke dalam tabel
+        const tbody = document.querySelector('tbody');
+        tbody.innerHTML = ''; // Menghapus baris tabel yang lama
+
+        data.forEach(violation => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td class="text-center">${violation.id_pelanggaran}</td>
+             <td style="word-wrap: break-word; white-space: normal;">${violation.nama_pelanggaran}</td>
+            <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
+                style="width: 100px; text-align: center;">${violation.status}</span></td>
+            <td class="text-center">
+              <button class="btn btn-primary py-1 px-4 fs-7 w-100 rounded-3">CHECK</button>
+            </td>
+          `;
+          tbody.appendChild(row);
+        });
+      }
+    })
+    .catch(error => {
+      console.error('Fetch Error:', error);
+      alert('Terjadi kesalahan saat mengambil data.');
+    });
+});
+
   </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
