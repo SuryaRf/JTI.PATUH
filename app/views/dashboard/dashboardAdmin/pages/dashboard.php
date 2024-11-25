@@ -1,3 +1,28 @@
+<?php
+session_start();
+
+// Pastikan sesi NIM ada
+if (!isset($_SESSION['id_pegawai'])) {
+  // Jika tidak ada, arahkan ke halaman login
+  header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+  exit();
+}
+
+$id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
+// Mencegah cache halaman
+header("Cache-Control: no-cache, must-revalidate"); // Jangan simpan di cache
+header("Pragma: no-cache"); // Untuk versi lama browser
+header("Expires: 0"); // Waktu kadaluarsa
+
+if (!isset($_SESSION['id_pegawai'])) {
+  header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+  exit();
+}
+
+$id_pegawai = $_SESSION['id_pegawai']; // Ambil NIM dari sesi
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,6 +54,7 @@
       letter-spacing: 0.3px;
       /* Menambahkan jarak antar huruf */
     }
+
     .card {
       aspect-ratio: 1;
       display: flex;
@@ -170,7 +196,7 @@
         <li class="nav-item">
           <a class="nav-link" href="../../../../controllers/logout.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
+              <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Keluar</span>
           </a>
@@ -278,47 +304,74 @@
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-1">
-    <div class="row justify-content-center" style="margin-top: 10px; margin-right: 0;">
+      <div class="row justify-content-center" style="margin-top: 10px; margin-right: 0;">
+        <!-- Box 1 -->
         <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-        <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
-        <div class="card-body p-2 d-flex align-items-center justify-content-center">
+          <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
+            <div class="card-body p-2 d-flex align-items-center justify-content-center">
               <div class="text-center">
-              <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark"
-              style="font-size: 13px !important; font-weight: 700 !important;">Laporan Hari Ini</p>
-              <h5 class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">10</h5>
+                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
+                  Total Laporan
+                </p>
+                <h5 id="totalLaporan" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
+                  Loading...
+                </h5>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- Box 2 -->
         <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-        <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
-        <div class="card-body p-2 d-flex align-items-center justify-content-center">
+          <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
+            <div class="card-body p-2 d-flex align-items-center justify-content-center">
               <div class="text-center">
-              <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark"
-              style="font-size: 13px !important; font-weight: 700 !important;">Laporan Selesai</p>
-              <h5 class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">50</h5>
+                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
+                  Laporan Selesai
+                </p>
+                <h5 id="laporanSelesai" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
+                  Loading...
+                </h5>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- Box 3 -->
         <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-        <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
-        <div class="card-body p-2 d-flex align-items-center justify-content-center">
+          <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
+            <div class="card-body p-2 d-flex align-items-center justify-content-center">
               <div class="text-center">
-              <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark"
-              style="font-size: 13px !important; font-weight: 700 !important;">Laporan Ditolak</p>
-              <h5 class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">30</h5>
+                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
+                  Laporan Tertunda
+                </p>
+                <h5 id="laporanTertunda" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
+                  Loading...
+                </h5>
               </div>
             </div>
           </div>
         </div>
       </div>
-
+        <!-- Box 3 -->
+        <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
+          <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
+            <div class="card-body p-2 d-flex align-items-center justify-content-center">
+              <div class="text-center">
+                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
+                  Laporan Tertolak
+                </p>
+                <h5 id="laporanTertolak" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
+                  Loading...
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="container mt-5" style="max-width: 1200px;">
-    <table class="table table-striped table-hover align-middle w-100">
+      <table class="table table-striped table-hover align-middle w-100">
         <thead class="table-light">
           <tr>
             <th class="text-center">No. Pelanggaran</th>
@@ -334,7 +387,7 @@
             <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
                 style="width: 100px; text-align: center;">Pending</span></td>
             <td class="text-center">
-            <button class="btn btn-primary py-1 px-4 fs-7 w-60 rounded-3">CHECK</button>
+              <button class="btn btn-primary py-1 px-4 fs-7 w-60 rounded-3">CHECK</button>
             </td>
           </tr>
           <tr>
@@ -343,7 +396,7 @@
             <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
                 style="width: 100px; text-align: center;">Pending</span></td>
             <td class="text-center">
-            <button class="btn btn-primary py-1 px-4 fs-7 w-60 rounded-3">CHECK</button>
+              <button class="btn btn-primary py-1 px-4 fs-7 w-60 rounded-3">CHECK</button>
             </td>
           </tr>
           <tr>
@@ -352,7 +405,7 @@
             <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
                 style="width: 100px; text-align: center;">Pending</span></td>
             <td class="text-center">
-            <button class="btn btn-primary py-1 px-4 fs-7 w-60 rounded-3">CHECK</button>
+              <button class="btn btn-primary py-1 px-4 fs-7 w-60 rounded-3">CHECK</button>
             </td>
           </tr>
         </tbody>
@@ -365,166 +418,43 @@
 
     </div>
   </main>
-  <div class="fixed-plugin">
-    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
-      <i class="fa fa-cog py-2"> </i>
-    </a>
-    <div class="card shadow-lg">
-      <div class="card-header pb-0 pt-3 ">
-        <div class="float-start">
-          <h5 class="mt-3 mb-0">Argon Configurator</h5>
-          <p>See our dashboard options.</p>
-        </div>
-        <div class="float-end mt-4">
-          <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
-            <i class="fa fa-close"></i>
-          </button>
-        </div>
-        <!-- End Toggle Button -->
-      </div>
-      <hr class="horizontal dark my-1">
-      <div class="card-body pt-sm-3 pt-0 overflow-auto">
-        <!-- Sidebar Backgrounds -->
-        <div>
-          <h6 class="mb-0">Sidebar Colors</h6>
-        </div>
-        <a href="javascript:void(0)" class="switch-trigger background-color">
-          <div class="badge-colors my-2 text-start">
-            <span class="badge filter bg-gradient-primary active" data-color="primary" onclick="sidebarColor(this)"></span>
-            <span class="badge filter bg-gradient-dark" data-color="dark" onclick="sidebarColor(this)"></span>
-            <span class="badge filter bg-gradient-info" data-color="info" onclick="sidebarColor(this)"></span>
-            <span class="badge filter bg-gradient-success" data-color="success" onclick="sidebarColor(this)"></span>
-            <span class="badge filter bg-gradient-warning" data-color="warning" onclick="sidebarColor(this)"></span>
-            <span class="badge filter bg-gradient-danger" data-color="danger" onclick="sidebarColor(this)"></span>
-          </div>
-        </a>
-        <!-- Sidenav Type -->
-        <div class="mt-3">
-          <h6 class="mb-0">Sidenav Type</h6>
-          <p class="text-sm">Choose between 2 different sidenav types.</p>
-        </div>
-        <div class="d-flex">
-          <button class="btn bg-gradient-primary w-100 px-3 mb-2 active me-2" data-class="bg-white" onclick="sidebarType(this)">White</button>
-          <button class="btn bg-gradient-primary w-100 px-3 mb-2" data-class="bg-default" onclick="sidebarType(this)">Dark</button>
-        </div>
-        <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
-        <!-- Navbar Fixed -->
-        <div class="d-flex my-3">
-          <h6 class="mb-0">Navbar Fixed</h6>
-          <div class="form-check form-switch ps-0 ms-auto my-auto">
-            <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
-          </div>
-        </div>
-        <hr class="horizontal dark my-sm-4">
-        <div class="mt-2 mb-5 d-flex">
-          <h6 class="mb-0">Light / Dark</h6>
-          <div class="form-check form-switch ps-0 ms-auto my-auto">
-            <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
-          </div>
-        </div>
 
-      </div>
-    </div>
-    <!--   Core JS Files   -->
-    <script src="../../../../../public/js/core/popper.min.js"></script>
-    <script src="../../../../../public/js/core/bootstrap.min.js"></script>
+  <!--   Core JS Files   -->
+  <script src="../../../../../public/js/core/popper.min.js"></script>
+  <script src="../../../../../public/js/core/bootstrap.min.js"></script>
 
-    <script>
-      var ctx1 = document.getElementById("chart-line").getContext("2d");
-
-      var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
-
-      gradientStroke1.addColorStop(1, 'rgba(94, 114, 228, 0.2)');
-      gradientStroke1.addColorStop(0.2, 'rgba(94, 114, 228, 0.0)');
-      gradientStroke1.addColorStop(0, 'rgba(94, 114, 228, 0)');
-      new Chart(ctx1, {
-        type: "line",
-        data: {
-          labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-          datasets: [{
-            label: "Mobile apps",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 0,
-            borderColor: "#5e72e4",
-            backgroundColor: gradientStroke1,
-            borderWidth: 3,
-            fill: true,
-            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-            maxBarThickness: 6
-
-          }],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false,
-            }
-          },
-          interaction: {
-            intersect: false,
-            mode: 'index',
-          },
-          scales: {
-            y: {
-              grid: {
-                drawBorder: false,
-                display: true,
-                drawOnChartArea: true,
-                drawTicks: false,
-                borderDash: [5, 5]
-              },
-              ticks: {
-                display: true,
-                padding: 10,
-                color: '#fbfbfb',
-                font: {
-                  size: 11,
-                  family: "Open Sans",
-                  style: 'normal',
-                  lineHeight: 2
-                },
-              }
-            },
-            x: {
-              grid: {
-                drawBorder: false,
-                display: false,
-                drawOnChartArea: false,
-                drawTicks: false,
-                borderDash: [5, 5]
-              },
-              ticks: {
-                display: true,
-                color: '#ccc',
-                padding: 20,
-                font: {
-                  size: 11,
-                  family: "Open Sans",
-                  style: 'normal',
-                  lineHeight: 2
-                },
-              }
-            },
-          },
-        },
-      });
-    </script>
-    <script>
-      var win = navigator.platform.indexOf('Win') > -1;
-      if (win && document.querySelector('#sidenav-scrollbar')) {
-        var options = {
-          damping: '0.5'
-        }
-        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('http://localhost/PBL/Project%20Web/app/controllers/totalViolationsPegawai.php')
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            console.error('Error:', data.error);
+            alert('Error: ' + data.error);
+          } else {
+            document.getElementById('totalLaporan').innerText = data.total_laporan ?? '0';
+            document.getElementById('laporanSelesai').innerText = data.laporan_selesai ?? '0';
+            document.getElementById('laporanTertunda').innerText = data.laporan_tertunda ?? '0';
+            document.getElementById('laporanTertolak').innerText = data.laporan_tertolak ?? '0';
+          }
+        })
+        .catch(error => {
+          console.error('Fetch Error:', error);
+          alert('Terjadi kesalahan saat mengambil data.');
+        });
+    });
+  </script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
       }
-    </script>
-    <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
 
 </html>

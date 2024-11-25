@@ -1,12 +1,11 @@
-
 <?php
 session_start();
 
 // Pastikan sesi NIM ada
 if (!isset($_SESSION['nim'])) {
-    // Jika tidak ada, arahkan ke halaman login
-    header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
-    exit();
+  // Jika tidak ada, arahkan ke halaman login
+  header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+  exit();
 }
 
 $nim = $_SESSION['nim']; // Ambil NIM dari sesi
@@ -16,15 +15,12 @@ header("Pragma: no-cache"); // Untuk versi lama browser
 header("Expires: 0"); // Waktu kadaluarsa
 
 if (!isset($_SESSION['nim'])) {
-    header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
-    exit();
+  header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+  exit();
 }
 
 $nim = $_SESSION['nim']; // Ambil NIM dari sesi
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -317,56 +313,56 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-1">
-    <div class="row justify-content-center" style="margin-top: 10px; margin-right: 0;">
+      <div class="row justify-content-center" style="margin-top: 10px; margin-right: 0;">
         <!-- Box 1 -->
         <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-            <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
-                <div class="card-body p-2 d-flex align-items-center justify-content-center">
-                    <div class="text-center">
-                        <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
-                            Total Laporan
-                        </p>
-                        <h5 id="totalLaporan" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
-                        Loading...
-                        </h5>
-                    </div>
-                </div>
+          <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
+            <div class="card-body p-2 d-flex align-items-center justify-content-center">
+              <div class="text-center">
+                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
+                  Total Laporan
+                </p>
+                <h5 id="totalLaporan" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
+                  Loading...
+                </h5>
+              </div>
             </div>
+          </div>
         </div>
 
         <!-- Box 2 -->
         <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-            <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
-                <div class="card-body p-2 d-flex align-items-center justify-content-center">
-                    <div class="text-center">
-                        <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
-                            Laporan Selesai
-                        </p>
-                        <h5 id="laporanSelesai" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
-                        Loading...
-                        </h5>
-                    </div>
-                </div>
+          <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
+            <div class="card-body p-2 d-flex align-items-center justify-content-center">
+              <div class="text-center">
+                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
+                  Laporan Selesai
+                </p>
+                <h5 id="laporanSelesai" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
+                  Loading...
+                </h5>
+              </div>
             </div>
+          </div>
         </div>
 
         <!-- Box 3 -->
         <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-            <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
-                <div class="card-body p-2 d-flex align-items-center justify-content-center">
-                    <div class="text-center">
-                        <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
-                            Laporan Tertunda
-                        </p>
-                        <h5 id="laporanTertunda" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
-                        Loading...
-                        </h5>
-                    </div>
-                </div>
+          <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
+            <div class="card-body p-2 d-flex align-items-center justify-content-center">
+              <div class="text-center">
+                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">
+                  Laporan Tertunda
+                </p>
+                <h5 id="laporanTertunda" class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">
+                  Loading...
+                </h5>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
 
 
@@ -425,29 +421,27 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
   <script src="../../../../../public/js/core/bootstrap.min.js"></script>
 
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    fetch('http://localhost/PBL/Project%20Web/app/controllers/totalViolations.php')
-        .then(response => response.json())  // Parsing respons JSON dari API
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('http://localhost/PBL/Project%20Web/app/controllers/totalViolations.php')
+        .then(response => response.json()) // Parsing respons JSON dari API
         .then(data => {
-            console.log(data); // Debugging data
+          console.log(data); // Debugging data
 
-            // Pastikan data ada
-            if (data && data.total_laporan !== undefined) {
-                document.getElementById('totalLaporan').innerText = data.total_laporan;
-                document.getElementById('laporanSelesai').innerText = data.laporan_selesai;
-                document.getElementById('laporanTertunda').innerText = data.laporan_tertunda;
-            } else {
-                console.error('Data tidak valid', data);
-            }
+          // Pastikan data ada
+          if (data && data.total_laporan !== undefined) {
+            document.getElementById('totalLaporan').innerText = data.total_laporan;
+            document.getElementById('laporanSelesai').innerText = data.laporan_selesai;
+            document.getElementById('laporanTertunda').innerText = data.laporan_tertunda;
+          } else {
+            console.error('Data tidak valid', data);
+          }
         })
         .catch(error => {
-            console.error('Error:', error); // Menangani error jika terjadi kesalahan
+          console.error('Error:', error); // Menangani error jika terjadi kesalahan
         });
-});
-
-
-</script>
+    });
+  </script>
 
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
