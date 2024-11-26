@@ -22,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Proses file bukti
     $bukti_foto = NULL; // Default jika tidak ada bukti
     if (isset($_FILES['bukti']) && $_FILES['bukti']['error'] === UPLOAD_ERR_OK) {
-        // Baca konten file sebagai binary
         $bukti_foto = file_get_contents($_FILES['bukti']['tmp_name']);
     }
 
@@ -33,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = sqlsrv_query($conn, $query, $params);
 
     if ($stmt === false) {
-        // Debugging jika terjadi error
         die(json_encode(['error' => 'Kesalahan saat menyimpan data: ' . print_r(sqlsrv_errors(), true)]));
     }
 

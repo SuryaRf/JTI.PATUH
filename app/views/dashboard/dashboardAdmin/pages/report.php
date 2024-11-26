@@ -374,6 +374,58 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
+  <script>
+document.querySelector('form').addEventListener('submit', function (e) {
+    e.preventDefault(); // Mencegah refresh halaman
+
+    // Ambil data dari form
+    const formData = new FormData(this);
+
+    // Kirim data via AJAX menggunakan Fetch API
+    fetch('http://localhost/PBL/Project%20Web/app/controllers/processReport.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Tampilkan pop-up animasi SweetAlert jika sukses
+            Swal.fire({
+                title: 'Laporan Terkirim!',
+                text: 'Laporan pelanggaran Anda telah berhasil dikirim.',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 3000,
+               
+            }).then(() => {
+                // Reload atau arahkan ke halaman lain jika perlu
+                window.location.href = 'report.php';
+            });
+        } else {
+            // Jika gagal, tampilkan error
+            Swal.fire({
+                title: 'Gagal!',
+                text: data.error || 'Terjadi kesalahan saat mengirim laporan.',
+                icon: 'error',
+                confirmButtonText: 'Coba Lagi'
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        Swal.fire({
+            title: 'Oops!',
+            text: 'Terjadi kesalahan saat memproses laporan.',
+            icon: 'error',
+            confirmButtonText: 'Coba Lagi'
+        });
+    });
+});
+</script>
+
+  <!-- Tambahkan SweetAlert2 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
