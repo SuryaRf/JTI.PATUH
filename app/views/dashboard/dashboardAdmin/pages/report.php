@@ -326,8 +326,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                     <label for="pelanggaran">Nama Pelanggaran</label>
                     <select id="pelanggaran" name="id_tatib" class="form-control rounded-pill" required>
                       <option value="">Pilih Pelanggaran</option>
-                      <option value="1">Pelanggaran A</option>
-                      <option value="2">Pelanggaran B</option>
+
                     </select>
                   </div>
                   <div class="form-group mb-3">
@@ -341,7 +340,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                   <div class="form-group mb-3">
                     <label for="bukti">Bukti</label>
                     <input type="file" name="bukti" id="bukti" class="form-control-file" required>
-                    
+
                   </div>
                   <div class="form-footer text-center mt-4">
                     <p><small>*boleh pilih salah satu</small></p>
@@ -374,58 +373,86 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
+
   <script>
-document.querySelector('form').addEventListener('submit', function (e) {
-    e.preventDefault(); // Mencegah refresh halaman
+    document.addEventListener("DOMContentLoaded", function() {
+      const pelanggaranDropdown = document.getElementById("pelanggaran");
 
-    // Ambil data dari form
-    const formData = new FormData(this);
+      // Fetch data dari endpoint
+      fetch("http://localhost/PBL/Project%20Web/app/controllers/getDataRules.php")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Tambahkan opsi ke dropdown
+          data.forEach((item) => {
+            const option = document.createElement("option");
+            option.value = item.id_tatib;
+            option.textContent = `${item.nama_pelanggaran} (Tingkat: ${item.tingkat_pelanggaran})`;
+            pelanggaranDropdown.appendChild(option);
+          });
+        })
+        .catch((error) => {
+          console.error("Terjadi kesalahan saat mengambil data pelanggaran:", error);
+        });
+    });
+  </script>
 
-    // Kirim data via AJAX menggunakan Fetch API
-    fetch('http://localhost/PBL/Project%20Web/app/controllers/processReport.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
+  <script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault(); // Mencegah refresh halaman
+
+      // Ambil data dari form
+      const formData = new FormData(this);
+
+      // Kirim data via AJAX menggunakan Fetch API
+      fetch('http://localhost/PBL/Project%20Web/app/controllers/processReport.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
             // Tampilkan pop-up animasi SweetAlert jika sukses
             Swal.fire({
-                title: 'Laporan Terkirim!',
-                text: 'Laporan pelanggaran Anda telah berhasil dikirim.',
-                icon: 'success',
-                showConfirmButton: false,
-                timer: 3000,
-               
+              title: 'Laporan Terkirim!',
+              text: 'Laporan pelanggaran Anda telah berhasil dikirim.',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 3000,
+
             }).then(() => {
-                // Reload atau arahkan ke halaman lain jika perlu
-                window.location.href = 'report.php';
+              // Reload atau arahkan ke halaman lain jika perlu
+              window.location.href = 'report.php';
             });
-        } else {
+          } else {
             // Jika gagal, tampilkan error
             Swal.fire({
-                title: 'Gagal!',
-                text: data.error || 'Terjadi kesalahan saat mengirim laporan.',
-                icon: 'error',
-                confirmButtonText: 'Coba Lagi'
+              title: 'Gagal!',
+              text: data.error || 'Terjadi kesalahan saat mengirim laporan.',
+              icon: 'error',
+              confirmButtonText: 'Coba Lagi'
             });
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        Swal.fire({
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          Swal.fire({
             title: 'Oops!',
             text: 'Terjadi kesalahan saat memproses laporan.',
             icon: 'error',
             confirmButtonText: 'Coba Lagi'
+          });
         });
     });
-});
-</script>
+  </script>
 
   <!-- Tambahkan SweetAlert2 -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>

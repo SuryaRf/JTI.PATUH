@@ -382,7 +382,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
           const row = document.createElement('tr');
           row.innerHTML = `
             <td class="text-sm font-weight-bold text-primary">${violation.id_pelanggaran}</td>
-            <td class="text-sm">${violation.nama_pelanggaran}</td>
+            <td style="word-wrap: break-word; white-space: normal;">${violation.nama_pelanggaran}</td>
             <td class="text-center">
               <span class="badge ${getBadgeClass(violation.status)} text-white">${violation.status}</span>
             </td>
