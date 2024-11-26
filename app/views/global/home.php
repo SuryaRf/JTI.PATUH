@@ -75,7 +75,7 @@
                 <div class="col-lg-12">
                     <div class="section-title">
                         <h2>Ketahui Tingkatan Pelanggaran di Tata Tertib</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet.</p>
+                        <p>Pahami berbagai tingkat pelanggaran sesuai dengan aturan tata tertib yang berlaku.</p>
                     </div>
                 </div>
                 <!-- Feature 1 -->
