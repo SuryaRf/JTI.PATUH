@@ -373,20 +373,6 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
-  <img id="bukti" src="" alt="Bukti Pelanggaran" />
-
-  <script>
-    fetch('http://localhost/PBL/Project%20Web/app/controllers/getViolationsDetail.php?id=10')
-      .then(response => response.json())
-      .then(data => {
-        if (data.bukti_foto) {
-          document.getElementById('bukti').src = `data:image/jpeg;base64,${data.bukti_foto}`;
-        } else {
-          document.getElementById('bukti').alt = 'Gambar tidak tersedia';
-        }
-      })
-      .catch(error => console.error('Error:', error));
-  </script>
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
