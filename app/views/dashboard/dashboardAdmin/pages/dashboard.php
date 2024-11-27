@@ -467,7 +467,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
   <!-- JavaScript untuk menangani tombol "CHECK" -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      fetch('http://localhost/PBL/Project%20Web/app/controllers/violationsPegawai.php')
+      fetch('http://localhost/PBL/Project%20Web/app/controllers/recentViolationsPegawai.php')
         .then(response => response.json())
         .then(data => {
           if (data.error) {
@@ -504,9 +504,8 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
 
 
     // Event listener untuk menangani klik pada tombol "CHECK"
-    // Event listener untuk menangani klik pada tombol "CHECK"
-document.addEventListener('click', function(event) {
-    if (event.target.classList.contains('check')) {
+    document.addEventListener('click', function(event) {
+      if (event.target.classList.contains('check')) {
         const idPelanggaran = event.target.getAttribute('data-id');
 
         // Fetch detail laporan berdasarkan ID
@@ -542,9 +541,8 @@ document.addEventListener('click', function(event) {
             console.error('Fetch Error:', error);
             alert('Terjadi kesalahan saat mengambil detail laporan.');
           });
-    }
-});
-
+      }
+    });
   </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
