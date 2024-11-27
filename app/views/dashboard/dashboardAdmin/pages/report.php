@@ -1,3 +1,29 @@
+<?php
+session_start();
+
+// Pastikan sesi NIM ada
+if (!isset($_SESSION['id_pegawai'])) {
+  // Jika tidak ada, arahkan ke halaman login
+  header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+  exit();
+}
+
+$id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
+// Mencegah cache halaman
+header("Cache-Control: no-cache, must-revalidate"); // Jangan simpan di cache
+header("Pragma: no-cache"); // Untuk versi lama browser
+header("Expires: 0"); // Waktu kadaluarsa
+
+if (!isset($_SESSION['id_pegawai'])) {
+  header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+  exit();
+}
+
+$id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,9 +58,10 @@
       animation: fadeInFooter 1.5s ease;
     }
 
- h6{
-  color: white;
- }
+    h6 {
+      color: white;
+    }
+
     /* Add a shadow and transition effect to the card */
     .card {
       transition: all 0.3s ease-in-out;
@@ -163,7 +190,7 @@
         <li class="nav-item">
           <a class="nav-link" href="../../../../controllers/logout.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
+              <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Keluar</span>
           </a>
@@ -291,43 +318,34 @@
             </div>
 
             <div class="card-body p-4">
-              <form>
+              <form action="/PBL/Project%20Web/app/controllers/processReport.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group mb-3">
                   <label for="nim">Mahasiswa Terlapor<span class="text-danger">*</span></label>
-                  <input type="text" id="nim" class="form-control rounded-pill" placeholder="Masukkan NIM mahasiswa" required>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="nama">Nama Mahasiswa Terlapor<span class="text-danger">*</span></label>
-                  <input type="text" id="nama" class="form-control rounded-pill" placeholder="Masukkan Nama mahasiswa" required>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="pelanggaran">Nama Pelanggaran</label>
-                  <select id="pelanggaran" class="form-control rounded-pill" required>
-                    <option>Pilih Pelanggaran</option>
-                    <option>Pelanggaran A</option>
-                    <option>Pelanggaran B</option>
-                  </select>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="waktu">Waktu</label>
-                  <input type="text" id="waktu" class="form-control rounded-pill" placeholder="Masukkan Waktu Kejadian" required>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="lokasi">Lokasi</label>
-                  <input type="text" id="lokasi" class="form-control rounded-pill" placeholder="Masukkan Lokasi Kejadian" required>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="bukti">Bukti</label>
-                  <div class="file-upload rounded-pill p-3 text-center bg-light border border-secondary">
-                    <i class="fas fa-upload mb-2"></i>
-                    <br>
-                    <span>Unggah bukti yang menguatkan laporan Anda disini!</span>
+                  <input type="text" id="nim" name="nim" class="form-control rounded-pill" placeholder="Masukkan NIM mahasiswa" required>
+                  <div class="form-group mb-3">
+                    <label for="pelanggaran">Nama Pelanggaran</label>
+                    <select id="pelanggaran" name="id_tatib" class="form-control rounded-pill" required>
+                      <option value="">Pilih Pelanggaran</option>
+
+                    </select>
                   </div>
-                </div>
-                <div class="form-footer text-center mt-4">
-                  <p><small>*boleh pilih salah satu</small></p>
-                  <button type="submit" class="btn btn-primary btn-lg rounded-pill px-4 py-2 mt-2">Kirim</button>
-                </div>
+                  <div class="form-group mb-3">
+                    <label for="waktu">Waktu</label>
+                    <input type="text" id="waktu" name="waktu_pelanggaran" class="form-control rounded-pill" placeholder="Masukkan Waktu Kejadian" required>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="lokasi">Lokasi</label>
+                    <input type="text" id="lokasi" name="lokasi" class="form-control rounded-pill" placeholder="Masukkan Lokasi Kejadian" required>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="bukti">Bukti</label>
+                    <input type="file" name="bukti" id="bukti" class="form-control-file" required>
+
+                  </div>
+                  <div class="form-footer text-center mt-4">
+                    <p><small>*boleh pilih salah satu</small></p>
+                    <button type="submit" class="btn btn-primary btn-lg rounded-pill px-4 py-2 mt-2">Kirim</button>
+                  </div>
               </form>
             </div>
           </div>
@@ -355,133 +373,88 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pelanggaranDropdown = document.getElementById("pelanggaran");
+
+      // Fetch data dari endpoint
+      fetch("http://localhost/PBL/Project%20Web/app/controllers/getDataRules.php")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Tambahkan opsi ke dropdown
+          data.forEach((item) => {
+            const option = document.createElement("option");
+            option.value = item.id_tatib;
+            option.textContent = `${item.nama_pelanggaran} (Tingkat: ${item.tingkat_pelanggaran})`;
+            pelanggaranDropdown.appendChild(option);
+          });
+        })
+        .catch((error) => {
+          console.error("Terjadi kesalahan saat mengambil data pelanggaran:", error);
+        });
+    });
+  </script>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault(); // Mencegah refresh halaman
+
+      // Ambil data dari form
+      const formData = new FormData(this);
+
+      // Kirim data via AJAX menggunakan Fetch API
+      fetch('http://localhost/PBL/Project%20Web/app/controllers/processReport.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // Tampilkan pop-up animasi SweetAlert jika sukses
+            Swal.fire({
+              title: 'Laporan Terkirim!',
+              text: 'Laporan pelanggaran Anda telah berhasil dikirim.',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 3000,
+
+            }).then(() => {
+              // Reload atau arahkan ke halaman lain jika perlu
+              window.location.href = 'report.php';
+            });
+          } else {
+            // Jika gagal, tampilkan error
+            Swal.fire({
+              title: 'Gagal!',
+              text: data.error || 'Terjadi kesalahan saat mengirim laporan.',
+              icon: 'error',
+              confirmButtonText: 'Coba Lagi'
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          Swal.fire({
+            title: 'Oops!',
+            text: 'Terjadi kesalahan saat memproses laporan.',
+            icon: 'error',
+            confirmButtonText: 'Coba Lagi'
+          });
+        });
+    });
+  </script>
+
+  <!-- Tambahkan SweetAlert2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
 
 </html>
-
-
-
-<!-- edit delete -->
-<!-- <div class="col-md-7 mt-4">
-          <div class="card">
-            <div class="card-header pb-0 px-3">
-              <h6 class="mb-0">Billing Information</h6>
-            </div>
-            <div class="card-body pt-4 p-3">
-              <ul class="list-group">
-                <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-3 text-sm">Oliver Liam</h6>
-                    <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-sm-2">Viking Burrito</span></span>
-                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-sm-2 font-weight-bold">oliver@burrito.com</span></span>
-                    <span class="text-xs">VAT Number: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
-                  </div>
-                  <div class="ms-auto text-end">
-                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a>
-                    <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
-                  </div>
-                </li>
-                <li class="list-group-item border-0 d-flex p-4 mb-2 mt-3 bg-gray-100 border-radius-lg">
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-3 text-sm">Lucas Harper</h6>
-                    <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-sm-2">Stone Tech Zone</span></span>
-                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-sm-2 font-weight-bold">lucas@stone-tech.com</span></span>
-                    <span class="text-xs">VAT Number: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
-                  </div>
-                  <div class="ms-auto text-end">
-                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a>
-                    <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
-                  </div>
-                </li>
-                <li class="list-group-item border-0 d-flex p-4 mb-2 mt-3 bg-gray-100 border-radius-lg">
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-3 text-sm">Ethan James</h6>
-                    <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-sm-2">Fiber Notion</span></span>
-                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-sm-2 font-weight-bold">ethan@fiber.com</span></span>
-                    <span class="text-xs">VAT Number: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
-                  </div>
-                  <div class="ms-auto text-end">
-                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a>
-                    <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div> -->
-
-
-<!-- cetak pdf -->
-
-
-<!-- <div class="col-lg-4">
-          <div class="card h-100">
-            <div class="card-header pb-0 p-3">
-              <div class="row">
-                <div class="col-6 d-flex align-items-center">
-                  <h6 class="mb-0">Invoices</h6>
-                </div>
-                <div class="col-6 text-end">
-                  <button class="btn btn-outline-primary btn-sm mb-0">View All</button>
-                </div>
-              </div>
-            </div>
-            <div class="card-body p-3 pb-0">
-              <ul class="list-group">
-                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-1 text-dark font-weight-bold text-sm">March, 01, 2020</h6>
-                    <span class="text-xs">#MS-415646</span>
-                  </div>
-                  <div class="d-flex align-items-center text-sm">
-                    $180
-                    <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
-                  </div>
-                </li>
-                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                  <div class="d-flex flex-column">
-                    <h6 class="text-dark mb-1 font-weight-bold text-sm">February, 10, 2021</h6>
-                    <span class="text-xs">#RV-126749</span>
-                  </div>
-                  <div class="d-flex align-items-center text-sm">
-                    $250
-                    <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
-                  </div>
-                </li>
-                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                  <div class="d-flex flex-column">
-                    <h6 class="text-dark mb-1 font-weight-bold text-sm">April, 05, 2020</h6>
-                    <span class="text-xs">#FB-212562</span>
-                  </div>
-                  <div class="d-flex align-items-center text-sm">
-                    $560
-                    <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
-                  </div>
-                </li>
-                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                  <div class="d-flex flex-column">
-                    <h6 class="text-dark mb-1 font-weight-bold text-sm">June, 25, 2019</h6>
-                    <span class="text-xs">#QW-103578</span>
-                  </div>
-                  <div class="d-flex align-items-center text-sm">
-                    $120
-                    <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
-                  </div>
-                </li>
-                <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
-                  <div class="d-flex flex-column">
-                    <h6 class="text-dark mb-1 font-weight-bold text-sm">March, 01, 2019</h6>
-                    <span class="text-xs">#AR-803481</span>
-                  </div>
-                  <div class="d-flex align-items-center text-sm">
-                    $300
-                    <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-  -->

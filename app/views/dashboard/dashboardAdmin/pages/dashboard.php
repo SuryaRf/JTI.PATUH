@@ -372,7 +372,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
     </div>
 
     <div class="container mt-5" style="max-width: 1400px;">
-      <table class="table table-striped table-hover align-middle w-150">
+      <table class="table table-striped table-hover align-middle">
         <thead class="table-light">
           <tr>
             <th class="text-center">No. Pelanggaran</th>
@@ -382,35 +382,54 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="text-center">ABC01</td>
-            <td>Merokok</td>
-            <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
-                style="width: 100px; text-align: center;">Pending</span></td>
-            <td class="text-center">
-              <button class="btn btn-primary py-1 px-4 fs-7 w-60 rounded-3">CHECK</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-center">ABC02</td>
-            <td>Merusak sarana prasarana</td>
-            <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
-                style="width: 100px; text-align: center;">Pending</span></td>
-            <td class="text-center">
-              <button class="btn btn-primary py-1 px-4 fs-7 w-60 rounded-3">CHECK</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-center">ABC03</td>
-            <td>Judi online</td>
-            <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
-                style="width: 100px; text-align: center;">Pending</span></td>
-            <td class="text-center">
-              <button class="btn btn-primary py-1 px-4 fs-7 w-60 rounded-3">CHECK</button>
-            </td>
-          </tr>
+          <!-- Data pelanggaran akan dimuat disini oleh JavaScript -->
         </tbody>
       </table>
+    </div>
+    <!-- Modal untuk detail pelanggaran -->
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="detailModalLabel">Detail Pelanggaran</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <img id="modalBuktiFoto" src="" alt="Bukti Foto" class="img-fluid rounded w-100" style="cursor: pointer;">
+              </div>
+              <div class="col-md-8">
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: bold;">Nama Mahasiswa Terlapor</label>
+                  <p id="modalNamaMahasiswa" class="form-control"></p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: bold;">NIM Mahasiswa Terlapor</label>
+                  <p id="modalNimMahasiswa" class="form-control"></p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: bold;">Tingkat dan Jenis Pelanggaran</label>
+                  <p id="modalTingkatJenis" class="form-control"></p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: bold;">Waktu</label>
+                  <p id="modalWaktu" class="form-control"></p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: bold;">Lokasi</label>
+                  <p id="modalLokasi" class="form-control"></p>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end mt-3">
+              <button class="btn btn-primary me-2">Riwayat</button>
+              <button class="btn btn-warning me-2">Aju Banding</button>
+              <button class="btn btn-success">Terima</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <footer class="footer">
@@ -445,6 +464,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
         });
     });
   </script>
+  <!-- JavaScript untuk menangani tombol "CHECK" -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       fetch('http://localhost/PBL/Project%20Web/app/controllers/violationsPegawai.php')
@@ -462,11 +482,14 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
               const row = document.createElement('tr');
               row.innerHTML = `
             <td class="text-center">${violation.id_pelanggaran}</td>
-             <td style="word-wrap: break-word; white-space: normal;">${violation.nama_pelanggaran}</td>
+            <td style="word-wrap: break-word; white-space: normal;">${violation.nama_pelanggaran}</td>
             <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
                 style="width: 100px; text-align: center;">${violation.status}</span></td>
-            <td class="text-center">
-              <button class="btn btn-primary py-1 px-4 fs-7 w-100 rounded-3">CHECK</button>
+            <td class="text-center rounded-end">
+              <button class="btn btn-primary py-1 px-4 fs-7 w-100 rounded-3 check" 
+                      data-bs-toggle="modal"
+                      data-bs-target="#detailModal"
+                      data-id="${violation.id_pelanggaran}">CHECK</button>
             </td>
           `;
               tbody.appendChild(row);
@@ -477,6 +500,39 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
           console.error('Fetch Error:', error);
           alert('Terjadi kesalahan saat mengambil data.');
         });
+    });
+
+
+    // Event listener untuk menangani klik pada tombol "CHECK"
+    document.addEventListener('click', function(event) {
+      if (event.target.classList.contains('check')) {
+        const idPelanggaran = event.target.getAttribute('data-id');
+
+        // Fetch detail laporan berdasarkan ID
+        fetch(`http://localhost/PBL/Project%20Web/app/controllers/getViolationDetails.php?id=${idPelanggaran}`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.error) {
+              alert('Terjadi kesalahan: ' + data.error);
+            } else {
+              // Isi modal dengan data
+              document.getElementById('modalBuktiFoto').src = `data:image/jpeg;base64,${data.bukti_foto}`;
+              document.getElementById('modalNamaMahasiswa').textContent = data.nama_mahasiswa;
+              document.getElementById('modalNimMahasiswa').textContent = data.nim;
+              document.getElementById('modalTingkatJenis').textContent = `${data.tingkat_pelanggaran} - ${data.jenis_pelanggaran}`;
+              document.getElementById('modalWaktu').textContent = data.waktu_pelanggaran;
+              document.getElementById('modalLokasi').textContent = data.lokasi;
+
+              // Tampilkan modal
+              const detailModal = new bootstrap.Modal(document.getElementById('detailModal'));
+              detailModal.show();
+            }
+          })
+          .catch(error => {
+            console.error('Fetch Error:', error);
+            alert('Terjadi kesalahan saat mengambil detail laporan.');
+          });
+      }
     });
   </script>
   <script>
