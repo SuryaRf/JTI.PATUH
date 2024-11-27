@@ -9,14 +9,6 @@ if (!isset($_SESSION['nim'])) {
 }
 
 $nim = $_SESSION['nim']; // Ambil NIM dari sesi
-$query = "SELECT isi, waktu_dibuat, status_notifikasi FROM Notifikasi WHERE nim = ? ORDER BY waktu_dibuat DESC";
-$params = [$nim];
-$stmt = sqlsrv_query($conn, $query, $params);
-$notifikasi = [];
-while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-  $notifikasi[] = $row;
-}
-
 // Mencegah cache halaman
 header("Cache-Control: no-cache, must-revalidate"); // Jangan simpan di cache
 header("Pragma: no-cache"); // Untuk versi lama browser
@@ -252,19 +244,11 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
     <!-- End Navbar -->
 
     <div class="container my-5">
-    <div class="row">
-        <?php foreach ($notifikasi as $notif) : ?>
-            <div class="col-12 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <p class="card-text text-secondary"><?= htmlspecialchars($notif['isi']); ?></p>
-                        <p class="text-muted small"><?= $notif['waktu_dibuat']->format('Y-m-d H:i:s'); ?></p>
-                    </div>
-                </div>
-            </div>
-        <?php endforeach; ?>
-    </div>
+  <div id="notificationsContainer" class="row">
+    <!-- Notifikasi akan dimuat di sini -->
+  </div>
 </div>
+
 
 
     <footer class="footer">
@@ -280,6 +264,43 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
 
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
+
+  <script>
+  // Fungsi untuk mengambil notifikasi mahasiswa
+  function fetchNotifications() {
+    fetch('http://localhost/PBL/Project%20Web/app/controllers/fetchNotificationsMhs.php')
+      .then(response => response.json())
+      .then(data => {
+        // Cek jika ada data notifikasi
+        if (data && data.length > 0) {
+          const notificationsContainer = document.getElementById('notificationsContainer');
+          data.forEach(notification => {
+            const notificationCard = document.createElement('div');
+            notificationCard.classList.add('card', 'shadow-sm', 'mb-4');
+            notificationCard.innerHTML = `
+              <div class="card-body">
+                <h5 class="card-title ${notification.status_notifikasi === 'Unread' ? 'text-primary' : 'text-secondary'}">${notification.isi}</h5>
+                <p class="card-text">${notification.waktu_dibuat}</p>
+                <button class="btn btn-warning text-white fw-bold">${notification.status_notifikasi === 'Unread' ? 'Mark as Read' : 'Read'}</button>
+              </div>
+            `;
+            notificationsContainer.appendChild(notificationCard);
+          });
+        } else {
+          const noNotificationsMessage = document.createElement('p');
+          noNotificationsMessage.innerText = 'Tidak ada notifikasi baru.';
+          document.getElementById('notificationsContainer').appendChild(noNotificationsMessage);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching notifications:', error);
+      });
+  }
+
+  // Panggil fungsi untuk mengambil notifikasi saat halaman dimuat
+  window.onload = fetchNotifications;
+</script>
+
 </body>
 
 </html>

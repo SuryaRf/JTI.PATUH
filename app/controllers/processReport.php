@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Jika laporan berhasil dibuat, tambahkan notifikasi
-    $notifikasi_mahasiswa = "Laporan pelanggaran Anda dengan waktu $waktu_pelanggaran di lokasi $lokasi sedang diproses.";
+    $notifikasi_mahasiswa = "Terdapat laporan pelanggaran untuk Anda dengan waktu $waktu_pelanggaran di lokasi $lokasi sedang diproses dengan status $status.";
     $notifikasi_admin = "Anda telah mengajukan laporan pelanggaran atas mahasiswa dengan NIM $nim.";
 
     // Tambahkan notifikasi untuk mahasiswa
