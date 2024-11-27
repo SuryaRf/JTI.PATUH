@@ -7,10 +7,10 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../../../../../public/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../../../../../public/img/favicon.png">
   <title>
-    Dashboard Admin
+    Dashboard Mahasiswa
   </title>
   <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Nucleo Icons -->
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -20,6 +20,16 @@
   <link id="pagestyle" href="../../../../../public/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
 
   <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif !important;
+      /* Pastikan font Poppins digunakan */
+      letter-spacing: 0.3px;
+      /* Menambahkan jarak antar huruf */
+    }
+
     .btn-primary {
       margin-top: 10px;
     }
@@ -30,6 +40,10 @@
       margin-top: 92px;
       padding: 16px 0;
       animation: fadeInFooter 1.5s ease;
+    }
+
+    .text-black {
+      color: #000 !important;
     }
 
     .table th,
