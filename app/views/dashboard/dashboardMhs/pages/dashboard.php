@@ -9,6 +9,14 @@ if (!isset($_SESSION['nim'])) {
 }
 
 $nim = $_SESSION['nim']; // Ambil NIM dari sesi
+$query = "SELECT isi, waktu_dibuat, status_notifikasi FROM Notifikasi WHERE nim = ? ORDER BY waktu_dibuat DESC";
+$params = [$nim];
+$stmt = sqlsrv_query($conn, $query, $params);
+$notifikasi = [];
+while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+    $notifikasi[] = $row;
+}
+
 // Mencegah cache halaman
 header("Cache-Control: no-cache, must-revalidate"); // Jangan simpan di cache
 header("Pragma: no-cache"); // Untuk versi lama browser

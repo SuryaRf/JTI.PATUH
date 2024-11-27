@@ -504,8 +504,9 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
 
 
     // Event listener untuk menangani klik pada tombol "CHECK"
-    document.addEventListener('click', function(event) {
-      if (event.target.classList.contains('check')) {
+    // Event listener untuk menangani klik pada tombol "CHECK"
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('check')) {
         const idPelanggaran = event.target.getAttribute('data-id');
 
         // Fetch detail laporan berdasarkan ID
@@ -516,7 +517,16 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
               alert('Terjadi kesalahan: ' + data.error);
             } else {
               // Isi modal dengan data
-              document.getElementById('modalBuktiFoto').src = `data:image/jpeg;base64,${data.bukti_foto}`;
+              if (data.bukti_foto) {
+                // Menampilkan gambar jika ada
+                document.getElementById('modalBuktiFoto').src = `data:image/jpeg;base64,${data.bukti_foto}`;
+              } else {
+                // Jika tidak ada gambar, berikan pesan default
+                document.getElementById('modalBuktiFoto').src = '';
+                document.getElementById('modalBuktiFoto').alt = 'Gambar tidak tersedia';
+              }
+
+              // Mengisi informasi lainnya
               document.getElementById('modalNamaMahasiswa').textContent = data.nama_mahasiswa;
               document.getElementById('modalNimMahasiswa').textContent = data.nim;
               document.getElementById('modalTingkatJenis').textContent = `${data.tingkat_pelanggaran} - ${data.jenis_pelanggaran}`;
@@ -532,8 +542,9 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             console.error('Fetch Error:', error);
             alert('Terjadi kesalahan saat mengambil detail laporan.');
           });
-      }
-    });
+    }
+});
+
   </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
