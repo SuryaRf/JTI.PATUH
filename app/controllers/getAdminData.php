@@ -3,11 +3,25 @@ include 'connection.php'; // Pastikan file ini berisi koneksi ke database
 
 header("Content-Type: application/json");
 
-$query = "SELECT id_pegawai, nama_pgw, jk_pegawai, nohp_pgw, email, nip 
-          FROM Pegawai 
-          WHERE nip IS NOT NULL OR nidn IS NULL"; 
+// Cek apakah id_pegawai ada dalam sesi
+session_start();
 
-$stmt = sqlsrv_query($conn, $query);
+if (!isset($_SESSION['id_pegawai'])) {
+    echo json_encode(['error' => 'ID Pegawai tidak ditemukan dalam sesi.']);
+    exit();
+}
+
+$id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
+
+// Query untuk mengambil data admin berdasarkan id_pegawai
+$query = "
+    SELECT id_pegawai, nama_pgw, jk_pegawai, nohp_pgw, email, nip 
+    FROM Pegawai 
+    WHERE id_pegawai = ?
+";
+
+$params = [$id_pegawai];
+$stmt = sqlsrv_query($conn, $query, $params);
 
 if ($stmt === false) {
     echo json_encode(['error' => 'Kesalahan saat mengambil data: ' . print_r(sqlsrv_errors(), true)]);
