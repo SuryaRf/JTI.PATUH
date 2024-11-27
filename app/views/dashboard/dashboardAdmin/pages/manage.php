@@ -460,21 +460,21 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             });
         </script>
         <script>
-           document.addEventListener('DOMContentLoaded', function() {
-      fetch('http://localhost/PBL/Project%20Web/app/controllers/violationsPegawai.php')
-        .then(response => response.json())
-        .then(data => {
-          if (data.error) {
-            console.error('Error:', data.error);
-            alert('Error: ' + data.error);
-          } else {
-            // Mengisi data pelanggaran ke dalam tabel
-            const tbody = document.querySelector('tbody');
-            tbody.innerHTML = ''; // Menghapus baris tabel yang lama
+            document.addEventListener('DOMContentLoaded', function() {
+                fetch('http://localhost/PBL/Project%20Web/app/controllers/violationsPegawai.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            console.error('Error:', data.error);
+                            alert('Error: ' + data.error);
+                        } else {
+                            // Mengisi data pelanggaran ke dalam tabel
+                            const tbody = document.querySelector('tbody');
+                            tbody.innerHTML = ''; // Menghapus baris tabel yang lama
 
-            data.forEach(violation => {
-              const row = document.createElement('tr');
-              row.innerHTML = `
+                            data.forEach(violation => {
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
             <td class="text-center">${violation.id_pelanggaran}</td>
             <td style="word-wrap: break-word; white-space: normal;">${violation.nama_pelanggaran}</td>
             <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
@@ -486,15 +486,15 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                       data-id="${violation.id_pelanggaran}">CHECK</button>
             </td>
           `;
-              tbody.appendChild(row);
+                                tbody.appendChild(row);
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Fetch Error:', error);
+                        alert('Terjadi kesalahan saat mengambil data.');
+                    });
             });
-          }
-        })
-        .catch(error => {
-          console.error('Fetch Error:', error);
-          alert('Terjadi kesalahan saat mengambil data.');
-        });
-    });
 
 
             document.addEventListener('DOMContentLoaded', function() {
