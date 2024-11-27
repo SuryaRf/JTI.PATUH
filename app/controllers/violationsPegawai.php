@@ -18,7 +18,7 @@ $query = "
         TataTertib.nama_pelanggaran
     FROM Pelanggaran
     INNER JOIN TataTertib ON Pelanggaran.id_tatib = TataTertib.id_tatib
-    WHERE Pelanggaran.id_pegawai = ?
+    WHERE Pelanggaran.id_pegawai = ? AND Pelanggaran.status = 'Pending'
 ";
 $params = array($id_pegawai);
 $stmt = sqlsrv_query($conn, $query, $params);

@@ -10,7 +10,7 @@ $id_pegawai = $_SESSION['id_pegawai'];
 
 // Query untuk mengambil data pelanggaran beserta nama pelanggaran dari TataTertib
 $query = "
-	    SELECT TOP 5
+	    SELECT 
         Pelanggaran.id_pelanggaran,
         Pelanggaran.waktu_pelanggaran,
         Pelanggaran.lokasi,
@@ -18,7 +18,7 @@ $query = "
         TataTertib.nama_pelanggaran
     FROM Pelanggaran
     INNER JOIN TataTertib ON Pelanggaran.id_tatib = TataTertib.id_tatib
-    WHERE Pelanggaran.id_pegawai = ? AND Pelanggaran.status = 'Pending'
+    WHERE Pelanggaran.id_pegawai = ?
 ";
 $params = array($id_pegawai);
 $stmt = sqlsrv_query($conn, $query, $params);

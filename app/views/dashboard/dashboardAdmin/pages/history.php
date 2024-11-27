@@ -366,7 +366,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
   <script>
     document.addEventListener('DOMContentLoaded', function () {
   // Fetch data dari server
-  fetch('http://localhost/PBL/Project%20Web/app/controllers/violationsPegawai.php')
+  fetch('http://localhost/PBL/Project%20Web/app/controllers/historyViolationsPegawai.php')
     .then(response => response.json())
     .then(data => {
       if (data.error) {

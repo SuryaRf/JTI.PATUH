@@ -423,8 +423,8 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
               </div>
             </div>
             <div class="d-flex justify-content-end mt-3">
-              <button class="btn btn-primary me-2">Riwayat</button>
-              <button class="btn btn-warning me-2">Aju Banding</button>
+              
+              <button class="btn btn-danger me-2">Tolak</button>
               <button class="btn btn-success">Terima</button>
             </div>
           </div>
