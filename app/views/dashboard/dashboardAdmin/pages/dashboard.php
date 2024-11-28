@@ -420,11 +420,15 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                   <label class="form-label" style="font-weight: bold;">Lokasi</label>
                   <p id="modalLokasi" class="form-control"></p>
                 </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: bold;">Pelapor</label>
+                  <p id="modalPelapor" class="form-control"></p>
+                </div>
               </div>
             </div>
             <div class="d-flex justify-content-end mt-3">
-              <button class="btn btn-primary me-2">Riwayat</button>
-              <button class="btn btn-warning me-2">Aju Banding</button>
+
+              <button class="btn btn-danger me-2">Tolak</button>
               <button class="btn btn-success">Terima</button>
             </div>
           </div>
@@ -467,7 +471,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
   <!-- JavaScript untuk menangani tombol "CHECK" -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      fetch('http://localhost/PBL/Project%20Web/app/controllers/violationsPegawai.php')
+      fetch('http://localhost/PBL/Project%20Web/app/controllers/recentViolationsPegawai.php')
         .then(response => response.json())
         .then(data => {
           if (data.error) {
@@ -504,35 +508,50 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
 
 
     // Event listener untuk menangani klik pada tombol "CHECK"
-    document.addEventListener('click', function(event) {
-      if (event.target.classList.contains('check')) {
-        const idPelanggaran = event.target.getAttribute('data-id');
+    document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('check')) {
+          const idPelanggaran = event.target.getAttribute('data-id');
 
-        // Fetch detail laporan berdasarkan ID
-        fetch(`http://localhost/PBL/Project%20Web/app/controllers/getViolationDetails.php?id=${idPelanggaran}`)
-          .then(response => response.json())
-          .then(data => {
-            if (data.error) {
-              alert('Terjadi kesalahan: ' + data.error);
-            } else {
-              // Isi modal dengan data
-              document.getElementById('modalBuktiFoto').src = `data:image/jpeg;base64,${data.bukti_foto}`;
-              document.getElementById('modalNamaMahasiswa').textContent = data.nama_mahasiswa;
-              document.getElementById('modalNimMahasiswa').textContent = data.nim;
-              document.getElementById('modalTingkatJenis').textContent = `${data.tingkat_pelanggaran} - ${data.jenis_pelanggaran}`;
-              document.getElementById('modalWaktu').textContent = data.waktu_pelanggaran;
-              document.getElementById('modalLokasi').textContent = data.lokasi;
+          // Fetch detail laporan berdasarkan ID
+          fetch(`http://localhost/PBL/Project%20Web/app/controllers/getViolationDetails.php?id=${idPelanggaran}`)
+            .then(response => response.json())
+            .then(data => {
+              if (data.error) {
+                alert('Terjadi kesalahan: ' + data.error);
+              } else {
+                // Isi modal dengan data pelanggaran
+                if (data.bukti_foto) {
+                  document.getElementById('modalBuktiFoto').src = `data:image/jpeg;base64,${data.bukti_foto}`;
+                } else {
+                  document.getElementById('modalBuktiFoto').src = '';
+                  document.getElementById('modalBuktiFoto').alt = 'Gambar tidak tersedia';
+                }
 
-              // Tampilkan modal
-              const detailModal = new bootstrap.Modal(document.getElementById('detailModal'));
-              detailModal.show();
-            }
-          })
-          .catch(error => {
-            console.error('Fetch Error:', error);
-            alert('Terjadi kesalahan saat mengambil detail laporan.');
-          });
-      }
+                document.getElementById('modalNamaMahasiswa').textContent = data.nama_terlapor;
+                document.getElementById('modalNimMahasiswa').textContent = data.nim_terlapor;
+                document.getElementById('modalTingkatJenis').textContent = `${data.tingkat_pelanggaran} - ${data.jenis_pelanggaran}`;
+                document.getElementById('modalWaktu').textContent = data.waktu_pelanggaran;
+                document.getElementById('modalLokasi').textContent = data.lokasi;
+
+                // Tampilkan pelapor
+                if (data.pelapor) {
+                  document.getElementById('modalPelapor').textContent = `${data.pelapor.type}: ${data.pelapor.id} (${data.pelapor.name})`;
+                } else {
+                  document.getElementById('modalPelapor').textContent = 'Tidak ada pelapor.';
+                }
+
+                // Tampilkan modal
+                const detailModal = new bootstrap.Modal(document.getElementById('detailModal'));
+                detailModal.show();
+              }
+            })
+            .catch(error => {
+              console.error('Fetch Error:', error);
+              alert('Terjadi kesalahan saat mengambil detail laporan.');
+            });
+        }
+      });
     });
   </script>
   <script>

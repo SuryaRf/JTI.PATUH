@@ -35,7 +35,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die(json_encode(['error' => 'Kesalahan saat menyimpan data: ' . print_r(sqlsrv_errors(), true)]));
     }
 
-    // Jika berhasil
+    // Jika laporan berhasil dibuat, tambahkan notifikasi
+    $notifikasi_mahasiswa = "Terdapat laporan pelanggaran untuk Anda dengan waktu $waktu_pelanggaran di lokasi $lokasi sedang diproses dengan status $status.";
+    $notifikasi_admin = "Anda telah mengajukan laporan pelanggaran atas mahasiswa dengan NIM $nim.";
+
+    // Tambahkan notifikasi untuk mahasiswa
+    $query_mahasiswa = "INSERT INTO Notifikasi (nim, isi) VALUES (?, ?)";
+    $params_mahasiswa = [$nim, $notifikasi_mahasiswa];
+    sqlsrv_query($conn, $query_mahasiswa, $params_mahasiswa);
+
+    // Tambahkan notifikasi untuk admin
+    $query_admin = "INSERT INTO Notifikasi (id_pegawai, isi) VALUES (?, ?)";
+    $params_admin = [$id_pegawai, $notifikasi_admin];
+    sqlsrv_query($conn, $query_admin, $params_admin);
+
     echo json_encode(['success' => 'Laporan berhasil dikirim.']);
     sqlsrv_close($conn);
 } else {
