@@ -7,10 +7,10 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../../../../../public/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../../../../../public/img/favicon.png">
   <title>
-    Dashboard Admin
+    Dashboard Mahasiswa
   </title>
   <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Nucleo Icons -->
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -20,6 +20,62 @@
   <link id="pagestyle" href="../../../../../public/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
 
   <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif !important;
+      letter-spacing: 0.3px;
+    }
+
+    .custom-header {
+      font-size: 16px;
+      /* Ubah sesuai kebutuhan */
+      color: #223381;
+      /* Warna biru dongker */
+      font-weight: bold;
+    }
+
+    .modal-content,
+    .modal-title,
+    .form-label,
+    .form-control,
+    .btn {
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 600px;
+    }
+
+    .table,
+    .text-16 {
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 16px;
+    }
+
+    .btn-primary {
+      background-color: #223381;
+      border: none;
+      border-radius: 12px;
+      margin-top: 15px;
+    }
+
+    .badge {
+      font-size: 0.875rem;
+      padding: 0.5em 0.75em;
+    }
+
+    .text-sm {
+      font-size: 16px;
+      font-weight: normal;
+    }
+
+    .font-weight-bold,
+    .nav-link-text,
+    h4,
+    h6 {
+      font-family: 'Poppins', sans-serif !important;
+    }
+
     .btn-primary {
       margin-top: 10px;
     }
@@ -32,6 +88,14 @@
       animation: fadeInFooter 1.5s ease;
     }
 
+    .text-black {
+      color: #000 !important;
+    }
+
+    .btn-primary:hover {
+      background-color: #1a285e;
+    }
+
     .table th,
     .table td {
       vertical-align: middle;
@@ -39,7 +103,6 @@
 
     .card-header {
       border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-
     }
 
     .btn-outline-primary:hover {
@@ -61,11 +124,16 @@
 
 <body class="g-sidenav-show   bg-gray-100">
   <div class="min-height-200 bg-dark position-absolute w-100"></div>
-  <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
+  <aside
+    class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+    id="sidenav-main">
     <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.php " target="_blank">
-        <img src="/PBL/Project%20Web/public/svg/logo.svg" width="170px" height="170px" class="navbar-brand-img h-100" alt="main_logo">
+      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+        aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.php "
+        target="_blank">
+        <img src="/PBL/Project%20Web/public/svg/logo.svg" width="170px" height="170px" class="navbar-brand-img h-100"
+          alt="main_logo">
       </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -73,7 +141,8 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="../pages/dashboard.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-home text-dark text-sm opacity-10"></i> <!-- Ikon Beranda -->
             </div>
             <span class="nav-link-text ms-1">Beranda</span>
@@ -81,7 +150,8 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../pages/report.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-exclamation-circle text-dark text-sm opacity-10"></i> <!-- Ikon alert Font Awesome -->
             </div>
             <span class="nav-link-text ms-1">Laporkan</span>
@@ -91,7 +161,8 @@
 
         <li class="nav-item">
           <a class="nav-link active" href="../pages/history.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-history text-dark text-sm opacity-10"></i> <!-- Ikon Riwayat -->
             </div>
             <span class="nav-link-text ms-1">Riwayat Laporan</span>
@@ -100,7 +171,8 @@
 
         <li class="nav-item">
           <a class="nav-link" href="../pages/notification.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-bell text-dark text-sm opacity-10"></i> <!-- Ganti ikon di sini -->
             </div>
             <span class="nav-link-text ms-1">Notifikasi</span>
@@ -112,7 +184,8 @@
         </li>
         <li class="nav-item">
           <a class="nav-link " href="../pages/profile.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Profil</span>
@@ -120,7 +193,8 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../../../../controllers/logout.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Keluar</span>
@@ -132,113 +206,19 @@
   </aside>
   <main class="main-content position-relative border-radius-lg ">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+      data-scroll="false">
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">Tables</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Tables</h6>
+          <h6 class="text-white mb-0">Tables</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-
           </div>
-          <ul class="navbar-nav  justify-content-end">
-            <li class="nav-item d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
-                <i class="fa fa-user me-sm-1"></i>
-              </a>
-            </li>
-            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
-                <div class="sidenav-toggler-inner">
-                  <i class="sidenav-toggler-line bg-white"></i>
-                  <i class="sidenav-toggler-line bg-white"></i>
-                  <i class="sidenav-toggler-line bg-white"></i>
-                </div>
-              </a>
-            </li>
-            <li class="nav-item px-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0">
-                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-              </a>
-            </li>
-            <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-bell cursor-pointer"></i>
-              </a>
-              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="my-auto">
-                        <img src="../../../../../public/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New message</span> from Laur
-                        </h6>
-                        <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i>
-                          13 minutes ago
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="my-auto">
-                        <img src="../../../../../public/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark  me-3 ">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New album</span> by Travis Scott
-                        </h6>
-                        <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i>
-                          1 day
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
-                        <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                          <title>credit-card</title>
-                          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                              <g transform="translate(1716.000000, 291.000000)">
-                                <g transform="translate(453.000000, 454.000000)">
-                                  <path class="color-background" d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z" opacity="0.593633743"></path>
-                                  <path class="color-background" d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"></path>
-                                </g>
-                              </g>
-                            </g>
-                          </g>
-                        </svg>
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          Payment successfully completed
-                        </h6>
-                        <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i>
-                          2 days
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
         </div>
       </div>
     </nav>
@@ -247,58 +227,69 @@
       <div class="row">
         <div class="col-12">
           <div class="card mb-4 shadow-sm border-0">
-            <div class="card-header pb-3 bg-white text-black">
-              <h4 class="mb-0 text-black">Laporan Yang Diajukan</h4>
+            <div class="card-header pb-3 bg-white text-navy-blue">
+              <h4 class="mb-0" style="color: #223381; font-size: 20px;">LAPORAN YANG DIAJUKAN</h4>
             </div>
             <div class="card-body px-4 pt-0 pb-2">
               <div class="table-responsive">
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">No. Pelanggaran</th>
-                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Nama Pelanggaran</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Status</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Detail</th>
-                      <th class="text-secondary opacity-7"></th>
+                      <th style="font-size: 16px; color: #223381; text-align: center; width: 25%;">NO. PELANGGARAN</th>
+                      <th style="font-size: 16px; color: #223381;">NAMA PELANGGARAN</th>
+                      <th style="font-size: 16px; color: #223381; text-align: center;">STATUS</th>
+                      <th style="font-size: 16px; color: #223381; text-align: center;">DETAIL</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <!-- Baris 1 -->
                     <tr>
-                      <td class="text-sm font-weight-bold text-primary">ABC01</td>
-                      <td class="text-sm">Merokok</td>
+                      <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">ABC01</td>
+                      <td class="text-16" style="color: #6B7280; font-size: 16px;">Merokok</td>
                       <td class="text-center">
-                        <span class="badge bg-warning text-white">Pending</span>
+                        <span class="badge bg-warning text-white fs-7 rounded-3"
+                          style="font-weight: 600; width: 100px; text-align: center; height: 30px; line-height: 18px;">
+                          TERTUNDA
+                        </span>
                       </td>
                       <td class="align-middle text-center">
-                        <button class="btn btn-sm btn-outline-primary">
-                          <i class="fas fa-eye me-1"></i>Check
+                        <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal"
+                          data-bs-target="#detailModalABC01" style="font-weight: 600;">
+                          CHECK
                         </button>
                       </td>
                     </tr>
-                    <!-- Baris 2 -->
+
+
+
                     <tr>
-                      <td class="text-sm font-weight-bold text-primary">DEF02</td>
-                      <td class="text-sm">Makan di Kelas</td>
+                      <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">DEF02</td>
+                      <td class="text-16" style="color: #6B7280; font-size: 16px;">Makan di Kelas</td>
                       <td class="text-center">
-                        <span class="badge bg-success text-white">Approved</span>
+                        <span class="badge bg-success text-white p-2 fs-7 rounded-3"
+                          style="font-weight: 600; width: 100px; text-align: center; height: 30px; line-height: 16px;">
+                          SELESAI
+                        </span>
                       </td>
-                      <td class="align-middle text-center">
-                        <button class="btn btn-sm btn-outline-success">
-                          <i class="fas fa-check-circle me-1"></i>View
+                      <td class="text-center">
+                        <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal"
+                          data-bs-target="#detailModalABC01" style="font-weight: 600;">
+                          CHECK
                         </button>
                       </td>
                     </tr>
-                    <!-- Baris 3 -->
                     <tr>
-                      <td class="text-sm font-weight-bold text-primary">GHI03</td>
-                      <td class="text-sm">Bolos</td>
+                      <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">GHI03</td>
+                      <td class="text-16" style="color: #6B7280; font-size: 16px;">Bolos</td>
                       <td class="text-center">
-                        <span class="badge bg-danger text-white">Rejected</span>
+                        <span class="badge bg-danger text-white p-2 fs-7 rounded-3"
+                          style="font-weight: 600; width: 100px; text-align: center;">
+                          DITOLAK
+                        </span>
                       </td>
-                      <td class="align-middle text-center">
-                        <button class="btn btn-sm btn-outline-danger">
-                          <i class="fas fa-times-circle me-1"></i>Check
+                      <td class="text-center">
+                        <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal"
+                          data-bs-target="#detailModalABC01" style="font-weight: 600;">
+                          CHECK
                         </button>
                       </td>
                     </tr>
@@ -310,62 +301,173 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid py-4">
+    <div class="container-fluid py-0">
       <div class="row">
         <div class="col-12">
           <div class="card mb-4 shadow-sm border-0">
-            <div class="card-header pb-3 bg-white text-black">
-              <h4 class="mb-0 text-black">Laporan Yang Diterima</h4>
+            <div class="card-header pb-3 bg-white text-navy-blue">
+              <h4 class="mb-0" style="color: #223381; font-size: 20px;">LAPORAN YANG DITERIMA</h4>
             </div>
             <div class="card-body px-4 pt-0 pb-2">
               <div class="table-responsive">
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">No. Pelanggaran</th>
-                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Nama Pelanggaran</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Status</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Detail</th>
-                      <th class="text-secondary opacity-7"></th>
+                      <th style="font-size: 16px; color: #223381; text-align: center; width: 25%;">NO. PELANGGARAN</th>
+                      <th style="font-size: 16px; color: #223381;">NAMA PELANGGARAN</th>
+                      <th style="font-size: 16px; color: #223381; text-align: center;">STATUS</th>
+                      <th style="font-size: 16px; color: #223381; text-align: center;">DETAIL</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <!-- Baris 1 -->
                     <tr>
-                      <td class="text-sm font-weight-bold text-primary">ABC01</td>
-                      <td class="text-sm">Merokok</td>
+                      <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">ABC01</td>
+                      <td class="text-16" style="color: #6B7280; font-size: 16px;">Merokok</td>
                       <td class="text-center">
-                        <span class="badge bg-warning text-white">Pending</span>
+                        <span class="badge bg-warning text-white fs-7 rounded-3"
+                          style="font-weight: 600; width: 100px; text-align: center; height: 30px; line-height: 18px;">
+                          TERTUNDA
+                        </span>
                       </td>
                       <td class="align-middle text-center">
-                        <button class="btn btn-sm btn-outline-primary">
-                          <i class="fas fa-eye me-1"></i>Check
+                        <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal"
+                          data-bs-target="#detailModalABC01" style="font-weight: 600;">
+                          CHECK
                         </button>
                       </td>
                     </tr>
-                    <!-- Baris 2 -->
+
+                    <!-- Modal for ABC01 -->
+                    <div class="modal fade" id="detailModalABC01" tabindex="-1" aria-labelledby="detailModalLabelABC01"
+                      aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="detailModalLabelABC01" style="font-size: 20px; font-weight: 600px; color: #223381;">Detail Pelanggaran</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="row">
+                              <!-- Foto yang Bisa Diklik untuk Zoom -->
+                              <div class="col-md-4">
+                                <div class="text-center">
+                                  <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom"
+                                    class="img-fluid rounded w-100" data-bs-toggle="modal"
+                                    data-bs-target="#buktiZoomModalABC01" style="cursor: pointer;">
+                                </div>
+                              </div>
+                              <!-- Informasi di sebelah kanan -->
+                              <div class="col-md-8">
+                                <div class="mb-3">
+                                  <label class="form-label" style="font-weight: 600px; color: #223381;">Nama Mahasiswa
+                                    Terlapor</label>
+                                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                                    Surya Rahmat
+                                  </p>
+                                </div>
+                                <div class="mb-3">
+                                  <label class="form-label" style="font-weight: 600px; color: #223381;">NIM Mahasiswa
+                                    Terlapor</label>
+                                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                                    2341760020
+                                  </p>
+                                </div>
+                                <div class="mb-3">
+                                  <label class="form-label" style="font-weight: 600px; color: #223381;">Tingkat dan Jenis
+                                    Pelanggaran</label>
+                                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                                    IV - Mewarnai rambut berwarna punk
+                                  </p>
+                                </div>
+                                <div class="mb-3">
+                                  <label class="form-label" style="font-weight: 600px; color: #223381;">Waktu</label>
+                                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                                    Kamis, 14 November 2024 pukul 14:59
+                                  </p>
+                                </div>
+                                <div class="mb-3">
+                                  <label class="form-label" style="font-weight: 600px; color: #223381;">Lokasi</label>
+                                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                                    Di Ruang Kelas
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
+                              <!-- Tombol Riwayat (Sedikit diangkat) -->
+                              <button class="btn btn-primary rounded-3 me-2"
+                                style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-10px);"
+                                data-bs-toggle="modal" data-bs-target="#riwayatModal">
+                                Riwayat
+                              </button>
+                              <!-- Tombol Aju Banding -->
+                              <button class="btn btn-warning rounded-3 me-2"
+                                style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;"
+                                data-bs-toggle="modal" data-bs-target="#ajuBandingModal">
+                                Aju Banding
+                              </button>
+                              <!-- Tombol Terima -->
+                              <button class="btn btn-success rounded-3"
+                                style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" id="submitBtn"
+                                data-bs-toggle="modal" data-bs-target="#successModal">
+                                Terima
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Modal untuk Zoom Gambar -->
+                    <div class="modal fade" id="buktiZoomModalABC01" tabindex="-1"
+                      aria-labelledby="buktiZoomModalLabelABC01" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-body p-0">
+                            <p
+                              style="font-weight: bold; color: #223381; margin-bottom: 0px; margin-left: 20px; margin-top: 20px;">
+                              Bukti Pelanggaran</p>
+                            <div class="d-flex justify-content-center align-items-center">
+                              <div style="padding: 20px; background-color: white; border-radius: 8px;">
+                                <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom"
+                                  class="img-fluid rounded"
+                                  style="max-width: 100%; height: auto; display: block; margin: 0;">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                     <tr>
-                      <td class="text-sm font-weight-bold text-primary">DEF02</td>
-                      <td class="text-sm">Makan di Kelas</td>
+                      <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">DEF02</td>
+                      <td class="text-16" style="color: #6B7280; font-size: 16px;">Makan di Kelas</td>
                       <td class="text-center">
-                        <span class="badge bg-success text-white">Approved</span>
+                        <span class="badge bg-success text-white p-2 fs-7 rounded-3"
+                          style="font-weight: 600; width: 100px; text-align: center; height: 30px; line-height: 16px;">
+                          SELESAI
+                        </span>
                       </td>
-                      <td class="align-middle text-center">
-                        <button class="btn btn-sm btn-outline-success">
-                          <i class="fas fa-check-circle me-1"></i>View
+                      <td class="text-center">
+                        <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal"
+                          data-bs-target="#detailModalABC01" style="font-weight: 600;">
+                          CHECK
                         </button>
                       </td>
                     </tr>
-                    <!-- Baris 3 -->
                     <tr>
-                      <td class="text-sm font-weight-bold text-primary">GHI03</td>
-                      <td class="text-sm">Bolos</td>
+                      <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">GHI03</td>
+                      <td class="text-16" style="color: #6B7280; font-size: 16px;">Bolos</td>
                       <td class="text-center">
-                        <span class="badge bg-danger text-white">Rejected</span>
+                        <span class="badge bg-danger text-white p-2 fs-7 rounded-3"
+                          style="font-weight: 600; width: 100px; text-align: center;">
+                          DITOLAK
+                        </span>
                       </td>
-                      <td class="align-middle text-center">
-                        <button class="btn btn-sm btn-outline-danger">
-                          <i class="fas fa-times-circle me-1"></i>Check
+                      <td class="text-center">
+                        <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal"
+                          data-bs-target="#detailModalABC01" style="font-weight: 600;">
+                          CHECK
                         </button>
                       </td>
                     </tr>
