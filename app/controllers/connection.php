@@ -1,6 +1,6 @@
 <?php
 // Konfigurasi Koneksi SQL Server
-$serverName = "LAPTOP-OLIBO2H2"; // Sesuaikan dengan nama server Anda
+$serverName = "DESKTOP-VDHPPPR\SQLEXPRESS"; // Sesuaikan dengan nama server Anda
 $database = "PBL";    // Nama database
 
 // Opsi koneksi
