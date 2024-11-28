@@ -3,9 +3,9 @@ session_start();
 
 // Pastikan sesi NIM ada
 if (!isset($_SESSION['id_pegawai'])) {
-    // Jika tidak ada, arahkan ke halaman login
-    header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
-    exit();
+  // Jika tidak ada, arahkan ke halaman login
+  header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+  exit();
 }
 
 $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
@@ -15,8 +15,8 @@ header("Pragma: no-cache"); // Untuk versi lama browser
 header("Expires: 0"); // Waktu kadaluarsa
 
 if (!isset($_SESSION['id_pegawai'])) {
-    header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
-    exit();
+  header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+  exit();
 }
 
 $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
@@ -44,41 +44,42 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
   <link id="pagestyle" href="../../../../../public/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
 
   <style>
-    .btn-primary{
+    .btn-primary {
       margin-top: 10px;
     }
+
     .footer {
-    text-align: center;
-    color: #9CA3AF;
-    margin-top: 92px;
-    padding: 16px 0;
-    animation: fadeInFooter 1.5s ease;
-}
+      text-align: center;
+      color: #9CA3AF;
+      margin-top: 92px;
+      padding: 16px 0;
+      animation: fadeInFooter 1.5s ease;
+    }
 
-.table th,
-  .table td {
-    vertical-align: middle;
-  }
+    .table th,
+    .table td {
+      vertical-align: middle;
+    }
 
-  .card-header {
-    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-    
-  }
+    .card-header {
+      border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 
-  .btn-outline-primary:hover {
-    background-color: #007bff;
-    color: #fff;
-  }
+    }
 
-  .btn-outline-success:hover {
-    background-color: #28a745;
-    color: #fff;
-  }
+    .btn-outline-primary:hover {
+      background-color: #007bff;
+      color: #fff;
+    }
 
-  .btn-outline-danger:hover {
-    background-color: #dc3545;
-    color: #fff;
-  }
+    .btn-outline-success:hover {
+      background-color: #28a745;
+      color: #fff;
+    }
+
+    .btn-outline-danger:hover {
+      background-color: #dc3545;
+      color: #fff;
+    }
   </style>
 </head>
 
@@ -152,7 +153,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
         <li class="nav-item">
           <a class="nav-link" href="../../../../controllers/logout.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
+              <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Keluar</span>
           </a>
@@ -275,80 +276,88 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-  <div class="row">
-    <div class="col-12">
-      <div class="card mb-4 shadow-sm border-0">
-        <div class="card-header pb-3 bg-white text-black">
-          <h4 class="mb-0 text-black">Laporan Yang Diajukan</h4>
-        </div>
-        <div class="card-body px-4 pt-0 pb-2">
-          <div class="table-responsive">
-            <table class="table align-items-center mb-0">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">No. Pelanggaran</th>
-                  <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Nama Pelanggaran</th>
-                  <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Status</th>
-                  <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Detail</th>
-                  <th class="text-secondary opacity-7"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Baris 1 -->
-                <tr>
-                  <td class="text-sm font-weight-bold text-primary">ABC01</td>
-                  <td class="text-sm">Merokok</td>
-                  <td class="text-center">
-                    <span class="badge bg-warning text-white">Pending</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <button class="btn btn-sm btn-outline-primary">
-                      <i class="fas fa-eye me-1"></i>Check
-                    </button>
-                  </td>
-                </tr>
-                <!-- Baris 2 -->
-                <tr>
-                  <td class="text-sm font-weight-bold text-primary">DEF02</td>
-                  <td class="text-sm">Makan di Kelas</td>
-                  <td class="text-center">
-                    <span class="badge bg-success text-white">Approved</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <button class="btn btn-sm btn-outline-success">
-                      <i class="fas fa-check-circle me-1"></i>View
-                    </button>
-                  </td>
-                </tr>
-                <!-- Baris 3 -->
-                <tr>
-                  <td class="text-sm font-weight-bold text-primary">GHI03</td>
-                  <td class="text-sm">Bolos</td>
-                  <td class="text-center">
-                    <span class="badge bg-danger text-white">Rejected</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <button class="btn btn-sm btn-outline-danger">
-                      <i class="fas fa-times-circle me-1"></i>Check
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4 shadow-sm border-0">
+            <div class="card-header pb-3 bg-white text-black">
+              <h4 class="mb-0 text-black">Laporan Yang Diajukan</h4>
+            </div>
+            <div class="card-body px-4 pt-0 pb-2">
+              <div class="table-responsive">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">No. Pelanggaran</th>
+                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Nama Pelanggaran</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Status</th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Detail</th>
+                      <th class="text-secondary opacity-7"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-      
-      
-  <footer class="footer">
-        Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
+
+
+    <!-- Modal untuk detail pelanggaran -->
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="detailModalLabel">Detail Pelanggaran</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <img id="modalBuktiFoto" src="" alt="Bukti Foto" class="img-fluid rounded w-100" style="cursor: pointer;">
+              </div>
+              <div class="col-md-8">
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: bold;">Nama Mahasiswa Terlapor</label>
+                  <p id="modalNamaMahasiswa" class="form-control"></p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: bold;">NIM Mahasiswa Terlapor</label>
+                  <p id="modalNimMahasiswa" class="form-control"></p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: bold;">Tingkat dan Jenis Pelanggaran</label>
+                  <p id="modalTingkatJenis" class="form-control"></p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: bold;">Waktu</label>
+                  <p id="modalWaktu" class="form-control"></p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: bold;">Lokasi</label>
+                  <p id="modalLokasi" class="form-control"></p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: bold;">Pelapor</label>
+                  <p id="modalPelapor" class="form-control"></p>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end mt-3 modal-footer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
     </footer>
     </div>
   </main>
- 
+
   <!--   Core JS Files   -->
   <script src="../../../../../public/js/core/popper.min.js"></script>
   <script src="../../../../../public/js/core/bootstrap.min.js"></script>
@@ -363,59 +372,156 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
+
+
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-  // Fetch data dari server
-  fetch('http://localhost/PBL/Project%20Web/app/controllers/violationsPegawai.php')
-    .then(response => response.json())
-    .then(data => {
-      if (data.error) {
-        console.error('Error:', data.error);
-        alert('Error: ' + data.error);
-      } else {
-        // Seleksi elemen tbody tabel
-        const tbody = document.querySelector('tbody');
-        tbody.innerHTML = ''; // Kosongkan tabel sebelum memuat data baru
+    document.addEventListener('DOMContentLoaded', function() {
+      // Fetch violations and display them in the table
+      fetch('http://localhost/PBL/Project%20Web/app/controllers/historyViolationsPegawai.php')
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            console.error('Error:', data.error);
+            alert('Error: ' + data.error);
+          } else {
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = ''; // Clear previous rows
 
-        // Loop melalui data untuk mengisi tabel
-        data.forEach((violation, index) => {
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td class="text-sm font-weight-bold text-primary">${violation.id_pelanggaran}</td>
-            <td class="text-sm">${violation.nama_pelanggaran}</td>
-            <td class="text-center">
-              <span class="badge ${getBadgeClass(violation.status)} text-white">${violation.status}</span>
-            </td>
-            <td class="align-middle text-center">
-              <button class="btn btn-sm btn-outline-primary">
-                <i class="fas fa-eye me-1"></i>Check
-              </button>
-            </td>
-          `;
-          tbody.appendChild(row);
+            data.forEach(violation => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+              <td class="text-center">${violation.id_pelanggaran}</td>
+              <td style="word-wrap: break-word; white-space: normal;">${violation.nama_pelanggaran}</td>
+              <td class="text-center">
+                <span class="badge ${getBadgeClass(violation.status)} text-white">${violation.status}</span>
+              </td>
+              <td class="text-center rounded-end">
+                <button class="btn btn-primary py-1 px-4 fs-7 w-100 rounded-3 check" 
+                        data-bs-toggle="modal" data-bs-target="#detailModal" data-id="${violation.id_pelanggaran}">
+                  CHECK
+                </button>
+              </td>
+            `;
+              tbody.appendChild(row);
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Fetch Error:', error);
+          alert('Terjadi kesalahan saat mengambil data.');
         });
+
+      function getBadgeClass(status) {
+        switch (status.toLowerCase()) {
+          case 'pending':
+            return 'bg-warning';
+          case 'valid':
+            return 'bg-success';
+          case 'reject':
+            return 'bg-danger';
+          default:
+            return 'bg-secondary';
+        }
       }
-    })
-    .catch(error => {
-      console.error('Fetch Error:', error);
-      alert('Terjadi kesalahan saat mengambil data.');
+
+      // Event listener for the CHECK button to show the modal with detailed data
+      document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('check')) {
+          const idPelanggaran = event.target.getAttribute('data-id');
+
+          // Fetch violation details based on ID
+          fetch(`http://localhost/PBL/Project%20Web/app/controllers/getViolationDetails.php?id=${idPelanggaran}`)
+            .then(response => response.json())
+            .then(data => {
+              if (data.error) {
+                alert('Terjadi kesalahan: ' + data.error);
+              } else {
+                
+                // Populate modal fields
+                document.getElementById('modalNamaMahasiswa').textContent = data.nama_terlapor;
+                document.getElementById('modalNimMahasiswa').textContent = data.nim_terlapor;
+                document.getElementById('modalTingkatJenis').textContent = `${data.tingkat_pelanggaran} - ${data.jenis_pelanggaran}`;
+                document.getElementById('modalWaktu').textContent = data.waktu_pelanggaran;
+                document.getElementById('modalLokasi').textContent = data.lokasi;
+                document.getElementById('modalPelapor').textContent = `${data.pelapor.type}: ${data.pelapor.id} (${data.pelapor.name})`;
+                document.getElementById('modalBuktiFoto').src = data.bukti_foto_url || '';
+
+                // Update modal buttons
+                const modalFooter = document.querySelector('.modal-footer');
+                modalFooter.innerHTML = ''; // Clear existing buttons
+
+                if (data.status.toLowerCase() === 'valid') {
+                  const btnRiwayat = document.createElement('button');
+                  btnRiwayat.className = 'btn btn-primary me-2';
+                  btnRiwayat.textContent = 'Riwayat';
+                  btnRiwayat.addEventListener('click', () => {
+                    fetch(`http://localhost/PBL/Project%20Web/app/controllers/generatePDF.php?id=${data.id_pelanggaran}`)
+                      .then(response => {
+                        if (!response.ok) {
+                          throw new Error('Gagal memproses permintaan: ' + response.statusText);
+                        }
+                        return response.json();
+                      })
+                      .then(result => {
+                        if (result.success) {
+                          alert('PDF berhasil dibuat dan dikirim.');
+                        } else {
+                          alert('Gagal membuat PDF: ' + (result.error || 'Tidak diketahui'));
+                        }
+                      })
+                      .catch(error => {
+                        console.error(error);
+                        alert('Error: ' + error.message);
+                      });
+                  });
+
+
+                  const btnKirim = document.createElement('button');
+                  btnKirim.className = 'btn btn-success';
+                  btnKirim.textContent = 'Kirim';
+                  btnKirim.addEventListener('click', () => alert('Kirim laporan.'));
+
+                  modalFooter.appendChild(btnRiwayat);
+                  modalFooter.appendChild(btnKirim);
+                } else if (data.status.toLowerCase() === 'reject') {
+                  const btnClose = document.createElement('button');
+                  btnClose.className = 'btn btn-secondary';
+                  btnClose.textContent = 'Close';
+                  btnClose.setAttribute('data-bs-dismiss', 'modal');
+
+                  modalFooter.appendChild(btnClose);
+                } else if (data.status.toLowerCase() === 'pending') {
+                  const btnTolak = document.createElement('button');
+                  btnTolak.className = 'btn btn-danger me-2';
+                  btnTolak.textContent = 'Tolak';
+                  btnTolak.addEventListener('click', () => {
+                    // Logika untuk menangani tombol Tolak
+                    alert('Laporan ditolak.');
+                    // Tambahkan logika untuk mengirim permintaan update status ke server
+                  });
+
+                  const btnTerima = document.createElement('button');
+                  btnTerima.className = 'btn btn-success';
+                  btnTerima.textContent = 'Terima';
+                  btnTerima.addEventListener('click', () => {
+                    // Logika untuk menangani tombol Terima
+                    alert('Laporan diterima.');
+                    // Tambahkan logika untuk mengirim permintaan update status ke server
+                  });
+
+                  modalFooter.appendChild(btnTolak);
+                  modalFooter.appendChild(btnTerima);
+                }
+
+              }
+            })
+            .catch(error => {
+              console.error('Fetch Error:', error);
+              alert('Terjadi kesalahan saat mengambil detail laporan.');
+            });
+        }
+      });
     });
-});
-
-// Fungsi untuk menentukan kelas badge berdasarkan status
-function getBadgeClass(status) {
-  switch (status.toLowerCase()) {
-    case 'pending':
-      return 'bg-warning';
-    case 'valid':
-      return 'bg-success';
-    case 'reject':
-      return 'bg-danger';
-    default:
-      return 'bg-secondary'; // Default untuk status lain
-  }
-}
-
   </script>
 
   <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>

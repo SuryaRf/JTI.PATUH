@@ -1,3 +1,28 @@
+<?php
+session_start();
+
+// Pastikan sesi NIM ada
+if (!isset($_SESSION['id_pegawai'])) {
+  // Jika tidak ada, arahkan ke halaman login
+  header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+  exit();
+}
+
+$id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
+// Mencegah cache halaman
+header("Cache-Control: no-cache, must-revalidate"); // Jangan simpan di cache
+header("Pragma: no-cache"); // Untuk versi lama browser
+header("Expires: 0"); // Waktu kadaluarsa
+
+if (!isset($_SESSION['id_pegawai'])) {
+  header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+  exit();
+}
+
+$id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -199,30 +224,30 @@
     <script src="../../../../../public/js/plugins/smooth-scrollbar.min.js"></script>
 
     <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Ambil data admin dari server
-    fetch('http://localhost/PBL/Project%20Web/app/controllers/getAdminData.php')
-        .then(response => response.json())
-        .then(data => {
+      document.addEventListener('DOMContentLoaded', function() {
+        // Ambil data admin dari server
+        fetch('http://localhost/PBL/Project%20Web/app/controllers/getAdminData.php')
+          .then(response => response.json())
+          .then(data => {
             if (data.error) {
-                alert(data.error);
+              alert(data.error);
             } else {
-                // Isi data ke dalam elemen input
-                document.getElementById('nama_admin').innerText = data.nama_pgw || '';
-                document.getElementById('role_admin').innerText = 'Admin'; // Ganti sesuai role jika diperlukan
-                document.getElementById('nip_admin').value = data.nip || '';
-                document.getElementById('nama_admin_input').value = data.nama_pgw || '';
-                document.getElementById('jk_admin').value = data.jk_pegawai || '';
-                document.getElementById('nohp_admin').value = data.nohp_pgw || '';
-                document.getElementById('email_admin').value = data.email || '';
+              // Isi data ke dalam elemen input
+              document.getElementById('nama_admin').innerText = data.nama_pgw || '';
+              document.getElementById('role_admin').innerText = 'Admin'; // Ganti sesuai role jika diperlukan
+              document.getElementById('nip_admin').value = data.nip || '';
+              document.getElementById('nama_admin_input').value = data.nama_pgw || '';
+              document.getElementById('jk_admin').value = data.jk_pegawai || '';
+              document.getElementById('nohp_admin').value = data.nohp_pgw || '';
+              document.getElementById('email_admin').value = data.email || '';
             }
-        })
-        .catch(error => {
+          })
+          .catch(error => {
             console.error('Error:', error);
             alert('Terjadi kesalahan saat mengambil data admin.');
-        });
-});
-</script>
+          });
+      });
+    </script>
 
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

@@ -1,3 +1,27 @@
+<?php
+session_start();
+
+// Pastikan sesi NIM ada
+if (!isset($_SESSION['nim'])) {
+  // Jika tidak ada, arahkan ke halaman login
+  header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+  exit();
+}
+
+$nim = $_SESSION['nim']; // Ambil NIM dari sesi
+// Mencegah cache halaman
+header("Cache-Control: no-cache, must-revalidate"); // Jangan simpan di cache
+header("Pragma: no-cache"); // Untuk versi lama browser
+header("Expires: 0"); // Waktu kadaluarsa
+
+if (!isset($_SESSION['nim'])) {
+  header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+  exit();
+}
+
+$nim = $_SESSION['nim']; // Ambil NIM dari sesi
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +31,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../../../../../public/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../../../../../public/img/favicon.png">
   <title>
-  Dashboard Admin
+    Dashboard Admin
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -17,18 +41,18 @@
   <!-- Font Awesome Icons -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/js/all.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- CSS Files -->
   <link id="pagestyle" href="../../../../../public/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
   <style>
-  .footer {
-    text-align: center;
-    color: #9CA3AF;
-    margin-top: 92px;
-    padding: 16px 0;
-    animation: fadeInFooter 1.5s ease;
-}
+    .footer {
+      text-align: center;
+      color: #9CA3AF;
+      margin-top: 92px;
+      padding: 16px 0;
+      animation: fadeInFooter 1.5s ease;
+    }
   </style>
 
 </head>
@@ -39,13 +63,13 @@
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.php " target="_blank">
-      <img src="/PBL/Project%20Web/public/svg/logo.svg" width="170px" height="170px" class="navbar-brand-img h-100" alt="main_logo">
+        <img src="/PBL/Project%20Web/public/svg/logo.svg" width="170px" height="170px" class="navbar-brand-img h-100" alt="main_logo">
       </a>
     </div>
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
-      <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" href="../pages/dashboard.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-home text-dark text-sm opacity-10"></i> <!-- Ikon Beranda -->
@@ -96,7 +120,7 @@
         <li class="nav-item">
           <a class="nav-link" href="../../../../controllers/logout.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
+              <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Keluar</span>
           </a>
@@ -125,7 +149,7 @@
                 <i class="fa fa-user me-sm-1"></i>
               </a>
             </li>
-            
+
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
                 <div class="sidenav-toggler-inner">
@@ -218,56 +242,20 @@
       </div>
     </nav>
     <!-- End Navbar -->
-    
+
     <div class="container my-5">
-  <div class="row">
-    <!-- Notifikasi 1 -->
-    <div class="col-12 mb-4">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title text-primary fw-bold">Pengajuan Laporan Dikonfirmasi</h5>
-          <p class="card-text text-secondary">
-            Laporan Anda mengenai pelanggaran tata tertib mahasiswa lain atas nama Mark Lee telah berhasil dikonfirmasi. Terima kasih atas partisipasi Anda dalam menjaga tata tertib jurusan.
-          </p>
-          <button class="btn btn-warning text-white fw-bold">Check Details</button>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Notifikasi 2 -->
-    <div class="col-12 mb-4">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title text-primary fw-bold">Pengajuan Laporan Dikonfirmasi</h5>
-          <p class="card-text text-secondary">
-            Laporan Anda mengenai pelanggaran tata tertib mahasiswa lain atas nama Mark Lee telah berhasil dikonfirmasi. Terima kasih atas partisipasi Anda dalam menjaga tata tertib jurusan.
-          </p>
-          <button class="btn btn-warning text-white fw-bold">Check Details</button>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Notifikasi 3 -->
-    <div class="col-12 mb-4">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title text-danger fw-bold">Pengajuan Laporan Ditolak</h5>
-          <p class="card-text text-secondary">
-            Laporan Anda mengenai pelanggaran tata tertib mahasiswa lain atas nama Mark Lee telah ditolak. Terima kasih atas partisipasi Anda dalam menjaga tata tertib jurusan.
-          </p>
-          <button class="btn btn-warning text-white fw-bold">Check Details</button>
-        </div>
-      </div>
-    </div>
+  <div id="notificationsContainer" class="row">
+    <!-- Notifikasi akan dimuat di sini -->
   </div>
 </div>
 
 
+
     <footer class="footer">
-        Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
+      Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
     </footer>
   </main>
-  
+
   <!--   Core JS Files   -->
   <script src="../../../../../public/js/core/popper.min.js"></script>
   <script src="../../../../../public/js/core/bootstrap.min.js"></script>
@@ -276,6 +264,65 @@
 
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
+
+  <script>
+  // Fungsi untuk mengambil notifikasi mahasiswa
+  // Fungsi untuk mengambil notifikasi mahasiswa
+  function fetchNotifications() {
+  const nim = '2341760020'; // Ganti dengan sesi login jika tersedia
+
+  fetch(`http://localhost/PBL/Project%20Web/app/controllers/fetchNotificationsMhs.php?nim=${nim}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      const notificationsContainer = document.getElementById('notificationsContainer');
+      notificationsContainer.innerHTML = ''; // Kosongkan kontainer sebelumnya
+
+      if (data && data.length > 0) {
+        data.forEach(notification => {
+          const notificationCard = document.createElement('div');
+          notificationCard.classList.add('card', 'shadow-sm', 'mb-4');
+          notificationCard.innerHTML = `
+            <div class="card-body">
+              <h5 class="card-title ${notification.status_notifikasi === 'Unread' ? 'text-primary' : 'text-secondary'}">${notification.isi}</h5>
+              <p class="card-text">${notification.waktu_dibuat}</p>
+              <button class="btn btn-info text-white fw-bold view-pdf" data-pdf="${notification.pdf_url}">
+                Lihat Detail
+              </button>
+            </div>
+          `;
+          notificationsContainer.appendChild(notificationCard);
+        });
+
+        // Tambahkan event listener untuk tombol "Lihat Detail"
+        document.querySelectorAll('.view-pdf').forEach(button => {
+          button.addEventListener('click', event => {
+            const pdfUrl = event.target.getAttribute('data-pdf');
+            window.open(pdfUrl, '_blank'); // Buka PDF di tab baru
+          });
+        });
+      } else {
+        const noNotificationsMessage = document.createElement('p');
+        noNotificationsMessage.innerText = 'Tidak ada notifikasi baru.';
+        notificationsContainer.appendChild(noNotificationsMessage);
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching notifications:', error);
+      const notificationsContainer = document.getElementById('notificationsContainer');
+      notificationsContainer.innerHTML = '<p class="text-danger">Gagal memuat notifikasi. Silakan coba lagi.</p>';
+    });
+}
+
+// Panggil fungsi untuk mengambil notifikasi saat halaman dimuat
+window.onload = fetchNotifications;
+
+</script>
+
 </body>
 
 </html>
