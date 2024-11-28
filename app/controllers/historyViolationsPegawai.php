@@ -10,7 +10,7 @@ $id_pegawai = $_SESSION['id_pegawai'];
 
 // Query untuk mengambil data pelanggaran beserta nama pelanggaran dari TataTertib
 $query = "
-	  SELECT 
+	    	SELECT 
         Pelanggaran.id_pelanggaran,
         Pelanggaran.waktu_pelanggaran,
         Pelanggaran.lokasi,

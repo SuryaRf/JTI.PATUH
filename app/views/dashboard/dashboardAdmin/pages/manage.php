@@ -498,50 +498,53 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
 
 
             document.addEventListener('DOMContentLoaded', function() {
-                document.addEventListener('click', function(event) {
-                    if (event.target.classList.contains('check')) {
-                        const idPelanggaran = event.target.getAttribute('data-id');
+      document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('check')) {
+          const idPelanggaran = event.target.getAttribute('data-id');
 
-                        // Fetch detail laporan berdasarkan ID
-                        fetch(`http://localhost/PBL/Project%20Web/app/controllers/getViolationDetails.php?id=${idPelanggaran}`)
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.error) {
-                                    alert('Terjadi kesalahan: ' + data.error);
-                                } else {
-                                    // Isi modal dengan data pelanggaran
-                                    if (data.bukti_foto) {
-                                        document.getElementById('modalBuktiFoto').src = `data:image/jpeg;base64,${data.bukti_foto}`;
-                                    } else {
-                                        document.getElementById('modalBuktiFoto').src = '';
-                                        document.getElementById('modalBuktiFoto').alt = 'Gambar tidak tersedia';
-                                    }
+          if (isNaN(idPelanggaran)) {
+            alert('ID Pelanggaran tidak valid.');
+            return;
+          }
 
-                                    document.getElementById('modalNamaMahasiswa').textContent = data.nama_terlapor;
-                                    document.getElementById('modalNimMahasiswa').textContent = data.nim_terlapor;
-                                    document.getElementById('modalTingkatJenis').textContent = `${data.tingkat_pelanggaran} - ${data.jenis_pelanggaran}`;
-                                    document.getElementById('modalWaktu').textContent = data.waktu_pelanggaran;
-                                    document.getElementById('modalLokasi').textContent = data.lokasi;
+          fetch(`http://localhost/PBL/Project%20Web/app/controllers/getViolationDetails.php?id=${idPelanggaran}`)
+            .then(response => response.json())
+            .then(data => {
+              if (data.error) {
+                alert('Terjadi kesalahan: ' + data.error);
+              } else {
+                document.getElementById('modalNamaMahasiswa').textContent = data.nama_terlapor;
+                document.getElementById('modalNimMahasiswa').textContent = data.nim_terlapor;
+                document.getElementById('modalTingkatJenis').textContent = `${data.tingkat_pelanggaran} - ${data.jenis_pelanggaran}`;
+                document.getElementById('modalWaktu').textContent = data.waktu_pelanggaran;
+                document.getElementById('modalLokasi').textContent = data.lokasi;
 
-                                    // Tampilkan pelapor
-                                    if (data.pelapor) {
-                                        document.getElementById('modalPelapor').textContent = `${data.pelapor.type}: ${data.pelapor.id} (${data.pelapor.name})`;
-                                    } else {
-                                        document.getElementById('modalPelapor').textContent = 'Tidak ada pelapor.';
-                                    }
+                if (data.pelapor) {
+                  document.getElementById('modalPelapor').textContent = `${data.pelapor.type}: ${data.pelapor.id} (${data.pelapor.name})`;
+                } else {
+                  document.getElementById('modalPelapor').textContent = 'Tidak ada pelapor.';
+                }
 
-                                    // Tampilkan modal
-                                    const detailModal = new bootstrap.Modal(document.getElementById('detailModal'));
-                                    detailModal.show();
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Fetch Error:', error);
-                                alert('Terjadi kesalahan saat mengambil detail laporan.');
-                            });
-                    }
-                });
+                const modalBuktiFoto = document.getElementById('modalBuktiFoto');
+                if (data.bukti_foto_url) {
+                  modalBuktiFoto.src = data.bukti_foto_url;
+                  modalBuktiFoto.style.display = 'block';
+                } else {
+                  modalBuktiFoto.src = '';
+                  modalBuktiFoto.style.display = 'none';
+                }
+
+                const detailModal = new bootstrap.Modal(document.getElementById('detailModal'));
+                detailModal.show();
+              }
+            })
+            .catch(error => {
+              console.error('Fetch Error:', error);
+              alert('Terjadi kesalahan saat mengambil detail laporan.');
             });
+        }
+      });
+    });
         </script>
 
         <script>

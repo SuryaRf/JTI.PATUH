@@ -306,8 +306,8 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
     </div>
 
 
-     <!-- Modal untuk detail pelanggaran -->
-     <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+    <!-- Modal untuk detail pelanggaran -->
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -346,11 +346,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                 </div>
               </div>
             </div>
-            <div class="d-flex justify-content-end mt-3">
-
-              <button class="btn btn-danger me-2">Tolak</button>
-              <button class="btn btn-success">Terima</button>
-            </div>
+            <div class="d-flex justify-content-end mt-3 modal-footer"></div>
           </div>
         </div>
       </div>
@@ -376,9 +372,11 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
-  <!-- <script>
+
+
+  <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Fetch data dari server
+      // Fetch violations and display them in the table
       fetch('http://localhost/PBL/Project%20Web/app/controllers/historyViolationsPegawai.php')
         .then(response => response.json())
         .then(data => {
@@ -386,25 +384,24 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             console.error('Error:', data.error);
             alert('Error: ' + data.error);
           } else {
-            // Seleksi elemen tbody tabel
             const tbody = document.querySelector('tbody');
-            tbody.innerHTML = ''; // Kosongkan tabel sebelum memuat data baru
+            tbody.innerHTML = ''; // Clear previous rows
 
-            // Loop melalui data untuk mengisi tabel
-            data.forEach((violation, index) => {
+            data.forEach(violation => {
               const row = document.createElement('tr');
               row.innerHTML = `
-            <td class="text-sm font-weight-bold text-primary">${violation.id_pelanggaran}</td>
-            <td style="word-wrap: break-word; white-space: normal;">${violation.nama_pelanggaran}</td>
-            <td class="text-center">
-              <span class="badge ${getBadgeClass(violation.status)} text-white">${violation.status}</span>
-            </td>
-            <td class="align-middle text-center">
-              <button class="btn btn-sm btn-outline-primary">
-                <i class="fas fa-eye me-1"></i>Check
-              </button>
-            </td>
-          `;
+              <td class="text-center">${violation.id_pelanggaran}</td>
+              <td style="word-wrap: break-word; white-space: normal;">${violation.nama_pelanggaran}</td>
+              <td class="text-center">
+                <span class="badge ${getBadgeClass(violation.status)} text-white">${violation.status}</span>
+              </td>
+              <td class="text-center rounded-end">
+                <button class="btn btn-primary py-1 px-4 fs-7 w-100 rounded-3 check" 
+                        data-bs-toggle="modal" data-bs-target="#detailModal" data-id="${violation.id_pelanggaran}">
+                  CHECK
+                </button>
+              </td>
+            `;
               tbody.appendChild(row);
             });
           }
@@ -413,121 +410,118 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
           console.error('Fetch Error:', error);
           alert('Terjadi kesalahan saat mengambil data.');
         });
-    });
 
-    // Fungsi untuk menentukan kelas badge berdasarkan status
-    function getBadgeClass(status) {
-      switch (status.toLowerCase()) {
-        case 'pending':
-          return 'bg-warning';
-        case 'valid':
-          return 'bg-success';
-        case 'reject':
-          return 'bg-danger';
-        default:
-          return 'bg-secondary'; // Default untuk status lain
-      }
-    }
-  </script> -->
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-    // Fetch violations and display them in the table
-    fetch('http://localhost/PBL/Project%20Web/app/controllers/historyViolationsPegawai.php')
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                console.error('Error:', data.error);
-                alert('Error: ' + data.error);
-            } else {
-                // Populating the table with violation data
-                const tbody = document.querySelector('tbody');
-                tbody.innerHTML = ''; // Clear previous rows
-
-                data.forEach(violation => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="text-center">${violation.id_pelanggaran}</td>
-                        <td style="word-wrap: break-word; white-space: normal;">${violation.nama_pelanggaran}</td>
-                        <td class="text-center">
-                           <span class="badge ${getBadgeClass(violation.status)} text-white">${violation.status}</span>
-                        </td>
-                        <td class="text-center rounded-end">
-                            <button class="btn btn-primary py-1 px-4 fs-7 w-100 rounded-3 check" 
-                                    data-bs-toggle="modal" data-bs-target="#detailModal" data-id="${violation.id_pelanggaran}">
-                                CHECK
-                            </button>
-                        </td>
-                    `;
-                    tbody.appendChild(row);
-                });
-            }
-        })
-        .catch(error => {
-            console.error('Fetch Error:', error);
-            alert('Terjadi kesalahan saat mengambil data.');
-        });
-
-           // Fungsi untuk menentukan kelas badge berdasarkan status
-    function getBadgeClass(status) {
-      switch (status.toLowerCase()) {
-        case 'pending':
-          return 'bg-warning';
-        case 'valid':
-          return 'bg-success';
-        case 'reject':
-          return 'bg-danger';
-        default:
-          return 'bg-secondary'; // Default untuk status lain
-      }
-    }
-
-    // Event listener for the CHECK button to show the modal with detailed data
-    document.addEventListener('click', function (event) {
-        if (event.target.classList.contains('check')) {
-            const idPelanggaran = event.target.getAttribute('data-id');
-
-            // Fetch violation details based on ID
-            fetch(`http://localhost/PBL/Project%20Web/app/controllers/getViolationDetails.php?id=${idPelanggaran}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.error) {
-                        alert('Terjadi kesalahan: ' + data.error);
-                    } else {
-                        // Fill the modal with violation details
-                        if (data.bukti_foto) {
-                            document.getElementById('modalBuktiFoto').src = `data:image/jpeg;base64,${data.bukti_foto}`;
-                        } else {
-                            document.getElementById('modalBuktiFoto').src = '';
-                            document.getElementById('modalBuktiFoto').alt = 'Gambar tidak tersedia';
-                        }
-
-                        document.getElementById('modalNamaMahasiswa').textContent = data.nama_terlapor;
-                        document.getElementById('modalNimMahasiswa').textContent = data.nim_terlapor;
-                        document.getElementById('modalTingkatJenis').textContent = `${data.tingkat_pelanggaran} - ${data.jenis_pelanggaran}`;
-                        document.getElementById('modalWaktu').textContent = data.waktu_pelanggaran;
-                        document.getElementById('modalLokasi').textContent = data.lokasi;
-
-                        // Display the reporter
-                        if (data.pelapor) {
-                            document.getElementById('modalPelapor').textContent = `${data.pelapor.type}: ${data.pelapor.id} (${data.pelapor.name})`;
-                        } else {
-                            document.getElementById('modalPelapor').textContent = 'Tidak ada pelapor.';
-                        }
-
-                        // Show the modal
-                        const detailModal = new bootstrap.Modal(document.getElementById('detailModal'));
-                        detailModal.show();
-                    }
-                })
-                .catch(error => {
-                    console.error('Fetch Error:', error);
-                    alert('Terjadi kesalahan saat mengambil detail laporan.');
-                });
+      function getBadgeClass(status) {
+        switch (status.toLowerCase()) {
+          case 'pending':
+            return 'bg-warning';
+          case 'valid':
+            return 'bg-success';
+          case 'reject':
+            return 'bg-danger';
+          default:
+            return 'bg-secondary';
         }
-    });
-});
+      }
 
+      // Event listener for the CHECK button to show the modal with detailed data
+      document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('check')) {
+          const idPelanggaran = event.target.getAttribute('data-id');
+
+          // Fetch violation details based on ID
+          fetch(`http://localhost/PBL/Project%20Web/app/controllers/getViolationDetails.php?id=${idPelanggaran}`)
+            .then(response => response.json())
+            .then(data => {
+              if (data.error) {
+                alert('Terjadi kesalahan: ' + data.error);
+              } else {
+                
+                // Populate modal fields
+                document.getElementById('modalNamaMahasiswa').textContent = data.nama_terlapor;
+                document.getElementById('modalNimMahasiswa').textContent = data.nim_terlapor;
+                document.getElementById('modalTingkatJenis').textContent = `${data.tingkat_pelanggaran} - ${data.jenis_pelanggaran}`;
+                document.getElementById('modalWaktu').textContent = data.waktu_pelanggaran;
+                document.getElementById('modalLokasi').textContent = data.lokasi;
+                document.getElementById('modalPelapor').textContent = data.pelapor || 'Tidak ada pelapor.';
+                document.getElementById('modalBuktiFoto').src = data.bukti_foto_url || '';
+
+                // Update modal buttons
+                const modalFooter = document.querySelector('.modal-footer');
+                modalFooter.innerHTML = ''; // Clear existing buttons
+
+                if (data.status.toLowerCase() === 'valid') {
+                  const btnRiwayat = document.createElement('button');
+                  btnRiwayat.className = 'btn btn-primary me-2';
+                  btnRiwayat.textContent = 'Riwayat';
+                  btnRiwayat.addEventListener('click', () => {
+                    fetch(`http://localhost/PBL/Project%20Web/app/controllers/generatePDF.php?id=${data.id_pelanggaran}`)
+                      .then(response => {
+                        if (!response.ok) {
+                          throw new Error('Gagal memproses permintaan: ' + response.statusText);
+                        }
+                        return response.json();
+                      })
+                      .then(result => {
+                        if (result.success) {
+                          alert('PDF berhasil dibuat dan dikirim.');
+                        } else {
+                          alert('Gagal membuat PDF: ' + (result.error || 'Tidak diketahui'));
+                        }
+                      })
+                      .catch(error => {
+                        console.error(error);
+                        alert('Error: ' + error.message);
+                      });
+                  });
+
+
+                  const btnKirim = document.createElement('button');
+                  btnKirim.className = 'btn btn-success';
+                  btnKirim.textContent = 'Kirim';
+                  btnKirim.addEventListener('click', () => alert('Kirim laporan.'));
+
+                  modalFooter.appendChild(btnRiwayat);
+                  modalFooter.appendChild(btnKirim);
+                } else if (data.status.toLowerCase() === 'reject') {
+                  const btnClose = document.createElement('button');
+                  btnClose.className = 'btn btn-secondary';
+                  btnClose.textContent = 'Close';
+                  btnClose.setAttribute('data-bs-dismiss', 'modal');
+
+                  modalFooter.appendChild(btnClose);
+                } else if (data.status.toLowerCase() === 'pending') {
+                  const btnTolak = document.createElement('button');
+                  btnTolak.className = 'btn btn-danger me-2';
+                  btnTolak.textContent = 'Tolak';
+                  btnTolak.addEventListener('click', () => {
+                    // Logika untuk menangani tombol Tolak
+                    alert('Laporan ditolak.');
+                    // Tambahkan logika untuk mengirim permintaan update status ke server
+                  });
+
+                  const btnTerima = document.createElement('button');
+                  btnTerima.className = 'btn btn-success';
+                  btnTerima.textContent = 'Terima';
+                  btnTerima.addEventListener('click', () => {
+                    // Logika untuk menangani tombol Terima
+                    alert('Laporan diterima.');
+                    // Tambahkan logika untuk mengirim permintaan update status ke server
+                  });
+
+                  modalFooter.appendChild(btnTolak);
+                  modalFooter.appendChild(btnTerima);
+                }
+
+              }
+            })
+            .catch(error => {
+              console.error('Fetch Error:', error);
+              alert('Terjadi kesalahan saat mengambil detail laporan.');
+            });
+        }
+      });
+    });
   </script>
 
   <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
