@@ -25,9 +25,26 @@
       margin: 0;
       padding: 0;
       font-family: 'Poppins', sans-serif !important;
-      /* Pastikan font Poppins digunakan */
       letter-spacing: 0.3px;
-      /* Menambahkan jarak antar huruf */
+    }
+
+    .custom-header {
+      font-size: 16px;
+      /* Ubah sesuai kebutuhan */
+      color: #223381;
+      /* Warna biru dongker */
+      font-weight: bold;
+    }
+
+    .table,
+    .btn,
+    .badge,
+    .text-sm,
+    .font-weight-bold,
+    .nav-link-text,
+    h4,
+    h6 {
+      font-family: 'Poppins', sans-serif !important;
     }
 
     .btn-primary {
@@ -53,7 +70,6 @@
 
     .card-header {
       border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-
     }
 
     .btn-outline-primary:hover {
@@ -75,11 +91,16 @@
 
 <body class="g-sidenav-show   bg-gray-100">
   <div class="min-height-200 bg-dark position-absolute w-100"></div>
-  <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
+  <aside
+    class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+    id="sidenav-main">
     <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.php " target="_blank">
-        <img src="/PBL/Project%20Web/public/svg/logo.svg" width="170px" height="170px" class="navbar-brand-img h-100" alt="main_logo">
+      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+        aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.php "
+        target="_blank">
+        <img src="/PBL/Project%20Web/public/svg/logo.svg" width="170px" height="170px" class="navbar-brand-img h-100"
+          alt="main_logo">
       </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -87,7 +108,8 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="../pages/dashboard.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-home text-dark text-sm opacity-10"></i> <!-- Ikon Beranda -->
             </div>
             <span class="nav-link-text ms-1">Beranda</span>
@@ -95,7 +117,8 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../pages/report.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-exclamation-circle text-dark text-sm opacity-10"></i> <!-- Ikon alert Font Awesome -->
             </div>
             <span class="nav-link-text ms-1">Laporkan</span>
@@ -105,7 +128,8 @@
 
         <li class="nav-item">
           <a class="nav-link active" href="../pages/history.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-history text-dark text-sm opacity-10"></i> <!-- Ikon Riwayat -->
             </div>
             <span class="nav-link-text ms-1">Riwayat Laporan</span>
@@ -114,7 +138,8 @@
 
         <li class="nav-item">
           <a class="nav-link" href="../pages/notification.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-bell text-dark text-sm opacity-10"></i> <!-- Ganti ikon di sini -->
             </div>
             <span class="nav-link-text ms-1">Notifikasi</span>
@@ -126,7 +151,8 @@
         </li>
         <li class="nav-item">
           <a class="nav-link " href="../pages/profile.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Profil</span>
@@ -134,7 +160,8 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../../../../controllers/logout.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Keluar</span>
@@ -146,7 +173,8 @@
   </aside>
   <main class="main-content position-relative border-radius-lg ">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+      data-scroll="false">
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
@@ -180,7 +208,8 @@
               </a>
             </li>
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                aria-expanded="false">
                 <i class="fa fa-bell cursor-pointer"></i>
               </a>
               <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
@@ -206,7 +235,8 @@
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="../../../../../public/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark  me-3 ">
+                        <img src="../../../../../public/img/small-logos/logo-spotify.svg"
+                          class="avatar avatar-sm bg-gradient-dark  me-3 ">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
@@ -224,14 +254,19 @@
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                       <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
-                        <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1"
+                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                           <title>credit-card</title>
                           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
                               <g transform="translate(1716.000000, 291.000000)">
                                 <g transform="translate(453.000000, 454.000000)">
-                                  <path class="color-background" d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z" opacity="0.593633743"></path>
-                                  <path class="color-background" d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"></path>
+                                  <path class="color-background"
+                                    d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z"
+                                    opacity="0.593633743"></path>
+                                  <path class="color-background"
+                                    d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z">
+                                  </path>
                                 </g>
                               </g>
                             </g>
@@ -261,62 +296,62 @@
       <div class="row">
         <div class="col-12">
           <div class="card mb-4 shadow-sm border-0">
-            <div class="card-header pb-3 bg-white text-black">
-              <h4 class="mb-0 text-black">Laporan Yang Diajukan</h4>
+            <div class="card-header pb-3 bg-white text-navy-blue">
+              <h4 class="mb-0" style="color: #223381; font-size: 20px;">LAPORAN YANG DIAJUKAN</h4>
             </div>
             <div class="card-body px-4 pt-0 pb-2">
               <div class="table-responsive">
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">No. Pelanggaran</th>
-                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Nama Pelanggaran</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Status</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Detail</th>
-                      <th class="text-secondary opacity-7"></th>
+                      <th style="font-size: 16px; color: #223381; text-align: center; width: 25%;">NO. PELANGGARAN</th>
+                      <th style="font-size: 16px; color: #223381;">NAMA PELANGGARAN</th>
+                      <th style="font-size: 16px; color: #223381; text-align: center;">STATUS</th>
+                      <th style="font-size: 16px; color: #223381; text-align: center;">DETAIL</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <!-- Baris 1 -->
                     <tr>
-                      <td class="text-sm font-weight-bold text-primary">ABC01</td>
-                      <td class="text-sm">Merokok</td>
+                      <td class="text-sm" style="color: #6B7280; text-align: center; font-size: 16px;">ABC01</td>
+                      <td class="text-sm" style="color: #6B7280; font-size: 16px;">Merokok</td>
                       <td class="text-center">
-                        <span class="badge bg-warning text-white">Pending</span>
+                        <span class="badge bg-warning text-white p-2 fs-6 rounded-3"
+                          style="width: 100px; text-align: center;">TERTUNDA</span>
                       </td>
                       <td class="align-middle text-center">
                         <button class="btn btn-sm btn-outline-primary">
-                          <i class="fas fa-eye me-1"></i>Check
+                          <i class="fas fa-eye me-1"></i>CHECK
                         </button>
                       </td>
                     </tr>
-                    <!-- Baris 2 -->
                     <tr>
-                      <td class="text-sm font-weight-bold text-primary">DEF02</td>
-                      <td class="text-sm">Makan di Kelas</td>
+                      <td class="text-sm" style="color: #6B7280; text-align: center; font-size: 16px;">DEF02</td>
+                      <td class="text-sm" style="color: #6B7280; font-size: 16px;">Makan di Kelas</td>
                       <td class="text-center">
-                        <span class="badge bg-success text-white">Approved</span>
+                        <span class="badge bg-success text-white"
+                          style="display: inline-block; width: 120px; text-align: center; font-size: 16px;">SELESAI</span>
                       </td>
                       <td class="align-middle text-center">
                         <button class="btn btn-sm btn-outline-success">
-                          <i class="fas fa-check-circle me-1"></i>View
+                          <i class="fas fa-check-circle me-1"></i>CHECK
                         </button>
                       </td>
                     </tr>
-                    <!-- Baris 3 -->
                     <tr>
-                      <td class="text-sm font-weight-bold text-primary">GHI03</td>
-                      <td class="text-sm">Bolos</td>
+                      <td class="text-sm" style="color: #6B7280; text-align: center; font-size: 16px;">GHI03</td>
+                      <td class="text-sm" style="color: #6B7280; font-size: 16px;">Bolos</td>
                       <td class="text-center">
-                        <span class="badge bg-danger text-white">Rejected</span>
+                        <span class="badge bg-danger text-white"
+                          style="display: inline-block; width: 120px; text-align: center; font-size: 16px;">DITOLAK</span>
                       </td>
                       <td class="align-middle text-center">
                         <button class="btn btn-sm btn-outline-danger">
-                          <i class="fas fa-times-circle me-1"></i>Check
+                          <i class="fas fa-times-circle me-1"></i>CHECK
                         </button>
                       </td>
                     </tr>
                   </tbody>
+
                 </table>
               </div>
             </div>
@@ -328,18 +363,22 @@
       <div class="row">
         <div class="col-12">
           <div class="card mb-4 shadow-sm border-0">
-            <div class="card-header pb-3 bg-white text-black">
-              <h4 class="mb-0 text-black">Laporan Yang Diterima</h4>
+            <div class="card-header pb-3 bg-white text-navy-blue">
+              <h4 class="mb-0" style="color: #223381; font-size: 20px;">LAPORAN YANG DITERIMA</h4>
             </div>
             <div class="card-body px-4 pt-0 pb-2">
               <div class="table-responsive">
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">No. Pelanggaran</th>
-                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Nama Pelanggaran</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Status</th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Detail</th>
+                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">No. Pelanggaran
+                      </th>
+                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Nama Pelanggaran
+                      </th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Status
+                      </th>
+                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Detail
+                      </th>
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
