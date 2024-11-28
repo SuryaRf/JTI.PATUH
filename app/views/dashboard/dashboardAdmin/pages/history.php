@@ -443,7 +443,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                 document.getElementById('modalTingkatJenis').textContent = `${data.tingkat_pelanggaran} - ${data.jenis_pelanggaran}`;
                 document.getElementById('modalWaktu').textContent = data.waktu_pelanggaran;
                 document.getElementById('modalLokasi').textContent = data.lokasi;
-                document.getElementById('modalPelapor').textContent = data.pelapor || 'Tidak ada pelapor.';
+                document.getElementById('modalPelapor').textContent = `${data.pelapor.type}: ${data.pelapor.id} (${data.pelapor.name})`;
                 document.getElementById('modalBuktiFoto').src = data.bukti_foto_url || '';
 
                 // Update modal buttons
