@@ -36,6 +36,16 @@
       font-weight: bold;
     }
 
+    .modal-content,
+    .modal-title,
+    .form-label,
+    .form-control,
+    .btn {
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 600px;
+    }
+
     .table,
     .text-16 {
       font-family: 'Poppins', sans-serif !important;
@@ -248,6 +258,9 @@
                         </button>
                       </td>
                     </tr>
+
+
+
                     <tr>
                       <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">DEF02</td>
                       <td class="text-16" style="color: #6B7280; font-size: 16px;">Makan di Kelas</td>
@@ -281,7 +294,6 @@
                       </td>
                     </tr>
                   </tbody>
-
                 </table>
               </div>
             </div>
@@ -289,7 +301,7 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid py-4">
+    <div class="container-fluid py-0">
       <div class="row">
         <div class="col-12">
           <div class="card mb-4 shadow-sm border-0">
@@ -301,54 +313,161 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">No. Pelanggaran
-                      </th>
-                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Nama Pelanggaran
-                      </th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Status
-                      </th>
-                      <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Detail
-                      </th>
-                      <th class="text-secondary opacity-7"></th>
+                      <th style="font-size: 16px; color: #223381; text-align: center; width: 25%;">NO. PELANGGARAN</th>
+                      <th style="font-size: 16px; color: #223381;">NAMA PELANGGARAN</th>
+                      <th style="font-size: 16px; color: #223381; text-align: center;">STATUS</th>
+                      <th style="font-size: 16px; color: #223381; text-align: center;">DETAIL</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <!-- Baris 1 -->
                     <tr>
-                      <td class="text-sm font-weight-bold text-primary">ABC01</td>
-                      <td class="text-sm ">Merokok</td>
+                      <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">ABC01</td>
+                      <td class="text-16" style="color: #6B7280; font-size: 16px;">Merokok</td>
                       <td class="text-center">
-                        <span class="badge bg-warning text-white">Pending</span>
+                        <span class="badge bg-warning text-white fs-7 rounded-3"
+                          style="font-weight: 600; width: 100px; text-align: center; height: 30px; line-height: 18px;">
+                          TERTUNDA
+                        </span>
                       </td>
                       <td class="align-middle text-center">
-                        <button class="btn btn-sm btn-outline-primary">
-                          <i class="fas fa-eye me-1"></i>Check
+                        <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal"
+                          data-bs-target="#detailModalABC01" style="font-weight: 600;">
+                          CHECK
                         </button>
                       </td>
                     </tr>
-                    <!-- Baris 2 -->
+
+                    <!-- Modal for ABC01 -->
+                    <div class="modal fade" id="detailModalABC01" tabindex="-1" aria-labelledby="detailModalLabelABC01"
+                      aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="detailModalLabelABC01" style="font-size: 20px; font-weight: 600px; color: #223381;">Detail Pelanggaran</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="row">
+                              <!-- Foto yang Bisa Diklik untuk Zoom -->
+                              <div class="col-md-4">
+                                <div class="text-center">
+                                  <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom"
+                                    class="img-fluid rounded w-100" data-bs-toggle="modal"
+                                    data-bs-target="#buktiZoomModalABC01" style="cursor: pointer;">
+                                </div>
+                              </div>
+                              <!-- Informasi di sebelah kanan -->
+                              <div class="col-md-8">
+                                <div class="mb-3">
+                                  <label class="form-label" style="font-weight: 600px; color: #223381;">Nama Mahasiswa
+                                    Terlapor</label>
+                                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                                    Surya Rahmat
+                                  </p>
+                                </div>
+                                <div class="mb-3">
+                                  <label class="form-label" style="font-weight: 600px; color: #223381;">NIM Mahasiswa
+                                    Terlapor</label>
+                                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                                    2341760020
+                                  </p>
+                                </div>
+                                <div class="mb-3">
+                                  <label class="form-label" style="font-weight: 600px; color: #223381;">Tingkat dan Jenis
+                                    Pelanggaran</label>
+                                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                                    IV - Mewarnai rambut berwarna punk
+                                  </p>
+                                </div>
+                                <div class="mb-3">
+                                  <label class="form-label" style="font-weight: 600px; color: #223381;">Waktu</label>
+                                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                                    Kamis, 14 November 2024 pukul 14:59
+                                  </p>
+                                </div>
+                                <div class="mb-3">
+                                  <label class="form-label" style="font-weight: 600px; color: #223381;">Lokasi</label>
+                                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                                    Di Ruang Kelas
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
+                              <!-- Tombol Riwayat (Sedikit diangkat) -->
+                              <button class="btn btn-primary rounded-3 me-2"
+                                style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-10px);"
+                                data-bs-toggle="modal" data-bs-target="#riwayatModal">
+                                Riwayat
+                              </button>
+                              <!-- Tombol Aju Banding -->
+                              <button class="btn btn-warning rounded-3 me-2"
+                                style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;"
+                                data-bs-toggle="modal" data-bs-target="#ajuBandingModal">
+                                Aju Banding
+                              </button>
+                              <!-- Tombol Terima -->
+                              <button class="btn btn-success rounded-3"
+                                style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" id="submitBtn"
+                                data-bs-toggle="modal" data-bs-target="#successModal">
+                                Terima
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Modal untuk Zoom Gambar -->
+                    <div class="modal fade" id="buktiZoomModalABC01" tabindex="-1"
+                      aria-labelledby="buktiZoomModalLabelABC01" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-body p-0">
+                            <p
+                              style="font-weight: bold; color: #223381; margin-bottom: 0px; margin-left: 20px; margin-top: 20px;">
+                              Bukti Pelanggaran</p>
+                            <div class="d-flex justify-content-center align-items-center">
+                              <div style="padding: 20px; background-color: white; border-radius: 8px;">
+                                <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom"
+                                  class="img-fluid rounded"
+                                  style="max-width: 100%; height: auto; display: block; margin: 0;">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                     <tr>
-                      <td class="text-sm font-weight-bold text-primary">DEF02</td>
-                      <td class="text-sm">Makan di Kelas</td>
+                      <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">DEF02</td>
+                      <td class="text-16" style="color: #6B7280; font-size: 16px;">Makan di Kelas</td>
                       <td class="text-center">
-                        <span class="badge bg-success text-white">Approved</span>
+                        <span class="badge bg-success text-white p-2 fs-7 rounded-3"
+                          style="font-weight: 600; width: 100px; text-align: center; height: 30px; line-height: 16px;">
+                          SELESAI
+                        </span>
                       </td>
-                      <td class="align-middle text-center">
-                        <button class="btn btn-sm btn-outline-success">
-                          <i class="fas fa-check-circle me-1"></i>View
+                      <td class="text-center">
+                        <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal"
+                          data-bs-target="#detailModalABC01" style="font-weight: 600;">
+                          CHECK
                         </button>
                       </td>
                     </tr>
-                    <!-- Baris 3 -->
                     <tr>
-                      <td class="text-sm font-weight-bold text-primary">GHI03</td>
-                      <td class="text-sm">Bolos</td>
+                      <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">GHI03</td>
+                      <td class="text-16" style="color: #6B7280; font-size: 16px;">Bolos</td>
                       <td class="text-center">
-                        <span class="badge bg-danger text-white">Rejected</span>
+                        <span class="badge bg-danger text-white p-2 fs-7 rounded-3"
+                          style="font-weight: 600; width: 100px; text-align: center;">
+                          DITOLAK
+                        </span>
                       </td>
-                      <td class="align-middle text-center">
-                        <button class="btn btn-sm btn-outline-danger">
-                          <i class="fas fa-times-circle me-1"></i>Check
+                      <td class="text-center">
+                        <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal"
+                          data-bs-target="#detailModalABC01" style="font-weight: 600;">
+                          CHECK
                         </button>
                       </td>
                     </tr>
