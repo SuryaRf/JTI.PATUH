@@ -415,31 +415,31 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                     <!-- Informasi di sebelah kanan -->
                     <div class="col-md-8">
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold;">Nama Mahasiswa Terlapor</label>
+                        <label class="form-label" style="font-weight: bold; color: #223381;">Nama Mahasiswa Terlapor</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
                           Surya Rahmat
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold;">NIM Mahasiswa Terlapor</label>
+                        <label class="form-label" style="font-weight: bold; color: #223381;">NIM Mahasiswa Terlapor</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
                           2341760020
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold;">Tingkat dan Jenis Pelanggaran</label>
+                        <label class="form-label" style="font-weight: bold; color: #223381;">Tingkat dan Jenis Pelanggaran</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
                           IV - Mewarnai rambut berwarna punk
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold;">Waktu</label>
+                        <label class="form-label" style="font-weight: bold; color: #223381;">Waktu</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
                           Kamis, 14 November 2024 pukul 14:59
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold;">Lokasi</label>
+                        <label class="form-label" style="font-weight: bold; color: #223381;">Lokasi</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
                           Di Ruang Kelas
                         </p>
@@ -448,18 +448,18 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   </div>
                   <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
                     <!-- Tombol Riwayat (Sedikit diangkat) -->
-                    <button class="btn btn-primary rounded-3 me-2"
-                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-15px);">
-                      Riwayat
+                    <button class="btn btn-primary rounded-3 me-2" style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-15px);" data-bs-toggle="modal" data-bs-target="#riwayatModal">
+                       Riwayat
                     </button>
                     <!-- Tombol Aju Banding -->
-                    <button class="btn btn-warning rounded-3 me-2"
-                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;">
-                      Aju Banding
-                    </button>
+                      <button class="btn btn-warning rounded-3 me-2"
+                        style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" data-bs-toggle="modal"
+                        data-bs-target="#ajuBandingModal">
+                        Aju Banding
+                      </button>
                     <!-- Tombol Terima -->
                     <button class="btn btn-success rounded-3"
-                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;">
+                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" id="submitBtn" data-bs-toggle="modal" data-bs-target="#successModal">
                       Terima
                     </button>
                   </div>
@@ -475,7 +475,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
               <div class="modal-content">
                 <div class="modal-body p-0">
                   <p
-                    style="font-weight: bold; color: #003366; margin-bottom: 0px; margin-left: 20px; margin-top: 20px;">
+                    style="font-weight: bold; color: #223381; margin-bottom: 0px; margin-left: 20px; margin-top: 20px;">
                     Bukti Pelanggaran</p>
                   <div class="d-flex justify-content-center align-items-center">
                     <div style="padding: 20px; background-color: white; border-radius: 8px;">
@@ -488,6 +488,54 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
             </div>
           </div>
 
+           <!-- Modal untuk Aju Banding -->
+           <div class="modal fade" id="ajuBandingModal" tabindex="-1" aria-labelledby="ajuBandingModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                      <div class="modal-content" style="font-family: 'Poppins', sans-serif;">
+                          <div class="modal-header">
+                              <h4 class="modal-title" id="ajuBandingModalLabel" style="color: #223381; font-size: 20px; ">AJUKAN BANDING</h4>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                              <h6 style="color: #223381; font-size: 16px;">Deskripsi Aju Banding</h6>
+                              <textarea class="form-control" rows="8" style="background-color: #eaecef; font-size: 14px;" placeholder="Masukkan banding" required></textarea>
+
+                              <h6 class="mt-3" style="color: #223381; font-size: 16px;">Bukti Aju Banding <span style="color: #f05529; font-size: 16px;">*</span></h6> 
+                              <div class="border p-3 rounded bg-light mb-3 text-center" style="background-color: #f0f0f0;">
+                                  <label for="formFile" class="d-block">
+                                      <img src="../../../../../public/img/upload-file.png" alt="Upload Icon" style="width: 30px; height: 30px; margin-bottom: 8px; opacity: 0.5;">
+                                      <span class="d-block" style="font-size: 14px; font-weight: normal; color: #6c757d;">Unggah bukti yang menguatkan Anda disini!</span>
+                                  </label>
+                                  <input class="form-control d-none" type="file" id="formFile">
+                              </div>
+                              <p class="text-warning mb-0" style="font-size: 14px; color: #f05529;">*tidak wajib diisi</p>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" 
+                              style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" class="btn btn-primary" id="submitBtn" data-bs-toggle="modal" data-bs-target="#successModal">Kirim</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+            
+              <!-- Modal untuk Kirim dan Terima-->
+
+              <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" style="max-width: 300px;">
+                <div class="modal-content">
+                  <div class="modal-body text-center">
+                    <div class="d-flex align-items-center justify-content-center">
+                      <div class="orange-circle">
+                        <i class="fas fa-check text-white fa-2x"></i>
+                      </div>
+                    </div>
+                    <img src="../../../../../public/img/success-icon.png" alt="Success Image" class="img-fluid mt-3" style="max-width: 300px;">
+                    <h4 class="card-title mt-3" style="color: #223381;">SUKSES</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
 
           <tr class="rounded-3">
             <td class="text-center rounded-start">ABC02</td>
@@ -511,7 +559,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="detailModalLabelABC01">Detail Pelanggaran</h5>
+                  <h5 class="modal-title" id="detailModalLabelABC01" style="font-weight: bold; color: #223381;">Detail Pelanggaran</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -527,31 +575,31 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                     <!-- Informasi di sebelah kanan -->
                     <div class="col-md-8">
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold;">Nama Mahasiswa Terlapor</label>
+                        <label class="form-label" style="font-weight: bold; color: #223381;">Nama Mahasiswa Terlapor</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
                           Surya Rahmat
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold;">NIM Mahasiswa Terlapor</label>
+                        <label class="form-label" style="font-weight: bold; color: #223381;">NIM Mahasiswa Terlapor</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
                           2341760020
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold;">Tingkat dan Jenis Pelanggaran</label>
+                        <label class="form-label" style="font-weight: bold; color: #223381;">Tingkat dan Jenis Pelanggaran</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
                           III - Menyontek saat ujian
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold;">Waktu</label>
+                        <label class="form-label" style="font-weight: bold; color: #223381;">Waktu</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
                           Rabu, 13 November 2024 pukul 15:00
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold;">Lokasi</label>
+                        <label class="form-label" style="font-weight: bold; color: #223381;">Lokasi</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
                           Di Ruang Ujian
                         </p>
@@ -564,10 +612,10 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                       Riwayat
                     </button>
                     <button class="btn btn-warning rounded-3 me-2"
-                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;">
-                      Aju Banding
-                    </button>
-                    <button class="btn btn-success rounded-3"
+                        style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;">
+                        Aju Banding
+                      </button>
+                    <button class="btn btn-success rounded-3" id="submitBtn" data-bs-toggle="modal" data-bs-target="#successModal"
                       style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;">
                       Terima
                     </button>
@@ -584,7 +632,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
               <div class="modal-content">
                 <div class="modal-body p-0">
                   <p
-                    style="font-weight: bold; color: #003366; margin-top: 20px; margin-bottom: 0px; margin-left: 20px;">
+                    style="font-weight: bold; color: #223381; margin-top: 20px; margin-bottom: 0px; margin-left: 20px;">
                     Bukti Pelanggaran</p>
                   <div class="d-flex justify-content-center align-items-center">
                     <div style="padding: 20px; background-color: white; border-radius: 8px;">
@@ -619,7 +667,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="detailModalLabelABC01">Detail Pelanggaran</h5>
+                  <h5 class="modal-title" id="detailModalLabelABC01" style= "color: #223381">Detail Pelanggaran</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -635,31 +683,31 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                     <!-- Informasi di sebelah kanan -->
                     <div class="col-md-8">
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold;">Nama Mahasiswa Terlapor</label>
+                        <label class="form-label" style="font-weight: bold; color: #223381">Nama Mahasiswa Terlapor</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
                           Surya Rahmat
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold;">NIM Mahasiswa Terlapor</label>
+                        <label class="form-label" style="font-weight: bold; color: #223381">NIM Mahasiswa Terlapor</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
                           2341760020
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold;">Tingkat dan Jenis Pelanggaran</label>
+                        <label class="form-label" style="font-weight: bold; color: #223381">Tingkat dan Jenis Pelanggaran</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
                           I - Tidak mengenakan identitas diri
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold;">Waktu</label>
+                        <label class="form-label" style="font-weight: bold; color: #223381">Waktu</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
                           Jumat, 15 November 2024 pukul 08:00
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold;">Lokasi</label>
+                        <label class="form-label" style="font-weight: bold; color: #223381">Lokasi</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
                           Di Area Kampus
                         </p>
@@ -672,10 +720,11 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                       Riwayat
                     </button>
                     <button class="btn btn-warning rounded-3 me-2"
-                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;">
-                      Aju Banding
-                    </button>
-                    <button class="btn btn-success rounded-3"
+                        style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" data-bs-toggle="modal"
+                        data-bs-target="#ajuBandingModal">
+                        Aju Banding
+                      </button>
+                    <button class="btn btn-success rounded-3" id="submitBtn" data-bs-toggle="modal" data-bs-target="#successModal"
                       style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;">
                       Terima
                     </button>
@@ -692,7 +741,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
               <div class="modal-content">
                 <div class="modal-body p-0">
                   <p
-                    style="font-weight: bold; color: #003366; margin-top: 20px; margin-bottom: 0px; margin-left: 20px;">
+                    style="font-weight: bold; color: #223381; margin-top: 20px; margin-bottom: 0px; margin-left: 20px;">
                     Bukti Pelanggaran</p>
                   <div class="d-flex justify-content-center align-items-center">
                     <div style="padding: 20px; background-color: white; border-radius: 8px;">
@@ -721,6 +770,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
   <!--   Core JS Files   -->
   <script src="../../../../../public/js/core/popper.min.js"></script>
   <script src="../../../../../public/js/core/bootstrap.min.js"></script>
+  <script src="../../../../../public/js/core/bootstrap.bundle.min.js"></script>
 
 
 <script>
