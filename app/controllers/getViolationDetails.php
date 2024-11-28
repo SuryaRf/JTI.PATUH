@@ -2,17 +2,16 @@
 include 'connection.php';
 header("Content-Type: application/json");
 
-// Validasi parameter ID
-if (!isset($_GET['id'])) {
-    echo json_encode(['error' => 'ID tidak disertakan.']);
-    exit;
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    echo json_encode(['error' => 'ID tidak valid atau tidak disertakan.']);
+    exit();
 }
 
-$id_pelanggaran = $_GET['id'];
+$id_pelanggaran = (int)$_GET['id'];
 
-// Query untuk mengambil detail pelanggaran, termasuk data pelapor
 $query = "
     SELECT 
+        p.id_pelanggaran,
         p.waktu_pelanggaran, 
         p.lokasi, 
         p.status, 
@@ -37,7 +36,7 @@ $stmt = sqlsrv_query($conn, $query, $params);
 
 if ($stmt === false) {
     echo json_encode(['error' => 'Kesalahan query: ' . print_r(sqlsrv_errors(), true)]);
-    exit;
+    exit();
 }
 
 $data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
@@ -45,19 +44,17 @@ $data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 if (!$data) {
     echo json_encode(['error' => 'Pelanggaran tidak ditemukan.']);
 } else {
-    // Format waktu pelanggaran jika ada
+    // Format waktu pelanggaran
     if (isset($data['waktu_pelanggaran']) && $data['waktu_pelanggaran'] instanceof DateTime) {
         $data['waktu_pelanggaran'] = $data['waktu_pelanggaran']->format('Y-m-d H:i:s');
     } else {
         $data['waktu_pelanggaran'] = null;
     }
 
-    // Konversi gambar menjadi Base64
-    if ($data['bukti_foto'] !== null) {
-        $data['bukti_foto'] = base64_encode(stream_get_contents($data['bukti_foto']));
-    } else {
-        $data['bukti_foto'] = null;
-    }
+    // Tentukan URL gambar
+    $data['bukti_foto_url'] = $data['bukti_foto'] 
+        ? 'http://' . $_SERVER['HTTP_HOST'] . $data['bukti_foto']
+        : null;
 
     // Tentukan pelapor
     if ($data['nim_pelapor'] !== null) {
@@ -76,10 +73,8 @@ if (!$data) {
         $data['pelapor'] = null;
     }
 
-    // Kirim data sebagai JSON
     echo json_encode($data);
 }
 
-// Tutup koneksi database
 sqlsrv_close($conn);
 ?>

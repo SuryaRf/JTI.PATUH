@@ -267,38 +267,60 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
 
   <script>
   // Fungsi untuk mengambil notifikasi mahasiswa
+  // Fungsi untuk mengambil notifikasi mahasiswa
   function fetchNotifications() {
-    fetch('http://localhost/PBL/Project%20Web/app/controllers/fetchNotificationsMhs.php')
-      .then(response => response.json())
-      .then(data => {
-        // Cek jika ada data notifikasi
-        if (data && data.length > 0) {
-          const notificationsContainer = document.getElementById('notificationsContainer');
-          data.forEach(notification => {
-            const notificationCard = document.createElement('div');
-            notificationCard.classList.add('card', 'shadow-sm', 'mb-4');
-            notificationCard.innerHTML = `
-              <div class="card-body">
-                <h5 class="card-title ${notification.status_notifikasi === 'Unread' ? 'text-primary' : 'text-secondary'}">${notification.isi}</h5>
-                <p class="card-text">${notification.waktu_dibuat}</p>
-                <button class="btn btn-warning text-white fw-bold">${notification.status_notifikasi === 'Unread' ? 'Mark as Read' : 'Read'}</button>
-              </div>
-            `;
-            notificationsContainer.appendChild(notificationCard);
-          });
-        } else {
-          const noNotificationsMessage = document.createElement('p');
-          noNotificationsMessage.innerText = 'Tidak ada notifikasi baru.';
-          document.getElementById('notificationsContainer').appendChild(noNotificationsMessage);
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching notifications:', error);
-      });
-  }
+  const nim = '2341760020'; // Ganti dengan sesi login jika tersedia
 
-  // Panggil fungsi untuk mengambil notifikasi saat halaman dimuat
-  window.onload = fetchNotifications;
+  fetch(`http://localhost/PBL/Project%20Web/app/controllers/fetchNotificationsMhs.php?nim=${nim}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      const notificationsContainer = document.getElementById('notificationsContainer');
+      notificationsContainer.innerHTML = ''; // Kosongkan kontainer sebelumnya
+
+      if (data && data.length > 0) {
+        data.forEach(notification => {
+          const notificationCard = document.createElement('div');
+          notificationCard.classList.add('card', 'shadow-sm', 'mb-4');
+          notificationCard.innerHTML = `
+            <div class="card-body">
+              <h5 class="card-title ${notification.status_notifikasi === 'Unread' ? 'text-primary' : 'text-secondary'}">${notification.isi}</h5>
+              <p class="card-text">${notification.waktu_dibuat}</p>
+              <button class="btn btn-info text-white fw-bold view-pdf" data-pdf="${notification.pdf_url}">
+                Lihat Detail
+              </button>
+            </div>
+          `;
+          notificationsContainer.appendChild(notificationCard);
+        });
+
+        // Tambahkan event listener untuk tombol "Lihat Detail"
+        document.querySelectorAll('.view-pdf').forEach(button => {
+          button.addEventListener('click', event => {
+            const pdfUrl = event.target.getAttribute('data-pdf');
+            window.open(pdfUrl, '_blank'); // Buka PDF di tab baru
+          });
+        });
+      } else {
+        const noNotificationsMessage = document.createElement('p');
+        noNotificationsMessage.innerText = 'Tidak ada notifikasi baru.';
+        notificationsContainer.appendChild(noNotificationsMessage);
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching notifications:', error);
+      const notificationsContainer = document.getElementById('notificationsContainer');
+      notificationsContainer.innerHTML = '<p class="text-danger">Gagal memuat notifikasi. Silakan coba lagi.</p>';
+    });
+}
+
+// Panggil fungsi untuk mengambil notifikasi saat halaman dimuat
+window.onload = fetchNotifications;
+
 </script>
 
 </body>
