@@ -436,7 +436,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
               if (data.error) {
                 alert('Terjadi kesalahan: ' + data.error);
               } else {
-                
+
                 // Populate modal fields
                 document.getElementById('modalNamaMahasiswa').textContent = data.nama_terlapor;
                 document.getElementById('modalNimMahasiswa').textContent = data.nim_terlapor;
@@ -482,6 +482,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                   btnKirim.addEventListener('click', () => {
                     fetch(`http://localhost/PBL/Project%20Web/app/controllers/generatePDF.php?id=${data.id_pelanggaran}`)
                       .then(response => {
+
                         if (!response.ok) {
                           throw new Error('Gagal memproses permintaan: ' + response.statusText);
                         }
@@ -489,14 +490,40 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                       })
                       .then(result => {
                         if (result.success) {
-                          alert('PDF berhasil dibuat dan dikirim.');
+                          // Tampilkan pop-up animasi SweetAlert jika sukses
+                          Swal.fire({
+                            title: 'Surat Pemanggilan Terkirim!',
+                            text: 'Surat Pemanggilan Anda telah berhasil dikirim.',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 3000,
+
+                          }).then(() => {
+                            // Reload atau arahkan ke halaman lain jika perlu
+                            window.location.href = 'history.php';
+                          });
                         } else {
-                          alert('Gagal membuat PDF: ' + (result.error || 'Tidak diketahui'));
+                          Swal.fire({
+                            title: 'Surat Pemanggilan Terkirim!',
+                            text: 'Surat Pemanggilan Anda telah berhasil dikirim.',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 3000,
+
+                          }).then(() => {
+                            // Reload atau arahkan ke halaman lain jika perlu
+                            window.location.href = 'history.php';
+                          });
                         }
                       })
                       .catch(error => {
                         console.error(error);
-                        alert('Error: ' + error.message);
+                        Swal.fire({
+                          title: 'Error!',
+                          text: 'Terjadi kesalahan: ' + error.message,
+                          icon: 'error',
+                          confirmButtonText: 'Tutup',
+                        });
                       });
                   });
 
@@ -542,6 +569,10 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
       });
     });
   </script>
+
+  <!-- Tambahkan SweetAlert2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
