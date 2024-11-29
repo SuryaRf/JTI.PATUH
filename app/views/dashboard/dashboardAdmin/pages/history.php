@@ -479,7 +479,26 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                   const btnKirim = document.createElement('button');
                   btnKirim.className = 'btn btn-success';
                   btnKirim.textContent = 'Kirim';
-                  btnKirim.addEventListener('click', () => alert('Kirim laporan.'));
+                  btnKirim.addEventListener('click', () => {
+                    fetch(`http://localhost/PBL/Project%20Web/app/controllers/generatePDF.php?id=${data.id_pelanggaran}`)
+                      .then(response => {
+                        if (!response.ok) {
+                          throw new Error('Gagal memproses permintaan: ' + response.statusText);
+                        }
+                        return response.json();
+                      })
+                      .then(result => {
+                        if (result.success) {
+                          alert('PDF berhasil dibuat dan dikirim.');
+                        } else {
+                          alert('Gagal membuat PDF: ' + (result.error || 'Tidak diketahui'));
+                        }
+                      })
+                      .catch(error => {
+                        console.error(error);
+                        alert('Error: ' + error.message);
+                      });
+                  });
 
                   modalFooter.appendChild(btnRiwayat);
                   modalFooter.appendChild(btnKirim);
