@@ -1,6 +1,6 @@
 <?php
 // Konfigurasi Koneksi SQL Server
-$serverName = "DESKTOP-2SC3JDH"; // Sesuaikan dengan nama server Anda
+$serverName = "LAPTOP-OLIBO2H2"; // Sesuaikan dengan nama server Anda
 $database = "PBL";    // Nama database
 
 // Opsi koneksi
