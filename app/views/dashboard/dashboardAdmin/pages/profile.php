@@ -139,28 +139,42 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
     <div class="card shadow-lg mx-4 card-profile-bottom">
     </div>
     <div class="container-fluid py-4">
-      <div class="row">
-        <div class="col-md-8">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
           <div class="card">
             <div class="card-header pb-0">
               <div class="d-flex align-items-center">
-                <p class="mb-0">Profile</p>
-                <button class="btn btn-primary btn-sm ms-auto" id="editProfileBtn" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit</button>
+                <p class="mb-0"
+                  style="color: #223381; font-size: 20px; font-weight: 600; margin-top: -10px; margin-left: 12px;">
+                  PROFIL
+                </p>
+                <button class="btn btn-primary btn-sm ms-auto py-1 px-4 fs-7 w-8 rounded-3"
+                  style="margin-right: 13px; background-color: #223381; border-color: #223381; letter-spacing: 0.5px; font-size: 14px"
+                  id="editProfileBtn" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                  EDIT
+                </button>
               </div>
+              <hr style="border: 0.5px solid #ccc; margin-top: 10px;">
             </div>
             <div class="card-body">
-              <p class="text-uppercase text-sm">Informasi Pengguna</p>
               <div class="card-body p-3">
-                <div class="row gx-4">
+                <div class="row gx-4" style="align-items: center;">
                   <div class="col-auto">
-                    <div class="avatar avatar-xl position-relative">
-                      <img src="../../../../../public/img/team-1.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                    <div class="avatar avatar-xxl position-relative">
+                      <img src="../../../../../public/img/team-1.jpg" alt="profile_image"
+                        class="w-100 border-radius-lg shadow-sm" style="margin-top: -45px;">
                     </div>
                   </div>
                   <div class="col-auto my-auto">
                     <div class="h-100">
-                      <h5 class="mb-1" id="nama_admin"></h5>
-                      <p class="mb-0 font-weight-bold text-sm" id="role_admin"></p>
+                      <h5 class="mb-1"
+                        style="margin-top: -45px; font-family: 'Poppins', sans-serif; font-size: 20px; color: #223381;">
+                        <span id="nama_admin">Nama Pengguna</span>
+                      </h5>
+                      <p class="mb-0 font-weight-bold text-sm"
+                        style="font-family: 'Poppins', sans-serif; font-size: 14px">
+                        <span id="role_admin">Admin</span>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -168,41 +182,53 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="nip" class="form-control-label">NIP</label>
-                    <input class="form-control" type="text" id="nip_admin" readonly>
+                    <label for="nip" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600;">NIP</label>
+                    <input class="form-control" type="text" id="nip_admin" readonly
+                      style="font-family: 'Poppins', sans-serif;">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="nama" class="form-control-label">Nama Lengkap</label>
-                    <input class="form-control" type="text" id="nama_admin_input" readonly>
+                    <label for="email" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600;">Alamat Email</label>
+                    <input class="form-control" type="text" id="email_admin" readonly
+                      style="font-family: 'Poppins', sans-serif;">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="jk" class="form-control-label">Jenis Kelamin</label>
-                    <input class="form-control" type="text" id="jk_admin" readonly>
+                    <label for="jk" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600;">Jenis Kelamin</label>
+                    <input class="form-control" type="text" id="jk_admin" readonly
+                      style="font-family: 'Poppins', sans-serif;">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="nohp" class="form-control-label">No.Handphone</label>
-                    <input class="form-control" type="text" id="nohp_admin" readonly>
+                    <label for="nohp" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600;">No.Handphone</label>
+                    <input class="form-control" type="text" id="nohp_admin" readonly
+                      style="font-family: 'Poppins', sans-serif;">
                   </div>
                 </div>
               </div>
               <hr class="horizontal dark">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <div class="form-group">
-                    <label for="jurusan" class="form-control-label">Jurusan</label>
-                    <input class="form-control" type="text" value="Teknologi Informasi" readonly>
+                    <label for="jurusan" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600;">Jurusan</label>
+                    <input class="form-control" type="text" value="Teknologi Informasi" readonly
+                      style="font-family: 'Poppins', sans-serif;">
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <div class="form-group">
-                    <label for="email" class="form-control-label">Email</label>
-                    <input class="form-control" type="text" id="email_admin" readonly>
+                    <label for="prodi" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600;">Prodi</label>
+                    <input class="form-control" type="text" value="D-IV Sistem Informasi Bisnis" readonly
+                      style="font-family: 'Poppins', sans-serif;">
                   </div>
                 </div>
               </div>
@@ -306,7 +332,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
               document.getElementById('nama_admin').innerText = data.nama_pgw || '';
               document.getElementById('role_admin').innerText = 'Admin'; // Ganti sesuai role jika diperlukan
               document.getElementById('nip_admin').value = data.nip || '';
-              document.getElementById('nama_admin_input').value = data.nama_pgw || '';
+              // document.getElementById('nama_admin_input').value = data.nama_pgw || '';
               document.getElementById('jk_admin').value = data.jk_pegawai || '';
               document.getElementById('nohp_admin').value = data.nohp_pgw || '';
               document.getElementById('email_admin').value = data.email || '';
@@ -358,7 +384,17 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             try {
               const jsonData = JSON.parse(data); // Parsing respons
               if (jsonData.success) {
-                alert('Profil berhasil diperbarui.');
+                Swal.fire({
+                  title: 'Update Data Profil!',
+                  text: 'Data Profil Anda telah berhasil diubah.',
+                  icon: 'success',
+                  showConfirmButton: false,
+                  timer: 3000,
+
+                }).then(() => {
+                  // Reload atau arahkan ke halaman lain jika perlu
+                  window.location.href = 'profile.php';
+                });
               } else {
                 alert('Gagal memperbarui profil: ' + (jsonData.error || 'Error tidak diketahui.'));
               }
@@ -373,6 +409,9 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
           });
       });
     </script>
+    <!-- Tambahkan SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
