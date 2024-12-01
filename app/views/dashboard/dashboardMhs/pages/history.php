@@ -123,7 +123,7 @@
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
-  <div class="min-height-200 bg-dark position-absolute w-100"></div>
+  <div class="min-height-200 position-absolute w-100" style="background-color: #223381;"></div>
   <aside
     class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
     id="sidenav-main">
@@ -180,7 +180,7 @@
         </li>
 
         <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
+          <h6 class="ps-4 ms-2 text-uppercase text-xs opacity-6">Account pages</h6>
         </li>
         <li class="nav-item">
           <a class="nav-link " href="../pages/profile.php">
@@ -272,7 +272,7 @@
                       </td>
                       <td class="text-center">
                         <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal"
-                          data-bs-target="#detailModalABC01" style="font-weight: 600;">
+                          data-bs-target="#detailModalDEF02" style="font-weight: 600;">
                           CHECK
                         </button>
                       </td>
@@ -288,7 +288,7 @@
                       </td>
                       <td class="text-center">
                         <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal"
-                          data-bs-target="#detailModalABC01" style="font-weight: 600;">
+                          data-bs-target="#detailModalGHI03" style="font-weight: 600;">
                           CHECK
                         </button>
                       </td>
@@ -450,11 +450,82 @@
                       </td>
                       <td class="text-center">
                         <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal"
-                          data-bs-target="#detailModalABC01" style="font-weight: 600;">
+                          data-bs-target="#detailModalDEF02" style="font-weight: 600;">
                           CHECK
                         </button>
                       </td>
                     </tr>
+                    <!-- Modal for DEF02 -->
+          <div class="modal fade" id="detailModalDEF02" tabindex="-1" aria-labelledby="detailModalLabelDEF02"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="detailModalLabelDEF02" style="font-size: 20px; font-weight: 600px; color: #223381;">Detail Pelanggaran</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <!-- Foto yang Bisa Diklik untuk Zoom -->
+                    <div class="col-md-4">
+                      <div class="text-center">
+                        <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom"
+                          class="img-fluid rounded w-100" data-bs-toggle="modal" data-bs-target="#buktiZoomModalABC01"
+                          style="cursor: pointer;">
+                      </div>
+                    </div>
+                    <!-- Informasi di sebelah kanan -->
+                    <div class="col-md-8">
+                      <div class="mb-3">
+                        <label class="form-label" style="font-weight: 600px; color: #223381;">Nama Mahasiswa Terlapor</label>
+                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                          Surya Rahmat
+                        </p>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" style="font-weight: 600px; color: #223381;">NIM Mahasiswa Terlapor</label>
+                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                          2341760020
+                        </p>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" style="font-weight: 600px; color: #223381;">Tingkat dan Jenis Pelanggaran</label>
+                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                          I - Tidak mengenakan identitas diri
+                        </p>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" style="font-weight: 600px; color: #223381;">Waktu</label>
+                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                          Jumat, 15 November 2024 pukul 08:00
+                        </p>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" style="font-weight: 600px; color: #223381;">Lokasi</label>
+                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                          Di Area Kampus
+                        </p>
+                      </div>
+                    <div class="mb-3">
+                      <label class="form-label fw-bold" style="color: #223381;">Download Berita Acara</label>
+                      <div class="form-control d-flex align-items-center justify-content-between" style="border: 1px solid #ced4da; border-radius: 4px; padding: 8px 12px;">
+                        <span style="font-size: 13px;">Berita Acara - ABC03</span>
+                        <button class="btn btn-primary btn-xs d-flex align-items-center px-2 py-1" onclick="downloadBeritaAcara()" style="font-size: 14px; font-weight: 600; background-color: #fff; color: #223381; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: box-shadow 0.3s ease;">
+                          <i class="fas fa-download me-1" style="font-weight: 600;"></i> Unduh
+                        </button>
+                      </div>
+                    </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
+                    <button class="btn btn-primary rounded-3 me-2"
+                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-15px);">
+                      Riwayat
+                    </button>
+                  </div>
+
+                    
                     <tr>
                       <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">GHI03</td>
                       <td class="text-16" style="color: #6B7280; font-size: 16px;">Bolos</td>
@@ -466,11 +537,101 @@
                       </td>
                       <td class="text-center">
                         <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal"
-                          data-bs-target="#detailModalABC01" style="font-weight: 600;">
+                          data-bs-target="#detailModalGHI03" style="font-weight: 600;">
                           CHECK
                         </button>
                       </td>
                     </tr>
+
+                    <!-- Modal for GHI03-->
+                    <div class="modal fade" id="detailModalGHI03" tabindex="-1" aria-labelledby="detailModalLabelGHI03"
+                      aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="detailModalLabelABC01" style="font-size: 20px; font-weight: 600px; color: #223381;">Detail Pelanggaran</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="row">
+                              <!-- Foto yang Bisa Diklik untuk Zoom -->
+                              <div class="col-md-4">
+                                <div class="text-center">
+                                  <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom"
+                                    class="img-fluid rounded w-100" data-bs-toggle="modal"
+                                    data-bs-target="#buktiZoomModalABC01" style="cursor: pointer;">
+                                </div>
+                              </div>
+                              <!-- Informasi di sebelah kanan -->
+                              <div class="col-md-8">
+                                <div class="mb-3">
+                                  <label class="form-label" style="font-weight: 600px; color: #223381;">Nama Mahasiswa
+                                    Terlapor</label>
+                                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                                    Surya Rahmat
+                                  </p>
+                                </div>
+                                <div class="mb-3">
+                                  <label class="form-label" style="font-weight: 600px; color: #223381;">NIM Mahasiswa
+                                    Terlapor</label>
+                                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                                    2341760020
+                                  </p>
+                                </div>
+                                <div class="mb-3">
+                                  <label class="form-label" style="font-weight: 600px; color: #223381;">Tingkat dan Jenis
+                                    Pelanggaran</label>
+                                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                                    I - Bolos
+                                  </p>
+                                </div>
+                                <div class="mb-3">
+                                  <label class="form-label" style="font-weight: 600px; color: #223381;">Waktu</label>
+                                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                                    Kamis, 14 November 2024 pukul 14:59
+                                  </p>
+                                </div>
+                                <div class="mb-3">
+                                  <label class="form-label" style="font-weight: 600px; color: #223381;">Lokasi</label>
+                                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                                    Di Ruang Kelas
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
+                              <!-- Tombol Riwayat (Sedikit diangkat) -->
+                              <button class="btn btn-primary rounded-3 me-2"
+                                style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-10px);"
+                                data-bs-toggle="modal" data-bs-target="#riwayatModal">
+                                Tutup
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Modal untuk Zoom Gambar -->
+                    <div class="modal fade" id="buktiZoomModalGHI03" tabindex="-1"
+                      aria-labelledby="buktiZoomModalLabelGHI03" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-body p-0">
+                            <p
+                              style="font-weight: bold; color: #223381; margin-bottom: 0px; margin-left: 20px; margin-top: 20px;">
+                              Bukti Pelanggaran</p>
+                            <div class="d-flex justify-content-center align-items-center">
+                              <div style="padding: 20px; background-color: white; border-radius: 8px;">
+                                <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom"
+                                  class="img-fluid rounded"
+                                  style="max-width: 100%; height: auto; display: block; margin: 0;">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </tbody>
                 </table>
               </div>

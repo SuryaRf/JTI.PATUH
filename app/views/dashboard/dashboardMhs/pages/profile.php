@@ -26,13 +26,26 @@
       padding: 0;
       font-family: 'Poppins', sans-serif !important;
       letter-spacing: 0.3px;
-      font-weight: 600px;
+    }
+
+    .form-control-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px !important;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+
     }
 
     .text-sm {
-      font-family: 'Poppins', sans-serif !important;
       font-size: 16px;
-      font-weight: 600px;
+      font-weight: normal;
+      letter-spacing: 0.3px;
+    }
+
+    .nav-link-text,
+    h4,
+    h6 {
+      font-family: 'Poppins', sans-serif !important;
     }
 
     .footer {
@@ -106,7 +119,8 @@
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="../pages/profile.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Profil</span>
@@ -152,28 +166,33 @@
                 <p class="mb-0"
                   style="color: #223381; font-size: 20px; font-weight: 600; margin-top: -10px; margin-left: 12px;">
                   PROFIL</p>
-                  <button class="btn btn-primary btn-sm ms-auto" style="background-color: #223381; border-color: #223381;">Edit</button>
+                <button class="btn btn-primary btn-sm ms-auto py-1 px-4 fs-7 w-8 rounded-3"
+                  style="margin-right: 13px; background-color: #223381; border-color: #223381; letter-spacing: 0.5px; font-size: 14px"
+                  data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                  EDIT
+                </button>
 
               </div>
               <hr style="border: 0.5px solid #ccc; margin-top: 10px;">
             </div>
 
             <div class="card-body">
-              <p class="text-uppercase text-sm">Informasi Pengguna</p>
               <div class="card-body p-3">
-                <div class="row gx-4">
+                <div class="row gx-4" style="align-items: center;">
                   <div class="col-auto">
-                    <div class="avatar avatar-xl position-relative">
-                      <img src="../../../../../public/img/team-1.jpg" alt="profile_image"
-                        class="w-100 border-radius-lg shadow-sm">
+                    <div class="avatar avatar-xxl position-relative">
+                      <img src="../../../../../public/img/profpic.jpg" alt="profile_image"
+                        class="w-100 border-radius-lg shadow-sm" style="margin-top: -45px;">
                     </div>
                   </div>
                   <div class="col-auto my-auto">
                     <div class="h-100">
-                      <h5 class="mb-1">
-                        Sayo Kravits
+                      <h5 class="mb-1"
+                        style="margin-top: -45px; font-family: 'Poppins', sans-serif; font-size: 20px; color: #223381;">
+                        Surya Rahmat Fatahillah
                       </h5>
-                      <p class="mb-0 font-weight-bold text-sm">
+                      <p class="mb-0 font-weight-bold text-sm"
+                        style="font-family: 'Poppins', sans-serif; font-size: 14px">
                         Mahasiswa
                       </p>
                     </div>
@@ -184,26 +203,34 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">NIM</label>
-                    <input class="form-control" type="text" value="lucky.jesse">
+                    <label for="example-text-input" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">NIM</label>
+                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
+                      value="2341760020">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Nama Lengkap</label>
-                    <input class="form-control" type="email" value="jesse@example.com">
+                    <label for="example-text-input" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Alamat Email</label>
+                    <input class="form-control" type="email" style="font-family: 'Poppins', sans-serif;"
+                      value="suryarahmatfatahillah@gmail.com">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Jenis Kelamin</label>
-                    <input class="form-control" type="text" value="Jesse">
+                    <label for="example-text-input" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Jenis Kelamin</label>
+                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
+                      value="Laki - laki">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">No.Handphone</label>
-                    <input class="form-control" type="text" value="Lucky">
+                    <label for="example-text-input" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">No.Handphone</label>
+                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
+                      value="08512345678">
                   </div>
                 </div>
               </div>
@@ -213,20 +240,25 @@
 
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Jurusan</label>
-                    <input class="form-control" type="text" value="New York">
+                    <label for="example-text-input" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Jurusan</label>
+                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
+                      value="Teknologi Informasi">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Prodi</label>
-                    <input class="form-control" type="text" value="United States">
+                    <label for="example-text-input" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Prodi</label>
+                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
+                      value="D-IV Sistem Informasi Bisnis">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Kelas</label>
-                    <input class="form-control" type="text" value="437300">
+                    <label for="example-text-input" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Kelas</label>
+                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;" value="SIB 2D">
                   </div>
                 </div>
               </div>
@@ -252,6 +284,83 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
+
+    <!-- Modal Edit Profil -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document" style="top: 50px;">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #223381; color: white;">
+            <h5 class="modal-title" id="editProfileModalLabel" style="font-family: 'Poppins', sans-serif; color: #FFFFFF;">Edit Profil
+            </h5>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="editNIM" class="form-control-label">NIM</label>
+                    <input type="text" class="form-control" id="editNIM" value="2341760020">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="editEmail" class="form-control-label">Alamat Email</label>
+                    <input type="email" class="form-control" id="editEmail" value="suryarahmatfatahillah@gmail.com">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="editGender" class="form-control-label">Jenis Kelamin</label>
+                    <select class="form-control" id="editGender">
+                      <option value="Laki - laki" selected>Laki - laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="editPhone" class="form-control-label">No. Handphone</label>
+                    <input type="text" class="form-control" id="editPhone" value="08512345678">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="editJurusan" class="form-control-label">Jurusan</label>
+                    <input type="text" class="form-control" id="editJurusan" value="Teknologi Informasi" readonly>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="editProdi" class="form-control-label">Prodi</label>
+                    <input type="text" class="form-control" id="editProdi" value="D-IV Sistem Informasi Bisnis"
+                      readonly>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="editKelas" class="form-control-label">Kelas</label>
+                    <input type="text" class="form-control" id="editKelas" value="SIB 2D" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="editProfilePicture" class="form-control-label">Foto Profil</label>
+                <input type="file" class="form-control" id="editProfilePicture" accept="image/*">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary"
+              style="background-color: #223381; border-color: #223381; font-family: 'Poppins', sans-serif;">Simpan</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 
 </html>
