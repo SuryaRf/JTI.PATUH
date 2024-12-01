@@ -145,7 +145,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             <div class="card-header pb-0">
               <div class="d-flex align-items-center">
                 <p class="mb-0">Profile</p>
-                <button class="btn btn-primary btn-sm ms-auto">Edit</button>
+                <button class="btn btn-primary btn-sm ms-auto" id="editProfileBtn" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit</button>
               </div>
             </div>
             <div class="card-body">
@@ -210,7 +210,77 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             </div>
           </div>
         </div>
+        <!-- Modal Edit Profil -->
+        <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document" style="top: 50px;">
+            <div class="modal-content">
+              <div class="modal-header" style="background-color: #223381; color: white;">
+                <h5 class="modal-title" id="editProfileModalLabel" style="font-family: 'Poppins', sans-serif; color: #FFFFFF;">Edit Profil
+                </h5>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="editNIM" class="form-control-label">NIP</label>
+                        <input type="text" class="form-control" id="editNIP" value="2341760020">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="editEmail" class="form-control-label">Alamat Email</label>
+                        <input type="email" class="form-control" id="editEmail" value="suryarahmatfatahillah@gmail.com">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="editGender" class="form-control-label">Jenis Kelamin</label>
+                        <select class="form-control" id="editGender">
+                          <option value="Laki - laki" selected>Laki - laki</option>
+                          <option value="Perempuan">Perempuan</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="editPhone" class="form-control-label">No. Handphone</label>
+                        <input type="text" class="form-control" id="editPhone" value="08512345678">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="editJurusan" class="form-control-label">Jurusan</label>
+                        <input type="text" class="form-control" id="editJurusan" value="Teknologi Informasi" readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="editProdi" class="form-control-label">Prodi</label>
+                        <input type="text" class="form-control" id="editProdi" value="D-IV Sistem Informasi Bisnis"
+                          readonly>
+                      </div>
+                    </div>
 
+                  </div>
+                  <div class="form-group">
+                    <label for="editProfilePicture" class="form-control-label">Foto Profil</label>
+                    <input type="file" class="form-control" id="editProfilePicture" accept="image/*">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary"
+                  style="background-color: #223381; border-color: #223381; font-family: 'Poppins', sans-serif;">Simpan</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <footer class="footer">
           Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
         </footer>
@@ -247,10 +317,62 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             alert('Terjadi kesalahan saat mengambil data admin.');
           });
       });
-    </script>
 
-    <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+      document.getElementById('editProfileBtn').addEventListener('click', function() {
+        // Ambil data dari elemen profil
+        const nama = document.getElementById('nama_admin').innerText;
+        const nip = document.getElementById('nip_admin').value;
+        const email = document.getElementById('email_admin').value;
+        const gender = document.getElementById('jk_admin').value;
+        const phone = document.getElementById('nohp_admin').value;
+
+        // Isi data ke dalam form di modal
+        document.getElementById('editNIP').value = nip;
+        document.getElementById('editEmail').value = email;
+        document.getElementById('editGender').value = gender;
+        document.getElementById('editPhone').value = phone;
+      });
+
+
+      document.querySelector('.modal-footer .btn-primary').addEventListener('click', function() {
+        const updatedData = {
+          nip: document.getElementById('editNIP').value,
+          email: document.getElementById('editEmail').value,
+          gender: document.getElementById('editGender').value,
+          phone: document.getElementById('editPhone').value,
+        };
+
+        fetch('http://localhost/PBL/Project%20Web/app/controllers/updateDataPegawai.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedData),
+          })
+          .then(response => {
+            console.log('Response status:', response.status);
+            return response.text(); // Ambil respons mentah
+          })
+          .then(data => {
+            console.log('Raw response:', data); // Log respons mentah
+            try {
+              const jsonData = JSON.parse(data); // Parsing respons
+              if (jsonData.success) {
+                alert('Profil berhasil diperbarui.');
+              } else {
+                alert('Gagal memperbarui profil: ' + (jsonData.error || 'Error tidak diketahui.'));
+              }
+            } catch (e) {
+              console.error('JSON Parsing Error:', e);
+              alert('Terjadi kesalahan saat memperbarui profil. Respons tidak valid.');
+            }
+          })
+          .catch(error => {
+            console.error('Fetch Error:', error);
+            alert('Terjadi kesalahan saat memperbarui profil.');
+          });
+      });
+    </script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
