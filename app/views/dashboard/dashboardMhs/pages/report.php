@@ -2,15 +2,22 @@
 <html lang="en">
 
 <head>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../../../../../public/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../../../../../public/img/favicon.png">
   <title>
-    Dashboard Admin
+  <style>
+    /* Terapkan font ke semua elemen */
+    * {
+      font-family: 'Poppins', sans-serif !important;
+    }
+  </style>
+    Dashboard Mahasiswa
   </title>
   <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Nucleo Icons -->
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
@@ -20,11 +27,18 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="../../../../../public/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
   <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif !important;
+      letter-spacing: 0.3px;
+    }
 
 
     .footer {
       text-align: center;
-      color: #9CA3AF;
+      color: #223381;
       margin-top: 92px;
       padding: 16px 0;
       animation: fadeInFooter 1.5s ease;
@@ -92,7 +106,7 @@
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
-  <div class="min-height-200 bg-dark position-absolute w-100"></div>
+  <div class="min-height-200 position-absolute w-100"style="background-color: #223381;"></div>
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -279,52 +293,59 @@
               <h6>Laporkan Pelanggaran</h6>
               <small>Form Laporan</small>
             </div>
-
-            <div class="card-body p-4">
-              <form>
-                <div class="form-group mb-3">
-                  <label for="nim">Mahasiswa Terlapor<span class="text-danger">*</span></label>
-                  <input type="text" id="nim" class="form-control rounded-pill" placeholder="Masukkan NIM mahasiswa" required>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="nama">Nama Mahasiswa Terlapor<span class="text-danger">*</span></label>
-                  <input type="text" id="nama" class="form-control rounded-pill" placeholder="Masukkan Nama mahasiswa" required>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="pelanggaran">Nama Pelanggaran</label>
-                  <select id="pelanggaran" class="form-control rounded-pill" required>
-                    <option>Pilih Pelanggaran</option>
-                    <option>Pelanggaran A</option>
-                    <option>Pelanggaran B</option>
-                  </select>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="waktu">Waktu</label>
-                  <input type="text" id="waktu" class="form-control rounded-pill" placeholder="Masukkan Waktu Kejadian" required>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="lokasi">Lokasi</label>
-                  <input type="text" id="lokasi" class="form-control rounded-pill" placeholder="Masukkan Lokasi Kejadian" required>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="bukti">Bukti</label>
-                  <div class="file-upload rounded-pill p-3 text-center bg-light border border-secondary">
-                    <i class="fas fa-upload mb-2"></i>
-                    <br>
-                    <span>Unggah bukti yang menguatkan laporan Anda disini!</span>
-                  </div>
-                </div>
-                <div class="form-footer text-center mt-4">
-                  <p><small>*boleh pilih salah satu</small></p>
-                  <button type="submit" class="btn btn-primary btn-lg rounded-pill px-4 py-2 mt-2">Kirim</button>
-                </div>
-              </form>
+            <style>
+    body {
+      font-family: 'Poppins', sans-serif !important;
+    }
+    .form-control, .btn, .file-upload {
+      font-family: 'Poppins', sans-serif !important;
+    }
+  </style>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="card">
+      <div class="card-body p-4">
+        <form>
+          <div class="form-group mb-3">
+            <label for="nim" style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #223381;">Mahasiswa Terlapor<span class="text-danger">*</span></label>
+            <input type="text" id="nim" class="form-control rounded-2" placeholder="Masukkan NIM mahasiswa" required>
+          </div>
+          <div class="form-group mb-3">
+            <label for="nama" style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #223381;">Nama Mahasiswa Terlapor<span class="text-danger">*</span></label>
+            <input type="text" id="nama" class="form-control rounded-2" placeholder="Masukkan Nama mahasiswa" required>
+          </div>
+          <div class="form-group mb-3">
+            <label for="pelanggaran" style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #223381;">Nama Pelanggaran</label>
+            <select id="pelanggaran" class="form-control rounded-2" required>
+              <option>Pilih Pelanggaran</option>
+              <option>Pelanggaran A</option>
+              <option>Pelanggaran B</option>
+            </select>
+          </div>
+          <div class="form-group mb-3">
+            <label for="waktu" style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #223381;">Waktu</label>
+            <input type="text" id="waktu" class="form-control rounded-2" placeholder="Masukkan Waktu Kejadian" required>
+          </div>
+          <div class="form-group mb-3">
+            <label for="lokasi" style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #223381;">Lokasi</label>
+            <input type="text" id="lokasi" class="form-control rounded-2" placeholder="Masukkan Lokasi Kejadian" required>
+          </div>
+          <div class="form-group mb-3">
+            <label for="bukti" style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #223381;">Bukti</label>
+            <div class="file-upload rounded-3 p-3 text-center bg-light border border-secondary">
+              <i class="fas fa-upload mb-2"></i>
+              <br>
+              <span>Unggah bukti yang menguatkan laporan Anda disini!</span>
             </div>
           </div>
-        </div>
+          <div class="form-footer text-center mt-4">
+            <p><small>*boleh pilih salah satu</small></p>
+            <button type="submit" class="btn btn-primary btn-lg rounded-2 px-4 py-2 mt-2">Kirim</button>
+          </div>
+        </form>
       </div>
     </div>
-
     <footer class="footer">
       Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
     </footer>

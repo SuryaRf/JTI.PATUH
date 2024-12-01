@@ -95,9 +95,9 @@ if (!sqlsrv_query($conn, $insertNotificationQuery, $insertNotificationParams)) {
 // Kirim email menggunakan PHPMailer
 $mail = new PHPMailer();
 $mail->isSMTP();
-$mail->Host = 'smtp.yourdomain.com'; // Ganti dengan host SMTP Anda
+$mail->Host = 'smtp.gmail.com'; // Ganti dengan host SMTP Anda
 $mail->SMTPAuth = true;
-$mail->Username = 'your_email@yourdomain.com'; // Email pengirim
+$mail->Username = 'your_email@gmail.com'; // Email pengirim
 $mail->Password = 'your_password'; // Password email pengirim
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 $mail->Port = 587;
