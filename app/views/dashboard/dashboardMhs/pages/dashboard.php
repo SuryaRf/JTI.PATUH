@@ -450,18 +450,18 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
                     <!-- Tombol Riwayat (Sedikit diangkat) -->
                     <button class="btn btn-primary rounded-3 me-2"
-                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-15px) translateX(-2px) ;"
+                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;"
                       data-bs-toggle="modal" data-bs-target="#riwayatModal">
                       Riwayat
                     </button>
                     <!-- Tombol Aju Banding -->
-                    <button class="btn btn-warning rounded-3 me-2"
+                    <button class="btn btn-primary rounded-3 me-2"
                       style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" data-bs-toggle="modal"
                       data-bs-target="#ajuBandingModal">
                       Aju Banding
                     </button>
                     <!-- Tombol Terima -->
-                    <button class="btn btn-success rounded-3"
+                    <button class="btn btn-primary rounded-3"
                       style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" id="submitBtn"
                       data-bs-toggle="modal" data-bs-target="#successModal">
                       Terima
