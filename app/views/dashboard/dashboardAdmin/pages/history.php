@@ -108,7 +108,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-exclamation-circle text-dark text-sm opacity-10"></i> <!-- Ikon alert Font Awesome -->
             </div>
-            <span class="nav-link-text ms-1">Laporkan</span>
+            <span class="nav-link-text ms-1">Melaporkan Pelanggaran</span>
           </a>
         </li>
 

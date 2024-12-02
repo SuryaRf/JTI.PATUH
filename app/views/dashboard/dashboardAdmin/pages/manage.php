@@ -148,7 +148,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="fas fa-exclamation-circle text-dark text-sm opacity-10"></i> <!-- Ikon alert Font Awesome -->
                         </div>
-                        <span class="nav-link-text ms-1">Laporkan</span>
+                        <span class="nav-link-text ms-1">Melaporkan Pelanggaran</span>
                     </a>
                 </li>
 
@@ -436,6 +436,40 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             </div>
         </div>
 
+        <!-- Modal untuk Edit Tata Tertib -->
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Edit Tata Tertib</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="editTatibForm">
+                        <div class="modal-body">
+                            <input type="hidden" id="editIdTatib">
+                            <div class="mb-3">
+                                <label for="editNama" class="form-label">Nama Pelanggaran</label>
+                                <input type="text" class="form-control" id="editNama" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editTingkat" class="form-label">Tingkat Pelanggaran</label>
+                                <input type="text" class="form-control" id="editTingkat" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editSanksi" class="form-label">Keterangan Sanksi</label>
+                                <input type="text" class="form-control" id="editSanksi">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
         <footer class="footer">
             Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
         </footer>
@@ -498,53 +532,103 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
 
 
             document.addEventListener('DOMContentLoaded', function() {
-      document.addEventListener('click', function(event) {
-        if (event.target.classList.contains('check')) {
-          const idPelanggaran = event.target.getAttribute('data-id');
+                document.addEventListener('click', function(event) {
+                    if (event.target.classList.contains('check')) {
+                        const idPelanggaran = event.target.getAttribute('data-id');
 
-          if (isNaN(idPelanggaran)) {
-            alert('ID Pelanggaran tidak valid.');
-            return;
-          }
+                        if (isNaN(idPelanggaran)) {
+                            alert('ID Pelanggaran tidak valid.');
+                            return;
+                        }
 
-          fetch(`http://localhost/PBL/Project%20Web/app/controllers/getViolationDetails.php?id=${idPelanggaran}`)
-            .then(response => response.json())
-            .then(data => {
-              if (data.error) {
-                alert('Terjadi kesalahan: ' + data.error);
-              } else {
-                document.getElementById('modalNamaMahasiswa').textContent = data.nama_terlapor;
-                document.getElementById('modalNimMahasiswa').textContent = data.nim_terlapor;
-                document.getElementById('modalTingkatJenis').textContent = `${data.tingkat_pelanggaran} - ${data.jenis_pelanggaran}`;
-                document.getElementById('modalWaktu').textContent = data.waktu_pelanggaran;
-                document.getElementById('modalLokasi').textContent = data.lokasi;
+                        fetch(`http://localhost/PBL/Project%20Web/app/controllers/getViolationDetails.php?id=${idPelanggaran}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.error) {
+                                    alert('Terjadi kesalahan: ' + data.error);
+                                } else {
+                                    document.getElementById('modalNamaMahasiswa').textContent = data.nama_terlapor;
+                                    document.getElementById('modalNimMahasiswa').textContent = data.nim_terlapor;
+                                    document.getElementById('modalTingkatJenis').textContent = `${data.tingkat_pelanggaran} - ${data.jenis_pelanggaran}`;
+                                    document.getElementById('modalWaktu').textContent = data.waktu_pelanggaran;
+                                    document.getElementById('modalLokasi').textContent = data.lokasi;
 
-                if (data.pelapor) {
-                  document.getElementById('modalPelapor').textContent = `${data.pelapor.type}: ${data.pelapor.id} (${data.pelapor.name})`;
-                } else {
-                  document.getElementById('modalPelapor').textContent = 'Tidak ada pelapor.';
-                }
+                                    if (data.pelapor) {
+                                        document.getElementById('modalPelapor').textContent = `${data.pelapor.type}: ${data.pelapor.id} (${data.pelapor.name})`;
+                                    } else {
+                                        document.getElementById('modalPelapor').textContent = 'Tidak ada pelapor.';
+                                    }
 
-                const modalBuktiFoto = document.getElementById('modalBuktiFoto');
-                if (data.bukti_foto_url) {
-                  modalBuktiFoto.src = data.bukti_foto_url;
-                  modalBuktiFoto.style.display = 'block';
-                } else {
-                  modalBuktiFoto.src = '';
-                  modalBuktiFoto.style.display = 'none';
-                }
+                                    const modalBuktiFoto = document.getElementById('modalBuktiFoto');
+                                    if (data.bukti_foto_url) {
+                                        modalBuktiFoto.src = data.bukti_foto_url;
+                                        modalBuktiFoto.style.display = 'block';
+                                    } else {
+                                        modalBuktiFoto.src = '';
+                                        modalBuktiFoto.style.display = 'none';
+                                    }
 
-                const detailModal = new bootstrap.Modal(document.getElementById('detailModal'));
-                detailModal.show();
-              }
-            })
-            .catch(error => {
-              console.error('Fetch Error:', error);
-              alert('Terjadi kesalahan saat mengambil detail laporan.');
+                                    const detailModal = new bootstrap.Modal(document.getElementById('detailModal'));
+                                    detailModal.show();
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Fetch Error:', error);
+                                alert('Terjadi kesalahan saat mengambil detail laporan.');
+                            });
+                    }
+                });
             });
-        }
-      });
-    });
+
+            // Event listener untuk tombol "Terima" dan "Tolak"
+            document.addEventListener('click', function(event) {
+                if (event.target.classList.contains('btn-success') || event.target.classList.contains('btn-danger')) {
+                    const idPelanggaran = document.querySelector('.check').getAttribute('data-id');
+                    const newStatus = event.target.classList.contains('btn-success') ? 'valid' : 'Reject';
+
+                    if (isNaN(idPelanggaran)) {
+                        alert('ID Pelanggaran tidak valid.');
+                        return;
+                    }
+
+                    // Kirim permintaan untuk memperbarui status laporan
+                    fetch(`http://localhost/PBL/Project%20Web/app/controllers/updateViolationStatus.php`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                id_pelanggaran: idPelanggaran,
+                                status: newStatus
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                Swal.fire({
+                                    title: 'Laporan Diterima!',
+                                    text: 'Status laporan telah berhasil diperbarui.',
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                }).then(() => {
+                                    // Reload atau arahkan ke halaman lain jika perlu
+                                    window.location.href = 'manage.php';
+                                });
+                                // Tutup modal setelah status diperbarui
+                                const modal = new bootstrap.Modal(document.getElementById('detailModal'));
+                                modal.hide();
+
+                            } else {
+                                alert('Gagal memperbarui status laporan');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Fetch Error:', error);
+                            alert('Terjadi kesalahan saat memperbarui status laporan.');
+                        });
+                }
+            });
         </script>
 
         <script>
@@ -573,9 +657,14 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                     <td style="width: 200px; word-wrap: break-word; white-space: normal; overflow: hidden;">${item.keterangan_sanksi || 'Tidak ada saksi'}</td>
                     <td>
                         <div class="ms-auto text-center">
-                            <button class="btn btn-link text-dark px-3 mb-0 btn-edit" data-id="${item.id_tatib}" data-tingkat="${item.tingkat_pelanggaran}" data-sanksi="${item.keterangan_sanksi || ''}">
-                                <i class="fas fa-pencil-alt text-dark me-2"></i>Edit
-                            </button>
+                            <button 
+    class="btn btn-link text-dark px-3 mb-0 btn-edit" 
+    data-id="${item.id_tatib}" 
+    data-tingkat="${item.tingkat_pelanggaran}" 
+    data-sanksi="${item.keterangan_sanksi || ''}">
+    <i class="fas fa-pencil-alt text-dark me-2"></i>Edit
+</button>
+
                             <button class="btn btn-link text-danger text-gradient px-3 mb-0 btn-delete" data-id="${item.id_tatib}">
                                 <i class="far fa-trash-alt me-2"></i>Delete
                             </button>
@@ -604,26 +693,41 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                 function handleEdit(event) {
                     const button = event.target.closest("button");
                     const id = button.dataset.id;
-                    const nama = button.dataset.nama;
+                    const nama = button.closest("tr").querySelector("td:nth-child(2)").textContent;
                     const tingkat = button.dataset.tingkat;
                     const sanksi = button.dataset.sanksi;
 
-                    const newNama = prompt("Edit Nama Pelanggaran:", nama);
-                    const newTingkat = prompt("Edit Tingkat Pelanggaran:", tingkat);
-                    const newSanksi = prompt("Edit Sanksi:", sanksi);
+                    // Isi nilai ke dalam modal
+                    document.querySelector("#editIdTatib").value = id;
+                    document.querySelector("#editNama").value = nama;
+                    document.querySelector("#editTingkat").value = tingkat;
+                    document.querySelector("#editSanksi").value = sanksi;
 
-                    if (newNama !== null && newTingkat !== null && newSanksi !== null) {
-                        // Send update request to the server
+                    // Tampilkan modal
+                    const editModal = new bootstrap.Modal(document.querySelector("#editModal"));
+                    editModal.show();
+
+                    // Tangani submit form di dalam modal
+                    document.querySelector("#editTatibForm").addEventListener("submit", function(e) {
+                        e.preventDefault();
+
+                        // Ambil nilai terbaru dari form
+                        const id = document.querySelector("#editIdTatib").value;
+                        const nama = document.querySelector("#editNama").value;
+                        const tingkat = document.querySelector("#editTingkat").value;
+                        const sanksi = document.querySelector("#editSanksi").value;
+
+                        // Kirim permintaan update ke server
                         fetch("http://localhost/PBL/Project%20Web/app/controllers/updateTatib.php", {
                                 method: "POST",
                                 headers: {
-                                    "Content-Type": "application/json"
+                                    "Content-Type": "application/json",
                                 },
                                 body: JSON.stringify({
                                     id,
-                                    nama: newNama,
-                                    tingkat: newTingkat,
-                                    sanksi: newSanksi
+                                    nama,
+                                    tingkat,
+                                    sanksi
                                 }),
                             })
                             .then((response) => {
@@ -633,14 +737,53 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                                 return response.json();
                             })
                             .then((result) => {
-                                alert(result.message || "Data berhasil diupdate!");
-                                location.reload(); // Reload data
+                                // Tampilkan pop-up animasi SweetAlert jika sukses
+                                Swal.fire({
+                                    title: 'Tata Tertib Diperbarui!',
+                                    text: 'Tata Tertib telah berhasil diperbarui.',
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    timer: 3000,
+
+                                }).then(() => {
+                                    // Reload atau arahkan ke halaman lain jika perlu
+                                    window.location.href = 'manage.php';
+                                });
+
                             })
                             .catch((error) => {
                                 console.error("Terjadi kesalahan saat mengupdate data:", error);
                             });
-                    }
+
+                        // Jika sanksi juga perlu diperbarui secara terpisah
+                        if (sanksi !== null) {
+                            fetch("http://localhost/PBL/Project%20Web/app/controllers/updateSanksi.php", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                    },
+                                    body: JSON.stringify({
+                                        tingkat,
+                                        sanksi
+                                    }),
+                                })
+                                .then((response) => {
+                                    if (!response.ok) {
+                                        throw new Error(`HTTP error! Status: ${response.status}`);
+                                    }
+                                    return response.json();
+                                })
+                                .then((result) => {
+
+                                })
+                                .catch((error) => {
+                                    console.error("Terjadi kesalahan saat mengupdate sanksi:", error);
+                                });
+                        }
+                    });
                 }
+
+
 
 
                 // Handle delete action
@@ -685,6 +828,10 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                 Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
             }
         </script>
+
+        <!-- Tambahkan SweetAlert2 -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>

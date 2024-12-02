@@ -10,7 +10,17 @@ if (!$conn) {
 }
 
 // Query untuk mengambil data
-$query = "SELECT id_tatib, nama_pelanggaran, tingkat_pelanggaran, keterangan_sanksi FROM TataTertib";
+$query = "
+    SELECT 
+        tt.id_tatib, 
+        tt.nama_pelanggaran, 
+        tt.tingkat_pelanggaran, 
+        s.keterangan_sanksi
+    FROM 
+        TataTertib tt
+    JOIN 
+        Sanksi s ON tt.tingkat_pelanggaran = s.tingkat_pelanggaran
+";
 $stmt = sqlsrv_query($conn, $query);
 
 if ($stmt === false) {
@@ -23,7 +33,5 @@ while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
     $tataTertibData[] = $row;
 }
 
-// Pastikan output JSON valid
 echo json_encode($tataTertibData);
 sqlsrv_close($conn);
-?>

@@ -35,8 +35,8 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
   <title>
     Dashboard Admin
   </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Google Font: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- Nucleo Icons -->
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
@@ -117,6 +117,53 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
     .card {
       animation: fadeIn 0.6s ease-out;
     }
+
+    .card-header {
+      background-color: #223381;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+    }
+
+    .card-header h6 {
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .card-header small {
+      font-size: 0.9rem;
+      color: #d9d9d9;
+    }
+
+    .form-control {
+      border-radius: 10rem;
+      box-shadow: none;
+    }
+
+    .form-control:focus {
+      box-shadow: 0 0 0 0.2rem rgba(34, 51, 129, 0.25);
+      border-color: #223381;
+    }
+
+    .form-footer button {
+      background-color: #223381;
+      border: none;
+    }
+
+    .form-footer button:hover {
+      background-color: #1c2e6c;
+    }
+
+    label {
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .container-fluid {
+      padding-top: 3rem;
+    }
   </style>
 </head>
 
@@ -145,7 +192,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-exclamation-circle text-dark text-sm opacity-10"></i> <!-- Ikon alert Font Awesome -->
             </div>
-            <span class="nav-link-text ms-1">Laporkan</span>
+            <span class="nav-link-text ms-1">Melaporkan Pelanggaran</span>
           </a>
         </li>
 
@@ -177,8 +224,11 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
         </li>
 
         <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6" style="color: #d3d3d3;">
+            Account pages
+          </h6>
         </li>
+
         <li class="nav-item">
           <a class="nav-link " href="../pages/profile.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -307,45 +357,43 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
       </div>
     </nav>
     <!-- End Navbar -->
-    <div class="container-fluid py-5">
+    <div class="container-fluid">
       <div class="row justify-content-center">
         <!-- Card for the Report Form -->
         <div class="col-md-8 mt-3">
-          <div class="card shadow-lg rounded-lg border-0">
-            <div class="card-header" style="background-color: #223381; color: white; text-align: center; padding: 1rem;">
-              <h6>Laporkan Pelanggaran</h6>
+          <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-header">
+              <h6>Melaporkan Pelanggaran</h6>
               <small>Form Laporan</small>
             </div>
-
             <div class="card-body p-4">
               <form action="/PBL/Project%20Web/app/controllers/processReport.php" method="POST" enctype="multipart/form-data">
-                <div class="form-group mb-3">
-                  <label for="nim">Mahasiswa Terlapor<span class="text-danger">*</span></label>
-                  <input type="text" id="nim" name="nim" class="form-control rounded-pill" placeholder="Masukkan NIM mahasiswa" required>
-                  <div class="form-group mb-3">
-                    <label for="pelanggaran">Nama Pelanggaran</label>
-                    <select id="pelanggaran" name="id_tatib" class="form-control rounded-pill" required>
-                      <option value="">Pilih Pelanggaran</option>
-
-                    </select>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="waktu">Waktu</label>
-                    <input type="text" id="waktu" name="waktu_pelanggaran" class="form-control rounded-pill" placeholder="Masukkan Waktu Kejadian" required>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="lokasi">Lokasi</label>
-                    <input type="text" id="lokasi" name="lokasi" class="form-control rounded-pill" placeholder="Masukkan Lokasi Kejadian" required>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="bukti">Bukti</label>
-                    <input type="file" name="bukti" id="bukti" class="form-control-file" required>
-
-                  </div>
-                  <div class="form-footer text-center mt-4">
-                    <p><small>*boleh pilih salah satu</small></p>
-                    <button type="submit" class="btn btn-primary btn-lg rounded-pill px-4 py-2 mt-2">Kirim</button>
-                  </div>
+                <div class="form-group mb-4">
+                  <label for="nim">Mahasiswa Terlapor</label>
+                  <input type="text" id="nim" name="nim" class="form-control" placeholder="Masukkan NIM mahasiswa" required>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="pelanggaran">Nama Pelanggaran</label>
+                  <select id="pelanggaran" name="id_tatib" class="form-control" required>
+                    <option value="">Pilih Pelanggaran</option>
+                    <!-- Tambahkan pilihan pelanggaran -->
+                  </select>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="waktu">Waktu</label>
+                  <input type="datetime-local" id="waktu" name="waktu_pelanggaran" class="form-control" placeholder="Pilih Waktu Kejadian" required>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="lokasi">Lokasi</label>
+                  <input type="text" id="lokasi" name="lokasi" class="form-control" placeholder="Masukkan Lokasi Kejadian" required>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="bukti">Bukti</label>
+                  <input type="file" name="bukti" id="bukti" class="form-control" required>
+                </div>
+                <div class="form-footer text-center mt-4">
+                  <button type="submit" class="btn btn-primary btn-lg rounded-pill px-4 py-2">Kirim</button>
+                </div>
               </form>
             </div>
           </div>
@@ -419,11 +467,10 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             // Tampilkan pop-up animasi SweetAlert jika sukses
             Swal.fire({
               title: 'Laporan Terkirim!',
-              text: 'Laporan pelanggaran Anda telah berhasil dikirim.',
+              text: data.success,
               icon: 'success',
               showConfirmButton: false,
-              timer: 3000,
-
+              timer: 3000
             }).then(() => {
               // Reload atau arahkan ke halaman lain jika perlu
               window.location.href = 'report.php';
@@ -449,6 +496,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
         });
     });
   </script>
+
 
   <!-- Tambahkan SweetAlert2 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
