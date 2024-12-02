@@ -148,7 +148,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                         <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="fas fa-exclamation-circle text-dark text-sm opacity-10"></i> <!-- Ikon alert Font Awesome -->
                         </div>
-                        <span class="nav-link-text ms-1">Laporkan</span>
+                        <span class="nav-link-text ms-1">Melaporkan Pelanggaran</span>
                     </a>
                 </li>
 
@@ -498,53 +498,53 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
 
 
             document.addEventListener('DOMContentLoaded', function() {
-      document.addEventListener('click', function(event) {
-        if (event.target.classList.contains('check')) {
-          const idPelanggaran = event.target.getAttribute('data-id');
+                document.addEventListener('click', function(event) {
+                    if (event.target.classList.contains('check')) {
+                        const idPelanggaran = event.target.getAttribute('data-id');
 
-          if (isNaN(idPelanggaran)) {
-            alert('ID Pelanggaran tidak valid.');
-            return;
-          }
+                        if (isNaN(idPelanggaran)) {
+                            alert('ID Pelanggaran tidak valid.');
+                            return;
+                        }
 
-          fetch(`http://localhost/PBL/Project%20Web/app/controllers/getViolationDetails.php?id=${idPelanggaran}`)
-            .then(response => response.json())
-            .then(data => {
-              if (data.error) {
-                alert('Terjadi kesalahan: ' + data.error);
-              } else {
-                document.getElementById('modalNamaMahasiswa').textContent = data.nama_terlapor;
-                document.getElementById('modalNimMahasiswa').textContent = data.nim_terlapor;
-                document.getElementById('modalTingkatJenis').textContent = `${data.tingkat_pelanggaran} - ${data.jenis_pelanggaran}`;
-                document.getElementById('modalWaktu').textContent = data.waktu_pelanggaran;
-                document.getElementById('modalLokasi').textContent = data.lokasi;
+                        fetch(`http://localhost/PBL/Project%20Web/app/controllers/getViolationDetails.php?id=${idPelanggaran}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.error) {
+                                    alert('Terjadi kesalahan: ' + data.error);
+                                } else {
+                                    document.getElementById('modalNamaMahasiswa').textContent = data.nama_terlapor;
+                                    document.getElementById('modalNimMahasiswa').textContent = data.nim_terlapor;
+                                    document.getElementById('modalTingkatJenis').textContent = `${data.tingkat_pelanggaran} - ${data.jenis_pelanggaran}`;
+                                    document.getElementById('modalWaktu').textContent = data.waktu_pelanggaran;
+                                    document.getElementById('modalLokasi').textContent = data.lokasi;
 
-                if (data.pelapor) {
-                  document.getElementById('modalPelapor').textContent = `${data.pelapor.type}: ${data.pelapor.id} (${data.pelapor.name})`;
-                } else {
-                  document.getElementById('modalPelapor').textContent = 'Tidak ada pelapor.';
-                }
+                                    if (data.pelapor) {
+                                        document.getElementById('modalPelapor').textContent = `${data.pelapor.type}: ${data.pelapor.id} (${data.pelapor.name})`;
+                                    } else {
+                                        document.getElementById('modalPelapor').textContent = 'Tidak ada pelapor.';
+                                    }
 
-                const modalBuktiFoto = document.getElementById('modalBuktiFoto');
-                if (data.bukti_foto_url) {
-                  modalBuktiFoto.src = data.bukti_foto_url;
-                  modalBuktiFoto.style.display = 'block';
-                } else {
-                  modalBuktiFoto.src = '';
-                  modalBuktiFoto.style.display = 'none';
-                }
+                                    const modalBuktiFoto = document.getElementById('modalBuktiFoto');
+                                    if (data.bukti_foto_url) {
+                                        modalBuktiFoto.src = data.bukti_foto_url;
+                                        modalBuktiFoto.style.display = 'block';
+                                    } else {
+                                        modalBuktiFoto.src = '';
+                                        modalBuktiFoto.style.display = 'none';
+                                    }
 
-                const detailModal = new bootstrap.Modal(document.getElementById('detailModal'));
-                detailModal.show();
-              }
-            })
-            .catch(error => {
-              console.error('Fetch Error:', error);
-              alert('Terjadi kesalahan saat mengambil detail laporan.');
+                                    const detailModal = new bootstrap.Modal(document.getElementById('detailModal'));
+                                    detailModal.show();
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Fetch Error:', error);
+                                alert('Terjadi kesalahan saat mengambil detail laporan.');
+                            });
+                    }
+                });
             });
-        }
-      });
-    });
         </script>
 
         <script>
@@ -612,7 +612,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                     const newTingkat = prompt("Edit Tingkat Pelanggaran:", tingkat);
                     const newSanksi = prompt("Edit Sanksi:", sanksi);
 
-                    if (newNama !== null && newTingkat !== null && newSanksi !== null) {
+                    if (newNama !== null && newTingkat !== null) {
                         // Send update request to the server
                         fetch("http://localhost/PBL/Project%20Web/app/controllers/updateTatib.php", {
                                 method: "POST",
@@ -638,6 +638,31 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                             })
                             .catch((error) => {
                                 console.error("Terjadi kesalahan saat mengupdate data:", error);
+                            });
+                    }
+                    if (newSanksi !== null) {
+                        fetch("http://localhost/PBL/Project%20Web/app/controllers/updateSanksi.php", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    tingkat: tingkat,
+                                    sanksi: newSanksi,
+                                }),
+                            })
+                            .then((response) => {
+                                if (!response.ok) {
+                                    throw new Error(`HTTP error! Status: ${response.status}`);
+                                }
+                                return response.json();
+                            })
+                            .then((result) => {
+                                alert(result.message || "Sanksi berhasil diperbarui!");
+                                location.reload();
+                            })
+                            .catch((error) => {
+                                console.error("Terjadi kesalahan saat mengupdate sanksi:", error);
                             });
                     }
                 }

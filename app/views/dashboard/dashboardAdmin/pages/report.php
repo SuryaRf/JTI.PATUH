@@ -145,7 +145,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-exclamation-circle text-dark text-sm opacity-10"></i> <!-- Ikon alert Font Awesome -->
             </div>
-            <span class="nav-link-text ms-1">Laporkan</span>
+            <span class="nav-link-text ms-1">Melaporkan Pelanggaran</span>
           </a>
         </li>
 
@@ -177,8 +177,11 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
         </li>
 
         <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6" style="color: #d3d3d3;">
+            Account pages
+          </h6>
         </li>
+
         <li class="nav-item">
           <a class="nav-link " href="../pages/profile.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -313,14 +316,14 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
         <div class="col-md-8 mt-3">
           <div class="card shadow-lg rounded-lg border-0">
             <div class="card-header" style="background-color: #223381; color: white; text-align: center; padding: 1rem;">
-              <h6>Laporkan Pelanggaran</h6>
+              <h6>Melaporkan Pelanggaran</h6>
               <small>Form Laporan</small>
             </div>
 
             <div class="card-body p-4">
               <form action="/PBL/Project%20Web/app/controllers/processReport.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group mb-3">
-                  <label for="nim">Mahasiswa Terlapor<span class="text-danger">*</span></label>
+                  <label for="nim">Mahasiswa Terlapor</label>
                   <input type="text" id="nim" name="nim" class="form-control rounded-pill" placeholder="Masukkan NIM mahasiswa" required>
                   <div class="form-group mb-3">
                     <label for="pelanggaran">Nama Pelanggaran</label>
@@ -343,7 +346,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
 
                   </div>
                   <div class="form-footer text-center mt-4">
-                    <p><small>*boleh pilih salah satu</small></p>
+
                     <button type="submit" class="btn btn-primary btn-lg rounded-pill px-4 py-2 mt-2">Kirim</button>
                   </div>
               </form>
