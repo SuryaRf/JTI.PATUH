@@ -436,6 +436,40 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             </div>
         </div>
 
+        <!-- Modal untuk Edit Tata Tertib -->
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Edit Tata Tertib</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="editTatibForm">
+                        <div class="modal-body">
+                            <input type="hidden" id="editIdTatib">
+                            <div class="mb-3">
+                                <label for="editNama" class="form-label">Nama Pelanggaran</label>
+                                <input type="text" class="form-control" id="editNama" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editTingkat" class="form-label">Tingkat Pelanggaran</label>
+                                <input type="text" class="form-control" id="editTingkat" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editSanksi" class="form-label">Keterangan Sanksi</label>
+                                <input type="text" class="form-control" id="editSanksi">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
         <footer class="footer">
             Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
         </footer>
@@ -573,9 +607,14 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                     <td style="width: 200px; word-wrap: break-word; white-space: normal; overflow: hidden;">${item.keterangan_sanksi || 'Tidak ada saksi'}</td>
                     <td>
                         <div class="ms-auto text-center">
-                            <button class="btn btn-link text-dark px-3 mb-0 btn-edit" data-id="${item.id_tatib}" data-tingkat="${item.tingkat_pelanggaran}" data-sanksi="${item.keterangan_sanksi || ''}">
-                                <i class="fas fa-pencil-alt text-dark me-2"></i>Edit
-                            </button>
+                            <button 
+    class="btn btn-link text-dark px-3 mb-0 btn-edit" 
+    data-id="${item.id_tatib}" 
+    data-tingkat="${item.tingkat_pelanggaran}" 
+    data-sanksi="${item.keterangan_sanksi || ''}">
+    <i class="fas fa-pencil-alt text-dark me-2"></i>Edit
+</button>
+
                             <button class="btn btn-link text-danger text-gradient px-3 mb-0 btn-delete" data-id="${item.id_tatib}">
                                 <i class="far fa-trash-alt me-2"></i>Delete
                             </button>
@@ -604,26 +643,41 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                 function handleEdit(event) {
                     const button = event.target.closest("button");
                     const id = button.dataset.id;
-                    const nama = button.dataset.nama;
+                    const nama = button.closest("tr").querySelector("td:nth-child(2)").textContent;
                     const tingkat = button.dataset.tingkat;
                     const sanksi = button.dataset.sanksi;
 
-                    const newNama = prompt("Edit Nama Pelanggaran:", nama);
-                    const newTingkat = prompt("Edit Tingkat Pelanggaran:", tingkat);
-                    const newSanksi = prompt("Edit Sanksi:", sanksi);
+                    // Isi nilai ke dalam modal
+                    document.querySelector("#editIdTatib").value = id;
+                    document.querySelector("#editNama").value = nama;
+                    document.querySelector("#editTingkat").value = tingkat;
+                    document.querySelector("#editSanksi").value = sanksi;
 
-                    if (newNama !== null && newTingkat !== null) {
-                        // Send update request to the server
+                    // Tampilkan modal
+                    const editModal = new bootstrap.Modal(document.querySelector("#editModal"));
+                    editModal.show();
+
+                    // Tangani submit form di dalam modal
+                    document.querySelector("#editTatibForm").addEventListener("submit", function(e) {
+                        e.preventDefault();
+
+                        // Ambil nilai terbaru dari form
+                        const id = document.querySelector("#editIdTatib").value;
+                        const nama = document.querySelector("#editNama").value;
+                        const tingkat = document.querySelector("#editTingkat").value;
+                        const sanksi = document.querySelector("#editSanksi").value;
+
+                        // Kirim permintaan update ke server
                         fetch("http://localhost/PBL/Project%20Web/app/controllers/updateTatib.php", {
                                 method: "POST",
                                 headers: {
-                                    "Content-Type": "application/json"
+                                    "Content-Type": "application/json",
                                 },
                                 body: JSON.stringify({
                                     id,
-                                    nama: newNama,
-                                    tingkat: newTingkat,
-                                    sanksi: newSanksi
+                                    nama,
+                                    tingkat,
+                                    sanksi
                                 }),
                             })
                             .then((response) => {
@@ -639,33 +693,37 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                             .catch((error) => {
                                 console.error("Terjadi kesalahan saat mengupdate data:", error);
                             });
-                    }
-                    if (newSanksi !== null) {
-                        fetch("http://localhost/PBL/Project%20Web/app/controllers/updateSanksi.php", {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json",
-                                },
-                                body: JSON.stringify({
-                                    tingkat: tingkat,
-                                    sanksi: newSanksi,
-                                }),
-                            })
-                            .then((response) => {
-                                if (!response.ok) {
-                                    throw new Error(`HTTP error! Status: ${response.status}`);
-                                }
-                                return response.json();
-                            })
-                            .then((result) => {
-                                alert(result.message || "Sanksi berhasil diperbarui!");
-                                location.reload();
-                            })
-                            .catch((error) => {
-                                console.error("Terjadi kesalahan saat mengupdate sanksi:", error);
-                            });
-                    }
+
+                        // Jika sanksi juga perlu diperbarui secara terpisah
+                        if (sanksi !== null) {
+                            fetch("http://localhost/PBL/Project%20Web/app/controllers/updateSanksi.php", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                    },
+                                    body: JSON.stringify({
+                                        tingkat,
+                                        sanksi
+                                    }),
+                                })
+                                .then((response) => {
+                                    if (!response.ok) {
+                                        throw new Error(`HTTP error! Status: ${response.status}`);
+                                    }
+                                    return response.json();
+                                })
+                                .then((result) => {
+                                    alert(result.message || "Sanksi berhasil diperbarui!");
+                                    location.reload();
+                                })
+                                .catch((error) => {
+                                    console.error("Terjadi kesalahan saat mengupdate sanksi:", error);
+                                });
+                        }
+                    });
                 }
+
+
 
 
                 // Handle delete action
