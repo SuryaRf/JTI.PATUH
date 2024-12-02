@@ -579,6 +579,56 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                     }
                 });
             });
+
+            // Event listener untuk tombol "Terima" dan "Tolak"
+            document.addEventListener('click', function(event) {
+                if (event.target.classList.contains('btn-success') || event.target.classList.contains('btn-danger')) {
+                    const idPelanggaran = document.querySelector('.check').getAttribute('data-id');
+                    const newStatus = event.target.classList.contains('btn-success') ? 'valid' : 'Reject';
+
+                    if (isNaN(idPelanggaran)) {
+                        alert('ID Pelanggaran tidak valid.');
+                        return;
+                    }
+
+                    // Kirim permintaan untuk memperbarui status laporan
+                    fetch(`http://localhost/PBL/Project%20Web/app/controllers/updateViolationStatus.php`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                id_pelanggaran: idPelanggaran,
+                                status: newStatus
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                Swal.fire({
+                                    title: 'Laporan Diterima!',
+                                    text: 'Status laporan telah berhasil diperbarui.',
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                }).then(() => {
+                                    // Reload atau arahkan ke halaman lain jika perlu
+                                    window.location.href = 'manage.php';
+                                });
+                                // Tutup modal setelah status diperbarui
+                                const modal = new bootstrap.Modal(document.getElementById('detailModal'));
+                                modal.hide();
+
+                            } else {
+                                alert('Gagal memperbarui status laporan');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Fetch Error:', error);
+                            alert('Terjadi kesalahan saat memperbarui status laporan.');
+                        });
+                }
+            });
         </script>
 
         <script>
@@ -699,7 +749,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                                     // Reload atau arahkan ke halaman lain jika perlu
                                     window.location.href = 'manage.php';
                                 });
-                                
+
                             })
                             .catch((error) => {
                                 console.error("Terjadi kesalahan saat mengupdate data:", error);
@@ -724,7 +774,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                                     return response.json();
                                 })
                                 .then((result) => {
-                                   
+
                                 })
                                 .catch((error) => {
                                     console.error("Terjadi kesalahan saat mengupdate sanksi:", error);

@@ -14,7 +14,7 @@ $id_pelanggaran = (int)$inputData['id_pelanggaran'];
 $status = $inputData['status']; // valid / reject
 
 // Periksa apakah status yang diterima valid
-if ($status !== 'valid' && $status !== 'reject') {
+if ($status !== 'valid' && $status !== 'Reject') {
     echo json_encode(['error' => 'Status tidak valid.']);
     exit();
 }
