@@ -687,8 +687,19 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                                 return response.json();
                             })
                             .then((result) => {
-                                alert(result.message || "Data berhasil diupdate!");
-                                location.reload(); // Reload data
+                                // Tampilkan pop-up animasi SweetAlert jika sukses
+                                Swal.fire({
+                                    title: 'Tata Tertib Diperbarui!',
+                                    text: 'Tata Tertib telah berhasil diperbarui.',
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    timer: 3000,
+
+                                }).then(() => {
+                                    // Reload atau arahkan ke halaman lain jika perlu
+                                    window.location.href = 'manage.php';
+                                });
+                                
                             })
                             .catch((error) => {
                                 console.error("Terjadi kesalahan saat mengupdate data:", error);
@@ -713,8 +724,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                                     return response.json();
                                 })
                                 .then((result) => {
-                                    alert(result.message || "Sanksi berhasil diperbarui!");
-                                    location.reload();
+                                   
                                 })
                                 .catch((error) => {
                                     console.error("Terjadi kesalahan saat mengupdate sanksi:", error);
@@ -768,6 +778,10 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                 Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
             }
         </script>
+
+        <!-- Tambahkan SweetAlert2 -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
