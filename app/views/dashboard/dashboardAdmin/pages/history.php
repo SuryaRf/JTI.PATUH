@@ -286,6 +286,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
               <!-- Filter Area -->
               <div class="mb-4">
                 <h6 class="text-muted mb-3">Filter Laporan</h6>
+                <button id="downloadButton">Download Laporan PDF</button>
                 <div class="d-md-flex justify-content-between align-items-center gap-3">
                   <!-- Search input -->
                   <div class="flex-fill">
@@ -496,7 +497,6 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
       }
 
 
-
       // Event listener for the CHECK button to show the modal with detailed data
       document.addEventListener('click', function(event) {
         if (event.target.classList.contains('check')) {
@@ -526,7 +526,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                 if (data.status.toLowerCase() === 'valid') {
                   const btnRiwayat = document.createElement('button');
                   btnRiwayat.className = 'btn btn-primary me-2';
-                  btnRiwayat.textContent = 'Riwayat';
+                  btnRiwayat.textContent = 'Riwayat Aju Banding';
                   btnRiwayat.addEventListener('click', () => {
                     fetch(`http://localhost/PBL/Project%20Web/app/controllers/generatePDF.php?id=${data.id_pelanggaran}`)
                       .then(response => {
@@ -551,7 +551,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
 
                   const btnKirim = document.createElement('button');
                   btnKirim.className = 'btn btn-success';
-                  btnKirim.textContent = 'Kirim';
+                  btnKirim.textContent = 'Kirim Surat';
                   btnKirim.addEventListener('click', () => {
                     fetch(`http://localhost/PBL/Project%20Web/app/controllers/generatePDF.php?id=${data.id_pelanggaran}`)
                       .then(response => {
@@ -640,6 +640,18 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             });
         }
       });
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function downloadPDF() {
+        // Open the PHP script in a new tab for downloading the PDF
+        window.open('/PBL/Project%20Web/app/controllers/generatePDFReport.php', '_blank');
+      }
+
+      // Attach the downloadPDF function to the button click event
+      document.getElementById('downloadButton').onclick = downloadPDF;
     });
   </script>
 

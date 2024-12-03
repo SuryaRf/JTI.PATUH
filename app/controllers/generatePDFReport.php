@@ -1,0 +1,82 @@
+<?php
+session_start();
+include 'connection.php';
+require '../../vendor/autoload.php'; // Ensure the library is correctly installed
+
+if (!isset($_SESSION['id_pegawai'])) {
+    header("Content-Type: application/json");
+    echo json_encode(['error' => 'id_pegawai tidak ditemukan dalam sesi']);
+    exit;
+}
+
+$id_pegawai = $_SESSION['id_pegawai'];
+
+// Fetch data for the report
+$query = "
+    SELECT
+        Pelanggaran.id_pelanggaran,
+        Pelanggaran.waktu_pelanggaran,
+        TataTertib.nama_pelanggaran,
+        Pelanggaran.status,
+        Terlapor.nama_mhs AS nama_terlapor
+    FROM Pelanggaran
+    LEFT JOIN Mahasiswa Terlapor ON Pelanggaran.nim = Terlapor.nim
+    INNER JOIN TataTertib ON Pelanggaran.id_tatib = TataTertib.id_tatib
+    WHERE Pelanggaran.id_pegawai = ?
+    ORDER BY Pelanggaran.waktu_pelanggaran DESC
+";
+$params = array($id_pegawai);
+$stmt = sqlsrv_query($conn, $query, $params);
+
+if ($stmt === false) {
+    header("Content-Type: application/json");
+    echo json_encode(['error' => 'Kesalahan query: ' . print_r(sqlsrv_errors(), true)]);
+    exit;
+}
+
+// Initialize FPDF
+$pdf = new FPDF();
+$pdf->SetTitle('Laporan Riwayat Pelanggaran');
+
+// Add a page
+$pdf->AddPage();
+
+// Set font for header
+$pdf->SetFont('Arial', 'B', 10);
+
+// Set column widths
+$columnWidths = [20, 40, 50, 40, 30];
+
+// Table header
+$pdf->Cell($columnWidths[0], 10, 'ID', 1, 0, 'C');
+$pdf->Cell($columnWidths[1], 10, 'Mahasiswa Terlapor', 1, 0, 'C');
+$pdf->Cell($columnWidths[2], 10, 'Nama Pelanggaran', 1, 0, 'C');
+$pdf->Cell($columnWidths[3], 10, 'Waktu', 1, 0, 'C');
+$pdf->Cell($columnWidths[4], 10, 'Status', 1, 1, 'C');
+
+// Reset font for body
+$pdf->SetFont('Arial', '', 7);
+
+// Row height
+$rowHeight = 10;
+
+// Check if the data fits within the current page
+while ($data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+    // Check for page break (assuming the bottom margin of the page is 10mm)
+    if ($pdf->GetY() + $rowHeight > 270) { // 270 is near the bottom of the page
+        $pdf->AddPage();
+    }
+
+    // Write each row to the table
+    $pdf->Cell($columnWidths[0], $rowHeight, $data['id_pelanggaran'], 1, 0, 'C');
+    $pdf->Cell($columnWidths[1], $rowHeight, $data['nama_terlapor'], 1, 0, 'C');
+    $pdf->Cell($columnWidths[2], $rowHeight, $data['nama_pelanggaran'], 1, 0, 'C');
+    $pdf->Cell($columnWidths[3], $rowHeight, $data['waktu_pelanggaran']->format('Y-m-d H:i:s'), 1, 0, 'C');
+    $pdf->Cell($columnWidths[4], $rowHeight, ucfirst($data['status']), 1, 1, 'C');
+}
+
+// Output the PDF document
+$pdf->Output('D', 'laporan_pelanggaran.pdf'); // 'D' for download
+
+sqlsrv_close($conn);
+?>
