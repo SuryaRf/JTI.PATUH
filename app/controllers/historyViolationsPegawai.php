@@ -3,14 +3,15 @@ session_start();
 include 'connection.php';
 
 if (!isset($_SESSION['id_pegawai'])) {
-    die(json_encode(['error' => 'id_pegawai tidak ditemukan dalam sesi']));
+    header("Content-Type: application/json");
+    echo json_encode(['error' => 'id_pegawai tidak ditemukan dalam sesi']);
+    exit;
 }
 
 $id_pegawai = $_SESSION['id_pegawai'];
 
-// Query untuk mengambil data pelanggaran beserta nama pelanggaran dari TataTertib
 $query = "
-	    	SELECT 
+    SELECT 
         Pelanggaran.id_pelanggaran,
         Pelanggaran.waktu_pelanggaran,
         Pelanggaran.lokasi,
@@ -29,15 +30,22 @@ $query = "
     INNER JOIN TataTertib ON Pelanggaran.id_tatib = TataTertib.id_tatib
     ORDER BY Pelanggaran.waktu_pelanggaran DESC
 ";
-$params = array($id_pegawai);
-$stmt = sqlsrv_query($conn, $query, $params);
+
+$stmt = sqlsrv_query($conn, $query);
 
 if ($stmt === false) {
-    die(json_encode(['error' => 'Kesalahan query: ' . print_r(sqlsrv_errors(), true)]));
+    header("Content-Type: application/json");
+    echo json_encode(['error' => 'Kesalahan query: ' . print_r(sqlsrv_errors(), true)]);
+    exit;
 }
 
-$violations = array();
+$violations = [];
 while ($data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+    if (isset($data['waktu_pelanggaran']) && $data['waktu_pelanggaran'] instanceof DateTime) {
+        $data['waktu_pelanggaran'] = $data['waktu_pelanggaran']->format('Y-m-d H:i:s');
+    } else {
+        $data['waktu_pelanggaran'] = null;
+    }
     $violations[] = $data;
 }
 
@@ -45,4 +53,3 @@ header("Content-Type: application/json");
 echo json_encode($violations);
 
 sqlsrv_close($conn);
-?>

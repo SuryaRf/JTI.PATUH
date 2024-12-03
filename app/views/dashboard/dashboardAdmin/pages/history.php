@@ -287,8 +287,10 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">No. Pelanggaran</th>
-                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Nama Pelanggaran</th>
+                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">ID. Pelanggaran</th>
+                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Nama Mahasiswa Terlapor</th>
+                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8" style="max-width: 200px;">Nama Pelanggaran</th>
+                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8" style="max-width: 200px;">Waktu</th>
                       <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Status</th>
                       <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Detail</th>
                       <th class="text-secondary opacity-7"></th>
@@ -390,20 +392,37 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             data.forEach(violation => {
               const row = document.createElement('tr');
               row.innerHTML = `
-              <td class="text-center">${violation.id_pelanggaran}</td>
-              <td style="word-wrap: break-word; white-space: normal;">${violation.nama_pelanggaran}</td>
-              <td class="text-center">
-                <span class="badge ${getBadgeClass(violation.status)} text-white">${violation.status}</span>
-              </td>
-              <td class="text-center rounded-end">
-                <button class="btn btn-primary py-1 px-4 fs-7 w-100 rounded-3 check" 
-                        data-bs-toggle="modal" data-bs-target="#detailModal" data-id="${violation.id_pelanggaran}">
-                  CHECK
-                </button>
-              </td>
-            `;
+    <td class="text-center">
+      <div class="d-flex align-items-center">
+        <span>${violation.id_pelanggaran}</span>
+      </div>
+    </td>
+    <td class="text-center">
+      <div class="d-flex align-items-center">
+        <span>${violation.nama_terlapor}</span>
+      </div>
+    </td>
+    <td style="max-width: 450px; word-wrap: break-word; white-space: wrap; overflow: hidden; text-overflow: ellipsis;" title="${violation.nama_pelanggaran}">
+  ${violation.nama_pelanggaran}
+</td>
+    <td class="text-center">
+      <div class="d-flex align-items-center">
+        <span>${violation.waktu_pelanggaran}</span>
+      </div>
+    </td>
+    <td class="text-center">
+      <span class="badge ${getBadgeClass(violation.status)} text-white">${violation.status}</span>
+    </td>
+    <td class="text-center rounded-end">
+      <button class="btn btn-primary py-1 px-4 fs-7 w-100 rounded-3 check" 
+              data-bs-toggle="modal" data-bs-target="#detailModal" data-id="${violation.id_pelanggaran}">
+        CHECK
+      </button>
+    </td>
+  `;
               tbody.appendChild(row);
             });
+
           }
         })
         .catch(error => {
