@@ -322,8 +322,17 @@
                   <div class="form-group mb-3">
                     <label for="waktu"
                       style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #223381;">Waktu</label>
-                    <input type="text" id="waktu" class="form-control rounded-2" placeholder="Masukkan Waktu Kejadian"
-                      required>
+                    <input style="color: #aaa" type="datetime-local" id="waktu" name="waktu_pelanggaran" class="form-control rounded-2" placeholder="Pilih Waktu Kejadian"
+                      required onchange="changeColor(this)">
+                      <script>
+                        function changeColor(selectElement) {
+                          if (selectElement.value) {
+                            selectElement.style.color = '#222'; // Mengubah warna teks menjadi gelap
+                          } else {
+                            selectElement.style.color = '#ccc'; // Mengembalikan warna teks menjadi samar jika tidak ada pilihan
+                          }
+                        }
+                      </script>
                   </div>
                   <div class="form-group mb-3">
                     <label for="lokasi"
