@@ -65,6 +65,24 @@
         <h2>Ketahui Pelanggaran di Tata Tertib</h2>
         <p>Cek detail nya dibawah ini</p><br>
 
+        <!-- Input pencarian -->
+        <div class="mb-3">
+            <input type="text" id="searchInput" class="form-control" placeholder="Cari Pelanggaran...">
+        </div>
+
+        <!-- Dropdown filter tingkat -->
+        <div class="mb-3">
+            <select id="filterTingkat" class="form-select">
+                <option value="">Semua Tingkat</option>
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+            </select>
+        </div>
+
+
         <div class="table-responsive">
             <table class="table table-bordered table-striped">
                 <thead class="table-dark">
@@ -126,6 +144,63 @@
                 .catch((error) => {
                     console.error("Terjadi kesalahan saat mengambil data:", error);
                 });
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const tataTertibTableBody = document.querySelector(".table tbody");
+            const searchInput = document.getElementById("searchInput");
+            const filterTingkat = document.getElementById("filterTingkat");
+
+            let tataTertibData = []; // Data yang diambil dari server
+
+            // Fetch data dari server
+            fetch("http://localhost/PBL/Project%20Web/app/controllers/getDataRulesHome.php")
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    tataTertibData = data; // Simpan data untuk pencarian/filter
+                    renderTable(tataTertibData);
+                })
+                .catch((error) => {
+                    console.error("Terjadi kesalahan saat mengambil data:", error);
+                });
+
+            // Fungsi untuk merender tabel
+            function renderTable(data) {
+                tataTertibTableBody.innerHTML = ""; // Bersihkan tabel
+                data.forEach((item, index) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                <td>${index + 1}</td>
+                <td style="word-wrap: break-word; white-space: normal;">${item.nama_pelanggaran}</td>
+                <td>${item.tingkat_pelanggaran}</td>
+            `;
+                    tataTertibTableBody.appendChild(row);
+                });
+            }
+
+            // Event listener untuk pencarian
+            searchInput.addEventListener("input", function() {
+                const searchValue = searchInput.value.toLowerCase();
+                const filteredData = tataTertibData.filter((item) =>
+                    item.nama_pelanggaran.toLowerCase().includes(searchValue)
+                );
+                renderTable(filteredData);
+            });
+
+            // Event listener untuk filter tingkat
+            filterTingkat.addEventListener("change", function() {
+                const selectedTingkat = filterTingkat.value;
+                const filteredData = tataTertibData.filter((item) =>
+                    selectedTingkat ? item.tingkat_pelanggaran === selectedTingkat : true
+                );
+                renderTable(filteredData);
+            });
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
