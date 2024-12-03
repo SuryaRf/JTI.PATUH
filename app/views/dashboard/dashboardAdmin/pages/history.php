@@ -283,6 +283,33 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
               <h4 class="mb-0 text-black">Laporan Yang Diajukan</h4>
             </div>
             <div class="card-body px-4 pt-0 pb-2">
+              <!-- Filter Area -->
+              <div class="mb-4">
+                <h6 class="text-muted mb-3">Filter Laporan</h6>
+                <div class="d-md-flex justify-content-between align-items-center gap-3">
+                  <!-- Search input -->
+                  <div class="flex-fill">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Cari berdasarkan Nama Mahasiswa Terlapor" onkeyup="filterData()">
+                  </div>
+
+                  <!-- Status dropdown -->
+                  <div class="flex-fill">
+                    <select id="statusFilter" class="form-select" onchange="filterData()">
+                      <option value="">Pilih Status</option>
+                      <option value="pending">Pending</option>
+                      <option value="valid">Valid</option>
+                      <option value="reject">Reject</option>
+                    </select>
+                  </div>
+
+                  <!-- Date filter -->
+                  <div class="flex-fill">
+                    <input type="month" id="dateFilter" class="form-control" onchange="filterData()">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Table -->
               <div class="table-responsive">
                 <table class="table align-items-center mb-0">
                   <thead>
@@ -297,7 +324,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                     </tr>
                   </thead>
                   <tbody>
-
+                    <!-- Rows will be dynamically inserted here -->
                   </tbody>
                 </table>
               </div>
@@ -306,6 +333,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
         </div>
       </div>
     </div>
+
 
 
     <!-- Modal untuk detail pelanggaran -->
@@ -389,40 +417,63 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             const tbody = document.querySelector('tbody');
             tbody.innerHTML = ''; // Clear previous rows
 
-            data.forEach(violation => {
-              const row = document.createElement('tr');
-              row.innerHTML = `
-    <td class="text-center">
-      <div class="d-flex align-items-center">
-        <span>${violation.id_pelanggaran}</span>
-      </div>
-    </td>
-    <td class="text-center">
-      <div class="d-flex align-items-center">
-        <span>${violation.nama_terlapor}</span>
-      </div>
-    </td>
-    <td style="max-width: 450px; word-wrap: break-word; white-space: wrap; overflow: hidden; text-overflow: ellipsis;" title="${violation.nama_pelanggaran}">
-  ${violation.nama_pelanggaran}
-</td>
-    <td class="text-center">
-      <div class="d-flex align-items-center">
-        <span>${violation.waktu_pelanggaran}</span>
-      </div>
-    </td>
-    <td class="text-center">
-      <span class="badge ${getBadgeClass(violation.status)} text-white">${violation.status}</span>
-    </td>
-    <td class="text-center rounded-end">
-      <button class="btn btn-primary py-1 px-4 fs-7 w-100 rounded-3 check" 
-              data-bs-toggle="modal" data-bs-target="#detailModal" data-id="${violation.id_pelanggaran}">
-        CHECK
-      </button>
-    </td>
-  `;
-              tbody.appendChild(row);
+            // Render the rows
+            function renderRows(filteredData) {
+              filteredData.forEach(violation => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+              <td class="text-center">${violation.id_pelanggaran}</td>
+              <td class="text-center">${violation.nama_terlapor}</td>
+              <td style="max-width: 450px; word-wrap: break-word; white-space: wrap; overflow: hidden; text-overflow: ellipsis;" title="${violation.nama_pelanggaran}">
+                ${violation.nama_pelanggaran}
+              </td>
+              <td class="text-center">${violation.waktu_pelanggaran}</td>
+              <td class="text-center">
+                <span class="badge ${getBadgeClass(violation.status)} text-white">${violation.status}</span>
+              </td>
+              <td class="text-center rounded-end">
+                <button class="btn btn-primary py-1 px-4 fs-7 w-100 rounded-3 check" 
+                  data-bs-toggle="modal" data-bs-target="#detailModal" data-id="${violation.id_pelanggaran}">
+                  CHECK
+                </button>
+              </td>
+            `;
+                tbody.appendChild(row);
+              });
+            }
+
+            // Initial render with all data
+            renderRows(data);
+
+            // Search filter
+            document.getElementById('searchInput').addEventListener('input', function() {
+              const searchValue = this.value.toLowerCase();
+              const filteredData = data.filter(violation =>
+                violation.nama_terlapor.toLowerCase().includes(searchValue)
+              );
+              tbody.innerHTML = '';
+              renderRows(filteredData);
             });
 
+            // Status filter
+            document.getElementById('statusFilter').addEventListener('change', function() {
+              const statusValue = this.value.toLowerCase();
+              const filteredData = data.filter(violation =>
+                (statusValue === '' || violation.status.toLowerCase() === statusValue)
+              );
+              tbody.innerHTML = '';
+              renderRows(filteredData);
+            });
+
+            // Date filter
+            document.getElementById('dateFilter').addEventListener('change', function() {
+              const dateValue = this.value;
+              const filteredData = data.filter(violation =>
+                !dateValue || violation.waktu_pelanggaran.startsWith(dateValue)
+              );
+              tbody.innerHTML = '';
+              renderRows(filteredData);
+            });
           }
         })
         .catch(error => {
@@ -430,6 +481,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
           alert('Terjadi kesalahan saat mengambil data.');
         });
 
+      // Function to get badge class based on status
       function getBadgeClass(status) {
         switch (status.toLowerCase()) {
           case 'pending':
@@ -442,6 +494,8 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             return 'bg-secondary';
         }
       }
+
+
 
       // Event listener for the CHECK button to show the modal with detailed data
       document.addEventListener('click', function(event) {
