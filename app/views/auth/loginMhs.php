@@ -101,7 +101,7 @@
         }
 
         .btn-login {
-   
+
             display: block;
         }
 
@@ -141,26 +141,27 @@
         }
 
         .mahasiswa-icon {
-        color: #FF5722;
-    }
-    .role-title {
-        font-size: 0.9rem;
-        font-weight: 500;
-        color: #2F2E41;
-        text-decoration: none;
-        margin-left: 33px;
-    }
+            color: #FF5722;
+        }
 
-    .role-title a {
-        color: inherit;
-        text-decoration: none;
-        display: block;
-    }
+        .role-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2F2E41;
+            text-decoration: none;
+            margin-left: 33px;
+        }
+
+        .role-title a {
+            color: inherit;
+            text-decoration: none;
+            display: block;
+        }
     </style>
 </head>
 
 <body>
-<header>
+    <header>
         <div class="role-icon mahasiswa-icon">
             <i class="fas fa-users"></i>
         </div>
@@ -241,9 +242,24 @@
                 icon.classList.replace("fa-eye-slash", "fa-eye");
             }
         }
+    </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
         function forgotPassword() {
-            alert("Forgot Password functionality is not yet implemented.");
+            Swal.fire({
+                title: 'Butuh Bantuan?',
+                text: 'Untuk reset password, silakan ke ruang admin.',
+                icon: 'info',
+                showCancelButton: false,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Tutup',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Arahkan ke halaman admin atau lakukan aksi lainnya
+                    window.location.href = 'chooseRole.php'; // Ganti dengan URL halaman admin
+                }
+            });
         }
     </script>
 </body>
