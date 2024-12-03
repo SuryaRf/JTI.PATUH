@@ -2,45 +2,50 @@
 session_start();
 include 'connection.php'; // Pastikan file ini benar
 
-// Cek apakah sesi nim atau id_pegawai ada
-if (!isset($_SESSION['nim']) && !isset($_SESSION['id_pegawai'])) {
-    echo json_encode(['error' => 'NIM atau ID Pegawai tidak ditemukan dalam sesi']);
-    exit;
+// Cek apakah sesi nim ada
+if (!isset($_SESSION['nim'])) {
+    die(json_encode(['error' => 'NIM tidak ditemukan dalam sesi']));
 }
 
-// Gunakan nim untuk mahasiswa atau id_pegawai untuk pegawai
-$identifier = isset($_SESSION['nim']) ? $_SESSION['nim'] : $_SESSION['id_pegawai'];
+$nim = $_SESSION['nim']; // Ambil NIM dari sesi
+
+// Query untuk mengambil data laporan
 $query = "
     SELECT 
         COUNT(*) AS total_laporan,
         SUM(CASE WHEN status = 'valid' THEN 1 ELSE 0 END) AS laporan_selesai,
-        SUM(CASE WHEN status = 'Pending' THEN 1 ELSE 0 END) AS laporan_tertunda,
-        SUM(CASE WHEN status = 'Reject' THEN 1 ELSE 0 END) AS laporan_tertolak
-    FROM Pelanggaran
-    WHERE nim = ? OR id_pegawai = ?;
+        SUM(CASE WHEN status = 'Pending' THEN 1 ELSE 0 END) AS laporan_tertunda
+    FROM Pelanggaran p
+    JOIN Mahasiswa m ON p.nim = m.nim
+    WHERE m.nim = ?;
 ";
-$params = array($identifier, $identifier);
+$params = array($nim);
 
-// Jalankan query
+// Menjalankan query
 $stmt = sqlsrv_query($conn, $query, $params);
 
 if ($stmt === false) {
-    error_log("Kesalahan query: " . print_r(sqlsrv_errors(), true)); // Hanya log di server
-    echo json_encode(['error' => 'Terjadi kesalahan pada server.']);
-    exit;
+    die(json_encode(['error' => 'Kesalahan query: ' . print_r(sqlsrv_errors(), true)]));
 }
 
-// Ambil hasil query
+// Mengambil hasil query
 $data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
+echo json_encode($data);
+// Debugging data
 if ($data) {
-    header("Content-Type: application/json");
-    echo json_encode($data);
+    // Debug: tampilkan data yang diterima
+    error_log("DEBUG: Data yang diterima: " . print_r($data, true));
 } else {
-    header("Content-Type: application/json");
-    echo json_encode(['error' => 'Data tidak ditemukan']);
+    error_log("DEBUG: Data tidak ditemukan.");
 }
 
-// Tutup koneksi
+header("Content-Type: application/json");
+
+// Menampilkan hasil dalam format JSON
+
+// Menutup koneksi
 sqlsrv_close($conn);
+
+
 ?>

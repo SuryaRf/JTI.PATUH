@@ -310,7 +310,7 @@
       <table class="table table-striped table-hover align-middle">
         <thead class="table-light">
           <tr>
-            <th class="text-center">No. Pelanggaran</th>
+            <th class="text-center">ID. Pelanggaran</th>
             <th>Nama Pelanggaran</th>
             <th class="text-center">Status</th>
             <th class="text-center">Detail</th>
