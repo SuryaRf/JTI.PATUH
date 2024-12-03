@@ -37,6 +37,96 @@
             margin: 0 auto;
             width: 100%;
         }
+
+        /* Gaya untuk kolom pencarian */
+        .search-bar .form-control {
+            border: 2px solid #007bff;
+            border-radius: 0 0.5rem 0.5rem 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .search-bar .form-control:focus {
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+            border-color: #0056b3;
+        }
+
+        .search-bar .input-group-text {
+            border: 2px solid #007bff;
+            border-radius: 0.5rem 0 0 0.5rem;
+        }
+
+        /* Gaya untuk dropdown filter */
+        .filter-dropdown .form-select {
+            border: 2px solid #6c757d;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .filter-dropdown .form-select:hover,
+        .filter-dropdown .form-select:focus {
+            box-shadow: 0 0 10px rgba(108, 117, 125, 0.5);
+            border-color: #495057;
+        }
+
+        .filter-dropdown label {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            color: #495057;
+        }
+
+        /* Animasi untuk dropdown */
+        .animate-dropdown {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Ikon dan tambahan gaya */
+        .input-group-text i {
+            transition: color 0.3s ease;
+        }
+
+        .input-group-text:hover i {
+            color: #fff;
+        }
+
+        /* Warna utama diganti menjadi #223381 */
+        .search-bar .search-icon {
+            background-color: #223381;
+            color: #ffffff;
+            border: none;
+            border-radius: 0.5rem 0 0 0.5rem;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Hover efek */
+        .search-bar .search-icon:hover {
+            background-color: #1a265f;
+            box-shadow: 0 0 8px rgba(34, 51, 129, 0.6);
+        }
+
+        /* Fokus pada input */
+        .search-bar .form-control {
+            border: 2px solid #223381;
+            border-radius: 0 0.5rem 0.5rem 0;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .search-bar .form-control:focus {
+            border-color: #1a265f;
+            box-shadow: 0 0 8px rgba(34, 51, 129, 0.5);
+        }
     </style>
 </head>
 
@@ -66,8 +156,17 @@
         <p>Cek detail nya dibawah ini</p><br>
 
         <!-- Input pencarian -->
-        <div class="mb-3">
-            <input type="text" id="searchInput" class="form-control" placeholder="Cari Pelanggaran...">
+        <div class="input-group mb-3 search-bar">
+            <span class="input-group-text search-icon" id="search-icon">
+                <i class="fas fa-search"></i>
+            </span>
+            <input
+                type="text"
+                id="searchInput"
+                class="form-control"
+                placeholder="Cari Pelanggaran..."
+                aria-label="Cari Pelanggaran..."
+                aria-describedby="search-icon">
         </div>
 
         <!-- Dropdown filter tingkat -->
