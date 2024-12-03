@@ -12,8 +12,8 @@ if (isset($_SESSION['nim']) || isset($_SESSION['id_pegawai'])) {
         case 'mahasiswa':
             header("Location: ../views/dashboard/dashboardMhs/pages/dashboard.php");
             break;
-        case 'pegawai':
-            header("Location: ../views/dashboard/dashboardPegawai/pages/dashboard.php");
+        case 'dosen':
+            header("Location: ../views/dashboard/dashboardDosen/pages/dashboard.php");
             break;
         default:
             header("Location: ../views/auth/chooseRole.php");
@@ -47,6 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['nim'] = $row['nim'];
             } elseif ($row['role'] == 'admin') {
                 $_SESSION['id_pegawai'] = $row['id_pegawai'];
+            }elseif ($row['role'] == 'dosen') {
+                $_SESSION['id_pegawai'] = $row['id_pegawai'];
             }
 
             // Pengalihan berdasarkan status
@@ -57,8 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 case 'mahasiswa':
                     header("Location: ../views/dashboard/dashboardMhs/pages/dashboard.php");
                     break;
-                case 'pegawai':
-                    header("Location: ../views/dashboard/dashboardPegawai/pages/dashboard.php");
+                case 'dosen':
+                    header("Location: ../views/dashboard/dashboardDosen/pages/dashboard.php");
                     break;
                 default:
                     echo "Status tidak dikenal.";
