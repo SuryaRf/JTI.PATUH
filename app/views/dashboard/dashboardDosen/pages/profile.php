@@ -10,7 +10,7 @@
     Dashboard Admin
   </title>
   <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
   <!-- Nucleo Icons -->
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -20,6 +20,14 @@
   <link id="pagestyle" href="../../../../../public/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
 
   <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif !important;
+      letter-spacing: 0.3px;
+    }
+
     .footer {
       text-align: center;
       color: #9CA3AF;
@@ -31,8 +39,7 @@
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
-  <div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg'); background-position-y: 50%;">
-    <span class="mask bg-primary opacity-6"></span>
+  <div class="position-absolute w-100 min-height-300 top-0" style="background-color:#223381;">
   </div>
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
@@ -103,9 +110,27 @@
   </aside>
   <div class="main-content position-relative max-height-vh-100 h-100">
     <!-- End Navbar -->
+    <div class="main-content position-relative max-height-vh-100 h-100">
+      <!-- New Breadcrumb Navigation -->
+      <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+        data-scroll="false">
+        <div class="container-fluid py-1 px-3">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-  5">
+              <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
+              <li class="breadcrumb-item text-sm text-white active" aria-current="page">Profil</li>
+            </ol>
+            <h6 class="font-weight text-white mb-0">Profil</h6>
+          </nav>
+          <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            </div>
+      </nav>
+
+    </div>
     <div class="card shadow-lg mx-4 card-profile-bottom">
     </div>
-    <div class="container-fluid py-4">
+    <div class="container-fluid py-4" style="margin-top: -250px">
       <div class="row justify-content-center">
         <div class="col-md-10">
           <div class="card">
@@ -125,7 +150,7 @@
             </div>
 
             <div class="card-body">
-              <div class="card-body p-3">
+              <div class="card-body p-3">WERTYUHGFagha
                 <div class="row gx-4" style="align-items: center;">
                   <div class="col-auto">
                     <div class="avatar avatar-xxl position-relative">
@@ -137,24 +162,23 @@
                     <div class="h-100">
                       <h5 class="mb-1"
                         style="margin-top: -45px; font-family: 'Poppins', sans-serif; font-size: 20px; color: #223381;">
-                        Surya Rahmat Fatahillah
+                        Ahmadi Yuli
                       </h5>
                       <p class="mb-0 font-weight-bold text-sm"
                         style="font-family: 'Poppins', sans-serif; font-size: 14px">
-                        Mahasiswa
+                        Dosen 
                       </p>
                     </div>
                   </div>
-
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
-                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">NIM</label>
+                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">NIDN</label>
                     <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
-                      value="2341760020">
+                      value="445566778">
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -162,7 +186,7 @@
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Alamat Email</label>
                     <input class="form-control" type="email" style="font-family: 'Poppins', sans-serif;"
-                      value="suryarahmatfatahillah@gmail.com">
+                      value="ahmadi@polinema.ac.id">
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -183,40 +207,33 @@
                 </div>
               </div>
               <hr class="horizontal dark">
-
               <div class="row">
-
-                <div class="col-md-4">
-                  <div class="form-group">
+              <div class="col-md-6">
+              <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Jurusan</label>
                     <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
                       value="Teknologi Informasi">
                   </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="form-group">
+    
+                <div class="col-md-6">
+                <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
-                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Prodi</label>
+                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Program Studi</label>
                     <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
-                      value="D-IV Sistem Informasi Bisnis">
+                      value="DIV-Sistem informasi Bisnis">
                   </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label"
-                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Kelas</label>
-                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;" value="SIB 2D">
-                  </div>
-                </div>
               </div>
-              <hr class="horizontal dark">
-
-            </div>
           </div>
-        </div>
+          </div>
+          </div>
+        
 
-        <footer class="footer">
+        
+
+        <footer class="footer"; style="margin-top: 10px; font-family: 'Poppins', sans-serif;">
+  
           Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
         </footer>
       </div>
