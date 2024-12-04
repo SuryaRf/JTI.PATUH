@@ -22,7 +22,6 @@ $query = "
     FROM Pelanggaran
     LEFT JOIN Mahasiswa Terlapor ON Pelanggaran.nim = Terlapor.nim
     INNER JOIN TataTertib ON Pelanggaran.id_tatib = TataTertib.id_tatib
-    WHERE Pelanggaran.id_pegawai = ?
     ORDER BY Pelanggaran.waktu_pelanggaran DESC
 ";
 $params = array($id_pegawai);
@@ -40,6 +39,21 @@ $pdf->SetTitle('Laporan Riwayat Pelanggaran');
 
 // Add a page
 $pdf->AddPage();
+
+// Set font for the title
+$pdf->SetFont('Arial', 'B', 16);
+
+// Add the main title
+$pdf->Cell(0, 10, 'DATA LAPORAN PELANGGARAN', 0, 1, 'C');
+
+// Set font for the subtitle
+$pdf->SetFont('Arial', '', 12);
+
+// Add the subtitle
+$pdf->Cell(0, 10, 'Bulan November - Desember 2024', 0, 1, 'C');
+
+// Add some space before the table
+$pdf->Ln(10);
 
 // Set font for header
 $pdf->SetFont('Arial', 'B', 10);
@@ -85,4 +99,5 @@ while ($data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
 $pdf->Output('D', 'laporan_pelanggaran.pdf'); // 'D' for download
 
 sqlsrv_close($conn);
+
 ?>
