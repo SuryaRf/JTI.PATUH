@@ -67,10 +67,16 @@ while ($data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
         $pdf->AddPage();
     }
 
+    // Batasi "Nama Pelanggaran" menjadi maksimal 4 kata
+    $namaPelanggaran = $data['nama_pelanggaran'];
+    $words = explode(' ', $namaPelanggaran); // Pecah menjadi array kata
+    $limitedWords = array_slice($words, 0, 4); // Ambil maksimal 4 kata
+    $shortenedNamaPelanggaran = implode(' ', $limitedWords) . '...'; // Gabungkan kembali
+
     // Write each row to the table
     $pdf->Cell($columnWidths[0], $rowHeight, $data['id_pelanggaran'], 1, 0, 'C');
     $pdf->Cell($columnWidths[1], $rowHeight, $data['nama_terlapor'], 1, 0, 'C');
-    $pdf->Cell($columnWidths[2], $rowHeight, $data['nama_pelanggaran'], 1, 0, 'C');
+    $pdf->Cell($columnWidths[2], $rowHeight, $shortenedNamaPelanggaran, 1, 0, 'C'); // Gunakan nama yang sudah dibatasi
     $pdf->Cell($columnWidths[3], $rowHeight, $data['waktu_pelanggaran']->format('Y-m-d H:i:s'), 1, 0, 'C');
     $pdf->Cell($columnWidths[4], $rowHeight, ucfirst($data['status']), 1, 1, 'C');
 }
