@@ -80,11 +80,131 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
       background-color: #dc3545;
       color: #fff;
     }
+
+    /* Download button styling */
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(45deg, #6a11cb, #2575fc);
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .btn-download i {
+      font-size: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    /* Hover effects */
+    .btn-download:hover {
+      background: linear-gradient(45deg, #2575fc, #6a11cb);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-download:hover i {
+      transform: scale(1.2);
+    }
+
+    /* Click ripple effect */
+    .btn-download:active::after {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: 50%;
+      left: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      transform: translate(-50%, -50%) scale(0);
+      border-radius: 50%;
+      animation: ripple 0.6s ease-out;
+    }
+
+    @keyframes ripple {
+      to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+      }
+    }
+
+    /* Margin for the section title */
+    .mb-4 h6 {
+      margin-top: 20px;
+      /* Spasi bawah untuk judul */
+      font-weight: bold;
+      /* Menegaskan tampilan judul */
+    }
+
+    /* Adjust the container spacing */
+    .d-md-flex {
+      gap: 15px;
+      /* Jarak antar elemen di dalam flex container */
+      margin-top: 15px;
+      /* Spasi atas untuk memisahkan dari elemen sebelumnya */
+    }
+
+    /* Spacing for inputs and select dropdown */
+    .flex-fill {
+      margin-bottom: 10px;
+      /* Jarak antar elemen input jika tidak menggunakan flex wrap */
+    }
+
+    /* Search input styling */
+    #searchInput {
+      padding: 10px 15px;
+      /* Jarak di dalam input */
+      font-size: 14px;
+      /* Ukuran font */
+      border-radius: 5px;
+      /* Membulatkan sudut */
+      border: 1px solid #ccc;
+      /* Border yang halus */
+    }
+
+    /* Status dropdown styling */
+    #statusFilter {
+      padding: 10px 15px;
+      /* Jarak di dalam dropdown */
+      font-size: 14px;
+      /* Ukuran font */
+      border-radius: 5px;
+      /* Membulatkan sudut */
+      border: 1px solid #ccc;
+      /* Border yang halus */
+    }
+
+    /* Date input styling */
+    #dateFilter {
+      padding: 10px 15px;
+      /* Jarak di dalam input */
+      font-size: 14px;
+      /* Ukuran font */
+      border-radius: 5px;
+      /* Membulatkan sudut */
+      border: 1px solid #ccc;
+      /* Border yang halus */
+    }
+
+    /* Button spacing */
+    #downloadButton {
+      margin-top: 15px;
+      /* Jarak atas untuk memisahkan dari filter */
+    }
   </style>
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
-  <div class="min-height-200 bg-dark position-absolute w-100"></div>
+<body class="g-sidenav-show" style="min-height: 100vh;">
+<div class="min-height-200  position-absolute w-100" style="background-color: #223381;"></div>
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -169,9 +289,9 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Tables</li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Riwayat Laporan</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Tables</h6>
+          <h6 class="font-weight-bolder text-white mb-0">Riwayat Laporan</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -286,7 +406,9 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
               <!-- Filter Area -->
               <div class="mb-4">
                 <h6 class="text-muted mb-3">Filter Laporan</h6>
-                <button id="downloadButton">Download Laporan PDF</button>
+                <button id="downloadButton" class="btn-download">
+                  <i class="fas fa-download"></i> Download Laporan PDF
+                </button>
                 <div class="d-md-flex justify-content-between align-items-center gap-3">
                   <!-- Search input -->
                   <div class="flex-fill">

@@ -56,7 +56,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
-  <div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg'); background-position-y: 50%;">
+  <div class="position-absolute w-100 min-height-300 top-0" style="background-color: #223381;">
     <span class="mask bg-primary opacity-6"></span>
   </div>
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">

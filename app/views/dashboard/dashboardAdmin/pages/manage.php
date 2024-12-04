@@ -123,8 +123,8 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
     </style>
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
-    <div class="min-height-200 bg-dark position-absolute w-100"></div>
+<body class="g-sidenav-show" style="min-height: 100vh;">
+    <div class="min-height-200  position-absolute w-100" style="background-color: #223381;"></div>
     <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -208,9 +208,9 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Beranda</li>
+                        <li class="breadcrumb-item text-sm text-white active" aria-current="page">Kelola Informasi</li>
                     </ol>
-                    <h6 class="font-weight-bolder text-white mb-0">Beranda</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Kelola Informasi</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -299,7 +299,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             </div>
         </nav>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="customNavbar">
+        <nav class="navbar navbar-expand-lg navbar-dark" id="customNavbar">
             <a class="navbar-brand" href="#">Sistem Pelaporan</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -309,13 +309,13 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                     <div class="nav-wrapper position-relative end-0">
                         <ul class="nav nav-pills nav-fill p-1" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link mb-0 px-0 py-1 active d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true " href="#" id="laporanBtn">
+                                <a class="nav-link mb-0 px-0 py-1 active d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true" id="laporanBtn">
                                     <i class="fas fa-file-alt"></i>
                                     <span class="ms-2">Laporan</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mb-0 px-0 py-1 d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false" href="#" id="tataTertibBtn">
+                                <a class="nav-link mb-0 px-0 py-1 d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false" id="tataTertibBtn">
                                     <i class="fas fa-gavel"></i>
                                     <span class="ms-2">Tata Tertib</span>
                                 </a>
@@ -323,7 +323,9 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                         </ul>
                     </div>
                 </div>
-        </nav>>
+            </div>
+        </nav>
+
         <!-- Konten -->
         <div class="container mt-5" id="laporanContent">
             <!-- Konten Laporan -->
@@ -337,30 +339,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="text-center">ABC01</td>
-                        <td>Merokok</td>
-                        <td class="text-center"><span class="badge bg-warning text-white">Pending</span></td>
-                        <td class="text-center">
-                            <button class="btn btn-sm btn-primary">Check</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">ABC02</td>
-                        <td>Merusak sarana prasarana</td>
-                        <td class="text-center"><span class="badge bg-warning text-white">Pending</span></td>
-                        <td class="text-center">
-                            <button class="btn btn-sm btn-primary">Check</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-center">ABC03</td>
-                        <td>Judi online</td>
-                        <td class="text-center"><span class="badge bg-warning text-white">Pending</span></td>
-                        <td class="text-center">
-                            <button class="btn btn-sm btn-primary">Check</button>
-                        </td>
-                    </tr>
+
                 </tbody>
             </table>
         </div>

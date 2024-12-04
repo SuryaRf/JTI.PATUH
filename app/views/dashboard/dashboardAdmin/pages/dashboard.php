@@ -126,8 +126,8 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
   </style>
 </head>
 
-<body class="g-sidenav-show bg-gray-100" style="min-height: 100vh;">
-  <div class="min-height-200 bg-dark position-absolute w-100"></div>
+<body class="g-sidenav-show" style="min-height: 100vh;">
+<div class="min-height-200  position-absolute w-100" style="background-color: #223381;"></div>
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4" id="sidenav-main" style="height: 100vh;">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
