@@ -687,17 +687,18 @@
                             <div class="border-top pt-4">
                               <div class="input-group">
                                 <label class="input-group-text" for="fileInputTUV02"
-                                  style="cursor: pointer; font-size: 14px;">
-                                  <i class="fas fa-paperclip" style="font-size: 16px;"></i>
+                                  style="cursor: pointer; font-size: 14px; padding: 5px; height: 40px;">
+                                  <i class="fas fa-paperclip" style="font-size: 16px; padding-left: 10px;"></i>
                                 </label>
 
                                 <input type="file" class="form-control" accept="image/*" style="display: none;"
                                   id="fileInputTUV02"> <!-- Input file tetap tersembunyi -->
 
                                 <input type="text" class="form-control" placeholder="Kirim pesan..."
-                                  aria-label="Kirim pesan" style="height: 59px;">
+                                  aria-label="Kirim pesan" style="height: 40px; padding-left: 10px;">
 
-                                <button class="btn btn-primary" type="button" style="font-weight: 600; height: 59px; margin-top: 0px">
+                                <button class="btn btn-primary" type="button"
+                                  style="font-weight: 600; height: 40px; margin-top: 0px">
                                   <i class="fas fa-paper-plane"></i>
                                 </button>
                               </div>
@@ -930,22 +931,22 @@
                               </div>
                             </div>
                             <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
-                              <!-- Tombol Riwayat (Sedikit diangkat) -->
-                              <button class="btn btn-primary rounded-3 me-2"
-                                style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;;"
-                                data-bs-toggle="modal" data-bs-target="#riwayatModal">
-                                Riwayat
-                              </button>
                               <!-- Tombol Aju Banding -->
                               <button class="btn btn-primary rounded-3 me-2"
-                                style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;"
+                                style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; margin-right: 10px;"
                                 data-bs-toggle="modal" data-bs-target="#ajuBandingModal">
                                 Aju Banding
+                              </button>
+                              <!-- Tombol Tolak -->
+                              <button class="btn btn-primary rounded-3"
+                                style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; margin-right: 10px;"
+                                id="submitBtn" data-bs-toggle="modal" data-bs-target="#successModal">
+                                Tolak
                               </button>
                               <!-- Tombol Terima -->
                               <button class="btn btn-primary rounded-3"
                                 style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;"
-                                id="submitBtn" data-bs-toggle="modal">
+                                id="submitBtn" data-bs-toggle="modal" data-bs-target="#successModal">
                                 Terima
                               </button>
                             </div>
@@ -1014,13 +1015,14 @@
                       </div>
                     </div>
 
+                    <!-- Modal untuk riwayat -->
                     <div class="modal fade" id="riwayatModal" tabindex="-1" aria-labelledby="riwayatModalLabel"
                       aria-hidden="true" data-bs-dismiss="modal">
                       <div class="modal-dialog modal-dialog-centered modal-lg"
                         style="margin: 20px; margin-left: 400px;">
                         <div class="modal-content" style="padding: 20px;">
                           <div class="modal-header" style="padding-top: 10px; padding-bottom: 10px;">
-                            <h5 class="modal-title" id="riwayatModalLabel" style="color: #223381; font-weight: bold">
+                            <h5 class="modal-title" id="riwayatModalLabel" style="color: #223381; font-weight: 600; font-size: 20px;">
                               Riwayat Aju Banding</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
@@ -1061,7 +1063,7 @@
                           </div>
                           <div class="modal-footer" style="padding-top: 30px; padding-bottom: -30px;">
                             <button class="btn btn-primary rounded-3 me-2" data-bs-dismiss="modal"
-                              style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-15px);">
+                              style="font-size: 14px; font-weight: 600; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-15px);">
                               Tutup
                             </button>
                           </div>

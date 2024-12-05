@@ -269,7 +269,7 @@
           </div>
         </div>
 
-        <footer class="footer">
+        <footer class="footer" style="margin-top: 20px">
           Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
         </footer>
       </div>

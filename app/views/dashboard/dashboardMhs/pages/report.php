@@ -356,7 +356,7 @@
                   </script>
                   <div class="form-footer text-center mt-4">
                     <button class="btn btn-primary rounded-3 me-2" data-bs-dismiss="modal"
-                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-5px);">
+                      style="font-size: 14px; font-weight: 600; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-5px);">
                       Kirim
                     </button>
                   </div>

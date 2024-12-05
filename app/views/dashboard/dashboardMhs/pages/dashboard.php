@@ -366,7 +366,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
       <table class="table table-striped table-hover align-middle w-100">
         <thead class="table-light">
           <tr class="rounded-3">
-            <th class="text-center rounded-start">No. Pelanggaran</th>
+            <th class="text-center rounded-start">ID. Pelanggaran</th>
             <th>Nama Pelanggaran</th>
             <th class="text-center">Status</th>
             <th class="text-center rounded-end">Detail</th>
@@ -448,17 +448,17 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                     </div>
                   </div>
                   <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
-                    <!-- Tombol Riwayat (Sedikit diangkat) -->
-                    <button class="btn btn-primary rounded-3 me-2"
-                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;"
-                      data-bs-toggle="modal" data-bs-target="#riwayatModal">
-                      Riwayat
-                    </button>
                     <!-- Tombol Aju Banding -->
                     <button class="btn btn-primary rounded-3 me-2"
-                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" data-bs-toggle="modal"
+                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; margin-right: 10px;" data-bs-toggle="modal"
                       data-bs-target="#ajuBandingModal">
                       Aju Banding
+                    </button>
+                    <!-- Tombol Tolak -->
+                    <button class="btn btn-primary rounded-3"
+                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; margin-right: 10px;" id="submitBtn"
+                      data-bs-toggle="modal" data-bs-target="#successModal">
+                      Tolak
                     </button>
                     <!-- Tombol Terima -->
                     <button class="btn btn-primary rounded-3"
