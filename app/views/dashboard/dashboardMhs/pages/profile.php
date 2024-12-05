@@ -230,8 +230,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">NIM</label>
-                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
-                      value="2341760020">
+                    <input class="form-control" type="text" name="nim" value="" style="font-family: 'Poppins', sans-serif;">
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -246,16 +245,16 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Jenis Kelamin</label>
-                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
-                      value="Laki - laki">
+                    <input class="form-control" type="text" name="jk" value="" style="font-family: 'Poppins', sans-serif;">
+
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">No.Handphone</label>
-                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
-                      value="08512345678">
+                    <input class="form-control" type="text" name="nohp" value="" style="font-family: 'Poppins', sans-serif;">
+
                   </div>
                 </div>
               </div>
@@ -267,23 +266,24 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Jurusan</label>
-                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
-                      value="Teknologi Informasi">
+                    <input class="form-control" type="text" name="jurusan" value="" style="font-family: 'Poppins', sans-serif;">
+
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Prodi</label>
-                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
-                      value="D-IV Sistem Informasi Bisnis">
+                    <input class="form-control" type="text" name="prodi" value="" style="font-family: 'Poppins', sans-serif;">
+
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Kelas</label>
-                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;" value="SIB 2D">
+                    <input class="form-control" type="text" name="kelas" value="" style="font-family: 'Poppins', sans-serif;">
+
                   </div>
                 </div>
               </div>
@@ -293,11 +293,11 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
           </div>
         </div>
 
-        <footer class="footer">
-          Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
-        </footer>
       </div>
     </div>
+    <footer class="footer">
+      Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
+    </footer>
 
     <!--   Core JS Files   -->
     <script src="../../../../../public/js/core/popper.min.js"></script>
@@ -305,9 +305,6 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
     <script src="../../../../../public/js/plugins/perfect-scrollbar.min.js"></script>
     <script src="../../../../../public/js/plugins/smooth-scrollbar.min.js"></script>
 
-    <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
 
     <!-- Modal Edit Profil -->
@@ -387,6 +384,46 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
         </div>
       </div>
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        fetch('http://localhost/PBL/Project%20Web/app/controllers/getMhsData.php', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.error) {
+              console.error("Error:", data.error);
+              alert(data.error); // Tampilkan error jika ada
+            } else {
+              fillProfileForm(data);
+            }
+          })
+          .catch(error => {
+            console.error("Fetch error:", error);
+          });
+      });
+
+      // Fungsi untuk mengisi form di halaman profil
+      function fillProfileForm(data) {
+        const nimInput = document.querySelector("input[name='nim']");
+        const jkInput = document.querySelector("input[name='jk']");
+        const nohpInput = document.querySelector("input[name='nohp']");
+        const jurusanInput = document.querySelector("input[name='jurusan']");
+        const prodiInput = document.querySelector("input[name='prodi']");
+        const kelasInput = document.querySelector("input[name='kelas']");
+
+        // Periksa apakah elemen ditemukan sebelum mengisi nilai
+        if (nimInput) nimInput.value = data.nim || '';
+        if (jkInput) jkInput.value = data.jk_mhs || '';
+        if (nohpInput) nohpInput.value = data.nohp_mhs || '';
+        if (jurusanInput) jurusanInput.value = data.jurusan || '';
+        if (prodiInput) prodiInput.value = data.prodi || '';
+        if (kelasInput) kelasInput.value = data.kelas || '';
+      }
+    </script>
 </body>
 
 </html>
