@@ -1,3 +1,27 @@
+<?php
+session_start();
+
+// Pastikan sesi NIM ada
+if (!isset($_SESSION['nim'])) {
+  // Jika tidak ada, arahkan ke halaman login
+  header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+  exit();
+}
+
+$nim = $_SESSION['nim']; // Ambil NIM dari sesi
+// Mencegah cache halaman
+header("Cache-Control: no-cache, must-revalidate"); // Jangan simpan di cache
+header("Pragma: no-cache"); // Untuk versi lama browser
+header("Expires: 0"); // Waktu kadaluarsa
+
+if (!isset($_SESSION['nim'])) {
+  header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+  exit();
+}
+
+$nim = $_SESSION['nim']; // Ambil NIM dari sesi
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
