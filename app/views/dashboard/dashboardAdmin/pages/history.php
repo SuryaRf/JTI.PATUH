@@ -80,11 +80,131 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
       background-color: #dc3545;
       color: #fff;
     }
+
+    /* Download button styling */
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(45deg, #6a11cb, #2575fc);
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .btn-download i {
+      font-size: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    /* Hover effects */
+    .btn-download:hover {
+      background: linear-gradient(45deg, #2575fc, #6a11cb);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-download:hover i {
+      transform: scale(1.2);
+    }
+
+    /* Click ripple effect */
+    .btn-download:active::after {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: 50%;
+      left: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      transform: translate(-50%, -50%) scale(0);
+      border-radius: 50%;
+      animation: ripple 0.6s ease-out;
+    }
+
+    @keyframes ripple {
+      to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+      }
+    }
+
+    /* Margin for the section title */
+    .mb-4 h6 {
+      margin-top: 20px;
+      /* Spasi bawah untuk judul */
+      font-weight: bold;
+      /* Menegaskan tampilan judul */
+    }
+
+    /* Adjust the container spacing */
+    .d-md-flex {
+      gap: 15px;
+      /* Jarak antar elemen di dalam flex container */
+      margin-top: 15px;
+      /* Spasi atas untuk memisahkan dari elemen sebelumnya */
+    }
+
+    /* Spacing for inputs and select dropdown */
+    .flex-fill {
+      margin-bottom: 10px;
+      /* Jarak antar elemen input jika tidak menggunakan flex wrap */
+    }
+
+    /* Search input styling */
+    #searchInput {
+      padding: 10px 15px;
+      /* Jarak di dalam input */
+      font-size: 14px;
+      /* Ukuran font */
+      border-radius: 5px;
+      /* Membulatkan sudut */
+      border: 1px solid #ccc;
+      /* Border yang halus */
+    }
+
+    /* Status dropdown styling */
+    #statusFilter {
+      padding: 10px 15px;
+      /* Jarak di dalam dropdown */
+      font-size: 14px;
+      /* Ukuran font */
+      border-radius: 5px;
+      /* Membulatkan sudut */
+      border: 1px solid #ccc;
+      /* Border yang halus */
+    }
+
+    /* Date input styling */
+    #dateFilter {
+      padding: 10px 15px;
+      /* Jarak di dalam input */
+      font-size: 14px;
+      /* Ukuran font */
+      border-radius: 5px;
+      /* Membulatkan sudut */
+      border: 1px solid #ccc;
+      /* Border yang halus */
+    }
+
+    /* Button spacing */
+    #downloadButton {
+      margin-top: 15px;
+      /* Jarak atas untuk memisahkan dari filter */
+    }
   </style>
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
-  <div class="min-height-200 bg-dark position-absolute w-100"></div>
+<body class="g-sidenav-show" style="min-height: 100vh;">
+<div class="min-height-200  position-absolute w-100" style="background-color: #223381;"></div>
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -169,9 +289,9 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Tables</li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Riwayat Laporan</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Tables</h6>
+          <h6 class="font-weight-bolder text-white mb-0">Riwayat Laporan</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -283,19 +403,51 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
               <h4 class="mb-0 text-black">Laporan Yang Diajukan</h4>
             </div>
             <div class="card-body px-4 pt-0 pb-2">
+              <!-- Filter Area -->
+              <div class="mb-4">
+                <h6 class="text-muted mb-3">Filter Laporan</h6>
+                <button id="downloadButton" class="btn-download">
+                  <i class="fas fa-download"></i> Download Laporan PDF
+                </button>
+                <div class="d-md-flex justify-content-between align-items-center gap-3">
+                  <!-- Search input -->
+                  <div class="flex-fill">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Cari berdasarkan Nama Mahasiswa Terlapor" onkeyup="filterData()">
+                  </div>
+
+                  <!-- Status dropdown -->
+                  <div class="flex-fill">
+                    <select id="statusFilter" class="form-select" onchange="filterData()">
+                      <option value="">Pilih Status</option>
+                      <option value="pending">Pending</option>
+                      <option value="valid">Valid</option>
+                      <option value="reject">Reject</option>
+                    </select>
+                  </div>
+
+                  <!-- Date filter -->
+                  <div class="flex-fill">
+                    <input type="month" id="dateFilter" class="form-control" onchange="filterData()">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Table -->
               <div class="table-responsive">
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">No. Pelanggaran</th>
-                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Nama Pelanggaran</th>
+                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">ID. Pelanggaran</th>
+                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Nama Mahasiswa Terlapor</th>
+                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8" style="max-width: 200px;">Nama Pelanggaran</th>
+                      <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8" style="max-width: 200px;">Waktu</th>
                       <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Status</th>
                       <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Detail</th>
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
                   <tbody>
-
+                    <!-- Rows will be dynamically inserted here -->
                   </tbody>
                 </table>
               </div>
@@ -304,6 +456,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
         </div>
       </div>
     </div>
+
 
 
     <!-- Modal untuk detail pelanggaran -->
@@ -387,22 +540,62 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             const tbody = document.querySelector('tbody');
             tbody.innerHTML = ''; // Clear previous rows
 
-            data.forEach(violation => {
-              const row = document.createElement('tr');
-              row.innerHTML = `
+            // Render the rows
+            function renderRows(filteredData) {
+              filteredData.forEach(violation => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
               <td class="text-center">${violation.id_pelanggaran}</td>
-              <td style="word-wrap: break-word; white-space: normal;">${violation.nama_pelanggaran}</td>
+              <td class="text-center">${violation.nama_terlapor}</td>
+              <td style="max-width: 450px; word-wrap: break-word; white-space: wrap; overflow: hidden; text-overflow: ellipsis;" title="${violation.nama_pelanggaran}">
+                ${violation.nama_pelanggaran}
+              </td>
+              <td class="text-center">${violation.waktu_pelanggaran}</td>
               <td class="text-center">
                 <span class="badge ${getBadgeClass(violation.status)} text-white">${violation.status}</span>
               </td>
               <td class="text-center rounded-end">
                 <button class="btn btn-primary py-1 px-4 fs-7 w-100 rounded-3 check" 
-                        data-bs-toggle="modal" data-bs-target="#detailModal" data-id="${violation.id_pelanggaran}">
+                  data-bs-toggle="modal" data-bs-target="#detailModal" data-id="${violation.id_pelanggaran}">
                   CHECK
                 </button>
               </td>
             `;
-              tbody.appendChild(row);
+                tbody.appendChild(row);
+              });
+            }
+
+            // Initial render with all data
+            renderRows(data);
+
+            // Search filter
+            document.getElementById('searchInput').addEventListener('input', function() {
+              const searchValue = this.value.toLowerCase();
+              const filteredData = data.filter(violation =>
+                violation.nama_terlapor.toLowerCase().includes(searchValue)
+              );
+              tbody.innerHTML = '';
+              renderRows(filteredData);
+            });
+
+            // Status filter
+            document.getElementById('statusFilter').addEventListener('change', function() {
+              const statusValue = this.value.toLowerCase();
+              const filteredData = data.filter(violation =>
+                (statusValue === '' || violation.status.toLowerCase() === statusValue)
+              );
+              tbody.innerHTML = '';
+              renderRows(filteredData);
+            });
+
+            // Date filter
+            document.getElementById('dateFilter').addEventListener('change', function() {
+              const dateValue = this.value;
+              const filteredData = data.filter(violation =>
+                !dateValue || violation.waktu_pelanggaran.startsWith(dateValue)
+              );
+              tbody.innerHTML = '';
+              renderRows(filteredData);
             });
           }
         })
@@ -411,6 +604,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
           alert('Terjadi kesalahan saat mengambil data.');
         });
 
+      // Function to get badge class based on status
       function getBadgeClass(status) {
         switch (status.toLowerCase()) {
           case 'pending':
@@ -423,6 +617,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             return 'bg-secondary';
         }
       }
+
 
       // Event listener for the CHECK button to show the modal with detailed data
       document.addEventListener('click', function(event) {
@@ -453,7 +648,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                 if (data.status.toLowerCase() === 'valid') {
                   const btnRiwayat = document.createElement('button');
                   btnRiwayat.className = 'btn btn-primary me-2';
-                  btnRiwayat.textContent = 'Riwayat';
+                  btnRiwayat.textContent = 'Riwayat Aju Banding';
                   btnRiwayat.addEventListener('click', () => {
                     fetch(`http://localhost/PBL/Project%20Web/app/controllers/generatePDF.php?id=${data.id_pelanggaran}`)
                       .then(response => {
@@ -478,7 +673,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
 
                   const btnKirim = document.createElement('button');
                   btnKirim.className = 'btn btn-success';
-                  btnKirim.textContent = 'Kirim';
+                  btnKirim.textContent = 'Kirim Surat';
                   btnKirim.addEventListener('click', () => {
                     fetch(`http://localhost/PBL/Project%20Web/app/controllers/generatePDF.php?id=${data.id_pelanggaran}`)
                       .then(response => {
@@ -567,6 +762,18 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             });
         }
       });
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function downloadPDF() {
+        // Open the PHP script in a new tab for downloading the PDF
+        window.open('/PBL/Project%20Web/app/controllers/generatePDFReport.php', '_blank');
+      }
+
+      // Attach the downloadPDF function to the button click event
+      document.getElementById('downloadButton').onclick = downloadPDF;
     });
   </script>
 

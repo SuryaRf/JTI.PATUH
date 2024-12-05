@@ -101,7 +101,7 @@
         }
 
         .btn-login {
-   
+
             display: block;
         }
 
@@ -214,7 +214,8 @@
                                 </form>
                                 <br>
                                 <i class="far fa-eye show-password" onclick="togglePasswordVisibility()"></i>
-                                <button class="btn btn-link btn-forgot" type="button" onclick="forgotPassword()">Lupa Password?</button>
+                        
+
                             </div>
                             <br>
                             <hr class="my-4">
@@ -241,11 +242,8 @@
                 icon.classList.replace("fa-eye-slash", "fa-eye");
             }
         }
-
-        function forgotPassword() {
-            alert("Forgot Password functionality is not yet implemented.");
-        }
     </script>
+
 </body>
 
 </html>

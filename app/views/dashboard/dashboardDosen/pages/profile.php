@@ -10,7 +10,7 @@
     Dashboard Admin
   </title>
   <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
   <!-- Nucleo Icons -->
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -20,6 +20,14 @@
   <link id="pagestyle" href="../../../../../public/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
 
   <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif !important;
+      letter-spacing: 0.3px;
+    }
+
     .footer {
       text-align: center;
       color: #9CA3AF;
@@ -31,8 +39,7 @@
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
-  <div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg'); background-position-y: 50%;">
-    <span class="mask bg-primary opacity-6"></span>
+  <div class="position-absolute w-100 min-height-300 top-0" style="background-color:#223381;">
   </div>
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
@@ -103,96 +110,223 @@
   </aside>
   <div class="main-content position-relative max-height-vh-100 h-100">
     <!-- End Navbar -->
+    <div class="main-content position-relative max-height-vh-100 h-100">
+      <!-- New Breadcrumb Navigation -->
+      <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+        data-scroll="false">
+        <div class="container-fluid py-1 px-3">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-  5">
+              <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
+              <li class="breadcrumb-item text-sm text-white active" aria-current="page">Profil</li>
+            </ol>
+            <h6 class="font-weight text-white mb-0">Profil</h6>
+          </nav>
+          <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            </div>
+      </nav>
+
+    </div>
     <div class="card shadow-lg mx-4 card-profile-bottom">
     </div>
-    <div class="container-fluid py-4">
-      <div class="row">
-        <div class="col-md-8">
+    <div class="container-fluid py-4" style="margin-top: -250px">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
           <div class="card">
             <div class="card-header pb-0">
               <div class="d-flex align-items-center">
-                <p class="mb-0">Profile</p>
-                <button class="btn btn-primary btn-sm ms-auto">Edit</button>
+                <p class="mb-0"
+                  style="color: #223381; font-size: 20px; font-weight: 600; margin-top: -10px; margin-left: 12px;">
+                  PROFIL</p>
+                <button class="btn btn-primary btn-sm ms-auto py-1 px-4 fs-7 w-8 rounded-3"
+                  style="margin-right: 13px; background-color: #223381; border-color: #223381; letter-spacing: 0.5px; font-size: 14px"
+                  data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                  EDIT
+                </button>
+
               </div>
+              <hr style="border: 0.5px solid #ccc; margin-top: 10px;">
             </div>
+
             <div class="card-body">
-              <p class="text-uppercase text-sm">Informasi Pengguna</p>
-              <div class="card-body p-3">
-                <div class="row gx-4">
+              <div class="card-body p-3">WERTYUHGFagha
+                <div class="row gx-4" style="align-items: center;">
                   <div class="col-auto">
-                    <div class="avatar avatar-xl position-relative">
-                      <img src="../../../../../public/img/team-1.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                    <div class="avatar avatar-xxl position-relative">
+                      <img src="../../../../../public/img/profpic.jpg" alt="profile_image"
+                        class="w-100 border-radius-lg shadow-sm" style="margin-top: -45px;">
                     </div>
                   </div>
                   <div class="col-auto my-auto">
                     <div class="h-100">
-                      <h5 class="mb-1">
-                        Sayo Kravits
+                      <h5 class="mb-1"
+                        style="margin-top: -45px; font-family: 'Poppins', sans-serif; font-size: 20px; color: #223381;">
+                        Ahmadi Yuli
                       </h5>
-                      <p class="mb-0 font-weight-bold text-sm">
-                        Mahasiswa
+                      <p class="mb-0 font-weight-bold text-sm"
+                        style="font-family: 'Poppins', sans-serif; font-size: 14px">
+                        Dosen 
                       </p>
                     </div>
                   </div>
-
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">NIDN</label>
-                    <input class="form-control" type="text" value="lucky.jesse">
+                    <label for="example-text-input" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">NIDN</label>
+                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
+                      value="445566778">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Nama Lengkap</label>
-                    <input class="form-control" type="email" value="jesse@example.com">
+                    <label for="example-text-input" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Alamat Email</label>
+                    <input class="form-control" type="email" style="font-family: 'Poppins', sans-serif;"
+                      value="ahmadi@polinema.ac.id">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Jenis Kelamin</label>
-                    <input class="form-control" type="text" value="Jesse">
+                    <label for="example-text-input" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Jenis Kelamin</label>
+                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
+                      value="Laki - laki">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">No.Handphone</label>
-                    <input class="form-control" type="text" value="Lucky">
+                    <label for="example-text-input" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">No.Handphone</label>
+                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
+                      value="08512345678">
                   </div>
                 </div>
               </div>
               <hr class="horizontal dark">
-
               <div class="row">
-
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Jurusan</label>
-                    <input class="form-control" type="text" value="New York">
+              <div class="col-md-6">
+              <div class="form-group">
+                    <label for="example-text-input" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Jurusan</label>
+                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
+                      value="Teknologi Informasi">
                   </div>
                 </div>
+    
                 <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Email</label>
-                    <input class="form-control" type="text" value="United States">
+                <div class="form-group">
+                    <label for="example-text-input" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Program Studi</label>
+                    <input class="form-control" type="text" style="font-family: 'Poppins', sans-serif;"
+                      value="DIV-Sistem informasi Bisnis">
                   </div>
-                </div>
-
               </div>
-              <hr class="horizontal dark">
-
-            </div>
           </div>
-        </div>
+          </div>
+          </div>
+        
 
-        <footer class="footer">
+        
+
+        <footer class="footer"; style="margin-top: 10px; font-family: 'Poppins', sans-serif;">
+  
           Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
         </footer>
       </div>
     </div>
 
+    <!--   Core JS Files   -->
+    <script src="../../../../../public/js/core/popper.min.js"></script>
+    <script src="../../../../../public/js/core/bootstrap.min.js"></script>
+    <script src="../../../../../public/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="../../../../../public/js/plugins/smooth-scrollbar.min.js"></script>
+
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
+
+    <!-- Modal Edit Profil -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document" style="top: 50px;">
+        <div class="modal-content">
+          <div class="modal-header" style="background-color: #223381; color: white;">
+            <h5 class="modal-title" id="editProfileModalLabel"
+              style="font-family: 'Poppins', sans-serif; color: #FFFFFF;">Edit Profil
+            </h5>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="editNIM" class="form-control-label">NIM</label>
+                    <input type="text" class="form-control" id="editNIM" value="2341760020">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="editEmail" class="form-control-label">Alamat Email</label>
+                    <input type="email" class="form-control" id="editEmail" value="suryarahmatfatahillah@gmail.com">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="editGender" class="form-control-label">Jenis Kelamin</label>
+                    <select class="form-control" id="editGender">
+                      <option value="Laki - laki" selected>Laki - laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="editPhone" class="form-control-label">No. Handphone</label>
+                    <input type="text" class="form-control" id="editPhone" value="08512345678">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="editJurusan" class="form-control-label">Jurusan</label>
+                    <input type="text" class="form-control" id="editJurusan" value="Teknologi Informasi" readonly>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="editProdi" class="form-control-label">Prodi</label>
+                    <input type="text" class="form-control" id="editProdi" value="D-IV Sistem Informasi Bisnis"
+                      readonly>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="editKelas" class="form-control-label">Kelas</label>
+                    <input type="text" class="form-control" id="editKelas" value="SIB 2D" readonly>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="editProfilePicture" class="form-control-label">Foto Profil</label>
+                <input type="file" class="form-control" id="editProfilePicture" accept="image/*">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary"
+              style="background-color: #223381; border-color: #223381; font-family: 'Poppins', sans-serif;">Simpan</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!--   Core JS Files   -->
     <script src="../../../../../public/js/core/popper.min.js"></script>
     <script src="../../../../../public/js/core/bootstrap.min.js"></script>

@@ -58,19 +58,54 @@ if (!is_dir($upload_dir)) {
 require '../../vendor/setasign/fpdf/fpdf.php'; // Pastikan library FPDF sudah diinstal
 $pdf = new FPDF();
 $pdf->AddPage();
-$pdf->SetFont('Arial', 'B', 16);
-$pdf->Cell(190, 10, 'Surat Pelanggaran', 0, 1, 'C');
 
+// Judul Surat
+$pdf->SetFont('Arial', 'B', 16);
+$pdf->Cell(190, 10, 'Surat Pemanggilan Pelanggaran', 0, 1, 'C');
+
+// Tambahkan nomor surat
 $pdf->SetFont('Arial', '', 12);
+$pdf->Ln(5);
+$pdf->Cell(190, 10, 'Nomor Surat: 123/SP/2024', 0, 1, 'C'); // Nomor surat bebas
+
+// Informasi pelanggaran
 $pdf->Ln(10);
+$pdf->SetFont('Arial', '', 12);
 $pdf->Cell(50, 10, 'Nama Terlapor:', 0, 0);
 $pdf->Cell(50, 10, $data['nama_terlapor'], 0, 1);
 $pdf->Cell(50, 10, 'NIM Terlapor:', 0, 0);
 $pdf->Cell(50, 10, $data['nim_terlapor'], 0, 1);
 $pdf->Cell(50, 10, 'Nama Pelanggaran:', 0, 0);
 $pdf->Cell(50, 10, $data['nama_pelanggaran'], 0, 1);
+$pdf->Cell(50, 10, 'Waktu Pelanggaran:', 0, 0);
+$pdf->Cell(50, 10, $data['waktu_pelanggaran']->format('Y-m-d H:i:s'), 0, 1);
+$pdf->Cell(50, 10, 'Lokasi Pelanggaran:', 0, 0);
+$pdf->Cell(50, 10, $data['lokasi'], 0, 1);
 
-// Nama file PDF
+// Tambahkan jarak sebelum footer
+$pdf->Ln(10);
+
+// Footer
+$pdf->SetFont('Arial', '', 12);
+$pdf->MultiCell(0, 10, "Dengan surat ini, kami memanggil Saudara/i " . $data['nama_terlapor'] . 
+    " (NIM: " . $data['nim_terlapor'] . ") untuk segera menghadiri pertemuan di ruang admin guna membahas pelanggaran yang telah dilakukan. Harap hadir pada jam kerja kantor dan membawa dokumen terkait jika ada. Terima kasih.");
+
+$pdf->Ln(20); // Tambahkan jarak sebelum tanda tangan
+
+// Tanda Tangan
+$pdf->Cell(130); // Geser posisi ke kanan
+$pdf->SetFont('Arial', '', 12);
+$pdf->Cell(60, 10, 'Malang, ' . date('d F Y'), 0, 1, 'C'); // Tanggal dinamis
+$pdf->Cell(130);
+$pdf->Cell(60, 10, 'Admin Jurusan', 0, 1, 'C'); // Jabatan tanda tangan
+
+$pdf->Ln(20); // Tambahkan jarak sebelum nama terang
+$pdf->Cell(130);
+$pdf->Cell(60, 10, '__________________________', 0, 1, 'C'); // Garis untuk tanda tangan
+$pdf->Cell(130);
+$pdf->Cell(60, 10, '(Nama Admin)', 0, 1, 'C'); // Nama terang admin
+
+// Simpan PDF ke file
 $filename = $upload_dir . 'surat_pelanggaran_' . $data['id_pelanggaran'] . '.pdf';
 $pdf->Output('F', $filename);
 
@@ -115,4 +150,5 @@ if (!$mail->send()) {
 
 sqlsrv_close($conn);
 echo json_encode(['success' => true]);
+
 ?>

@@ -217,7 +217,7 @@
                                 <i class="far fa-eye show-password" onclick="togglePasswordVisibility()"></i>
                                 <button class="btn btn-link btn-forgot" type="button" onclick="forgotPassword()">Lupa Password?</button>
                             </div>
-
+                            <br>
                             <hr class="my-4">
                         </div>
                     </div>
@@ -242,9 +242,23 @@
                 icon.classList.replace("fa-eye-slash", "fa-eye");
             }
         }
-
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
         function forgotPassword() {
-            alert("Forgot Password functionality is not yet implemented.");
+            Swal.fire({
+                title: 'Butuh Bantuan?',
+                text: 'Untuk reset password, silakan ke ruang admin.',
+                icon: 'info',
+                showCancelButton: false,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Tutup',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Arahkan ke halaman admin atau lakukan aksi lainnya
+                    window.location.href = 'chooseRole.php'; // Ganti dengan URL halaman admin
+                }
+            });
         }
     </script>
 </body>
