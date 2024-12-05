@@ -230,22 +230,21 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">NIM</label>
-                    <input class="form-control" type="text" name="nim" value="" style="font-family: 'Poppins', sans-serif;">
+                    <input class="form-control" type="text" name="nim" value="" style="font-family: 'Poppins', sans-serif;" readonly>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Alamat Email</label>
-                    <input class="form-control" type="email" style="font-family: 'Poppins', sans-serif;"
-                      value="suryarahmatfatahillah@gmail.com">
+                      <input class="form-control" type="text" name="email" value="" style="font-family: 'Poppins', sans-serif;" readonly>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Jenis Kelamin</label>
-                    <input class="form-control" type="text" name="jk" value="" style="font-family: 'Poppins', sans-serif;">
+                    <input class="form-control" type="text" name="jk" value="" style="font-family: 'Poppins', sans-serif;" readonly>
 
                   </div>
                 </div>
@@ -253,7 +252,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">No.Handphone</label>
-                    <input class="form-control" type="text" name="nohp" value="" style="font-family: 'Poppins', sans-serif;">
+                    <input class="form-control" type="text" name="nohp" value="" style="font-family: 'Poppins', sans-serif;" readonly>
 
                   </div>
                 </div>
@@ -266,7 +265,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Jurusan</label>
-                    <input class="form-control" type="text" name="jurusan" value="" style="font-family: 'Poppins', sans-serif;">
+                    <input class="form-control" type="text" name="jurusan" value="" style="font-family: 'Poppins', sans-serif;" readonly> 
 
                   </div>
                 </div>
@@ -274,7 +273,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Prodi</label>
-                    <input class="form-control" type="text" name="prodi" value="" style="font-family: 'Poppins', sans-serif;">
+                    <input class="form-control" type="text" name="prodi" value="" style="font-family: 'Poppins', sans-serif;" readonly>
 
                   </div>
                 </div>
@@ -282,7 +281,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Kelas</label>
-                    <input class="form-control" type="text" name="kelas" value="" style="font-family: 'Poppins', sans-serif;">
+                    <input class="form-control" type="text" name="kelas" value="" style="font-family: 'Poppins', sans-serif;" readonly>
 
                   </div>
                 </div>
@@ -323,7 +322,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="editNIM" class="form-control-label">NIM</label>
-                    <input type="text" class="form-control" id="editNIM" value="2341760020">
+                    <input type="text" class="form-control" id="editNIM" value="2341760020" >
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -409,6 +408,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
       // Fungsi untuk mengisi form di halaman profil
       function fillProfileForm(data) {
         const nimInput = document.querySelector("input[name='nim']");
+        const emailInput = document.querySelector("input[name='email']");
         const jkInput = document.querySelector("input[name='jk']");
         const nohpInput = document.querySelector("input[name='nohp']");
         const jurusanInput = document.querySelector("input[name='jurusan']");
@@ -417,6 +417,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
 
         // Periksa apakah elemen ditemukan sebelum mengisi nilai
         if (nimInput) nimInput.value = data.nim || '';
+        if (emailInput) emailInput.value = data.email || '';
         if (jkInput) jkInput.value = data.jk_mhs || '';
         if (nohpInput) nohpInput.value = data.nohp_mhs || '';
         if (jurusanInput) jurusanInput.value = data.jurusan || '';
