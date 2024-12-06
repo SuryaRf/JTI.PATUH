@@ -35,7 +35,7 @@
       /* Ubah sesuai kebutuhan */
       color: #223381;
       /* Warna biru dongker */
-      font-weight: bold;
+      font-weight: 600;
     }
 
     .modal-content,
@@ -264,7 +264,7 @@
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-exclamation-circle text-dark text-sm opacity-10"></i> <!-- Ikon alert Font Awesome -->
             </div>
-            <span class="nav-link-text ms-1">Laporkan</span>
+            <span class="nav-link-text ms-1">Melaporkan Pelanggaran</span>
           </a>
         </li>
 
@@ -322,9 +322,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Riwayat</li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Riwayat Laporan</li>
           </ol>
-          <h6 class="text-white mb-0">Riwayat</h6>
+          <h6 class="text-white mb-0">Riwayat Laporan</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -345,7 +345,7 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th style="font-size: 16px; color: #223381; text-align: center; width: 25%;">NO. PELANGGARAN</th>
+                      <th style="font-size: 16px; color: #223381; text-align: center; width: 25%;">ID. PELANGGARAN</th>
                       <th style="font-size: 16px; color: #223381;">NAMA PELANGGARAN</th>
                       <th style="font-size: 16px; color: #223381; text-align: center;">STATUS</th>
                       <th style="font-size: 16px; color: #223381; text-align: center;">DETAIL</th>
@@ -490,7 +490,7 @@
                         <div class="modal-content">
                           <div class="modal-body p-0">
                             <p
-                              style="font-weight: bold; color: #223381; margin-bottom: 0px; margin-left: 20px; margin-top: 20px;">
+                              style="font-weight: 600; color: #223381; margin-bottom: 0px; margin-left: 20px; margin-top: 20px;">
                               Bukti Pelanggaran</p>
                             <div class="d-flex justify-content-center align-items-center">
                               <div style="padding: 20px; background-color: white; border-radius: 8px;">
@@ -716,7 +716,7 @@
                   <div class="modal-content">
                     <div class="modal-body p-0">
                       <p
-                        style="font-weight: bold; color: #223381; margin-bottom: 0px; margin-left: 20 px; margin-top: 20px;">
+                        style="font-weight: 600; color: #223381; margin-bottom: 0px; margin-left: 20px; margin-top: 20px;">
                         Bukti Pelanggaran</p>
                       <div class="d-flex justify-content-center align-items-center">
                         <div style="padding: 20px; background-color: white; border-radius: 8px;">
@@ -816,7 +816,7 @@
                   <div class="modal-content">
                     <div class="modal-body p-0">
                       <p
-                        style="font-weight: bold; color: #223381; margin-bottom: 0px; margin-left: 20px; margin-top: 20px;">
+                        style="font-weight: 600; color: #223381; margin-bottom: 0px; margin-left: 20px; margin-top: 20px;">
                         Bukti Pelanggaran</p>
                       <div class="d-flex justify-content-center align-items-center">
                         <div style="padding: 20px; background-color: white; border-radius: 8px;">
@@ -848,7 +848,7 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th style="font-size: 16px; color: #223381; text-align: center; width: 25%;">NO. PELANGGARAN</th>
+                      <th style="font-size: 16px; color: #223381; text-align: center; width: 25%;">ID. PELANGGARAN</th>
                       <th style="font-size: 16px; color: #223381;">NAMA PELANGGARAN</th>
                       <th style="font-size: 16px; color: #223381; text-align: center;">STATUS</th>
                       <th style="font-size: 16px; color: #223381; text-align: center;">DETAIL</th>
@@ -962,7 +962,7 @@
                         <div class="modal-content">
                           <div class="modal-body p-0">
                             <p
-                              style="font-weight: bold; color: #223381; margin-bottom: 0px; margin-left: 20px; margin-top: 20px;">
+                              style="font-weight: 600; color: #223381; margin-bottom: 0px; margin-left: 20px; margin-top: 20px;">
                               Bukti Pelanggaran</p>
                             <div class="d-flex justify-content-center align-items-center">
                               <div style="padding: 20px; background-color: white; border-radius: 8px;">
@@ -1267,7 +1267,7 @@
                               <div class="modal-content">
                                 <div class="modal-body p-0">
                                   <p
-                                    style="font-weight: bold; color: #223381; margin-bottom: 0px; margin-left: 20px; margin-top: 20px;">
+                                    style="font-weight: 600; color: #223381; margin-bottom: 0px; margin-left: 20px; margin-top: 20px;">
                                     Bukti Pelanggaran</p>
                                   <div class="d-flex justify-content-center align-items-center">
                                     <div style="padding: 20px; background-color: white; border-radius: 8px;">
