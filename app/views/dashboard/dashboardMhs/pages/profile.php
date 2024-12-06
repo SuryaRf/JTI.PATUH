@@ -230,11 +230,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">NIM</label>
-<<<<<<< HEAD
                     <input class="form-control" type="text" name="nim" value="" style="font-family: 'Poppins', sans-serif;" readonly>
-=======
-                    <input class="form-control" type="text" name="nim" value="" style="font-family: 'Poppins', sans-serif;">
->>>>>>> b2c56bf37873591d369292a38bb944d767ad960f
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -248,11 +244,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Jenis Kelamin</label>
-<<<<<<< HEAD
                     <input class="form-control" type="text" name="jk" value="" style="font-family: 'Poppins', sans-serif;" readonly>
-=======
-                    <input class="form-control" type="text" name="jk" value="" style="font-family: 'Poppins', sans-serif;">
->>>>>>> b2c56bf37873591d369292a38bb944d767ad960f
 
                   </div>
                 </div>
@@ -260,11 +252,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">No.Handphone</label>
-<<<<<<< HEAD
                     <input class="form-control" type="text" name="nohp" value="" style="font-family: 'Poppins', sans-serif;" readonly>
-=======
-                    <input class="form-control" type="text" name="nohp" value="" style="font-family: 'Poppins', sans-serif;">
->>>>>>> b2c56bf37873591d369292a38bb944d767ad960f
 
                   </div>
                 </div>
@@ -277,11 +265,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Jurusan</label>
-<<<<<<< HEAD
                     <input class="form-control" type="text" name="jurusan" value="" style="font-family: 'Poppins', sans-serif;" readonly> 
-=======
-                    <input class="form-control" type="text" name="jurusan" value="" style="font-family: 'Poppins', sans-serif;">
->>>>>>> b2c56bf37873591d369292a38bb944d767ad960f
 
                   </div>
                 </div>
@@ -289,11 +273,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Prodi</label>
-<<<<<<< HEAD
                     <input class="form-control" type="text" name="prodi" value="" style="font-family: 'Poppins', sans-serif;" readonly>
-=======
-                    <input class="form-control" type="text" name="prodi" value="" style="font-family: 'Poppins', sans-serif;">
->>>>>>> b2c56bf37873591d369292a38bb944d767ad960f
 
                   </div>
                 </div>
@@ -301,11 +281,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Kelas</label>
-<<<<<<< HEAD
                     <input class="form-control" type="text" name="kelas" value="" style="font-family: 'Poppins', sans-serif;" readonly>
-=======
-                    <input class="form-control" type="text" name="kelas" value="" style="font-family: 'Poppins', sans-serif;">
->>>>>>> b2c56bf37873591d369292a38bb944d767ad960f
 
                   </div>
                 </div>
@@ -432,10 +408,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
       // Fungsi untuk mengisi form di halaman profil
       function fillProfileForm(data) {
         const nimInput = document.querySelector("input[name='nim']");
-<<<<<<< HEAD
         const emailInput = document.querySelector("input[name='email']");
-=======
->>>>>>> b2c56bf37873591d369292a38bb944d767ad960f
         const jkInput = document.querySelector("input[name='jk']");
         const nohpInput = document.querySelector("input[name='nohp']");
         const jurusanInput = document.querySelector("input[name='jurusan']");
@@ -444,10 +417,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
 
         // Periksa apakah elemen ditemukan sebelum mengisi nilai
         if (nimInput) nimInput.value = data.nim || '';
-<<<<<<< HEAD
         if (emailInput) emailInput.value = data.email || '';
-=======
->>>>>>> b2c56bf37873591d369292a38bb944d767ad960f
         if (jkInput) jkInput.value = data.jk_mhs || '';
         if (nohpInput) nohpInput.value = data.nohp_mhs || '';
         if (jurusanInput) jurusanInput.value = data.jurusan || '';
