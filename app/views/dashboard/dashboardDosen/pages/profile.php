@@ -150,7 +150,7 @@
             </div>
 
             <div class="card-body">
-              <div class="card-body p-3">WERTYUHGFagha
+              <div class="card-body p-3">
                 <div class="row gx-4" style="align-items: center;">
                   <div class="col-auto">
                     <div class="avatar avatar-xxl position-relative">

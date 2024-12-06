@@ -7,7 +7,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../../../../../public/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../../../../../public/img/favicon.png">
   <title>
-    Dashboard Admin
+    Dashboard Dosen
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -59,7 +59,7 @@
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
-  <div class="min-height-200 bg-dark position-absolute w-100"></div>
+<div class="min-height-200 position-absolute w-100" style="background-color: #223381;"></div>
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -247,27 +247,27 @@
     <div class="col-12">
       <div class="card mb-4 shadow-sm border-0">
         <div class="card-header pb-3 bg-white text-black">
-          <h4 class="mb-0 text-black">Laporan Yang Diajukan</h4>
+          <h4 class="mb-0" style="color: #223381; font-size: 20px;">
+          LAPORAN YANG DIAJUKAN</h4>
         </div>
         <div class="card-body px-4 pt-0 pb-2">
-          <div class="table-responsive">
-            <table class="table align-items-center mb-0">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">No. Pelanggaran</th>
-                  <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Nama Pelanggaran</th>
-                  <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Status</th>
-                  <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Detail</th>
-                  <th class="text-secondary opacity-7"></th>
-                </tr>
-              </thead>
+              <div class="table-responsive">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th style="font-size: 16px; color: #223381; text-align: center; width: 25%;">NO. PELANGGARAN</th>
+                      <th style="font-size: 16px; color: #223381;">NAMA PELANGGARAN</th>
+                      <th style="font-size: 16px; color: #223381; text-align: center;">STATUS</th>
+                      <th style="font-size: 16px; color: #223381; text-align: center;">DETAIL</th>
+                    </tr>
+                  </thead>
               <tbody>
                 <!-- Baris 1 -->
                 <tr>
                   <td class="text-sm font-weight-bold text-primary">ABC01</td>
                   <td class="text-sm">Merokok</td>
                   <td class="text-center">
-                    <span class="badge bg-warning text-white">Pending</span>
+                    <span class="badge bg-warning text-white">Tertunda</span>
                   </td>
                   <td class="align-middle text-center">
                     <button class="btn btn-sm btn-outline-primary">
@@ -280,7 +280,7 @@
                   <td class="text-sm font-weight-bold text-primary">DEF02</td>
                   <td class="text-sm">Makan di Kelas</td>
                   <td class="text-center">
-                    <span class="badge bg-success text-white">Approved</span>
+                    <span class="badge bg-success text-white">Selesai</span>
                   </td>
                   <td class="align-middle text-center">
                     <button class="btn btn-sm btn-outline-success">
@@ -293,7 +293,46 @@
                   <td class="text-sm font-weight-bold text-primary">GHI03</td>
                   <td class="text-sm">Bolos</td>
                   <td class="text-center">
-                    <span class="badge bg-danger text-white">Rejected</span>
+                    <span class="badge bg-danger text-white">Ditolak</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <button class="btn btn-sm btn-outline-danger">
+                      <i class="fas fa-times-circle me-1"></i>Check
+                    </button>
+                  </td>
+                </tr>
+                 <!-- Baris 4 -->
+                 <tr>
+                  <td class="text-sm font-weight-bold text-primary">JKL04</td>
+                  <td class="text-sm">Merokok</td>
+                  <td class="text-center">
+                    <span class="badge bg-warning text-white">Tertunda</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <button class="btn btn-sm btn-outline-primary">
+                      <i class="fas fa-eye me-1"></i>Check
+                    </button>
+                  </td>
+                </tr>
+                <!-- Baris 5 -->
+                <tr>
+                  <td class="text-sm font-weight-bold text-primary">MNO05</td>
+                  <td class="text-sm">Makan di Kelas</td>
+                  <td class="text-center">
+                    <span class="badge bg-success text-white">Selesai</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <button class="btn btn-sm btn-outline-success">
+                      <i class="fas fa-check-circle me-1"></i>View
+                    </button>
+                  </td>
+                </tr>
+                <!-- Baris 6 -->
+                <tr>
+                  <td class="text-sm font-weight-bold text-primary">PQR06</td>
+                  <td class="text-sm">Bolos</td>
+                  <td class="text-center">
+                    <span class="badge bg-danger text-white">Selesai</span>
                   </td>
                   <td class="align-middle text-center">
                     <button class="btn btn-sm btn-outline-danger">
@@ -305,12 +344,8 @@
             </table>
           </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
-      
-      
+     
   <footer class="footer">
         Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
     </footer>
