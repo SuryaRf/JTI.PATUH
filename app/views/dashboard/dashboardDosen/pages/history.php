@@ -7,10 +7,10 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../../../../../public/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../../../../../public/img/favicon.png">
   <title>
-    Dashboard Admin
+    Dashboard Dosen
   </title>
   <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Nucleo Icons -->
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -19,10 +19,33 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="../../../../../public/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
 
+
+
   <style>
-    .btn-primary{
-      margin-top: 10px;
+    .text-16 {
+    font-family: 'Poppins', sans-serif;
+
     }
+     body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 0.3px;
+    }
+
+    .btn {
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 600px;
+    }
+
+    .btn-primary {
+      background-color: #223381;
+      border: none;
+      border-radius: 12px;
+      margin-top: 15px;
+    }
+
     .footer {
     text-align: center;
     color: #9CA3AF;
@@ -30,6 +53,8 @@
     padding: 16px 0;
     animation: fadeInFooter 1.5s ease;
 }
+
+
 
 .table th,
   .table td {
@@ -59,7 +84,7 @@
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
-  <div class="min-height-200 bg-dark position-absolute w-100"></div>
+<div class="min-height-200 position-absolute w-100" style="background-color: #223381;"></div>
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -136,9 +161,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Tables</li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Riwayat Laporan</li>
           </ol>
-          <h6 class="font-weight-bolder text-white mb-0">Tables</h6>
+          <h6 class="font-weight-bolder text-white mb-0">Riwayat Laporan</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -243,74 +268,121 @@
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-  <div class="row">
-    <div class="col-12">
-      <div class="card mb-4 shadow-sm border-0">
-        <div class="card-header pb-3 bg-white text-black">
-          <h4 class="mb-0 text-black">Laporan Yang Diajukan</h4>
-        </div>
-        <div class="card-body px-4 pt-0 pb-2">
-          <div class="table-responsive">
-            <table class="table align-items-center mb-0">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">No. Pelanggaran</th>
-                  <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Nama Pelanggaran</th>
-                  <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Status</th>
-                  <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-8">Detail</th>
-                  <th class="text-secondary opacity-7"></th>
-                </tr>
-              </thead>
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4 shadow-sm border-0">
+            <div class="card-header pb-3 bg-white text-navy-blue">
+              <h4 class="mb-0" style="color: #223381; font-size: 20px;">LAPORAN YANG DIAJUKAN</h4>
+            </div>
+            <div class="card-body px-4 pt-0 pb-2">
+              <div class="table-responsive">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th style="font-size: 16px; color: #223381; text-align: center; width: 25%;">ID. PELANGGARAN</th>
+                      <th style="font-size: 16px; color: #223381;">NAMA PELANGGARAN</th>
+                      <th style="font-size: 16px; color: #223381; text-align: center;">STATUS</th>
+                      <th style="font-size: 16px; color: #223381; text-align: center;">DETAIL</th>
+                    </tr>
+                  </thead>
               <tbody>
                 <!-- Baris 1 -->
                 <tr>
-                  <td class="text-sm font-weight-bold text-primary">ABC01</td>
-                  <td class="text-sm">Merokok</td>
+                <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">ABC01</td>
+                <td class="text-16" style="color: #6B7280; font-size: 16px;">Merokok</td>
                   <td class="text-center">
-                    <span class="badge bg-warning text-white">Pending</span>
+                  <span class="badge bg-warning text-white fs-7 rounded-3" style="font-weight: 600; width: 100px; text-align: center; height: 30px; line-height: 18px;">
+                          TERTUNDA
+                        </span>
                   </td>
                   <td class="align-middle text-center">
-                    <button class="btn btn-sm btn-outline-primary">
-                      <i class="fas fa-eye me-1"></i>Check
+                    <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal" style="font-weight: 600;" style="background-color: #223381;">
+                          CHECK
+                        </button>
                     </button>
                   </td>
                 </tr>
                 <!-- Baris 2 -->
                 <tr>
-                  <td class="text-sm font-weight-bold text-primary">DEF02</td>
-                  <td class="text-sm">Makan di Kelas</td>
+                <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">DEF02</td>
+                <td class="text-16" style="color: #6B7280; font-size: 16px;">Makan di Kelas</td>
                   <td class="text-center">
-                    <span class="badge bg-success text-white">Approved</span>
+                  <span class="badge bg-success text-white fs-7 rounded-3" style="font-weight: 600; width: 100px; text-align: center; height: 30px; line-height: 18px;">
+                          VALID
+                        </span>
                   </td>
                   <td class="align-middle text-center">
-                    <button class="btn btn-sm btn-outline-success">
-                      <i class="fas fa-check-circle me-1"></i>View
-                    </button>
+                  <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal" style="font-weight: 600;" style="background-color: #223381;">
+                          CHECK
+                        </button>
                   </td>
                 </tr>
                 <!-- Baris 3 -->
                 <tr>
-                  <td class="text-sm font-weight-bold text-primary">GHI03</td>
-                  <td class="text-sm">Bolos</td>
+                <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">GHI03</td>
+                <td class="text-16" style="color: #6B7280; font-size: 16px;">Bolos</td>
                   <td class="text-center">
-                    <span class="badge bg-danger text-white">Rejected</span>
+                  <span class="badge bg-danger text-white p-2 fs-7 rounded-3" style="font-weight: 600; width: 100px; text-align: center;">
+                    DITOLAK
+                  </span>
                   </td>
                   <td class="align-middle text-center">
-                    <button class="btn btn-sm btn-outline-danger">
-                      <i class="fas fa-times-circle me-1"></i>Check
-                    </button>
+                  <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal" style="font-weight: 600;" style="background-color: #223381;">
+                          CHECK
+                        </button>
+                  </td>
+                </tr>`
+                 <!-- Baris 4 -->
+                 <tr>
+                 <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">JKL04</td>
+                 <td class="text-16" style="color: #6B7280; font-size: 16px;">Merokok di Area Gedung</td>
+                  <td class="text-center">
+                  <span class="badge bg-warning text-white fs-7 rounded-3" style="font-weight: 600; width: 100px; text-align: center; height: 30px; line-height: 18px;">
+                          TERTUNDA
+                        </span>
+                  </td>
+                  <td class="align-middle text-center">
+                  <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal" style="font-weight: 600;" style="background-color: #223381;">
+                          CHECK
+                        </button>
+                  </td>
+                </tr>
+                <!-- Baris 5 -->
+                <tr>
+                <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">MNO05</td>
+                <td class="text-16" style="color: #6B7280; font-size: 16px;">Menggunakan Baju Tidak Sopan</td>
+                  <td class="text-center">
+                  <span class="badge bg-success text-white fs-7 rounded-3" style="font-weight: 600; width: 100px; text-align: center; height: 30px; line-height: 18px;">
+                          VALID
+                        </span>
+                  </td>
+                  <td class="align-middle text-center">
+                  <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal" style="font-weight: 600;" style="background-color: #223381;">
+                          CHECK
+                        </button>
+                  </td>
+                </tr>
+                <!-- Baris 6 -->
+                <tr>
+                <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">PQR06</td>
+                <td class="text-16" style="color: #6B7280; font-size: 16px;">Berpenampilan seperti punk</td>
+                  <td class="text-center">
+                  <span class="badge bg-success text-white fs-7 rounded-3" style="font-weight: 600; width: 100px; text-align: center; height: 30px; line-height: 18px;">
+                          VALID
+                        </span>
+                  </td>
+                  <td class="align-middle text-center">
+                  <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal" style="font-weight: 600;" style="background-color: #223381;">
+                          CHECK
+                        </button>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
-      
-      
+     
   <footer class="footer">
         Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
     </footer>
