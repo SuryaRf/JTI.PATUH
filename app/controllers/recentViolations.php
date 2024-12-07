@@ -11,7 +11,7 @@ $nim = $_SESSION['nim'];
 
 // Query untuk mengambil data pelanggaran berdasarkan NIM
 $query = "
-    SELECT TOP 5
+   SELECT TOP 5
         Pelanggaran.id_pelanggaran,
         Pelanggaran.waktu_pelanggaran,
         Pelanggaran.lokasi,
@@ -19,11 +19,11 @@ $query = "
         TataTertib.nama_pelanggaran
     FROM Pelanggaran
     INNER JOIN TataTertib ON Pelanggaran.id_tatib = TataTertib.id_tatib
-    WHERE Pelanggaran.nim = ? -- Filter berdasarkan nim
+    WHERE Pelanggaran.nim = ? OR Pelanggaran.nim_pelapor = ? 
     ORDER BY Pelanggaran.id_pelanggaran DESC
 ";
 
-$params = array($nim); // Gunakan nim sebagai parameter
+$params = array($nim, $nim);// Gunakan nim sebagai parameter
 $stmt = sqlsrv_query($conn, $query, $params);
 
 if ($stmt === false) {
