@@ -883,12 +883,13 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
         tbody.innerHTML = ''; // Menghapus baris tabel yang lama
 
         data.forEach(violation => {
+          const badgeClass = getBadgeClass(violation.status); // Fungsi untuk menentukan class badge
           const row = document.createElement('tr');
           row.innerHTML = `
             <td class="text-center">${violation.id_pelanggaran}</td>
             <td style="word-wrap: break-word; white-space: normal;">${violation.nama_pelanggaran}</td>
-            <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
-                style="width: 100px; text-align: center;">${violation.status}</span></td>
+            <td class="text-center"><span class="${badgeClass}"
+                style="font-weight: 600; width: 100px; text-align: center;">${violation.status}</span></td>
             <td class="text-center rounded-end">
               <button class="btn btn-primary py-1 px-4 fs-7 w-100 rounded-3 check" 
                       data-bs-toggle="modal"
@@ -905,6 +906,19 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
       alert('Terjadi kesalahan saat mengambil data.');
     });
 });
+
+// Fungsi untuk menentukan class badge berdasarkan status
+function getBadgeClass(status) {
+  switch (status.toUpperCase()) {
+    case 'VALID':
+      return 'badge bg-success text-white p-2 fs-7 rounded-3';
+    case 'REJECT':
+      return 'badge bg-danger text-white p-2 fs-7 rounded-3';
+    default: // TERTUNDA atau status lainnya
+      return 'badge bg-warning text-white fs-7 rounded-3';
+  }
+}
+
 
   </script>
 
