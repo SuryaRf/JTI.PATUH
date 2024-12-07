@@ -870,6 +870,41 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
         });
     });
 
+    document.addEventListener('DOMContentLoaded', function() {
+  fetch('http://localhost/PBL/Project%20Web/app/controllers/recentViolations.php')
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        console.error('Error:', data.error);
+        alert('Error: ' + data.error);
+      } else {
+        // Mengisi data pelanggaran ke dalam tabel
+        const tbody = document.querySelector('tbody');
+        tbody.innerHTML = ''; // Menghapus baris tabel yang lama
+
+        data.forEach(violation => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td class="text-center">${violation.id_pelanggaran}</td>
+            <td style="word-wrap: break-word; white-space: normal;">${violation.nama_pelanggaran}</td>
+            <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
+                style="width: 100px; text-align: center;">${violation.status}</span></td>
+            <td class="text-center rounded-end">
+              <button class="btn btn-primary py-1 px-4 fs-7 w-100 rounded-3 check" 
+                      data-bs-toggle="modal"
+                      data-bs-target="#detailModal"
+                      data-id="${violation.id_pelanggaran}">CHECK</button>
+            </td>
+          `;
+          tbody.appendChild(row);
+        });
+      }
+    })
+    .catch(error => {
+      console.error('Fetch Error:', error);
+      alert('Terjadi kesalahan saat mengambil data.');
+    });
+});
 
   </script>
 
