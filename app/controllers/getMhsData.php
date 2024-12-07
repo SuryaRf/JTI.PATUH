@@ -15,7 +15,7 @@ $nim = $_SESSION['nim']; // Ambil nim dari sesi
 
 // Query untuk mengambil data admin berdasarkan nim
 $query = "
-    SELECT nim, nama_mhs, kelas, prodi, jurusan, jk_mhs, nohp_mhs
+SELECT nim, nama_mhs, email, kelas, prodi, jurusan, jk_mhs, nohp_mhs
     FROM Mahasiswa 
     WHERE nim = ?;
 ";
@@ -31,10 +31,10 @@ if ($stmt === false) {
 $data = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
 if ($data) {
-    echo json_encode($data); // Mengembalikan data dalam format JSON
+    header("Content-Type: application/json");
+    echo json_encode($data, JSON_PRETTY_PRINT); // Tambahkan untuk melihat JSON dalam format rapi
 } else {
     echo json_encode(['error' => 'Data mahasiswa tidak ditemukan.']);
 }
 
 sqlsrv_close($conn);
-?>

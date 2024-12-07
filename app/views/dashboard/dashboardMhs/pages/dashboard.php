@@ -236,7 +236,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fas fa-exclamation-circle text-dark text-sm opacity-10"></i> <!-- Ikon alert Font Awesome -->
             </div>
-            <span class="nav-link-text ms-1">Laporkan</span>
+            <span class="nav-link-text ms-1">Melaporkan Pelanggaran</span>
           </a>
         </li>
 
@@ -366,7 +366,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
       <table class="table table-striped table-hover align-middle w-100">
         <thead class="table-light">
           <tr class="rounded-3">
-            <th class="text-center rounded-start">No. Pelanggaran</th>
+            <th class="text-center rounded-start">ID. Pelanggaran</th>
             <th>Nama Pelanggaran</th>
             <th class="text-center">Status</th>
             <th class="text-center rounded-end">Detail</th>
@@ -448,20 +448,20 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                     </div>
                   </div>
                   <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
-                    <!-- Tombol Riwayat (Sedikit diangkat) -->
-                    <button class="btn btn-primary rounded-3 me-2"
-                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-15px) translateX(-2px) ;"
-                      data-bs-toggle="modal" data-bs-target="#riwayatModal">
-                      Riwayat
-                    </button>
                     <!-- Tombol Aju Banding -->
-                    <button class="btn btn-warning rounded-3 me-2"
-                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" data-bs-toggle="modal"
-                      data-bs-target="#ajuBandingModal">
+                    <button class="btn btn-primary rounded-3 me-2"
+                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; margin-right: 10px;"
+                      data-bs-toggle="modal" data-bs-target="#ajuBandingModal">
                       Aju Banding
                     </button>
+                    <!-- Tombol Tolak -->
+                    <button class="btn btn-primary rounded-3"
+                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; margin-right: 10px;"
+                      id="submitBtn" data-bs-toggle="modal" data-bs-target="#successModal">
+                      Tolak
+                    </button>
                     <!-- Tombol Terima -->
-                    <button class="btn btn-success rounded-3"
+                    <button class="btn btn-primary rounded-3"
                       style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" id="submitBtn"
                       data-bs-toggle="modal" data-bs-target="#successModal">
                       Terima
@@ -738,14 +738,14 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
             </td>
           </tr>
 
-          <!-- Modal for GHI03 -->
+          <!-- Modal for GHI03-->
           <div class="modal fade" id="detailModalGHI03" tabindex="-1" aria-labelledby="detailModalLabelGHI03"
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="detailModalLabelGHI03" style="font-weight: 600px; color: #223381;">Detail
-                    Pelanggaran</h5>
+                  <h5 class="modal-title" id="detailModalLabelABC01"
+                    style="font-size: 20px; font-weight: 600px; color: #223381;">Detail Pelanggaran</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -754,50 +754,55 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                     <div class="col-md-4">
                       <div class="text-center">
                         <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom"
-                          class="img-fluid rounded w-100" data-bs-toggle="modal" data-bs-target="#buktiZoomModalABC01"
+                          class="img-fluid rounded w-100" data-bs-toggle="modal" data-bs-target="#buktiZoomModalGHI03"
                           style="cursor: pointer;">
                       </div>
                     </div>
                     <!-- Informasi di sebelah kanan -->
                     <div class="col-md-8">
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold; color: #223381;">Nama Mahasiswa
+                        <label class="form-label" style="font-weight: 600px; color: #223381;">Nama
+                          Mahasiswa
                           Terlapor</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
                           Surya Rahmat
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold; color: #223381;">NIM Mahasiswa
+                        <label class="form-label" style="font-weight: 600px; color: #223381;">NIM
+                          Mahasiswa
                           Terlapor</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
                           2341760020
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold; color: #223381;">Tingkat dan Jenis
+                        <label class="form-label" style="font-weight: 600px; color: #223381;">Tingkat
+                          dan Jenis
                           Pelanggaran</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          III - Menyontek saat ujian
+                          I - Bolos
                         </p>
                       </div>
                       <div class="mb-3">
                         <label class="form-label" style="font-weight: 600px; color: #223381;">Waktu</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          Rabu, 13 November 2024 pukul 15:00
+                          Kamis, 14 November 2024 pukul 14:59
                         </p>
                       </div>
                       <div class="mb-3">
                         <label class="form-label" style="font-weight: 600px; color: #223381;">Lokasi</label>
                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          Di Ruang Ujian
+                          Di Ruang Kelas
                         </p>
                       </div>
                     </div>
                   </div>
                   <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
-                    <button class="btn btn-primary rounded-3 me-2" data-bs-dismiss="modal"
-                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-15px);">
+                    <!-- Tombol Riwayat (Sedikit diangkat) -->
+                    <button class="btn btn-primary rounded-3 me-2"
+                      style=" font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-10px);"
+                      data-bs-toggle="modal important!">
                       Tutup
                     </button>
                   </div>
@@ -806,7 +811,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
             </div>
           </div>
 
-          <!-- Modal untuk Zoom Gambar GHI03 -->
+          <!-- Modal untuk Zoom Gambar -->
           <div class="modal fade" id="buktiZoomModalGHI03" tabindex="-1" aria-labelledby="buktiZoomModalLabelGHI03"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -826,10 +831,8 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
             </div>
           </div>
 
-
-    </div>
-    </tbody>
-    </table>
+        </tbody>
+      </table>
     </div>
 
 
