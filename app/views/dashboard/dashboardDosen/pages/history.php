@@ -243,14 +243,13 @@
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
-  <div class="row">
-    <div class="col-12">
-      <div class="card mb-4 shadow-sm border-0">
-        <div class="card-header pb-3 bg-white text-black">
-          <h4 class="mb-0" style="color: #223381; font-size: 20px;">
-          LAPORAN YANG DIAJUKAN</h4>
-        </div>
-        <div class="card-body px-4 pt-0 pb-2">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4 shadow-sm border-0">
+            <div class="card-header pb-3 bg-white text-navy-blue">
+              <h4 class="mb-0" style="color: #223381; font-size: 20px;">LAPORAN YANG DIAJUKAN</h4>
+            </div>
+            <div class="card-body px-4 pt-0 pb-2">
               <div class="table-responsive">
                 <table class="table align-items-center mb-0">
                   <thead>
@@ -300,7 +299,7 @@
                       <i class="fas fa-times-circle me-1"></i>Check
                     </button>
                   </td>
-                </tr>
+                </tr>`
                  <!-- Baris 4 -->
                  <tr>
                   <td class="text-sm font-weight-bold text-primary">JKL04</td>
