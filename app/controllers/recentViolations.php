@@ -19,7 +19,7 @@ $query = "
         TataTertib.nama_pelanggaran
     FROM Pelanggaran
     INNER JOIN TataTertib ON Pelanggaran.id_tatib = TataTertib.id_tatib
-    WHERE Pelanggaran.nim = ? OR Pelanggaran.nim_pelapor = ? 
+    WHERE Pelanggaran.nim = ?
     ORDER BY Pelanggaran.id_pelanggaran DESC
 ";
 

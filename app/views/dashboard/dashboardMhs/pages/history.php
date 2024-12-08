@@ -1,3 +1,28 @@
+<?php
+session_start();
+
+// Pastikan sesi NIM ada
+if (!isset($_SESSION['nim'])) {
+  // Jika tidak ada, arahkan ke halaman login
+  header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+  exit();
+}
+
+$nim = $_SESSION['nim']; // Ambil NIM dari sesi
+// Mencegah cache halaman
+header("Cache-Control: no-cache, must-revalidate"); // Jangan simpan di cache
+header("Pragma: no-cache"); // Untuk versi lama browser
+header("Expires: 0"); // Waktu kadaluarsa
+
+if (!isset($_SESSION['nim'])) {
+  header("Location: /PBL/Project%20Web/app/views/auth/chooseRole.php");
+  exit();
+}
+
+$nim = $_SESSION['nim']; // Ambil NIM dari sesi
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -333,7 +358,7 @@
       </div>
     </nav>
     <!-- End Navbar -->
-    <div class="container-fluid py-4">
+    <!-- <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
           <div class="card mb-4 shadow-sm border-0">
@@ -367,7 +392,7 @@
                           CHECK
                         </button>
                       </td>
-                    </tr>
+                    </tr> -->
 
                     <!-- Modal untuk XYZ01 -->
                     <div class="modal fade" id="detailModalXYZ01" tabindex="-1" aria-labelledby="detailModalLabelXYZ01"
@@ -504,22 +529,7 @@
                       </div>
                     </div>
 
-                    <tr>
-                      <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">TUV02</td>
-                      <td class="text-16" style="color: #6B7280; font-size: 16px;">Makan di Kelas</td>
-                      <td class="text-center">
-                        <span class="badge bg-success text-white p-2 fs-7 rounded-3"
-                          style="font-weight: 600; width: 100px; text-align: center; height: 30px; line-height: 14px;">
-                          VALID
-                        </span>
-                      </td>
-                      <td class="text-center">
-                        <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal"
-                          data-bs-target="#detailModalTUV02" style="font-weight: 600;">
-                          CHECK
-                        </button>
-                      </td>
-                    </tr>
+                   
                     <!-- Modal untuk TUV02 -->
                     <div class="modal fade" id="detailModalTUV02" tabindex="-1" aria-labelledby="detailModalLabelTUV02"
                       aria-hidden="true">
@@ -728,7 +738,7 @@
                   </div>
                 </div>
               </div>
-              <tr>
+              <!-- <tr>
                 <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">QRS03</td>
                 <td class="text-16" style="color: #6B7280; font-size: 16px;">Bolos</td>
                 <td class="text-center">
@@ -743,7 +753,7 @@
                     CHECK
                   </button>
                 </td>
-              </tr>
+              </tr> -->
               <!-- Modal untuk QRS03 -->
               <div class="modal fade" id="detailModalQRS03" tabindex="-1" aria-labelledby="detailModalLabelQRS03"
                 aria-hidden="true">
@@ -836,7 +846,7 @@
       </div>
     </div>
     </div>
-    <div class="container-fluid py-0">
+    <!-- <div class="container-fluid py-0">
       <div class="row">
         <div class="col-12">
           <div class="card mb-4 shadow-sm border-0">
@@ -872,7 +882,7 @@
                       </td>
                     </tr>
 
-                    <!-- Modal for ABC01 -->
+                    Modal for ABC01
                     <div class="modal fade" id="detailModalABC01" tabindex="-1" aria-labelledby="detailModalLabelABC01"
                       aria-hidden="true">
                       <div class="modal-dialog modal-lg">
@@ -884,16 +894,16 @@
                           </div>
                           <div class="modal-body">
                             <div class="row">
-                              <!-- Foto yang Bisa Diklik untuk Zoom -->
-                              <div class="col-md-4">
+                           Foto yang Bisa Diklik untuk Zoom -->
+                              <!-- <div class="col-md-4">
                                 <div class="text-center">
                                   <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom"
                                     class="img-fluid rounded w-100" data-bs-toggle="modal"
                                     data-bs-target="#buktiZoomModalABC01" style="cursor: pointer;">
                                 </div>
-                              </div>
+                              </div> -->
                               <!-- Informasi di sebelah kanan -->
-                              <div class="col-md-8">
+                              <!-- <div class="col-md-8">
                                 <div class="mb-3">
                                   <label class="form-label" style="font-weight: 600px; color: #223381;">Nama Mahasiswa
                                     Terlapor</label>
@@ -930,21 +940,21 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
+                            <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;"> -->
                               <!-- Tombol Aju Banding -->
-                              <button class="btn btn-primary rounded-3 me-2"
+                              <!-- <button class="btn btn-primary rounded-3 me-2"
                                 style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; margin-right: 10px;"
                                 data-bs-toggle="modal" data-bs-target="#ajuBandingModal">
                                 Aju Banding
-                              </button>
+                              </button> -->
                               <!-- Tombol Tolak -->
-                              <button class="btn btn-primary rounded-3"
+                              <!-- <button class="btn btn-primary rounded-3"
                                 style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; margin-right: 10px;"
                                 id="submitBtn" data-bs-toggle="modal" data-bs-target="#successModal">
                                 Tolak
-                              </button>
+                              </button> -->
                               <!-- Tombol Terima -->
-                              <button class="btn btn-primary rounded-3"
+                              <!-- <button class="btn btn-primary rounded-3"
                                 style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;"
                                 id="submitBtn" data-bs-toggle="modal" data-bs-target="#successModal">
                                 Terima
@@ -953,7 +963,7 @@
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
 
                     <!-- Modal untuk Zoom Gambar -->
                     <div class="modal fade" id="buktiZoomModalABC01" tabindex="-1"
@@ -1071,22 +1081,6 @@
                       </div>
                     </div>
 
-                    <tr>
-                      <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">DEF02</td>
-                      <td class="text-16" style="color: #6B7280; font-size: 16px;">Makan di Kelas</td>
-                      <td class="text-center">
-                        <span class="badge bg-success text-white p-2 fs-7 rounded-3"
-                          style="font-weight: 600; width: 100px; text-align: center; height: 30px; line-height: 14px;">
-                          VALID
-                        </span>
-                      </td>
-                      <td class="text-center">
-                        <button class="btn btn-primary py-1 px-4 fs-7 w-45 rounded-3" data-bs-toggle="modal"
-                          data-bs-target="#detailModalDEF02" style="font-weight: 600;">
-                          CHECK
-                        </button>
-                      </td>
-                    </tr>
                     <!-- Modal for DEF02 -->
                     <div class="modal fade" id="detailModalDEF02" tabindex="-1" aria-labelledby="detailModalLabelDEF02"
                       aria-hidden="true">
@@ -1287,9 +1281,62 @@
           </div>
         </div>
       </div>
+    </div> 
+
+    <div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4 shadow-sm border-0">
+                <div class="card-header pb-3 bg-white text-navy-blue">
+                    <h4 class="mb-0" style="color: #223381; font-size: 20px;">LAPORAN YANG DIAJUKAN</h4>
+                </div>
+                <div class="card-body px-4 pt-0 pb-2">
+                    <div class="table-responsive">
+                        <table class="table align-items-center mb-0" id="submittedReports">
+                            <thead>
+                                <tr>
+                                    <th>ID. PELANGGARAN</th>
+                                    <th>NAMA PELANGGARAN</th>
+                                    <th>STATUS</th>
+                                    <th>DETAIL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data laporan yang diajukan akan ditambahkan di sini -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4 shadow-sm border-0">
+                <div class="card-header pb-3 bg-white text-navy-blue">
+                    <h4 class="mb-0" style="color: #223381; font-size: 20px;">LAPORAN YANG DITERIMA</h4>
+                </div>
+                <div class="card-body px-4 pt-0 pb-2">
+                    <div class="table-responsive">
+                        <table class="table align-items-center mb-0" id="receivedReports">
+                            <thead>
+                                <tr>
+                                    <th>ID. PELANGGARAN</th>
+                                    <th>NAMA PELANGGARAN</th>
+                                    <th>STATUS</th>
+                                    <th>DETAIL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data laporan yang diterima akan ditambahkan di sini -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <footer class="footer">
       Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
     </footer>
@@ -1301,6 +1348,80 @@
   <script src="../../../../../public/js/core/bootstrap.min.js"></script>
   <script src="../../../../../public/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../../../../../public/js/plugins/smooth-scrollbar.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    fetch("http://localhost/PBL/Project%20Web/app/controllers/getReports.php") // Ganti dengan URL yang sesuai
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error(data.error);
+                return;
+            }
+
+   
+            // Menampilkan laporan yang diajukan
+            const submittedTableBody = document.querySelector("#submittedReports tbody");
+            submittedTableBody.innerHTML = ""; // Bersihkan baris yang ada
+            data.submitted.forEach(report => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${report.id_pelanggaran}</td>
+                    <td style="max-width: 450px; word-wrap: break-word; white-space: wrap; overflow: hidden; text-overflow: ellipsis;" title="${report.nama_pelanggaran}">
+                ${report.nama_pelanggaran}
+              </td>
+                    <td class="text-center">
+                <span class="badge ${getBadgeClass(report.status)} text-white">${report.status}</span>
+              </td>
+                    <td class="text-center rounded-end">
+                <button class="btn btn-primary py-1 px-4 fs-7 w-50 rounded-3 check" 
+                  data-bs-toggle="modal" data-bs-target="#detailModal" data-id="${report.id_pelanggaran}">
+                  CHECK
+                </button>
+              </td>
+                `;
+                submittedTableBody.appendChild(row);
+            });
+
+            // Menampilkan laporan yang diterima
+            const receivedTableBody = document.querySelector("#receivedReports tbody");
+            receivedTableBody.innerHTML = ""; // Bersihkan baris yang ada
+            data.received.forEach(report => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${report.id_pelanggaran}</td>
+                      <td style="max-width: 450px; word-wrap: break-word; white-space: wrap; overflow: hidden; text-overflow: ellipsis;" title="${report.nama_pelanggaran}">
+                ${report.nama_pelanggaran}
+              </td>
+                    <td class="text-center">
+                <span class="badge ${getBadgeClass(report.status)} text-white">${report.status}</span>
+              </td>
+                    <td class="text-center rounded-end">
+                <button class="btn btn-primary py-1 px-4 fs-7 w-50 rounded-3 check" 
+                  data-bs-toggle="modal" data-bs-target="#detailModal" data-id="${report.id_pelanggaran}">
+                  CHECK
+                </button>
+              </td>
+                `;
+                receivedTableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Error fetching reports:', error));
+});
+ // Function to get badge class based on status
+ function getBadgeClass(status) {
+        switch (status.toLowerCase()) {
+          case 'pending':
+            return 'bg-warning';
+          case 'valid':
+            return 'bg-success';
+          case 'reject':
+            return 'bg-danger';
+          default:
+            return 'bg-secondary';
+        }
+      }
+  </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

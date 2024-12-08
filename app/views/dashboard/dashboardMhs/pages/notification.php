@@ -267,7 +267,6 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
 
   <script>
   // Fungsi untuk mengambil notifikasi mahasiswa
-  // Fungsi untuk mengambil notifikasi mahasiswa
   function fetchNotifications() {
   const nim = '2341760020'; // Ganti dengan sesi login jika tersedia
 
@@ -290,7 +289,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
             <div class="card-body">
               <h5 class="card-title ${notification.status_notifikasi === 'Unread' ? 'text-primary' : 'text-secondary'}">${notification.isi}</h5>
               <p class="card-text">${notification.waktu_dibuat}</p>
-              <button class="btn btn-info text-white fw-bold view-pdf" data-pdf="${notification.pdf_url}">
+              <button class="btn btn-info text-white fw-bold view-pdf" data-pdf="${notification.pdf_url}"style="background-color: #223381; border-color: #223381;">
                 Lihat Detail
               </button>
             </div>
