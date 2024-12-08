@@ -344,9 +344,9 @@
         <!-- Card for the Report Form -->
         <div class="col-md-8 mt-3">
           <div class="card shadow-lg border-0 rounded-4">
-            <div class="card-header">
-              <h6>Melaporkan Pelanggaran</h6>
-              <small>Form Laporan</small>
+            <div class="card-header text-center" style="color: #223381; background-color: #f8f9fa;">
+              <h6 style="font-weight: bold; font-size: 18px; margin-bottom: 5px; color: #223381;">Melaporkan Pelanggaran</h6>
+              <small style="font-size: 14px;">Form Laporan</small>
             </div>
             <div class="card-body p-4">
               <form action="/PBL/Project%20Web/app/controllers/processReport.php" method="POST" enctype="multipart/form-data">
@@ -380,6 +380,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
 

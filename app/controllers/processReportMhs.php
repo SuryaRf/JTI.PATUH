@@ -59,17 +59,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               }
           }
 
-        // // Tambahkan notifikasi untuk mahasiswa dan pelapor
-        // $notifikasi_mahasiswa = "Terdapat laporan pelanggaran untuk Anda pada $waktu_pelanggaran di $lokasi. Status: $status.";
-        // $notifikasi_admin = "Anda telah melaporkan pelanggaran mahasiswa dengan NIM $nim_terlapor.";
+        // Tambahkan notifikasi untuk mahasiswa dan pelapor
+        $notifikasi_mahasiswa = "Terdapat laporan pelanggaran untuk Anda pada $waktu_pelanggaran di $lokasi. Status: $status.";
+        $notifikasi_admin = "Anda telah melaporkan pelanggaran mahasiswa dengan NIM $nim_terlapor.";
 
-        // $query_mahasiswa = "INSERT INTO Notifikasi (nim, isi) VALUES (?, ?)";
-        // $params_mahasiswa = [$nim_terlapor, $notifikasi_mahasiswa];
-        // sqlsrv_query($conn, $query_mahasiswa, $params_mahasiswa);
+        $query_mahasiswa = "INSERT INTO Notifikasi (nim, isi) VALUES (?, ?)";
+        $params_mahasiswa = [$nim_terlapor, $notifikasi_mahasiswa];
+        sqlsrv_query($conn, $query_mahasiswa, $params_mahasiswa);
 
-        // $query_admin = "INSERT INTO Notifikasi (nim, isi) VALUES (?, ?)";
-        // $params_admin = [$nim_pelapor, $notifikasi_admin];
-        // sqlsrv_query($conn, $query_admin, $params_admin);
+        $query_admin = "INSERT INTO Notifikasi (nim, isi) VALUES (?, ?)";
+        $params_admin = [$nim_pelapor, $notifikasi_admin];
+        sqlsrv_query($conn, $query_admin, $params_admin);
 
         echo json_encode(['success' => 'Laporan berhasil dikirim.']);
     } catch (Exception $e) {
