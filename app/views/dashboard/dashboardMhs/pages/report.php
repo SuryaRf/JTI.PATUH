@@ -232,138 +232,160 @@
   </aside>
   <main class="main-content position-relative border-radius-lg ">
     <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
-      data-scroll="false">
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">Melaporkan Pelanggaran</li>
           </ol>
-          <h6 class="font-weight: 600; text-white mb-0">Melaporkan Pelanggaran</h6>
+          <h6 class="font-weight-bolder text-white mb-0">Melaporkan Pelanggaran</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
 
           </div>
           <ul class="navbar-nav  justify-content-end">
+
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line bg-white"></i>
+                  <i class="sidenav-toggler-line bg-white"></i>
+                  <i class="sidenav-toggler-line bg-white"></i>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item px-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0">
+                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+              </a>
+            </li>
+            <li class="nav-item dropdown pe-2 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-bell cursor-pointer"></i>
+              </a>
+              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="../../../../../public/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">New message</span> from Laur
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          13 minutes ago
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="../../../../../public/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark  me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">New album</span> by Travis Scott
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          1 day
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
+                        <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                          <title>credit-card</title>
+                          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                              <g transform="translate(1716.000000, 291.000000)">
+                                <g transform="translate(453.000000, 454.000000)">
+                                  <path class="color-background" d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z" opacity="0.593633743"></path>
+                                  <path class="color-background" d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"></path>
+                                </g>
+                              </g>
+                            </g>
+                          </g>
+                        </svg>
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          Payment successfully completed
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          2 days
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
     <!-- End Navbar -->
-    <div class="container-fluid py-2">
+    <div class="container-fluid">
       <div class="row justify-content-center">
         <!-- Card for the Report Form -->
         <div class="col-md-8 mt-3">
-          <div class="card shadow-lg rounded-lg border-0">
-            <div class="card-header"
-              style="background-color: #FFFFFF; color: #223381; text-align: center; padding: 1rem;">
-              <h6 style="color: #223381; font-size: 20px; font-weight: bold;">Melaporkan Pelanggaran</h6>
-              <small style="color: #223381; font-size: 16px; font-weight: 600;">Form Laporan</small>
-              <hr style="border: 1px solid #888; width: 100%; margin-top: 30px auto;">
+          <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-header">
+              <h6>Melaporkan Pelanggaran</h6>
+              <small>Form Laporan</small>
             </div>
-            <style>
-              body {
-                font-family: 'Poppins', sans-serif !important;
-              }
-
-              .form-control,
-              .btn,
-              .file-upload {
-                font-family: 'Poppins', sans-serif !important;
-              }
-            </style>
-            </head>
-
-            <body>
-              <div class="card-body p-4" style="margin-top: -40px;">
-                <form>
-                  <div class="form-group mb-3">
-                    <label for="nim"
-                      style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #223381;">Mahasiswa
-                      Terlapor</label>
-                    <input type="text" id="nim" class="form-control rounded-2" placeholder="Masukkan NIM mahasiswa"
-                      required>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="pelanggaran"
-                      style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #223381;">Nama
-                      Pelanggaran</label>
-                    <div class="form-group mb-3">
-                      <div class="form-group mb-3">
-                        <div class="input-group" style="position: relative;">
-                          <select id="pelanggaran" name="id_tatib" class="form-control" required
-                            style="padding-right: 35px; appearance: none; border: 1px solid #ccc; position: relative; z-index: 2; color: #aaa; background-color: #fff;"
-                            onchange="changeColor(this)">
-                            <option value="" style="color: #999;">Pilih Pelanggaran</option>
-                          </select>
-                          <div
-                            style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); z-index: 3;">
-                            <i class="fas fa-angle-down" style="color: #223381; font-size: 16px;"></i>
-                          </div>
-                        </div>
-                      </div>
-
-                      <script>
-                        function changeColor(selectElement) {
-                          if (selectElement.value) {
-                            selectElement.style.color = '#222'; // Mengubah warna teks menjadi gelap
-                          } else {
-                            selectElement.style.color = '#ccc'; // Mengembalikan warna teks menjadi samar jika tidak ada pilihan
-                          }
-                        }
-                      </script>
-
-                    </div>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="waktu"
-                      style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #223381;">Waktu</label>
-                    <input style="color: #aaa" type="datetime-local" id="waktu" name="waktu_pelanggaran" class="form-control rounded-2" placeholder="Pilih Waktu Kejadian"
-                      required onchange="changeColor(this)">
-                      <script>
-                        function changeColor(selectElement) {
-                          if (selectElement.value) {
-                            selectElement.style.color = '#222'; // Mengubah warna teks menjadi gelap
-                          } else {
-                            selectElement.style.color = '#ccc'; // Mengembalikan warna teks menjadi samar jika tidak ada pilihan
-                          }
-                        }
-                      </script>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="lokasi"
-                      style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #223381;">Lokasi</label>
-                    <input type="text" id="lokasi" class="form-control rounded-2" placeholder="Masukkan Lokasi Kejadian"
-                      required>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="bukti"
-                      style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #223381;">Bukti</label>
-                    <input type="file" id="bukti" class="form-control rounded-2" accept="image/*"
-                      onchange="displayFileName(this)" required>
-                    <small id="fileName" class="form-text text-muted" style="margin-top: 5px;"></small>
-                  </div>
-
-                  <script>
-                    function displayFileName(input) {
-                      const fileName = input.files[0] ? input.files[0].name : '';
-                      document.getElementById('fileName').textContent = fileName;
-                    }
-                  </script>
-                  <div class="form-footer text-center mt-4">
-                    <button class="btn btn-primary rounded-3 me-2" data-bs-dismiss="modal"
-                      style="font-size: 14px; font-weight: 600; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-5px);">
-                      Kirim
-                    </button>
-                  </div>
-                </form>
-              </div>
+            <div class="card-body p-4">
+              <form action="/PBL/Project%20Web/app/controllers/processReport.php" method="POST" enctype="multipart/form-data">
+                <div class="form-group mb-4">
+                  <label for="nim">Mahasiswa Terlapor</label>
+                  <input type="text" id="nim" name="nim" class="form-control" placeholder="Masukkan NIM mahasiswa" required>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="pelanggaran">Nama Pelanggaran</label>
+                  <select id="pelanggaran" name="id_tatib" class="form-control" required>
+                    <option value="">Pilih Pelanggaran</option>
+                    <!-- Tambahkan pilihan pelanggaran -->
+                  </select>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="waktu">Waktu</label>
+                  <input type="datetime-local" id="waktu" name="waktu_pelanggaran" class="form-control" placeholder="Pilih Waktu Kejadian" required>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="lokasi">Lokasi</label>
+                  <input type="text" id="lokasi" name="lokasi" class="form-control" placeholder="Masukkan Lokasi Kejadian" required>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="bukti">Bukti</label>
+                  <input type="file" name="bukti" id="bukti" class="form-control" required>
+                </div>
+                <div class="form-footer text-center mt-4">
+                  <button type="submit" class="btn btn-primary btn-lg rounded-pill px-4 py-2">Kirim</button>
+                </div>
+              </form>
+            </div>
           </div>
-          <footer class="footer" style="margin-top: 50px;">
-            Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
-          </footer>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
+    </footer>
   </main>
 
   </div>
@@ -382,7 +404,7 @@
     }
   </script>
 
-<script>
+  <script>
     document.addEventListener("DOMContentLoaded", function() {
       const pelanggaranDropdown = document.getElementById("pelanggaran");
 
@@ -408,6 +430,60 @@
         });
     });
   </script>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault(); // Mencegah refresh halaman
+
+      // Ambil data dari form
+      const formData = new FormData(this);
+
+      // Kirim data via AJAX menggunakan Fetch API
+      fetch('http://localhost/PBL/Project%20Web/app/controllers/processReportMhs.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.success) {
+            Swal.fire({
+              title: 'Laporan Terkirim!',
+              text: data.success,
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 3000
+            }).then(() => {
+              window.location.href = 'report.php';
+            });
+          } else {
+            Swal.fire({
+              title: 'Gagal!',
+              text: data.error || 'Terjadi kesalahan saat mengirim laporan.',
+              icon: 'error',
+              confirmButtonText: 'Coba Lagi'
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          Swal.fire({
+            title: 'Oops!',
+            text: 'Terjadi kesalahan saat memproses laporan.',
+            icon: 'error',
+            confirmButtonText: 'Coba Lagi'
+          });
+        });
+
+    });
+  </script>
+  <!-- Tambahkan SweetAlert2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
