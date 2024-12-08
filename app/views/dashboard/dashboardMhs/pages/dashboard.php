@@ -377,42 +377,53 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
 
 
           <!-- Modal untuk Aju Banding -->
-          <div class="modal fade" id="ajuBandingModal" tabindex="-1" aria-labelledby="ajuBandingModalLabel"
-            aria-hidden="true" data-bs-dismiss="modal">
+          <div class="modal fade" id="ajuBandingModal" tabindex="-1" aria-labelledby="ajuBandingModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
               <div class="modal-content" style="font-family: 'Poppins', sans-serif;">
                 <div class="modal-header">
-                  <h4 class="modal-title" id="ajuBandingModalLabel" style="color: #223381; font-size: 20px; ">AJUKAN
-                    BANDING</h4>
+                  <h4 class="modal-title" id="ajuBandingModalLabel" style="color: #223381; font-size: 20px;">AJUKAN BANDING</h4>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                   <h6 style="color: #223381; font-size: 16px;">Deskripsi Aju Banding</h6>
-                  <textarea class="form-control" rows="8" style="background-color: #eaecef; font-size: 14px;"
-                    placeholder="Masukkan banding" required></textarea>
+                  <textarea class="form-control" id="deskripsiBanding" rows="8" style="background-color: #eaecef; font-size: 14px;" placeholder="Masukkan banding" required></textarea>
 
-                  <h6 class="mt-3" style="color: #223381; font-size: 16px;">Bukti Aju Banding <span
-                      style="color: #f05529; font-size: 16px;">*</span></h6>
+                  <h6 class="mt-3" style="color: #223381; font-size: 16px;">Bukti Aju Banding <span style="color: #f05529; font-size: 16px;">*</span></h6>
                   <div class="border p-3 rounded bg-light mb-3 text-center" style="background-color: #f0f0f0;">
                     <label for="formFile" class="d-block">
-                      <img src="../../../../../public/img/upload-file.png" alt="Upload Icon"
-                        style="width: 30px; height: 30px; margin-bottom: 8px; opacity: 0.5;">
-                      <span class="d-block" style="font-size: 14px; font-weight: normal; color: #6c757d;">Unggah bukti
-                        yang menguatkan Anda disini!</span>
+                      <img src="../../../../../public/img/upload-file.png" alt="Upload Icon" style="width: 30px; height: 30px; margin-bottom: 8px; opacity: 0.5;">
+                      <span class="d-block" style="font-size: 14px; font-weight: normal; color: #6c757d;">Unggah bukti yang menguatkan Anda disini!</span>
                     </label>
                     <input class="form-control d-none" type="file" id="formFile">
                   </div>
                   <p class="text-warning mb-0" style="font-size: 14px; color: #f05529;">*tidak wajib diisi</p>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;"
-                    class="btn btn-primary" id="submitBtn" data-bs-toggle="modal"
-                    data-bs-target="#successModal">Kirim</button>
+                  <button type="button" class="btn btn-primary" id="submitAjuBanding" style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;">Kirim</button>
                 </div>
               </div>
             </div>
           </div>
 
+
+          <!-- 
+          <div class="modal fade" id="ajuBandingModal" tabindex="-1" aria-labelledby="ajuBandingModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="ajuBandingModalLabel">Aju Banding</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <textarea id="deskripsiBanding" class="form-control" rows="3" placeholder="Masukkan alasan banding"></textarea>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" id="submitAjuBanding" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div> -->
 
           <!-- Modal untuk riwayat -->
           <div class="modal fade" id="riwayatModal" tabindex="-1" aria-labelledby="riwayatModalLabel" aria-hidden="true"
@@ -622,6 +633,10 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
             // Add event listeners to buttons
             document.querySelectorAll('.check').forEach(button => {
               button.addEventListener('click', function() {
+                // Menambahkan class 'active' pada tombol yang dipilih
+                document.querySelectorAll('.check').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
                 const idPelanggaran = this.getAttribute('data-id');
                 const status = this.getAttribute('data-status');
 
@@ -653,8 +668,17 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                           modalFooter.appendChild(createButton('Close', 'btn-secondary', null, true));
                         } else if (status.toLowerCase() === 'pending') {
                           modalFooter.appendChild(createButton('Aju Banding', 'btn-primary', () => {
-                            alert('Tolak clicked.');
+                            // Tutup modal detailModal terlebih dahulu
+                            const detailModal = bootstrap.Modal.getInstance(document.getElementById('detailModal'));
+                            if (detailModal) {
+                              detailModal.hide();
+                            }
+
+                            // Tampilkan modal ajuBandingModal
+                            const ajuBandingModal = new bootstrap.Modal(document.getElementById('ajuBandingModal'));
+                            ajuBandingModal.show();
                           }));
+
                           modalFooter.appendChild(createButton('Terima', 'btn-success', () => {
                             alert('Terima clicked.');
                           }));
@@ -674,6 +698,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   });
               });
             });
+
           }
         })
         .catch(error => {
@@ -703,6 +728,155 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
           return 'badge bg-warning text-white fs-7 rounded-3';
       }
     }
+
+    document.querySelector('#submitAjuBanding').addEventListener('click', async () => {
+  const someVariableWithIdPelanggaran = document.querySelector('.check.active')?.dataset.id; // Perbaiki di sini
+
+  if (!someVariableWithIdPelanggaran) {
+    alert('ID Pelanggaran tidak ditemukan.');
+    return;
+  }
+
+  const deskripsiBanding = document.querySelector('#deskripsiBanding').value.trim();
+  const formFile = document.querySelector('#formFile').files[0]; // Ambil file yang di-upload
+
+  if (!deskripsiBanding) {
+    alert('Deskripsi banding tidak boleh kosong.');
+    return;
+  }
+
+  try {
+    const formData = new FormData();
+    formData.append('idPelanggaran', someVariableWithIdPelanggaran);
+    formData.append('deskripsiBanding', deskripsiBanding);
+
+    if (formFile) {
+      formData.append('fotoBanding', formFile);
+    }
+
+    const response = await fetch('http://localhost/PBL/Project%20Web/app/controllers/submitAjuBanding.php', {
+      method: 'POST',
+      body: formData,
+    });
+
+    const result = await response.json();
+    if (result.error) {
+      alert(result.error);
+      return;
+    }
+
+    alert('Aju Banding berhasil diajukan.');
+    const ajuBandingModal = bootstrap.Modal.getInstance(document.getElementById('ajuBandingModal'));
+    ajuBandingModal.hide();
+
+  } catch (error) {
+    console.error(error);
+    alert('Terjadi kesalahan saat mengajukan banding.');
+  }
+});
+
+
+    // document.addEventListener('DOMContentLoaded', () => {
+    //   document.querySelector('#modalFooter').addEventListener('click', (e) => {
+    //     if (e.target && e.target.matches('.btn-primary')) {
+    //       const idPelanggaran = e.target.dataset.idPelanggaran; // Ambil ID Pelanggaran dari dataset tombol
+    //       fetchRiwayat(idPelanggaran);
+    //     }
+    //   });
+    // });
+
+
+
+    // document.querySelector('#submitAjuBanding').addEventListener('click', async (e) => {
+    //   // Mengambil idPelanggaran dari tombol yang dipilih sebelumnya
+    //   const someVariableWithIdPelanggaran = e.target.dataset.idPelanggaran;
+    //   console.log('ID Pelanggaran:', someVariableWithIdPelanggaran); // Log ID Pelanggaran
+
+
+    //   // Pastikan idPelanggaran terdefinisi
+    //   if (!someVariableWithIdPelanggaran) {
+    //     alert('ID Pelanggaran tidak ditemukan.');
+    //     return;
+    //   }
+
+    //   const deskripsiBanding = document.querySelector('#deskripsiBanding').value.trim();
+
+    //   if (!deskripsiBanding) {
+    //     alert('Deskripsi banding tidak boleh kosong.');
+    //     return;
+    //   }
+
+    //   try {
+    //     const response = await fetch('http://localhost/PBL/Project%20Web/app/controllers/submitAjuBanding.php', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify({
+    //         idPelanggaran: someVariableWithIdPelanggaran,
+    //         deskripsiBanding
+    //       }),
+    //     });
+
+    //     const result = await response.json();
+    //     console.log('Submit result:', result); // Tambahkan log untuk melihat hasil
+    //     if (result.error) {
+    //       alert(result.error);
+    //       return;
+    //     }
+
+    //     alert('Aju Banding berhasil diajukan.');
+    //     const ajuBandingModal = bootstrap.Modal.getInstance(document.getElementById('ajuBandingModal'));
+    //     ajuBandingModal.hide();
+
+    //     // Tampilkan data terbaru di modal Riwayat
+    //     const riwayatModal = new bootstrap.Modal(document.getElementById('riwayatModal'));
+    //     await loadRiwayat(someVariableWithIdPelanggaran);
+    //     riwayatModal.show();
+
+    //   } catch (error) {
+    //     console.error(error);
+    //     alert('Terjadi kesalahan saat mengajukan banding.');
+    //   }
+    // });
+
+
+
+
+    // async function loadRiwayat(idPelanggaran) {
+    //   try {
+    //     const response = await fetch(`http://localhost/PBL/Project%20Web/app/controllers/getRiwayatBanding.php?id_pelanggaran=${idPelanggaran}`);
+    //     if (!response.ok) {
+    //       throw new Error('Gagal mengambil data riwayat banding');
+    //     }
+
+    //     const data = await response.json();
+    //     if (data.error) {
+    //       alert(data.error);
+    //       return;
+    //     }
+
+    //     const modalBody = document.querySelector('#riwayatModal .modal-body');
+    //     modalBody.innerHTML = '';
+
+    //     data.riwayat.forEach(entry => {
+    //       const entryHtml = `
+    //             <div class="right d-flex justify-content-end align-items-start mb-3">
+    //                 <div class="message-bubble">
+    //                     <p>${entry.deskripsi_banding}</p>
+    //                 </div>
+    //                 <div>
+    //                     <i class="bi bi-person-circle ms-2 icon-user" style="font-size: 24px; color: #223381;"></i>
+    //                 </div>
+    //             </div>
+    //         `;
+    //       modalBody.innerHTML += entryHtml;
+    //     });
+    //   } catch (error) {
+    //     console.error(error);
+    //     alert('Terjadi kesalahan saat memuat data riwayat.');
+    //   }
+    // }
   </script>
 
   <script>
