@@ -405,26 +405,6 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
             </div>
           </div>
 
-
-          <!-- 
-          <div class="modal fade" id="ajuBandingModal" tabindex="-1" aria-labelledby="ajuBandingModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="ajuBandingModalLabel">Aju Banding</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <textarea id="deskripsiBanding" class="form-control" rows="3" placeholder="Masukkan alasan banding"></textarea>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" id="submitAjuBanding" class="btn btn-primary">Submit</button>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
           <!-- Modal untuk riwayat -->
           <div class="modal fade" id="riwayatModal" tabindex="-1" aria-labelledby="riwayatModalLabel" aria-hidden="true"
             data-bs-dismiss="modal">
@@ -679,8 +659,33 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                             ajuBandingModal.show();
                           }));
 
-                          modalFooter.appendChild(createButton('Terima', 'btn-success', () => {
-                            alert('Terima clicked.');
+                          modalFooter.appendChild(createButton('Terima', 'btn-success', async () => {
+                            const idPelanggaran = this.getAttribute('data-id'); // Ambil ID pelanggaran
+
+                            try {
+                              const response = await fetch('http://localhost/PBL/Project%20Web/app/controllers/updateViolationStatus.php', {
+                                method: 'POST',
+                                headers: {
+                                  'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                  id_pelanggaran: idPelanggaran,
+                                  status: 'valid'
+                                }),
+                              });
+
+                              const result = await response.json();
+                              if (result.error) {
+                                alert(result.error);
+                              } else {
+                                alert('Status pelanggaran berhasil diperbarui menjadi valid.');
+                                // Refresh data atau lakukan tindakan lain setelah status diperbarui
+                                location.reload(); // Reload halaman untuk memperbarui data
+                              }
+                            } catch (error) {
+                              console.error('Error:', error);
+                              alert('Terjadi kesalahan saat memperbarui status pelanggaran.');
+                            }
                           }));
                         }
                       } else {
@@ -730,50 +735,50 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
     }
 
     document.querySelector('#submitAjuBanding').addEventListener('click', async () => {
-  const someVariableWithIdPelanggaran = document.querySelector('.check.active')?.dataset.id; // Perbaiki di sini
+      const someVariableWithIdPelanggaran = document.querySelector('.check.active')?.dataset.id; // Perbaiki di sini
 
-  if (!someVariableWithIdPelanggaran) {
-    alert('ID Pelanggaran tidak ditemukan.');
-    return;
-  }
+      if (!someVariableWithIdPelanggaran) {
+        alert('ID Pelanggaran tidak ditemukan.');
+        return;
+      }
 
-  const deskripsiBanding = document.querySelector('#deskripsiBanding').value.trim();
-  const formFile = document.querySelector('#formFile').files[0]; // Ambil file yang di-upload
+      const deskripsiBanding = document.querySelector('#deskripsiBanding').value.trim();
+      const formFile = document.querySelector('#formFile').files[0]; // Ambil file yang di-upload
 
-  if (!deskripsiBanding) {
-    alert('Deskripsi banding tidak boleh kosong.');
-    return;
-  }
+      if (!deskripsiBanding) {
+        alert('Deskripsi banding tidak boleh kosong.');
+        return;
+      }
 
-  try {
-    const formData = new FormData();
-    formData.append('idPelanggaran', someVariableWithIdPelanggaran);
-    formData.append('deskripsiBanding', deskripsiBanding);
+      try {
+        const formData = new FormData();
+        formData.append('idPelanggaran', someVariableWithIdPelanggaran);
+        formData.append('deskripsiBanding', deskripsiBanding);
 
-    if (formFile) {
-      formData.append('fotoBanding', formFile);
-    }
+        if (formFile) {
+          formData.append('fotoBanding', formFile);
+        }
 
-    const response = await fetch('http://localhost/PBL/Project%20Web/app/controllers/submitAjuBanding.php', {
-      method: 'POST',
-      body: formData,
+        const response = await fetch('http://localhost/PBL/Project%20Web/app/controllers/submitAjuBanding.php', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const result = await response.json();
+        if (result.error) {
+          alert(result.error);
+          return;
+        }
+
+        alert('Aju Banding berhasil diajukan.');
+        const ajuBandingModal = bootstrap.Modal.getInstance(document.getElementById('ajuBandingModal'));
+        ajuBandingModal.hide();
+
+      } catch (error) {
+        console.error(error);
+        alert('Terjadi kesalahan saat mengajukan banding.');
+      }
     });
-
-    const result = await response.json();
-    if (result.error) {
-      alert(result.error);
-      return;
-    }
-
-    alert('Aju Banding berhasil diajukan.');
-    const ajuBandingModal = bootstrap.Modal.getInstance(document.getElementById('ajuBandingModal'));
-    ajuBandingModal.hide();
-
-  } catch (error) {
-    console.error(error);
-    alert('Terjadi kesalahan saat mengajukan banding.');
-  }
-});
 
 
     // document.addEventListener('DOMContentLoaded', () => {
