@@ -408,6 +408,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
           <!-- Modal untuk riwayat -->
           <div class="modal fade" id="riwayatModal" tabindex="-1" aria-labelledby="riwayatModalLabel" aria-hidden="true"
             data-bs-dismiss="modal">
+            <div id="riwayatContainer"></div>
             <div class="modal-dialog modal-dialog-centered modal-lg" style="margin: 20px; margin-left: 400px;">
               <div class="modal-content" style="padding: 20px;">
                 <div class="modal-header" style="padding-top: 10px; padding-bottom: 10px;">
@@ -641,8 +642,32 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                         modalFooter.innerHTML = ''; // Clear old buttons
 
                         if (status.toLowerCase() === 'valid') {
-                          modalFooter.appendChild(createButton('Riwayat Aju Banding', 'btn-primary', () => {
-                            alert('Riwayat Aju Banding clicked.');
+                          modalFooter.appendChild(createButton('Riwayat Aju Banding', 'btn-primary', async () => {
+                            try {
+                              const response = await fetch(`http://localhost/PBL/Project%20Web/app/controllers/getBandingHistory.php?id=${idPelanggaran}`);
+                              const riwayatData = await response.json();
+
+                              if (riwayatData.error) {
+                                alert(riwayatData.error);
+                                return;
+                              }
+
+                              const riwayatContainer = document.getElementById('riwayatContainer');
+                              riwayatContainer.innerHTML = ''; // Clear previous history
+
+                              riwayatData.forEach(item => {
+                                const messageBubble = document.createElement('div');
+                                messageBubble.className = 'message-bubble';
+                                messageBubble.innerHTML = `<p>${item.deskripsi_bandings}</p>`; // Ganti dengan field yang sesuai
+                                riwayatContainer.appendChild(messageBubble);
+                              });
+
+                              const riwayatModal = new bootstrap.Modal(document.getElementById('riwayatModal'));
+                              riwayatModal.show();
+                            } catch (error) {
+                              console.error('Error:', error);
+                              alert('Terjadi kesalahan saat mengambil riwayat aju banding.');
+                            }
                           }));
                         } else if (status.toLowerCase() === 'reject') {
                           modalFooter.appendChild(createButton('Close', 'btn-secondary', null, true));
@@ -663,7 +688,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                             const idPelanggaran = this.getAttribute('data-id'); // Ambil ID pelanggaran
 
                             try {
-                              const response = await fetch('http://localhost/PBL/Project%20Web/app/controllers/updateViolationStatus.php', {
+                              const response = await fetch('http://localhost/PBL/Project%20Web/app/controllers/updateViolationsStatusMhs.php', {
                                 method: 'POST',
                                 headers: {
                                   'Content-Type': 'application/json',
