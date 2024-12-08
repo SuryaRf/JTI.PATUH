@@ -293,12 +293,10 @@
                     <div class="form-group mb-3">
                       <div class="form-group mb-3">
                         <div class="input-group" style="position: relative;">
-                          <select id="pelanggaran" class="form-control rounded-2"
+                          <select id="pelanggaran" name="id_tatib" class="form-control" required
                             style="padding-right: 35px; appearance: none; border: 1px solid #ccc; position: relative; z-index: 2; color: #aaa; background-color: #fff;"
                             onchange="changeColor(this)">
                             <option value="" style="color: #999;">Pilih Pelanggaran</option>
-                            <option value="A" style="color: #222;">Pelanggaran A</option>
-                            <option value="B" style="color: #222;">Pelanggaran B</option>
                           </select>
                           <div
                             style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); z-index: 3;">
@@ -382,6 +380,33 @@
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
+  </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pelanggaranDropdown = document.getElementById("pelanggaran");
+
+      // Fetch data dari endpoint
+      fetch("http://localhost/PBL/Project%20Web/app/controllers/getDataRules.php")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Tambahkan opsi ke dropdown
+          data.forEach((item) => {
+            const option = document.createElement("option");
+            option.value = item.id_tatib;
+            option.textContent = `${item.nama_pelanggaran} (Tingkat: ${item.tingkat_pelanggaran})`;
+            pelanggaranDropdown.appendChild(option);
+          });
+        })
+        .catch((error) => {
+          console.error("Terjadi kesalahan saat mengambil data pelanggaran:", error);
+        });
+    });
   </script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>

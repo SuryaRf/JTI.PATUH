@@ -20,8 +20,6 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="../../../../../public/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
   <style>
-
-
     .footer {
       text-align: center;
       color: #9CA3AF;
@@ -30,9 +28,10 @@
       animation: fadeInFooter 1.5s ease;
     }
 
- h6{
-  color: white;
- }
+    h6 {
+      color: white;
+    }
+
     /* Add a shadow and transition effect to the card */
     .card {
       transition: all 0.3s ease-in-out;
@@ -145,7 +144,7 @@
         <li class="nav-item">
           <a class="nav-link " href="../pages/profile.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
+              <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Profil</span>
           </a>
@@ -153,7 +152,7 @@
         <li class="nav-item">
           <a class="nav-link" href="../../../../controllers/logout.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
+              <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Keluar</span>
           </a>
@@ -292,10 +291,9 @@
                 </div>
                 <div class="form-group mb-3">
                   <label for="pelanggaran">Nama Pelanggaran</label>
-                  <select id="pelanggaran" class="form-control rounded-pill" required>
-                    <option>Pilih Pelanggaran</option>
-                    <option>Pelanggaran A</option>
-                    <option>Pelanggaran B</option>
+                  <select id="pelanggaran" name="id_tatib" class="form-control" required>
+                    <option value="">Pilih Pelanggaran</option>
+                    <!-- Tambahkan pilihan pelanggaran -->
                   </select>
                 </div>
                 <div class="form-group mb-3">
@@ -345,62 +343,38 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const pelanggaranDropdown = document.getElementById("pelanggaran");
+
+      // Fetch data dari endpoint
+      fetch("http://localhost/PBL/Project%20Web/app/controllers/getDataRules.php")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Tambahkan opsi ke dropdown
+          data.forEach((item) => {
+            const option = document.createElement("option");
+            option.value = item.id_tatib;
+            option.textContent = `${item.nama_pelanggaran} (Tingkat: ${item.tingkat_pelanggaran})`;
+            pelanggaranDropdown.appendChild(option);
+          });
+        })
+        .catch((error) => {
+          console.error("Terjadi kesalahan saat mengambil data pelanggaran:", error);
+        });
+    });
+  </script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
 
 </html>
 
-
-
-<!-- edit delete -->
-<!-- <div class="col-md-7 mt-4">
-          <div class="card">
-            <div class="card-header pb-0 px-3">
-              <h6 class="mb-0">Billing Information</h6>
-            </div>
-            <div class="card-body pt-4 p-3">
-              <ul class="list-group">
-                <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-3 text-sm">Oliver Liam</h6>
-                    <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-sm-2">Viking Burrito</span></span>
-                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-sm-2 font-weight-bold">oliver@burrito.com</span></span>
-                    <span class="text-xs">VAT Number: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
-                  </div>
-                  <div class="ms-auto text-end">
-                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a>
-                    <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
-                  </div>
-                </li>
-                <li class="list-group-item border-0 d-flex p-4 mb-2 mt-3 bg-gray-100 border-radius-lg">
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-3 text-sm">Lucas Harper</h6>
-                    <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-sm-2">Stone Tech Zone</span></span>
-                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-sm-2 font-weight-bold">lucas@stone-tech.com</span></span>
-                    <span class="text-xs">VAT Number: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
-                  </div>
-                  <div class="ms-auto text-end">
-                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a>
-                    <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
-                  </div>
-                </li>
-                <li class="list-group-item border-0 d-flex p-4 mb-2 mt-3 bg-gray-100 border-radius-lg">
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-3 text-sm">Ethan James</h6>
-                    <span class="mb-2 text-xs">Company Name: <span class="text-dark font-weight-bold ms-sm-2">Fiber Notion</span></span>
-                    <span class="mb-2 text-xs">Email Address: <span class="text-dark ms-sm-2 font-weight-bold">ethan@fiber.com</span></span>
-                    <span class="text-xs">VAT Number: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
-                  </div>
-                  <div class="ms-auto text-end">
-                    <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a>
-                    <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div> -->
 
 
 <!-- cetak pdf -->
