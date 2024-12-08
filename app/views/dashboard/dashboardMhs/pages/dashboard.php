@@ -373,286 +373,42 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">ABC01</td>
-            <td class="text-16" style="color: #6B7280; font-size: 16px;">Merokok</td>
-            <td class="text-center">
-              <span class="badge bg-warning text-white fs-7 rounded-3"
-                style="font-weight: 600; width: 100px; text-align: center; height: 30px; line-height: 18px;">
-                TERTUNDA
-              </span>
-            </td>
-            <td class="align-middle text-center">
-              <button class="btn btn-primary py-1 px-4 fs-7 w-55 rounded-3" data-bs-toggle="modal"
-                data-bs-target="#detailModalABC01" style="font-weight: 600;">
-                CHECK
-              </button>
-            </td>
-          </tr>
 
-          <!-- Modal for ABC01 -->
-          <div class="modal fade" id="detailModalABC01" tabindex="-1" aria-labelledby="detailModalLabelABC01"
-            aria-hidden="true" data-bs-dismiss="modal">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="detailModalLabelABC01"
-                    style="font-size: 20px; font-weight: 600px; color: #223381;">Detail Pelanggaran</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <div class="row">
-                    <!-- Foto yang Bisa Diklik untuk Zoom -->
-                    <div class="col-md-4">
-                      <div class="text-center">
-                        <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom"
-                          class="img-fluid rounded w-100" data-bs-toggle="modal" data-bs-target="#buktiZoomModalABC01"
-                          style="cursor: pointer;">
-                      </div>
-                    </div>
-                    <!-- Informasi di sebelah kanan -->
-                    <div class="col-md-8">
-                      <div class="mb-3">
-                        <label class="form-label" style="font-weight: 600; color: #223381;">Nama Mahasiswa
-                          Terlapor</label>
-                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          Surya Rahmat
-                        </p>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" style="font-weight: 600; color: #223381;">NIM Mahasiswa
-                          Terlapor</label>
-                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          2341760020
-                        </p>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" style="font-weight: 60px; color: #223381;">Tingkat dan Jenis
-                          Pelanggaran</label>
-                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          IV - Mewarnai rambut berwarna punk
-                        </p>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" style="font-weight: 600; color: #223381;">Waktu</label>
-                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          Kamis, 14 November 2024 pukul 14:59
-                        </p>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" style="font-weight: 600; color: #223381;">Lokasi</label>
-                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          Di Ruang Kelas
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
-                    <!-- Tombol Aju Banding -->
-                    <button class="btn btn-primary rounded-3 me-2"
-                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; margin-right: 10px;"
-                      data-bs-toggle="modal" data-bs-target="#ajuBandingModal">
-                      Aju Banding
-                    </button>
-                    <!-- Tombol Tolak -->
-                    <button class="btn btn-primary rounded-3"
-                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; margin-right: 10px;"
-                      id="submitBtn" data-bs-toggle="modal" data-bs-target="#successModal">
-                      Tolak
-                    </button>
-                    <!-- Tombol Terima -->
-                    <button class="btn btn-primary rounded-3"
-                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" id="submitBtn"
-                      data-bs-toggle="modal" data-bs-target="#successModal">
-                      Terima
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <!-- Modal untuk Zoom Gambar -->
-          <div class="modal fade" id="buktiZoomModalABC01" tabindex="-1" aria-labelledby="buktiZoomModalLabelABC01"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-              <div class="modal-content">
-                <div class="modal-body p-0">
-                  <p
-                    style="font-weight: bold; color: #223381; margin-bottom: 0px; margin-left: 20px; margin-top: 20px;">
-                    Bukti Pelanggaran</p>
-                  <div class="d-flex justify-content-center align-items-center">
-                    <div style="padding: 20px; background-color: white; border-radius: 8px;">
-                      <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom" class="img-fluid rounded"
-                        style="max-width: 100%; height: auto; display: block; margin: 0;">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
           <!-- Modal untuk Aju Banding -->
-          <div class="modal fade" id="ajuBandingModal" tabindex="-1" aria-labelledby="ajuBandingModalLabel"
-            aria-hidden="true" data-bs-dismiss="modal">
+          <div class="modal fade" id="ajuBandingModal" tabindex="-1" aria-labelledby="ajuBandingModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
               <div class="modal-content" style="font-family: 'Poppins', sans-serif;">
                 <div class="modal-header">
-                  <h4 class="modal-title" id="ajuBandingModalLabel" style="color: #223381; font-size: 20px; ">AJUKAN
-                    BANDING</h4>
+                  <h4 class="modal-title" id="ajuBandingModalLabel" style="color: #223381; font-size: 20px;">AJUKAN BANDING</h4>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                   <h6 style="color: #223381; font-size: 16px;">Deskripsi Aju Banding</h6>
-                  <textarea class="form-control" rows="8" style="background-color: #eaecef; font-size: 14px;"
-                    placeholder="Masukkan banding" required></textarea>
+                  <textarea class="form-control" id="deskripsiBanding" rows="8" style="background-color: #eaecef; font-size: 14px;" placeholder="Masukkan banding" required></textarea>
 
-                  <h6 class="mt-3" style="color: #223381; font-size: 16px;">Bukti Aju Banding <span
-                      style="color: #f05529; font-size: 16px;">*</span></h6>
+                  <h6 class="mt-3" style="color: #223381; font-size: 16px;">Bukti Aju Banding <span style="color: #f05529; font-size: 16px;">*</span></h6>
                   <div class="border p-3 rounded bg-light mb-3 text-center" style="background-color: #f0f0f0;">
                     <label for="formFile" class="d-block">
-                      <img src="../../../../../public/img/upload-file.png" alt="Upload Icon"
-                        style="width: 30px; height: 30px; margin-bottom: 8px; opacity: 0.5;">
-                      <span class="d-block" style="font-size: 14px; font-weight: normal; color: #6c757d;">Unggah bukti
-                        yang menguatkan Anda disini!</span>
+                      <img src="../../../../../public/img/upload-file.png" alt="Upload Icon" style="width: 30px; height: 30px; margin-bottom: 8px; opacity: 0.5;">
+                      <span class="d-block" style="font-size: 14px; font-weight: normal; color: #6c757d;">Unggah bukti yang menguatkan Anda disini!</span>
                     </label>
                     <input class="form-control d-none" type="file" id="formFile">
                   </div>
                   <p class="text-warning mb-0" style="font-size: 14px; color: #f05529;">*tidak wajib diisi</p>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;"
-                    class="btn btn-primary" id="submitBtn" data-bs-toggle="modal"
-                    data-bs-target="#successModal">Kirim</button>
+                  <button type="button" class="btn btn-primary" id="submitAjuBanding" style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;">Kirim</button>
                 </div>
               </div>
             </div>
           </div>
 
-
-          <!-- Modal untuk Kirim dan Terima-->
-
-          <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" style="max-width: 300px;">
-              <div class="modal-content">
-                <div class="modal-body text-center d-flex flex-column align-items-center">
-                  <!-- Gambar dengan centang -->
-                  <div class="position-relative mb-3">
-                    <img src="../../../../../public/img/success-icon.png" alt="Success Image" class="img-fluid"
-                      style="max-width: 150px;">
-                    <i class="fas text-white fa-2x position-absolute"
-                      style="top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; padding: 10px;"></i>
-                  </div>
-                  <!-- Tulisan SUKSES -->
-                  <h4 class="mt-3">SUKSES</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <tr>
-            <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">DEF02</td>
-            <td class="text-16" style="color: #6B7280; font-size: 16px;">Makan di Kelas</td>
-            <td class="text-center">
-              <span class="badge bg-success text-white p-2 fs-7 rounded-3"
-                style="font-weight: 600; width: 100px; text-align: center; height: 30px; line-height: 16px;">
-                VALID
-              </span>
-            </td>
-            <td class="text-center">
-              <button class="btn btn-primary py-1 px-4 fs-7 w-55 rounded-3" data-bs-toggle="modal"
-                data-bs-target="#detailModalDEF02" style="font-weight: 600;">
-                CHECK
-              </button>
-            </td>
-          </tr>
-
-          <!-- Modal for DEF02 -->
-          <div class="modal fade" id="detailModalDEF02" tabindex="-1" aria-labelledby="detailModalLabelDEF02"
-            aria-hidden="true" data-bs-dismiss="modal">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="detailModalLabelDEF02" style="color: #223381">Detail Pelanggaran</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <div class="row">
-                    <!-- Foto yang Bisa Diklik untuk Zoom -->
-                    <div class="col-md-4">
-                      <div class="text-center">
-                        <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom"
-                          class="img-fluid rounded w-100" data-bs-toggle="modal" data-bs-target="#buktiZoomModalDEF02"
-                          style="cursor: pointer;">
-                      </div>
-                    </div>
-                    <!-- Informasi di sebelah kanan -->
-                    <div class="col-md-8">
-                      <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold; color: #223381">Nama Mahasiswa
-                          Terlapor</label>
-                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          Surya Rahmat
-                        </p>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold; color: #223381">NIM Mahasiswa
-                          Terlapor</label>
-                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          2341760020
-                        </p>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" style="font-weight: bold; color: #223381">Tingkat dan Jenis
-                          Pelanggaran</label>
-                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          I - Tidak mengenakan identitas diri
-                        </p>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" style="font-weight: 600px; color: #223381;">Waktu</label>
-                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          Jumat, 15 November 2024 pukul 08:00
-                        </p>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" style="font-weight: 600px; color: #223381;">Lokasi</label>
-                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          Di Area Kampus
-                        </p>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label fw-bold" style="color: #223381;">Download Berita Acara</label>
-                        <div class="form-control d-flex align-items-center justify-content-between"
-                          style="border: 1px solid #ced4da; border-radius: 4px; padding: 8px 12px;">
-                          <span style="font-size: 13px;">Berita Acara - DEF02</span>
-                          <button class="btn btn-primary btn-xs d-flex align-items-center px-2 py-1"
-                            onclick="downloadBeritaAcara()"
-                            style="font-size: 14px; font-weight: 600; background-color: #fff; color: #223381; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: box-shadow 0.3s ease;">
-                            <i class="fas fa-download me-1" style="font-weight: 600;"></i> Unduh
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="container mt-3">
-                  <div class="d-flex justify-content-end align-items-start">
-                    <button class="btn btn-primary rounded-3 me-2"
-                      style="font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-15px);"
-                      data-bs-toggle="modal" data-bs-target="#riwayatModal">
-                      Riwayat
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           <!-- Modal untuk riwayat -->
           <div class="modal fade" id="riwayatModal" tabindex="-1" aria-labelledby="riwayatModalLabel" aria-hidden="true"
             data-bs-dismiss="modal">
+            <div id="riwayatContainer"></div>
             <div class="modal-dialog modal-dialog-centered modal-lg" style="margin: 20px; margin-left: 400px;">
               <div class="modal-content" style="padding: 20px;">
                 <div class="modal-header" style="padding-top: 10px; padding-bottom: 10px;">
@@ -701,115 +457,73 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
               </div>
             </div>
           </div>
-          <!-- Modal untuk Zoom Gambar DEF02 -->
-          <div class="modal fade" id="buktiZoomModalDEF02" tabindex="-1" aria-labelledby="buktiZoomModalLabelDEF02"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-              <div class="modal-content">
-                <div class="modal-body p-0">
-                  <p
-                    style="font-weight: bold; color: #223381; margin-top: 20px; margin-bottom: 0px; margin-left: 20px;">
-                    Bukti Pelanggaran</p>
-                  <div class="d-flex justify-content-center align-items-center">
-                    <div style="padding: 20px; background-color: white; border-radius: 8px;">
-                      <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom" class="img-fluid rounded"
-                        style="max-width: 100%; height: auto; display: block; margin: 0;">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <tr>
-            <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">GHI03</td>
-            <td class="text-16" style="color: #6B7280; font-size: 16px;">Bolos</td>
-            <td class="text-center">
-              <span class="badge bg-danger text-white p-2 fs-7 rounded-3"
-                style="font-weight: 600; width: 100px; text-align: center;">
-                DITOLAK
-              </span>
-            </td>
-            <td class="text-center">
-              <button class="btn btn-primary py-1 px-4 fs-7 w-55 rounded-3" data-bs-toggle="modal"
-                data-bs-target="#detailModalGHI03" style="font-weight: 600;">
-                CHECK
-              </button>
-            </td>
-          </tr>
-
-          <!-- Modal for GHI03-->
-          <div class="modal fade" id="detailModalGHI03" tabindex="-1" aria-labelledby="detailModalLabelGHI03"
-            aria-hidden="true">
+          <!-- Detail Modal -->
+          <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabelGHI03" aria-hidden="true">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="detailModalLabelABC01"
-                    style="font-size: 20px; font-weight: 600px; color: #223381;">Detail Pelanggaran</h5>
+                  <h5 class="modal-title" id="detailModalLabelGHI03" style="font-size: 20px; font-weight: 600; color: #223381;">
+                    Detail Pelanggaran
+                  </h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                   <div class="row">
-                    <!-- Foto yang Bisa Diklik untuk Zoom -->
+                    <!-- Foto dengan opsi zoom -->
                     <div class="col-md-4">
                       <div class="text-center">
-                        <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom"
-                          class="img-fluid rounded w-100" data-bs-toggle="modal" data-bs-target="#buktiZoomModalGHI03"
+                        <img id="modalGambar" src="placeholder.jpg" alt="Bukti Zoom"
+                          class="img-fluid rounded w-100" data-bs-toggle="modal" data-bs-target="#buktiZoomModal"
                           style="cursor: pointer;">
                       </div>
                     </div>
                     <!-- Informasi di sebelah kanan -->
                     <div class="col-md-8">
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: 600px; color: #223381;">Nama
-                          Mahasiswa
-                          Terlapor</label>
-                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          Surya Rahmat
+                        <label class="form-label" style="font-weight: 600; color: #223381;">Nama Mahasiswa</label>
+                        <p id="modalNamaMahasiswa" class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                          Loading...
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: 600px; color: #223381;">NIM
-                          Mahasiswa
-                          Terlapor</label>
-                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          2341760020
+                        <label class="form-label" style="font-weight: 600; color: #223381;">NIM Mahasiswa</label>
+                        <p id="modalNimMahasiswa" class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                          Loading...
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: 600px; color: #223381;">Tingkat
-                          dan Jenis
-                          Pelanggaran</label>
-                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          I - Bolos
+                        <label class="form-label" style="font-weight: 600; color: #223381;">Jenis Pelanggaran</label>
+                        <p id="modalJenisPelanggaran" class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                          Loading...
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: 600px; color: #223381;">Waktu</label>
-                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          Kamis, 14 November 2024 pukul 14:59
+                        <label class="form-label" style="font-weight: 600; color: #223381;">Waktu</label>
+                        <p id="modalWaktu" class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                          Loading...
                         </p>
                       </div>
                       <div class="mb-3">
-                        <label class="form-label" style="font-weight: 600px; color: #223381;">Lokasi</label>
-                        <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
-                          Di Ruang Kelas
+                        <label class="form-label" style="font-weight: 600; color: #223381;">Lokasi</label>
+                        <p id="modalLokasi" class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                          Loading...
                         </p>
                       </div>
                     </div>
                   </div>
-                  <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
-                    <!-- Tombol Riwayat (Sedikit diangkat) -->
-                    <button class="btn btn-primary rounded-3 me-2"
-                      style=" font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-10px);"
-                      data-bs-toggle="modal important!">
-                      Tutup
-                    </button>
+                  <div class="modal-footer">
+                    <!-- Dynamic buttons will be appended here -->
                   </div>
+
                 </div>
               </div>
             </div>
           </div>
+
+
+
+
 
           <!-- Modal untuk Zoom Gambar -->
           <div class="modal fade" id="buktiZoomModalGHI03" tabindex="-1" aria-labelledby="buktiZoomModalLabelGHI03"
@@ -850,13 +564,11 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
   <script src="../../../../../public/css/bootstrap.min.css"></script>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
+      // Fetch total laporan
       fetch('http://localhost/PBL/Project%20Web/app/controllers/totalViolations.php')
-        .then(response => response.json())  // Parsing respons JSON dari API
+        .then(response => response.json())
         .then(data => {
-          console.log(data); // Debugging data
-
-          // Pastikan data ada
           if (data && data.total_laporan !== undefined) {
             document.getElementById('totalLaporan').innerText = data.total_laporan;
             document.getElementById('laporanSelesai').innerText = data.laporan_selesai;
@@ -866,11 +578,335 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
           }
         })
         .catch(error => {
-          console.error('Error:', error); // Menangani error jika terjadi kesalahan
+          console.error('Error:', error);
+        });
+
+      // Fetch recent violations
+      fetch('http://localhost/PBL/Project%20Web/app/controllers/recentViolations.php')
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            console.error('Error:', data.error);
+            alert('Error: ' + data.error);
+          } else {
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = ''; // Clear existing rows
+
+            data.forEach(violation => {
+              const badgeClass = getBadgeClass(violation.status);
+              const row = document.createElement('tr');
+              row.innerHTML = `
+            <td class="text-center">${violation.id_pelanggaran}</td>
+            <td>${violation.nama_pelanggaran}</td>
+            <td class="text-center"><span class="${badgeClass}">${violation.status}</span></td>
+            <td class="text-center">
+              <button class="btn btn-primary py-1 px-4 fs-7 w-100 check" 
+                      data-bs-toggle="modal" 
+                      data-id="${violation.id_pelanggaran}" 
+                      data-status="${violation.status}">
+                CHECK
+              </button>
+            </td>
+          `;
+              tbody.appendChild(row);
+            });
+
+            // Add event listeners to buttons
+            document.querySelectorAll('.check').forEach(button => {
+              button.addEventListener('click', function() {
+                // Menambahkan class 'active' pada tombol yang dipilih
+                document.querySelectorAll('.check').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                const idPelanggaran = this.getAttribute('data-id');
+                const status = this.getAttribute('data-status');
+
+                fetch(`http://localhost/PBL/Project%20Web/app/controllers/getViolationsDetailsMhs.php?id=${idPelanggaran}`)
+                  .then(response => response.json())
+                  .then(data => {
+                    if (data.error) {
+                      console.error('Error:', data.error);
+                      alert('Error: ' + data.error);
+                    } else {
+                      // Populate modal data
+                      document.getElementById('modalNamaMahasiswa').textContent = data.nama_terlapor || 'Tidak diketahui';
+                      document.getElementById('modalNimMahasiswa').textContent = data.nim_terlapor || 'Tidak diketahui';
+                      document.getElementById('modalJenisPelanggaran').textContent = data.jenis_pelanggaran || 'Tidak diketahui';
+                      document.getElementById('modalWaktu').textContent = data.waktu_pelanggaran || 'Tidak diketahui';
+                      document.getElementById('modalLokasi').textContent = data.lokasi || 'Tidak diketahui';
+                      document.getElementById('modalGambar').src = data.bukti_foto_url || 'placeholder.jpg';
+
+                      // Generate dynamic buttons based on status
+                      const modalFooter = document.querySelector('#detailModal .modal-footer');
+                      if (modalFooter) {
+                        modalFooter.innerHTML = ''; // Clear old buttons
+
+                        if (status.toLowerCase() === 'valid') {
+                          modalFooter.appendChild(createButton('Riwayat Aju Banding', 'btn-primary', async () => {
+                            try {
+                              const response = await fetch(`http://localhost/PBL/Project%20Web/app/controllers/getBandingHistory.php?id=${idPelanggaran}`);
+                              const riwayatData = await response.json();
+
+                              if (riwayatData.error) {
+                                alert(riwayatData.error);
+                                return;
+                              }
+
+                              const riwayatContainer = document.getElementById('riwayatContainer');
+                              riwayatContainer.innerHTML = ''; // Clear previous history
+
+                              riwayatData.forEach(item => {
+                                const messageBubble = document.createElement('div');
+                                messageBubble.className = 'message-bubble';
+                                messageBubble.innerHTML = `<p>${item.deskripsi_bandings}</p>`; // Ganti dengan field yang sesuai
+                                riwayatContainer.appendChild(messageBubble);
+                              });
+
+                              const riwayatModal = new bootstrap.Modal(document.getElementById('riwayatModal'));
+                              riwayatModal.show();
+                            } catch (error) {
+                              console.error('Error:', error);
+                              alert('Terjadi kesalahan saat mengambil riwayat aju banding.');
+                            }
+                          }));
+                        } else if (status.toLowerCase() === 'reject') {
+                          modalFooter.appendChild(createButton('Close', 'btn-secondary', null, true));
+                        } else if (status.toLowerCase() === 'pending') {
+                          modalFooter.appendChild(createButton('Aju Banding', 'btn-primary', () => {
+                            // Tutup modal detailModal terlebih dahulu
+                            const detailModal = bootstrap.Modal.getInstance(document.getElementById('detailModal'));
+                            if (detailModal) {
+                              detailModal.hide();
+                            }
+
+                            // Tampilkan modal ajuBandingModal
+                            const ajuBandingModal = new bootstrap.Modal(document.getElementById('ajuBandingModal'));
+                            ajuBandingModal.show();
+                          }));
+
+                          modalFooter.appendChild(createButton('Terima', 'btn-success', async () => {
+                            const idPelanggaran = this.getAttribute('data-id'); // Ambil ID pelanggaran
+
+                            try {
+                              const response = await fetch('http://localhost/PBL/Project%20Web/app/controllers/updateViolationsStatusMhs.php', {
+                                method: 'POST',
+                                headers: {
+                                  'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                  id_pelanggaran: idPelanggaran,
+                                  status: 'valid'
+                                }),
+                              });
+
+                              const result = await response.json();
+                              if (result.error) {
+                                alert(result.error);
+                              } else {
+                                alert('Status pelanggaran berhasil diperbarui menjadi valid.');
+                                // Refresh data atau lakukan tindakan lain setelah status diperbarui
+                                location.reload(); // Reload halaman untuk memperbarui data
+                              }
+                            } catch (error) {
+                              console.error('Error:', error);
+                              alert('Terjadi kesalahan saat memperbarui status pelanggaran.');
+                            }
+                          }));
+                        }
+                      } else {
+                        console.error('Modal footer not found.');
+                      }
+
+                      // Show modal
+                      const modal = new bootstrap.Modal(document.getElementById('detailModal'));
+                      modal.show();
+                    }
+                  })
+                  .catch(error => {
+                    console.error('Fetch Error:', error);
+                    alert('Terjadi kesalahan saat mengambil detail laporan.');
+                  });
+              });
+            });
+
+          }
+        })
+        .catch(error => {
+          console.error('Fetch Error:', error);
+          alert('Terjadi kesalahan saat mengambil data.');
         });
     });
 
+    // Helper to create buttons
+    function createButton(text, className, onClick, dismiss = false) {
+      const button = document.createElement('button');
+      button.className = `btn ${className}`;
+      button.textContent = text;
+      if (onClick) button.addEventListener('click', onClick);
+      if (dismiss) button.setAttribute('data-bs-dismiss', 'modal');
+      return button;
+    }
 
+    // Fungsi untuk menentukan class badge berdasarkan status
+    function getBadgeClass(status) {
+      switch (status.toUpperCase()) {
+        case 'VALID':
+          return 'badge bg-success text-white p-2 fs-7 rounded-3';
+        case 'REJECT':
+          return 'badge bg-danger text-white p-2 fs-7 rounded-3';
+        default: // TERTUNDA atau status lainnya
+          return 'badge bg-warning text-white fs-7 rounded-3';
+      }
+    }
+
+    document.querySelector('#submitAjuBanding').addEventListener('click', async () => {
+      const someVariableWithIdPelanggaran = document.querySelector('.check.active')?.dataset.id; // Perbaiki di sini
+
+      if (!someVariableWithIdPelanggaran) {
+        alert('ID Pelanggaran tidak ditemukan.');
+        return;
+      }
+
+      const deskripsiBanding = document.querySelector('#deskripsiBanding').value.trim();
+      const formFile = document.querySelector('#formFile').files[0]; // Ambil file yang di-upload
+
+      if (!deskripsiBanding) {
+        alert('Deskripsi banding tidak boleh kosong.');
+        return;
+      }
+
+      try {
+        const formData = new FormData();
+        formData.append('idPelanggaran', someVariableWithIdPelanggaran);
+        formData.append('deskripsiBanding', deskripsiBanding);
+
+        if (formFile) {
+          formData.append('fotoBanding', formFile);
+        }
+
+        const response = await fetch('http://localhost/PBL/Project%20Web/app/controllers/submitAjuBanding.php', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const result = await response.json();
+        if (result.error) {
+          alert(result.error);
+          return;
+        }
+
+        alert('Aju Banding berhasil diajukan.');
+        const ajuBandingModal = bootstrap.Modal.getInstance(document.getElementById('ajuBandingModal'));
+        ajuBandingModal.hide();
+
+      } catch (error) {
+        console.error(error);
+        alert('Terjadi kesalahan saat mengajukan banding.');
+      }
+    });
+
+
+    // document.addEventListener('DOMContentLoaded', () => {
+    //   document.querySelector('#modalFooter').addEventListener('click', (e) => {
+    //     if (e.target && e.target.matches('.btn-primary')) {
+    //       const idPelanggaran = e.target.dataset.idPelanggaran; // Ambil ID Pelanggaran dari dataset tombol
+    //       fetchRiwayat(idPelanggaran);
+    //     }
+    //   });
+    // });
+
+
+
+    // document.querySelector('#submitAjuBanding').addEventListener('click', async (e) => {
+    //   // Mengambil idPelanggaran dari tombol yang dipilih sebelumnya
+    //   const someVariableWithIdPelanggaran = e.target.dataset.idPelanggaran;
+    //   console.log('ID Pelanggaran:', someVariableWithIdPelanggaran); // Log ID Pelanggaran
+
+
+    //   // Pastikan idPelanggaran terdefinisi
+    //   if (!someVariableWithIdPelanggaran) {
+    //     alert('ID Pelanggaran tidak ditemukan.');
+    //     return;
+    //   }
+
+    //   const deskripsiBanding = document.querySelector('#deskripsiBanding').value.trim();
+
+    //   if (!deskripsiBanding) {
+    //     alert('Deskripsi banding tidak boleh kosong.');
+    //     return;
+    //   }
+
+    //   try {
+    //     const response = await fetch('http://localhost/PBL/Project%20Web/app/controllers/submitAjuBanding.php', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify({
+    //         idPelanggaran: someVariableWithIdPelanggaran,
+    //         deskripsiBanding
+    //       }),
+    //     });
+
+    //     const result = await response.json();
+    //     console.log('Submit result:', result); // Tambahkan log untuk melihat hasil
+    //     if (result.error) {
+    //       alert(result.error);
+    //       return;
+    //     }
+
+    //     alert('Aju Banding berhasil diajukan.');
+    //     const ajuBandingModal = bootstrap.Modal.getInstance(document.getElementById('ajuBandingModal'));
+    //     ajuBandingModal.hide();
+
+    //     // Tampilkan data terbaru di modal Riwayat
+    //     const riwayatModal = new bootstrap.Modal(document.getElementById('riwayatModal'));
+    //     await loadRiwayat(someVariableWithIdPelanggaran);
+    //     riwayatModal.show();
+
+    //   } catch (error) {
+    //     console.error(error);
+    //     alert('Terjadi kesalahan saat mengajukan banding.');
+    //   }
+    // });
+
+
+
+
+    // async function loadRiwayat(idPelanggaran) {
+    //   try {
+    //     const response = await fetch(`http://localhost/PBL/Project%20Web/app/controllers/getRiwayatBanding.php?id_pelanggaran=${idPelanggaran}`);
+    //     if (!response.ok) {
+    //       throw new Error('Gagal mengambil data riwayat banding');
+    //     }
+
+    //     const data = await response.json();
+    //     if (data.error) {
+    //       alert(data.error);
+    //       return;
+    //     }
+
+    //     const modalBody = document.querySelector('#riwayatModal .modal-body');
+    //     modalBody.innerHTML = '';
+
+    //     data.riwayat.forEach(entry => {
+    //       const entryHtml = `
+    //             <div class="right d-flex justify-content-end align-items-start mb-3">
+    //                 <div class="message-bubble">
+    //                     <p>${entry.deskripsi_banding}</p>
+    //                 </div>
+    //                 <div>
+    //                     <i class="bi bi-person-circle ms-2 icon-user" style="font-size: 24px; color: #223381;"></i>
+    //                 </div>
+    //             </div>
+    //         `;
+    //       modalBody.innerHTML += entryHtml;
+    //     });
+    //   } catch (error) {
+    //     console.error(error);
+    //     alert('Terjadi kesalahan saat memuat data riwayat.');
+    //   }
+    // }
   </script>
 
   <script>

@@ -19,13 +19,14 @@
   <!-- CSS Files -->
   <link id="pagestyle" href="../../../../../public/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   <style>
     html,
     body {
       margin: 0;
       padding: 0;
       font-family: 'Poppins', sans-serif;
-      /* Pastikan font Poppins digunakan */
+      /* Font utama */
       letter-spacing: 0.3px;
       /* Menambahkan jarak antar huruf */
     }
@@ -36,7 +37,7 @@
       justify-content: center;
       align-items: center;
       border-radius: 0;
-      /* Menghapus sudut melengkung */
+      /* Sudut tidak melengkung */
     }
 
     .footer {
@@ -48,8 +49,8 @@
     }
 
     .card-body {
-      text-align: center;
-      /* Menempatkan teks di tengah */
+      text-align: left;
+      /* Pastikan teks berada di kiri */
     }
 
     body {
@@ -97,6 +98,84 @@
 
     .btn-primary:hover {
       background-color: #1a285e;
+    }
+
+    .left,
+    .right {
+      display: flex;
+      align-items: center;
+    }
+
+    .left .message-bubble,
+    .right .message-bubble {
+      max-width: 85%;
+      padding: 15px;
+      border-radius: 15px;
+      background-color: #f1f1f1;
+      margin: 5px;
+      font-size: 14px;
+    }
+
+    .right .message-bubble {
+      background-color: #e1f7d5;
+      text-align: right;
+    }
+
+    .right {
+      justify-content: flex-end;
+    }
+
+    .left {
+      justify-content: flex-start;
+    }
+
+    .right img {
+      border-radius: 0;
+      width: 300px;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .right i,
+    .left i {
+      font-size: 24px;
+    }
+
+    .right .message-bubble {
+      margin-left: 15px;
+    }
+
+    .left .message-bubble {
+      margin-right: 15px;
+    }
+
+    .icon-user {
+      color: #223381;
+      /* Warna ikon user */
+    }
+
+    .mb-3 label {
+      font-weight: 600;
+      color: #223381;
+    }
+
+    .mb-3 p {
+      text-align: left;
+      /* Pastikan teks dalam p selalu rata kiri */
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      padding: 8px 12px;
+      margin: 0;
+    }
+
+    .col-md-8 .mb-3 {
+      margin-bottom: 20px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: flex-start;
+      /* Pastikan kolom tidak di tengah */
     }
   </style>
 </head>
@@ -162,7 +241,7 @@
         <li class="nav-item">
           <a class="nav-link" href="../../../../controllers/logout.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
+              <i class="fas fa-sign-out-alt text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Keluar</span>
           </a>
@@ -252,7 +331,7 @@
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
-                        Pengajuan Banding Diterima
+                          Pengajuan Banding Diterima
                         </h6>
                         <p class="text-xs text-secondary mb-0">
                           <i class="fa fa-clock me-1"></i>
@@ -270,12 +349,12 @@
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-1">
-    <div class="row justify-content-center" style="margin-top: 10px; margin-right: 0;">
+      <div class="row justify-content-center" style="margin-top: 10px; margin-right: 0;">
         <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-        <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
+          <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
             <div class="card-body p-2 d-flex align-items-center justify-content-center">
               <div class="text-center">
-              <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">Total Laporan</p>
+                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">Total Laporan</p>
                 <h5 class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">120</h5>
               </div>
             </div>
@@ -283,10 +362,10 @@
         </div>
 
         <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-        <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
+          <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
             <div class="card-body p-2 d-flex align-items-center justify-content-center">
               <div class="text-center">
-              <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">Laporan Selesai</p>
+                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">Laporan Selesai</p>
                 <h5 class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">70</h5>
               </div>
             </div>
@@ -294,63 +373,502 @@
         </div>
 
         <div class="col-xl-2 col-sm-4 mb-xl-0 mb-4">
-        <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
+          <div class="card shadow" style="border: 5px solid #223381; border-radius: 25px; background-color: #f7f9fc;">
             <div class="card-body p-2 d-flex align-items-center justify-content-center">
               <div class="text-center">
-              <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">Laporan Tertunda</p>
+                <p class="text-sm mb-2 text-uppercase font-weight-bold text-dark" style="font-size: 13px !important; font-weight: 700 !important;">Laporan Tertunda</p>
                 <h5 class="font-weight-bolder" style="font-size: 45px; color: rgba(34, 51, 129, 0.8);">50</h5>
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
-    <div class="container mt-5" style="max-width: 1200px;">
-      <table class="table table-striped table-hover align-middle">
+
+    <div class="container mt-5" style="max-width: 90%;">
+      <table class="table table-striped table-hover align-middle w-100">
         <thead class="table-light">
-          <tr>
-            <th class="text-center">ID. Pelanggaran</th>
+          <tr class="rounded-3">
+            <th class="text-center rounded-start">ID. Pelanggaran</th>
             <th>Nama Pelanggaran</th>
             <th class="text-center">Status</th>
-            <th class="text-center">Detail</th>
+            <th class="text-center rounded-end">Detail</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="text-center">ABC01</td>
-            <td>Merokok</td>
-            <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
-                style="width: 100px; text-align: center;">Pending</span></td>
+            <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">XYZ01</td>
+            <td class="text-16" style="color: #6B7280; font-size: 16px;">Bolos</td>
             <td class="text-center">
-            <button class="btn btn-primary py-1 px-4 fs-7 w-60 rounded-3">CHECK</button>
+              <span class="badge bg-warning text-white fs-7 rounded-3"
+                style="font-weight: 600; width: 100px; text-align: center; height: 30px; line-height: 18px;">
+                TERTUNDA
+              </span>
             </td>
-          </tr>
+            <td class="align-middle text-center">
+              <button class="btn btn-primary py-1 px-4 fs-7 w-55 rounded-3" data-bs-toggle="modal"
+                data-bs-target="#detailModalXYZ01" style="font-weight: 600;">
+                CHECK
+              </button>
+            </td>
           <tr>
-            <td class="text-center">ABC02</td>
-            <td>Merusak sarana prasarana</td>
-            <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
-                style="width: 100px; text-align: center;">Pending</span></td>
-            <td class="text-center">
-            <button class="btn btn-primary py-1 px-4 fs-7 w-60 rounded-3">CHECK</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-center">ABC03</td>
-            <td>Judi online</td>
-            <td class="text-center"><span class="badge bg-warning text-white p-2 fs-7 rounded-3"
-                style="width: 100px; text-align: center;">Pending</span></td>
-            <td class="text-center">
-            <button class="btn btn-primary py-1 px-4 fs-7 w-60 rounded-3">CHECK</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            <!-- Modal untuk XYZ01 -->
+            <div class="modal fade" id="detailModalXYZ01" tabindex="-1" aria-labelledby="detailModalLabelXYZ01" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="detailModalLabelXYZ01" style="font-size: 20px; font-weight: 600; color: #223381;">
+                      Detail Pelanggaran
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <!-- Foto Bukti -->
+                      <div class="col-md-4">
+                        <div>
+                          <img src="../../../../../public/img/student.jpg" alt="Bukti Pelanggaran"
+                            class="img-fluid rounded" data-bs-toggle="modal"
+                            data-bs-target="#buktiZoomModalXYZ01" style="cursor: pointer;">
+                        </div>
+                      </div>
+                      <!-- Informasi di sebelah kanan -->
+                      <div class="col-md-8">
+                        <div class="mb-3">
+                          <label class="form-label" style="font-weight: 600; color: #223381;">Nama Mahasiswa Terlapor</label>
+                          <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">Fatima Sitta</p>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" style="font-weight: 600; color: #223381;">NIM Mahasiswa Terlapor</label>
+                          <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">2341760167</p>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" style="font-weight: 600; color: #223381;">Tingkat dan Jenis Pelanggaran</label>
+                          <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">IV - Bolos</p>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" style="font-weight: 600; color: #223381;">Waktu</label>
+                          <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                            Kamis, 14 November 2024 pukul 14:59
+                          </p>
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" style="font-weight: 600; color: #223381;">Lokasi</label>
+                          <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">Di Ruang Kelas</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-3">
+                      <!-- Tombol Edit -->
+                      <button class="btn btn-primary rounded-3 me-2" data-bs-toggle="modal" data-bs-target="#editModalXYZ01"
+                        style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;">
+                        Edit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+    </div>
+    <!-- Modal untuk Edit XYZ01 -->
+    <div class="modal fade" id="editModalXYZ01" tabindex="-1" aria-labelledby="editModalLabelXYZ01"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabelXYZ01"
+              style="font-size: 20px; font-weight: 600; color: #223381;">Edit Detail Pelanggaran</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label class="form-label" style="font-weight: 600; color: #223381;">Nama Mahasiswa
+                  Terlapor</label>
+                <input type="text" class="form-control" value="Fatima Sitta" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" style="font-weight: 600; color: #223381;">NIM Mahasiswa
+                  Terlapor</label>
+                <input type="text" class="form-control" value="2341760167" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" style="font-weight: 600; color: #223381;">Tingkat dan Jenis
+                  Pelanggaran</label>
+                <input type="text" class="form-control" value="IV - Bolos" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" style="font-weight: 600; color: #223381;">Waktu</label>
+                <input type="text" class="form-control" value="Kamis, 14 November 2024 pukul 14:59"
+                  required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" style="font-weight: 600; color: #223381;">Lokasi</label>
+                <input type="text" class="form-control" value="Di Ruang Kelas" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" style="font-weight: 600; color: #223381;">Edit Foto
+                  Bukti</label>
+                <input type="file" class="form-control" accept="image/*">
+              </div>
+              <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary me-2"
+                  style="font-weight: 600;">Simpan</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal untuk Zoom Gambar -->
+    <div class="modal fade" id="buktiZoomModalXYZ01" tabindex="-1"
+      aria-labelledby="buktiZoomModalLabelXYZ01" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <p
+              style="font-weight: bold; color: #223381; margin-bottom: 0px; margin-left: 20px; margin-top: 20px;">
+              Bukti Pelanggaran</p>
+            <div class="d-flex justify-content-center align-items-center">
+              <div style="padding: 20px; background-color: white; border-radius: 8px;">
+                <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom"
+                  class="img-fluid rounded"
+                  style="max-width: 100%; height: auto; display: block; margin: 0;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <tr>
+      <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">TUV02</td>
+      <td class="text-16" style="color: #6B7280; font-size: 16px;">Makan di Kelas</td>
+      <td class="text-center">
+        <span class="badge bg-success text-white p-2 fs-7 rounded-3"
+          style="font-weight: 600; width: 100px; text-align: center; height: 30px; line-height: 14px;">
+          VALID
+        </span>
+      </td>
+      <td class="align-middle text-center">
+        <button class="btn btn-primary py-1 px-4 fs-7 w-55 rounded-3" data-bs-toggle="modal"
+          data-bs-target="#detailModalTUV02" style="font-weight: 600;">
+          CHECK
+        </button>
+      </td>
+    </tr>
+    <!-- Modal untuk TUV02 -->
+    <div class="modal fade" id="detailModalTUV02" tabindex="-1" aria-labelledby="detailModalLabelTUV02"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="detailModalLabelTUV02"
+              style="font-size: 20px; font-weight: 600; color: #223381;">Detail Pelanggaran</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <!-- Foto Bukti -->
+              <div class="col-md-4">
+                <div class="text-center">
+                  <img src="../../../../../public/img/student.jpg" alt="Bukti Pelanggaran"
+                    class="img-fluid rounded" data-bs-toggle="modal"
+                    data-bs-target="#buktiZoomModalTUV02" style="cursor: pointer;">
+                </div>
+              </div>
+              <!-- Informasi di sebelah kanan -->
+              <div class="col-md-8">
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: 600; color: #223381;">Nama Mahasiswa
+                    Terlapor</label>
+                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">Fatima
+                    Sitta</p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: 600; color: #223381;">NIM Mahasiswa
+                    Terlapor</label>
+                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                    2341760167</p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: 600; color: #223381;">Tingkat dan Jenis
+                    Pelanggaran</label>
+                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">IV -
+                    Makan di Kelas</p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: 600; color: #223381;">Waktu</label>
+                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">Jumat,
+                    15 November 2024 pukul 08:00</p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: 600; color: #223381;">Lokasi</label>
+                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">Di
+                    Ruang Kelas</p>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
+              <button class="btn btn-primary rounded-3 me-2" data-bs-toggle="modal"
+                data-bs-target="#editModalTUV02"
+                style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;">Edit</button>
+              <button class="btn btn-primary rounded-3"
+                style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;"
+                data-bs-toggle="modal" data-bs-target="#riwayatModalTUV02">Riwayat</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <footer class="footer">
+    <!-- Modal untuk Edit TUV02 -->
+    <div class="modal fade" id="editModalTUV02" tabindex="-1" aria-labelledby="editModalLabelTUV02"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabelTUV02"
+              style="font-size: 20px; font-weight: 600; color: #223381;">Edit Detail Pelanggaran</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label class="form-label" style="font-weight: 600; color: #223381;">Nama Mahasiswa
+                  Terlapor</label>
+                <input type="text" class="form-control" value="Fatima Sitta" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" style="font-weight: 600; color: #223381;">NIM Mahasiswa
+                  Terlapor</label>
+                <input type="text" class="form-control" value="2341760167" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" style="font-weight: 600; color: #223381;">Tingkat dan Jenis
+                  Pelanggaran</label>
+                <input type="text" class="form-control" value="IV - Makan di Kelas" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" style="font-weight: 600; color: #223381;">Waktu</label>
+                <input type="text" class="form-control" value="Jumat, 15 November 2024 pukul 08:00"
+                  required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" style="font-weight: 600; color: #223381;">Lokasi</label>
+                <input type="text" class="form-control" value="Di Ruang Kelas" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" style="font-weight: 600; color: #223381;">Edit Foto
+                  Bukti</label>
+                <input type="file" class="form-control" accept="image/*">
+              </div>
+              <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary me-2"
+                  style="font-weight: 600;">Simpan</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal untuk Riwayat TUV02 -->
+    <div class="modal fade" id="riwayatModalTUV02" tabindex="-1"
+      aria-labelledby="riwayatModalLabelTUV02" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content" style="padding: 20px;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="riwayatModalLabelTUV02"
+              style="color: #223381; font-weight: 600; font-size: 20px;">Riwayat Aju Banding</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+              style="display: none;"></button>
+          </div>
+          <div class="modal-body" style="padding-top: 10px; padding-bottom: 10px;">
+            <!-- Konten Pesan -->
+            <div class="flex-grow-1">
+              <!-- Mahasiswa di kiri dan di atas -->
+              <div class="left d-flex justify-content-start align-items-start mb-3">
+                <div>
+                  <i class="bi bi-person-circle me-2 icon-user"
+                    style="font-size: 24px; color: #223381;"></i>
+                </div>
+                <div class="message-bubble">
+                  <p>Pada saat itu saya hanya membawa bungkus makanan, tidak makan di kelas</p>
+                </div>
+              </div>
+              <div class="left d-flex justify-content-start align-items-start mb-3">
+                <div>
+                  <i class="bi bi-person-circle me-2 icon-user"
+                    style="font-size: 24px; color: #223381;"></i>
+                </div>
+                <div class="img-bubble mb-3">
+                  <img src="../../../../../public/img/student.jpg" alt="Mahasiswa" width="350"
+                    class="img-fluid rounded-3" style="margin-left: 5px;">
+                </div>
+              </div>
+
+              <!-- Dosen di kanan dan di bawah -->
+              <div class="right d-flex justify-content-end align-items-start mb-3">
+                <div class="message-bubble">
+                  <p>Saya melihat anda makan di kelas, dan berceceran di meja!</p>
+                </div>
+                <div>
+                  <i class="bi bi-person-circle ms-2 icon-user"
+                    style="font-size: 24px; color: #223381;"></i>
+                </div>
+              </div>
+
+            </div>
+            <!-- Textbox untuk mengirim pesan -->
+            <div class="border-top pt-4">
+              <div class="input-group">
+                <label class="input-group-text" for="fileInputTUV02"
+                  style="cursor: pointer; font-size: 14px; padding: 5px; height: 40px;">
+                  <i class="fas fa-paperclip" style="font-size: 16px; padding-left: 10px;"></i>
+                </label>
+
+                <input type="file" class="form-control" accept="image/*" style="display: none;"
+                  id="fileInputTUV02"> <!-- Input file tetap tersembunyi -->
+
+                <input type="text" class="form-control" placeholder="Kirim pesan..."
+                  aria-label="Kirim pesan" style="height: 40px; padding-left: 10px;">
+
+                <button class="btn btn-primary" type="button"
+                  style="font-weight: 600; height: 40px; margin-top: 0px">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Modal untuk Zoom Gambar TUV02 -->
+    <div class="modal fade" id="buktiZoomModalTUV02" tabindex="-1" aria-labelledby="buktiZoomModalLabelTUV02"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <p
+              style="font-weight: bold; color: #223381; margin-bottom: 0px; margin-left: 20 px; margin-top: 20px;">
+              Bukti Pelanggaran</p>
+            <div class="d-flex justify-content-center align-items-center">
+              <div style="padding: 20px; background-color: white; border-radius: 8px;">
+                <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom" class="img-fluid rounded"
+                  style="max-width: 100%; height: auto; display: block; margin: 0;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <tr>
+      <td class="text-16" style="color: #6B7280; text-align: center; font-size: 16px;">QRS03</td>
+      <td class="text-16" style="color: #6B7280; font-size: 16px;">Bolos</td>
+      <td class="text-center">
+        <span class="badge bg-danger text-white p-2 fs-7 rounded-3"
+          style="font-weight: 600; width: 100px; text-align: center;">
+          DITOLAK
+        </span>
+      </td>
+      <td class="align-middle text-center">
+        <button class="btn btn-primary py-1 px-4 fs-7 w-55 rounded-3" data-bs-toggle="modal"
+          data-bs-target="#detailModalQRS03" style="font-weight: 600;">
+          CHECK
+        </button>
+      </td>
+    </tr>
+    <!-- Modal untuk QRS03 -->
+    <div class="modal fade " id="detailModalQRS03" tabindex="-1" aria-labelledby="detailModalLabelQRS03"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="detailModalLabelQRS03"
+              style="font-size: 20px; font-weight: 600; color: #223381;">Detail Pelanggaran</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <!-- Foto Bukti -->
+              <div class="col-md-4">
+                <div class="text-center">
+                  <img src="../../../../../public/img/student.jpg" alt="Bukti Pelanggaran"
+                    class="img-fluid rounded" data-bs-toggle="modal" data-bs-target="#buktiZoomModalQRS03"
+                    style="cursor: pointer;">
+                </div>
+              </div>
+              <!-- Informasi di sebelah kanan -->
+              <div class="col-md-8">
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: 600; color: #223381;">Nama Mahasiswa
+                    Terlapor</label>
+                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">Surya
+                    Rahmat</p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: 600; color: #223381;">NIM Mahasiswa
+                    Terlapor</label>
+                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                    2341760020</p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: 600; color: #223381;">Tingkat dan
+                    Jenis
+                    Pelanggaran</label>
+                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">I -
+                    Bolos</p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: 600; color: #223381;">Waktu</label>
+                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">
+                    Kamis,
+                    14 November 2024 pukul 14:59</p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" style="font-weight: 600; color: #223381;">Lokasi</label>
+                  <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">Di
+                    Ruang Kelas</p>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
+              <button class="btn btn-primary rounded-3 me-2" data-bs-toggle="modal"
+                style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;">Tutup</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal untuk Zoom Gambar QRS03 -->
+    <div class="modal fade" id="buktiZoomModalQRS03" tabindex="-1" aria-labelledby="buktiZoomModalLabelQRS03"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <p
+              style="font-weight: bold; color: #223381; margin-bottom: 0px; margin-left: 20px; margin-top: 20px;">
+              Bukti Pelanggaran</p>
+            <div class="d-flex justify-content-center align-items-center">
+              <div style="padding: 20px; background-color: white; border-radius: 8px;">
+                <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom" class="img-fluid rounded"
+                  style="max-width: 100%; height: auto; display: block; margin: 0;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </tbody>
+    </table>
+    </div>
+
+    <footer class="footer mt-4 text-center">
       Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
     </footer>
+
 
     </div>
   </main>
