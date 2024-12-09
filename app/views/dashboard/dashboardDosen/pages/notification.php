@@ -34,7 +34,7 @@
 </head>
 
 <body class="g-sidenav-show" style="min-height: 100vh;">
-<div class="min-height-200  position-absolute w-100" style="background-color: #223381;"></div>
+  <div class="min-height-200  position-absolute w-100" style="background-color: #223381;"></div>
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -227,10 +227,10 @@
     <!-- End Navbar -->
 
     <div class="container my-5">
-    <div class="row" id="notificationContainer">
+      <div class="row" id="notificationContainer">
         <!-- Notifikasi akan dimuat di sini -->
+      </div>
     </div>
-</div>
 
 
 
@@ -269,21 +269,43 @@
           notificationContainer.innerHTML = ''; // Bersihkan kontainer
 
           // Iterasi data notifikasi
-          data.forEach(notification => {
-            const card = `
-                        <div class="col-12 mb-4">
-                            <div class="card shadow-sm">
-                                <div class="card-body">
-                                    <p class="card-text text-secondary">${notification.isi}</p>
-                                    <p class="text-muted small">${notification.waktu_dibuat}</p>
-                                    <span class="badge ${notification.status_notifikasi === 'Unread' ? 'bg-warning' : 'bg-success'}">
-                                        ${notification.status_notifikasi}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>`;
-            notificationContainer.insertAdjacentHTML('beforeend', card);
-          });
+          if (data && data.length > 0) {
+            data.forEach(notification => {
+              // Membuat elemen card
+              const notificationCard = document.createElement('div');
+              notificationCard.classList.add('card', 'shadow-sm', 'mb-4');
+
+              // Menambahkan konten ke dalam card
+              notificationCard.innerHTML = `
+            <div class="card-body">
+                <!-- Judul notifikasi dengan status 'Unread' atau 'Read' -->
+                <h5 class="card-title ${notification.status_notifikasi === 'Unread' ? 'text-primary' : 'text-secondary'}">
+                    ${notification.isi}
+                </h5>
+                
+                <!-- Waktu notifikasi -->
+                <p class="card-text text-muted small">${notification.waktu_dibuat}</p>
+                
+         
+                
+                <!-- Tombol untuk melihat detail jika ada PDF -->
+                ${notification.pdf_url ? `
+                    <button class="btn btn-info text-white fw-bold view-pdf" data-pdf="${notification.pdf_url}" style="background-color: #223381; border-color: #223381;">
+                        Lihat Detail
+                    </button>` : `
+                    <button class="btn btn-info text-white fw-bold view-pdf" data-pdf="${notification.pdf_url}" style="background-color: #223381; border-color: #223381;">
+                        Lihat Detail
+                    </button>`}
+            </div>
+        `;
+
+              // Menyisipkan card ke dalam container
+              notificationContainer.appendChild(notificationCard);
+            });
+          } else {
+            notificationContainer.innerHTML = '<p class="text-center">Tidak ada notifikasi.</p>';
+          }
+
         })
         .catch(error => {
           console.error('Fetch error:', error);
