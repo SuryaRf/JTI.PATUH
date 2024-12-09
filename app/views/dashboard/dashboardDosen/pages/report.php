@@ -251,33 +251,33 @@
         <!-- Card for the Report Form -->
         <div class="col-md-8 mt-3">
           <div class="card shadow-lg border-0 rounded-4">
-            <div class="card-header">
-              <h6>Melaporkan Pelanggaran</h6>
-              <small>Form Laporan</small>
+          <div class="card-header text-center" style="color: #223381; background-color: #f8f9fa;">
+              <h6 style="font-weight: bold; font-size: 18px; margin-bottom: 5px; color: #223381;">Melaporkan Pelanggaran</h6>
+              <small style="font-size: 14px;">Form Laporan</small>
             </div>
             <div class="card-body p-4">
               <form action="/PBL/Project%20Web/app/controllers/processReport.php" method="POST" enctype="multipart/form-data">
-                <div class="form-group mb-4">
-                  <label for="nim">Mahasiswa Terlapor</label>
+                <div class="form-group mb-4" style="color: #223381;">
+                  <label for="nim" style="color: #223381; font-size: 14px; font-weight: bold;">Mahasiswa Terlapor</label>
                   <input type="text" id="nim" name="nim" class="form-control" placeholder="Masukkan NIM mahasiswa" required>
                 </div>
                 <div class="form-group mb-4">
-                  <label for="pelanggaran">Nama Pelanggaran</label>
+                  <label for="pelanggaran" style="color: #223381; font-size: 14px; font-weight: bold;">Nama Pelanggaran</label>
                   <select id="pelanggaran" name="id_tatib" class="form-control" required>
                     <option value="">Pilih Pelanggaran</option>
                     <!-- Tambahkan pilihan pelanggaran -->
                   </select>
                 </div>
                 <div class="form-group mb-4">
-                  <label for="waktu">Waktu</label>
+                  <label for="waktu"style="color: #223381; font-size: 14px; font-weight: bold;">Waktu</label>
                   <input type="datetime-local" id="waktu" name="waktu_pelanggaran" class="form-control" placeholder="Pilih Waktu Kejadian" required>
                 </div>
                 <div class="form-group mb-4">
-                  <label for="lokasi">Lokasi</label>
+                  <label for="lokasi" style="color: #223381; font-size: 14px; font-weight: bold;">Lokasi</label>
                   <input type="text" id="lokasi" name="lokasi" class="form-control" placeholder="Masukkan Lokasi Kejadian" required>
                 </div>
                 <div class="form-group mb-4">
-                  <label for="bukti">Bukti</label>
+                  <label for="bukti" style="color: #223381; font-size: 14px; font-weight: bold;">Bukti</label>
                   <input type="file" name="bukti" id="bukti" class="form-control" required>
                 </div>
                 <div class="form-footer text-center mt-4">
