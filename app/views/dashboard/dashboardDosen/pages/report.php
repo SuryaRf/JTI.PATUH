@@ -250,117 +250,46 @@
       <div class="row justify-content-center">
         <!-- Card for the Report Form -->
         <div class="col-md-8 mt-3">
-          <div class="card shadow-lg rounded-lg border-0">
-            <div class="card-header"
-              style="background-color: #FFFFFF; color: #223381; text-align: center; padding: 1rem;">
-              <h6 style="color: #223381; font-size: 20px; font-weight: bold;">Melaporkan Pelanggaran</h6>
-              <small style="color: #223381; font-size: 16px; font-weight: 600;">Form Laporan</small>
-              <hr style="border: 1px solid #888; width: 100%; margin-top: 30px auto;">
+          <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-header">
+              <h6>Melaporkan Pelanggaran</h6>
+              <small>Form Laporan</small>
             </div>
-            <style>
-              body {
-                font-family: 'Poppins', sans-serif !important;
-              }
-
-              .form-control,
-              .btn,
-              .file-upload {
-                font-family: 'Poppins', sans-serif !important;
-              }
-            </style>
-            </head>
-
-            <body>
-              <div class="card-body p-4" style="margin-top: -40px;">
-                <form>
-                  <div class="form-group mb-3">
-                    <label for="nim"
-                      style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #223381;">Mahasiswa
-                      Terlapor</label>
-                    <input type="text" id="nim" class="form-control rounded-2" placeholder="Masukkan NIM mahasiswa"
-                      required>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="pelanggaran"
-                      style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #223381;">Nama
-                      Pelanggaran</label>
-                    <div class="form-group mb-3">
-                      <div class="form-group mb-3">
-                        <div class="input-group" style="position: relative;">
-                          <select id="pelanggaran" class="form-control rounded-2"
-                            style="padding-right: 35px; appearance: none; border: 1px solid #ccc; position: relative; z-index: 2; color: #aaa; background-color: #fff;"
-                            onchange="changeColor(this)">
-                            <option value="" style="color: #999;">Pilih Pelanggaran</option>
-                            <option value="A" style="color: #222;">Pelanggaran A</option>
-                            <option value="B" style="color: #222;">Pelanggaran B</option>
-                          </select>
-                          <div
-                            style="position: absolute; top: 50%; right: 20px; transform: translateY(-50%); z-index: 3;">
-                            <i class="fas fa-angle-down" style="color: #223381; font-size: 16px;"></i>
-                          </div>
-                        </div>
-                      </div>
-
-                      <script>
-                        function changeColor(selectElement) {
-                          if (selectElement.value) {
-                            selectElement.style.color = '#222'; // Mengubah warna teks menjadi gelap
-                          } else {
-                            selectElement.style.color = '#ccc'; // Mengembalikan warna teks menjadi samar jika tidak ada pilihan
-                          }
-                        }
-                      </script>
-
-                    </div>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="waktu"
-                      style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #223381;">Waktu</label>
-                    <input style="color: #aaa" type="datetime-local" id="waktu" name="waktu_pelanggaran"
-                      class="form-control rounded-2" placeholder="Pilih Waktu Kejadian" required
-                      onchange="changeColor(this)">
-                    <script>
-                      function changeColor(selectElement) {
-                        if (selectElement.value) {
-                          selectElement.style.color = '#222'; // Mengubah warna teks menjadi gelap
-                        } else {
-                          selectElement.style.color = '#ccc'; // Mengembalikan warna teks menjadi samar jika tidak ada pilihan
-                        }
-                      }
-                    </script>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="lokasi"
-                      style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #223381;">Lokasi</label>
-                    <input type="text" id="lokasi" class="form-control rounded-2" placeholder="Masukkan Lokasi Kejadian"
-                      required>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="bukti"
-                      style="font-family: 'Poppins', sans-serif; font-size: 14px; color: #223381;">Bukti</label>
-                    <input type="file" id="bukti" class="form-control rounded-2" accept="image/*"
-                      onchange="displayFileName(this)" required>
-                    <small id="fileName" class="form-text text-muted" style="margin-top: 5px;"></small>
-                  </div>
-
-                  <script>
-                    function displayFileName(input) {
-                      const fileName = input.files[0] ? input.files[0].name : '';
-                      document.getElementById('fileName').textContent = fileName;
-                    }
-                  </script>
-                  <div class="form-footer text-center mt-4">
-                    <button class="btn btn-primary rounded-3 me-2" data-bs-dismiss="modal"
-                      style="font-size: 14px; font-weight: 600; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-5px);">
-                      Kirim
-                    </button>
-                  </div>
-                </form>
-              </div>
+            <div class="card-body p-4">
+              <form action="/PBL/Project%20Web/app/controllers/processReport.php" method="POST" enctype="multipart/form-data">
+                <div class="form-group mb-4">
+                  <label for="nim">Mahasiswa Terlapor</label>
+                  <input type="text" id="nim" name="nim" class="form-control" placeholder="Masukkan NIM mahasiswa" required>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="pelanggaran">Nama Pelanggaran</label>
+                  <select id="pelanggaran" name="id_tatib" class="form-control" required>
+                    <option value="">Pilih Pelanggaran</option>
+                    <!-- Tambahkan pilihan pelanggaran -->
+                  </select>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="waktu">Waktu</label>
+                  <input type="datetime-local" id="waktu" name="waktu_pelanggaran" class="form-control" placeholder="Pilih Waktu Kejadian" required>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="lokasi">Lokasi</label>
+                  <input type="text" id="lokasi" name="lokasi" class="form-control" placeholder="Masukkan Lokasi Kejadian" required>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="bukti">Bukti</label>
+                  <input type="file" name="bukti" id="bukti" class="form-control" required>
+                </div>
+                <div class="form-footer text-center mt-4">
+                  <button type="submit" class="btn btn-primary btn-lg rounded-pill px-4 py-2">Kirim</button>
+                </div>
+              </form>
+            </div>
           </div>
-          <footer class="footer" style="margin-top: 50px;">
-            Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
-          </footer>
+        </div>
+        <footer class="footer" style="margin-top: 50px;">
+          Kami Membantu Anda Menjadi Bagian dari Kampus yang Tertib dan Teratur
+        </footer>
   </main>
 
   </div>
@@ -403,7 +332,56 @@
           console.error("Terjadi kesalahan saat mengambil data pelanggaran:", error);
         });
     });
+
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault(); // Mencegah refresh halaman
+
+      // Ambil data dari form
+      const formData = new FormData(this);
+
+      // Kirim data via AJAX menggunakan Fetch API
+      fetch('http://localhost/PBL/Project%20Web/app/controllers/processReport.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // Tampilkan pop-up animasi SweetAlert jika sukses
+            Swal.fire({
+              title: 'Laporan Terkirim!',
+              text: data.success,
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 3000
+            }).then(() => {
+              // Reload atau arahkan ke halaman lain jika perlu
+              window.location.href = 'report.php';
+            });
+          } else {
+            // Jika gagal, tampilkan error
+            Swal.fire({
+              title: 'Gagal!',
+              text: data.error || 'Terjadi kesalahan saat mengirim laporan.',
+              icon: 'error',
+              confirmButtonText: 'Coba Lagi'
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          Swal.fire({
+            title: 'Oops!',
+            text: 'Terjadi kesalahan saat memproses laporan.',
+            icon: 'error',
+            confirmButtonText: 'Coba Lagi'
+          });
+        });
+    });
   </script>
+  <!-- Tambahkan SweetAlert2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
