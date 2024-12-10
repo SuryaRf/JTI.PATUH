@@ -527,23 +527,23 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             <form id="editForm">
               <div class="mb-3">
                 <label class="form-label" style="font-weight: 600; color: #223381;">Nama Mahasiswa Terlapor</label>
-                <input type="text" class="form-control" id="editNamaMahasiswa" required>
+                <input type="text" id="editNamaMahasiswa" name="nama_terlapor" placeholder="Nama Mahasiswa">
               </div>
               <div class="mb-3">
                 <label class="form-label" style="font-weight: 600; color: #223381;">NIM Mahasiswa Terlapor</label>
-                <input type="text" class="form-control" id="editNimMahasiswa" required>
+                <input type="text" id="editNimMahasiswa" name="nim_terlapor" placeholder="NIM Mahasiswa">
               </div>
               <div class="mb-3">
                 <label class="form-label" style="font-weight: 600; color: #223381;">Tingkat dan Jenis Pelanggaran</label>
-                <input type="text" class="form-control" id="editTingkatJenis" required>
+                <input type="text" id="editTingkatJenis" name="jenis_pelanggaran" placeholder="Jenis Pelanggaran">
               </div>
               <div class="mb-3">
                 <label class="form-label" style="font-weight: 600; color: #223381;">Waktu</label>
-                <input type="text" class="form-control" id="editWaktu" required>
+                <input type="datetime-local" id="editWaktu" name="waktu_pelanggaran">
               </div>
               <div class="mb-3">
                 <label class="form-label" style="font-weight: 600; color: #223381;">Lokasi</label>
-                <input type="text" class="form-control" id="editLokasi" required>
+                <input type="text" id="editLokasi" name="lokasi" placeholder="Lokasi">
               </div>
               <div class="mb-3">
                 <label class="form-label" style="font-weight: 600; color: #223381;">Edit Foto Bukti</label>
@@ -731,45 +731,47 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
           });
       }
     });
-    document.getElementById('editForm').addEventListener('submit', function(event) {
-      event.preventDefault();
+    document.getElementById('editForm').addEventListener('submit', function (event) {
+  event.preventDefault();
 
-      const formData = new FormData(this);
-      const idPelanggaran = document.querySelector('.edit[data-id]').getAttribute('data-id');
+  const formData = new FormData(this);
 
-      if (!idPelanggaran || isNaN(idPelanggaran)) {
-        alert('ID Pelanggaran tidak valid.');
-        return;
+  // Ambil input tanggal/waktu
+  const waktuPelanggaran = document.getElementById('editWaktu').value;
+  if (waktuPelanggaran) {
+    // Pastikan formatnya sesuai dengan SQL Server
+    const formattedDateTime = new Date(waktuPelanggaran).toISOString().slice(0, 19).replace('T', ' ');
+    formData.set('waktu_pelanggaran', formattedDateTime);
+  }
+
+  const idPelanggaran = document.querySelector('.edit[data-id]').getAttribute('data-id');
+  formData.append('id_pelanggaran', idPelanggaran);
+
+  fetch('http://localhost/PBL/Project%20Web/app/controllers/updateViolation.php', {
+    method: 'POST',
+    body: formData,
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        alert('Gagal mengupdate: ' + data.error);
+      } else {
+        alert('Laporan berhasil diperbarui!');
+        location.reload();
       }
-
-      formData.append('id_pelanggaran', idPelanggaran);
-
-      // Debug log untuk memeriksa isi formData
-      console.log([...formData]);
-
-      fetch('http://localhost/PBL/Project%20Web/app/controllers/updateViolation.php', {
-          method: 'POST',
-          body: formData,
-        })
-        .then(response => response.json())
-        .then(data => {
-          if (data.error) {
-            alert('Gagal mengupdate: ' + data.error);
-          } else {
-            alert('Laporan berhasil diperbarui!');
-            location.reload();
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('Terjadi kesalahan saat menyimpan data.');
-        });
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Terjadi kesalahan saat menyimpan data.');
     });
+});
+
+
 
     document.addEventListener('click', function(event) {
-      if (event.target.classList.contains('btn-success') || event.target.classList.contains('btn-danger')) {
+      if (event.target.classList.contains('btn-danger')) {
         const idPelanggaran = document.querySelector('.check').getAttribute('data-id');
-        const newStatus = event.target.classList.contains('btn-success') ? 'valid' : 'Reject';
+        const newStatus = event.target.classList.contains('btn-danger') ? 'Reject' : 'valid';
 
         if (isNaN(idPelanggaran)) {
           alert('ID Pelanggaran tidak valid.');

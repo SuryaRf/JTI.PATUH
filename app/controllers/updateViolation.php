@@ -27,19 +27,19 @@ if ($stmtGet === false || !($row = sqlsrv_fetch_array($stmtGet, SQLSRV_FETCH_ASS
 }
 
 // Proses data yang akan diupdate
-if (isset($_POST['nama_terlapor'])) {
-    $updateFields[] = "nama_terlapor = ?";
-    $params[] = $_POST['nama_terlapor'];
+if (isset($_POST['nama_mhs'])) {
+    $updateFields[] = "nama_mhs = ?";
+    $params[] = $_POST['nama_mhs'];
 }
 
-if (isset($_POST['nim_terlapor'])) {
-    $updateFields[] = "nim_terlapor = ?";
-    $params[] = $_POST['nim_terlapor'];
+if (isset($_POST['nim'])) {
+    $updateFields[] = "nim = ?";
+    $params[] = $_POST['nim'];
 }
 
-if (isset($_POST['jenis_pelanggaran'])) {
-    $updateFields[] = "jenis_pelanggaran = ?";
-    $params[] = $_POST['jenis_pelanggaran'];
+if (isset($_POST['nama_pelanggaran'])) {
+    $updateFields[] = "nama_pelanggaran = ?";
+    $params[] = $_POST['nama_pelanggaran'];
 }
 
 if (isset($_POST['tingkat_pelanggaran'])) {
@@ -47,10 +47,17 @@ if (isset($_POST['tingkat_pelanggaran'])) {
     $params[] = $_POST['tingkat_pelanggaran'];
 }
 
-if (isset($_POST['waktu_pelanggaran'])) {
-    $updateFields[] = "waktu_pelanggaran = ?";
-    $params[] = $_POST['waktu_pelanggaran'];
+if (isset($_POST['waktu_pelanggaran']) && $_POST['waktu_pelanggaran'] !== '') {
+    $datetime = DateTime::createFromFormat('Y-m-d H:i:s', $_POST['waktu_pelanggaran']);
+    if ($datetime) {
+        $updateFields[] = "waktu_pelanggaran = ?";
+        $params[] = $datetime->format('Y-m-d H:i:s');
+    } else {
+        echo json_encode(['error' => 'Format waktu pelanggaran tidak valid.']);
+        exit();
+    }
 }
+
 
 if (isset($_POST['lokasi']) && $_POST['lokasi'] !== '') {
     $updateFields[] = "lokasi = ?";
