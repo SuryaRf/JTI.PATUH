@@ -582,7 +582,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      fetch('http://localhost/PBL/Project%20Web/app/controllers/totalViolationsPegawai.php')
+      fetch('http://localhost/PBL/Project%20Web/app/controllers/totalViolationsDosen.php')
         .then(response => response.json())
         .then(data => {
           if (data.error) {
@@ -601,7 +601,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
     });
 
     document.addEventListener('DOMContentLoaded', function() {
-      fetch('http://localhost/PBL/Project%20Web/app/controllers/recentViolationsPegawai.php')
+      fetch('http://localhost/PBL/Project%20Web/app/controllers/recentViolationsDosen.php')
         .then(response => response.json())
         .then(data => {
           if (data.error) {
