@@ -504,8 +504,8 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             </div>
             <div class="d-flex justify-content-end mt-3">
 
-            <button class="btn btn-danger me-2 btn-lg">Batalkan Laporan</button>
-            <button class="btn btn-primary btn-lg">Aju Banding</button>
+              <button class="btn btn-danger me-2 btn-lg">Batalkan Laporan</button>
+              <button class="btn btn-primary btn-lg">Aju Banding</button>
             </div>
           </div>
         </div>
@@ -732,41 +732,92 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
       }
     });
     document.getElementById('editForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+      event.preventDefault();
 
-    const formData = new FormData(this);
-    const idPelanggaran = document.querySelector('.edit[data-id]').getAttribute('data-id');
+      const formData = new FormData(this);
+      const idPelanggaran = document.querySelector('.edit[data-id]').getAttribute('data-id');
 
-    if (!idPelanggaran || isNaN(idPelanggaran)) {
+      if (!idPelanggaran || isNaN(idPelanggaran)) {
         alert('ID Pelanggaran tidak valid.');
         return;
-    }
+      }
 
-    formData.append('id_pelanggaran', idPelanggaran);
+      formData.append('id_pelanggaran', idPelanggaran);
 
-    // Debug log untuk memeriksa isi formData
-    console.log([...formData]);
+      // Debug log untuk memeriksa isi formData
+      console.log([...formData]);
 
-    fetch('http://localhost/PBL/Project%20Web/app/controllers/updateViolation.php', {
-        method: 'POST',
-        body: formData,
-    })
+      fetch('http://localhost/PBL/Project%20Web/app/controllers/updateViolation.php', {
+          method: 'POST',
+          body: formData,
+        })
         .then(response => response.json())
         .then(data => {
-            if (data.error) {
-                alert('Gagal mengupdate: ' + data.error);
-            } else {
-                alert('Laporan berhasil diperbarui!');
-                location.reload();
-            }
+          if (data.error) {
+            alert('Gagal mengupdate: ' + data.error);
+          } else {
+            alert('Laporan berhasil diperbarui!');
+            location.reload();
+          }
         })
         .catch(error => {
-            console.error('Error:', error);
-            alert('Terjadi kesalahan saat menyimpan data.');
+          console.error('Error:', error);
+          alert('Terjadi kesalahan saat menyimpan data.');
         });
-});
+    });
 
+    document.addEventListener('click', function(event) {
+      if (event.target.classList.contains('btn-success') || event.target.classList.contains('btn-danger')) {
+        const idPelanggaran = document.querySelector('.check').getAttribute('data-id');
+        const newStatus = event.target.classList.contains('btn-success') ? 'valid' : 'Reject';
+
+        if (isNaN(idPelanggaran)) {
+          alert('ID Pelanggaran tidak valid.');
+          return;
+        }
+
+        // Kirim permintaan untuk memperbarui status laporan
+        fetch(`http://localhost/PBL/Project%20Web/app/controllers/updateViolationStatus.php`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              id_pelanggaran: idPelanggaran,
+              status: newStatus
+            })
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              Swal.fire({
+                title: 'Laporan Diterima!',
+                text: 'Status laporan telah berhasil diperbarui.',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 3000
+              }).then(() => {
+                // Reload atau arahkan ke halaman lain jika perlu
+                window.location.href = 'manage.php';
+              });
+              // Tutup modal setelah status diperbarui
+              const modal = new bootstrap.Modal(document.getElementById('detailModal'));
+              modal.hide();
+
+            } else {
+              alert('Gagal memperbarui status laporan');
+            }
+          })
+          .catch(error => {
+            console.error('Fetch Error:', error);
+            alert('Terjadi kesalahan saat memperbarui status laporan.');
+          });
+      }
+    });
   </script>
+  <!-- Tambahkan SweetAlert2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
 
