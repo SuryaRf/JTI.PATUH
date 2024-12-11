@@ -292,14 +292,14 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
     }
 
     input {
-    width: 100%;
-    padding: 10px 15px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
+      width: 100%;
+      padding: 10px 15px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
   </style>
 </head>
 
@@ -741,40 +741,48 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
           });
       }
     });
-    document.getElementById('editForm').addEventListener('submit', function (event) {
-  event.preventDefault();
+    document.getElementById('editForm').addEventListener('submit', function(event) {
+      event.preventDefault();
 
-  const formData = new FormData(this);
+      const formData = new FormData(this);
 
-  // Ambil input tanggal/waktu
-  const waktuPelanggaran = document.getElementById('editWaktu').value;
-  if (waktuPelanggaran) {
-    // Pastikan formatnya sesuai dengan SQL Server
-    const formattedDateTime = new Date(waktuPelanggaran).toISOString().slice(0, 19).replace('T', ' ');
-    formData.set('waktu_pelanggaran', formattedDateTime);
-  }
-
-  const idPelanggaran = document.querySelector('.edit[data-id]').getAttribute('data-id');
-  formData.append('id_pelanggaran', idPelanggaran);
-
-  fetch('http://localhost/PBL/Project%20Web/app/controllers/updateViolation.php', {
-    method: 'POST',
-    body: formData,
-  })
-    .then(response => response.json())
-    .then(data => {
-      if (data.error) {
-        alert('Gagal mengupdate: ' + data.error);
-      } else {
-        alert('Laporan berhasil diperbarui!');
-        location.reload();
+      // Ambil input tanggal/waktu
+      const waktuPelanggaran = document.getElementById('editWaktu').value;
+      if (waktuPelanggaran) {
+        // Pastikan formatnya sesuai dengan SQL Server
+        const formattedDateTime = new Date(waktuPelanggaran).toISOString().slice(0, 19).replace('T', ' ');
+        formData.set('waktu_pelanggaran', formattedDateTime);
       }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('Terjadi kesalahan saat menyimpan data.');
+
+      const idPelanggaran = document.querySelector('.edit[data-id]').getAttribute('data-id');
+      formData.append('id_pelanggaran', idPelanggaran);
+
+      fetch('http://localhost/PBL/Project%20Web/app/controllers/updateViolation.php', {
+          method: 'POST',
+          body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            alert('Gagal mengupdate: ' + data.error);
+          } else {
+            Swal.fire({
+              title: 'Laporan Diedit!',
+              text: 'Status laporan telah berhasil diperbarui.',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 3000
+            }).then(() => {
+              // Reload atau arahkan ke halaman lain jika perlu
+              window.location.href = 'dashboard.php';
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Terjadi kesalahan saat menyimpan data.');
+        });
     });
-});
 
 
 
@@ -810,7 +818,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                 timer: 3000
               }).then(() => {
                 // Reload atau arahkan ke halaman lain jika perlu
-                window.location.href = 'manage.php';
+                window.location.href = 'dashboard.php';
               });
               // Tutup modal setelah status diperbarui
               const modal = new bootstrap.Modal(document.getElementById('detailModal'));

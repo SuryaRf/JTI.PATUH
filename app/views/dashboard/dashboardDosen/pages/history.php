@@ -31,7 +31,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
   <link rel="apple-touch-icon" sizes="76x76" href="../../../../../public/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../../../../../public/img/favicon.png">
   <title>
-    Dashboard Admin
+    Dashboard Dosen
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
