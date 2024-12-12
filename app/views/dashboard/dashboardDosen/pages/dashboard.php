@@ -515,7 +515,8 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             <div class="d-flex justify-content-end mt-3">
 
               <button class="btn btn-danger me-2 btn-lg">Batalkan Laporan</button>
-              <button class="btn btn-primary btn-lg">Aju Banding</button>
+              <button class="check" data-id-banding="1" data-status="pending">Riwayat Aju Banding</button>
+
             </div>
           </div>
         </div>
@@ -834,6 +835,71 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
           });
       }
     });
+
+    document.querySelectorAll('.check').forEach(button => {
+  button.addEventListener('click', function () {
+    const idBanding = this.getAttribute('data-id-banding'); // ID banding dari tombol
+
+    if (!idBanding) {
+      alert('ID banding tidak ditemukan.');
+      return;
+    }
+
+    // Ambil data riwayat dari backend
+    fetch(`http://localhost/PBL/Project%20Web/app/controllers/getBandingHistory.php?id_banding=${idBanding}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          alert(data.error);
+          return;
+        }
+
+        const riwayatContainer = document.querySelector('#riwayatModalTUV02 .modal-body .flex-grow-1');
+        riwayatContainer.innerHTML = ''; // Bersihkan isi modal sebelumnya
+
+        data.forEach(item => {
+          // Tambahkan deskripsi banding
+          if (item.deskripsi_banding) {
+            const messageBubble = document.createElement('div');
+            messageBubble.className = 'left d-flex justify-content-start align-items-start mb-3';
+            messageBubble.innerHTML = `
+              <div>
+                <i class="bi bi-person-circle me-2 icon-user" style="font-size: 24px; color: #223381;"></i>
+              </div>
+              <div class="message-bubble">
+                <p>${item.deskripsi_banding}</p>
+              </div>
+            `;
+            riwayatContainer.appendChild(messageBubble);
+          }
+
+          // Tambahkan gambar banding jika ada
+          if (item.foto_banding) {
+            const imgBubble = document.createElement('div');
+            imgBubble.className = 'left d-flex justify-content-start align-items-start mb-3';
+            imgBubble.innerHTML = `
+              <div>
+                <i class="bi bi-person-circle me-2 icon-user" style="font-size: 24px; color: #223381;"></i>
+              </div>
+              <div class="img-bubble mb-3">
+                <img src="${item.foto_banding}" alt="Bukti Banding" width="350" class="img-fluid rounded-3" style="margin-left: 5px;">
+              </div>
+            `;
+            riwayatContainer.appendChild(imgBubble);
+          }
+        });
+
+        // Tampilkan modal
+        const riwayatModal = new bootstrap.Modal(document.getElementById('riwayatModalTUV02'));
+        riwayatModal.show();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan saat mengambil riwayat aju banding.');
+      });
+  });
+});
+
   </script>
   <!-- Tambahkan SweetAlert2 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -862,73 +928,14 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
       </div>
     </div>
   </div>
-  <!-- Modal untuk Riwayat TUV02 -->
-  <div class="modal fade" id="riwayatModalTUV02" tabindex="-1" aria-labelledby="riwayatModalLabelTUV02"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content" style="padding: 20px;">
-        <div class="modal-header">
-          <h5 class="modal-title" id="riwayatModalLabelTUV02"
-            style="color: #223381; font-weight: 600; font-size: 20px;">Riwayat Aju Banding</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-            style="display: none;"></button>
-        </div>
-        <div class="modal-body" style="padding-top: 10px; padding-bottom: 10px;">
-          <!-- Konten Pesan -->
-          <div class="flex-grow-1">
-            <!-- Mahasiswa di kiri dan di atas -->
-            <div class="left d-flex justify-content-start align-items-start mb-3">
-              <div>
-                <i class="bi bi-person-circle me-2 icon-user" style="font-size: 24px; color: #223381;"></i>
-              </div>
-              <div class="message-bubble">
-                <p>Pada saat itu saya hanya membawa bungkus makanan, tidak makan di kelas</p>
-              </div>
-            </div>
-            <div class="left d-flex justify-content-start align-items-start mb-3">
-              <div>
-                <i class="bi bi-person-circle me-2 icon-user" style="font-size: 24px; color: #223381;"></i>
-              </div>
-              <div class="img-bubble mb-3">
-                <img src="../../../../../public/img/student.jpg" alt="Mahasiswa" width="350"
-                  class="img-fluid rounded-3" style="margin-left: 5px;">
-              </div>
-            </div>
 
-            <!-- Dosen di kanan dan di bawah -->
-            <div class="right d-flex justify-content-end align-items-start mb-3">
-              <div class="message-bubble">
-                <p>Saya melihat anda makan di kelas, dan berceceran di meja!</p>
-              </div>
-              <div>
-                <i class="bi bi-person-circle ms-2 icon-user" style="font-size: 24px; color: #223381;"></i>
-              </div>
-            </div>
-
-          </div>
-          <!-- Textbox untuk mengirim pesan -->
-          <div class="border-top pt-4">
-            <div class="input-group">
-              <label class="input-group-text" for="fileInputTUV02"
-                style="cursor: pointer; font-size: 14px; padding: 5px; height: 40px;">
-                <i class="fas fa-paperclip" style="font-size: 16px; padding-left: 10px;"></i>
-              </label>
-
-              <input type="file" class="form-control" accept="image/*" style="display: none;" id="fileInputTUV02">
-              <!-- Input file tetap tersembunyi -->
-
-              <input type="text" class="form-control" placeholder="Kirim pesan..." aria-label="Kirim pesan"
-                style="height: 40px; padding-left: 10px;">
-
-              <button class="btn btn-primary" type="button" style="font-weight: 600; height: 40px; margin-top: 0px">
-                <i class="fas fa-paper-plane"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="modal-body" style="padding-top: 10px; padding-bottom: 10px;">
+  <!-- Konten Pesan -->
+  <div class="flex-grow-1">
+    <!-- Kontainer untuk menampilkan riwayat -->
   </div>
+</div>
+
 
 
 </body>

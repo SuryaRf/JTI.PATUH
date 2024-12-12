@@ -1,35 +1,33 @@
 <?php
-session_start();
 include 'connection.php';
 
-if (!isset($_SESSION['nim'])) {
-    echo json_encode(['error' => 'Anda tidak memiliki akses.']);
+$id_banding = $_GET['id_banding'] ?? null;
+
+if (!$id_banding) {
+    echo json_encode(['error' => 'ID banding tidak ditemukan.']);
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $id_pelanggaran = $_GET['id'] ?? null;
+try {
+    $query = "SELECT deskripsi_banding, foto_banding FROM Banding WHERE id_banding = ?";
+    $stmt = sqlsrv_query($conn, $query, [$id_banding]);
 
-    if (!$id_pelanggaran) {
-        echo json_encode(['error' => 'ID pelanggaran tidak ditemukan.']);
-        exit();
+    if ($stmt === false) {
+        throw new Exception(print_r(sqlsrv_errors(), true));
     }
 
-    try {
-        $query = "SELECT * FROM Banding WHERE id_pelanggaran = ?";
-        $stmt = sqlsrv_query($conn, $query, [$id_pelanggaran]);
-
-        $riwayat = [];
-        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-            $riwayat[] = $row;
-        }
-
-        echo json_encode($riwayat);
-    } catch (Exception $e) {
-        echo json_encode(['error' => 'Kesalahan saat mengambil riwayat: ' . $e->getMessage()]);
-    } finally {
-        sqlsrv_close($conn);
+    $result = [];
+    while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+        $result[] = [
+            'deskripsi_banding' => $row['deskripsi_banding'],
+            'foto_banding' => $row['foto_banding'],
+        ];
     }
-} else {
-    echo json_encode(['error' => 'Metode pengiriman tidak valid.']);
+
+    echo json_encode($result);
+} catch (Exception $e) {
+    echo json_encode(['error' => 'Kesalahan: ' . $e->getMessage()]);
+} finally {
+    sqlsrv_close($conn);
 }
+?>
