@@ -662,61 +662,9 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                         alert('Error: ' + error.message);
                       });
                   });
-
-
-                  const btnKirim = document.createElement('button');
-                  btnKirim.className = 'btn btn-success';
-                  btnKirim.textContent = 'Kirim Surat';
-                  btnKirim.addEventListener('click', () => {
-                    fetch(`http://localhost/PBL/Project%20Web/app/controllers/generatePDF.php?id=${data.id_pelanggaran}`)
-                      .then(response => {
-
-                        if (!response.ok) {
-                          throw new Error('Gagal memproses permintaan: ' + response.statusText);
-                        }
-                        return response.json();
-                      })
-                      .then(result => {
-                        if (result.success) {
-                          // Tampilkan pop-up animasi SweetAlert jika sukses
-                          Swal.fire({
-                            title: 'Surat Pemanggilan Terkirim!',
-                            text: 'Surat Pemanggilan Anda telah berhasil dikirim.',
-                            icon: 'success',
-                            showConfirmButton: false,
-                            timer: 3000,
-
-                          }).then(() => {
-                            // Reload atau arahkan ke halaman lain jika perlu
-                            window.location.href = 'history.php';
-                          });
-                        } else {
-                          Swal.fire({
-                            title: 'Surat Pemanggilan Terkirim!',
-                            text: 'Surat Pemanggilan Anda telah berhasil dikirim.',
-                            icon: 'success',
-                            showConfirmButton: false,
-                            timer: 3000,
-
-                          }).then(() => {
-                            // Reload atau arahkan ke halaman lain jika perlu
-                            window.location.href = 'history.php';
-                          });
-                        }
-                      })
-                      .catch(error => {
-                        console.error(error);
-                        Swal.fire({
-                          title: 'Error!',
-                          text: 'Terjadi kesalahan: ' + error.message,
-                          icon: 'error',
-                          confirmButtonText: 'Tutup',
-                        });
-                      });
-                  });
-
+                 
                   modalFooter.appendChild(btnRiwayat);
-                  modalFooter.appendChild(btnKirim);
+                
                 } else if (data.status.toLowerCase() === 'reject') {
                   const btnClose = document.createElement('button');
                   btnClose.className = 'btn btn-secondary';
@@ -727,7 +675,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                 } else if (data.status.toLowerCase() === 'pending') {
                   const btnTolak = document.createElement('button');
                   btnTolak.className = 'btn btn-danger me-2';
-                  btnTolak.textContent = 'Tolak';
+                  btnTolak.textContent = 'Batal';
                   btnTolak.addEventListener('click', () => {
                     // Logika untuk menangani tombol Tolak
                     alert('Laporan ditolak.');
@@ -735,8 +683,8 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                   });
 
                   const btnTerima = document.createElement('button');
-                  btnTerima.className = 'btn btn-success';
-                  btnTerima.textContent = 'Terima';
+                  btnTerima.className = 'btn btn-primary';
+                  btnTerima.textContent = 'Aju Banding';
                   btnTerima.addEventListener('click', () => {
                     // Logika untuk menangani tombol Terima
                     alert('Laporan diterima.');
