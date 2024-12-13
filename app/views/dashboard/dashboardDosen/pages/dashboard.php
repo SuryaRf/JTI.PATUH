@@ -514,8 +514,8 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
             </div>
             <div class="d-flex justify-content-end mt-3">
 
-              <button class="btn btn-danger me-2 btn-lg">Batalkan Laporan</button>
-              <button class="check" data-id-banding="1" data-status="pending">Riwayat Aju Banding</button>
+              <button class="btn btn-danger me-2">Batalkan Laporan</button>
+              <button class="check btn btn-primary" data-id-banding="7" data-status="pending">Riwayat Aju Banding</button>
 
             </div>
           </div>
@@ -837,67 +837,67 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
     });
 
     document.querySelectorAll('.check').forEach(button => {
-  button.addEventListener('click', function () {
-    const idBanding = this.getAttribute('data-id-banding'); // ID banding dari tombol
-
-    if (!idBanding) {
-      alert('ID banding tidak ditemukan.');
-      return;
-    }
-
-    // Ambil data riwayat dari backend
-    fetch(`http://localhost/PBL/Project%20Web/app/controllers/getBandingHistory.php?id_banding=${idBanding}`)
-      .then(response => response.json())
-      .then(data => {
-        if (data.error) {
-          alert(data.error);
-          return;
+    button.addEventListener('click', function () {
+        const idBanding = this.getAttribute('data-id-banding');
+        if (!idBanding) {
+            alert('ID banding tidak ditemukan.');
+            return;
         }
 
-        const riwayatContainer = document.querySelector('#riwayatModalTUV02 .modal-body .flex-grow-1');
-        riwayatContainer.innerHTML = ''; // Bersihkan isi modal sebelumnya
+        // Ambil data dari backend
+        fetch(`http://localhost/PBL/Project%20Web/app/controllers/getBandingHistory.php?id_banding=${idBanding}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                    return;
+                }
 
-        data.forEach(item => {
-          // Tambahkan deskripsi banding
-          if (item.deskripsi_banding) {
-            const messageBubble = document.createElement('div');
-            messageBubble.className = 'left d-flex justify-content-start align-items-start mb-3';
-            messageBubble.innerHTML = `
-              <div>
-                <i class="bi bi-person-circle me-2 icon-user" style="font-size: 24px; color: #223381;"></i>
-              </div>
-              <div class="message-bubble">
-                <p>${item.deskripsi_banding}</p>
-              </div>
-            `;
-            riwayatContainer.appendChild(messageBubble);
-          }
+                // Isi modal dengan data
+                const riwayatContainer = document.querySelector('#riwayatModalTUV02 .modal-body .flex-grow-1');
+                riwayatContainer.innerHTML = ''; // Hapus isi modal sebelumnya
 
-          // Tambahkan gambar banding jika ada
-          if (item.foto_banding) {
-            const imgBubble = document.createElement('div');
-            imgBubble.className = 'left d-flex justify-content-start align-items-start mb-3';
-            imgBubble.innerHTML = `
-              <div>
-                <i class="bi bi-person-circle me-2 icon-user" style="font-size: 24px; color: #223381;"></i>
-              </div>
-              <div class="img-bubble mb-3">
-                <img src="${item.foto_banding}" alt="Bukti Banding" width="350" class="img-fluid rounded-3" style="margin-left: 5px;">
-              </div>
-            `;
-            riwayatContainer.appendChild(imgBubble);
-          }
-        });
+                data.forEach(item => {
+                    // Tambahkan deskripsi banding
+                    if (item.deskripsi_banding) {
+                        const messageBubble = document.createElement('div');
+                        messageBubble.className = 'left d-flex justify-content-start align-items-start mb-3';
+                        messageBubble.innerHTML = `
+                            <div>
+                                <i class="bi bi-person-circle me-2 icon-user" style="font-size: 24px; color: #223381;"></i>
+                            </div>
+                            <div class="message-bubble">
+                                <p>${item.deskripsi_banding}</p>
+                            </div>
+                        `;
+                        riwayatContainer.appendChild(messageBubble);
+                    }
 
-        // Tampilkan modal
-        const riwayatModal = new bootstrap.Modal(document.getElementById('riwayatModalTUV02'));
-        riwayatModal.show();
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('Terjadi kesalahan saat mengambil riwayat aju banding.');
-      });
-  });
+                    // Tambahkan gambar banding jika ada
+                    if (item.foto_banding) {
+                        const imgBubble = document.createElement('div');
+                        imgBubble.className = 'left d-flex justify-content-start align-items-start mb-3';
+                        imgBubble.innerHTML = `
+                            <div>
+                                <i class="bi bi-person-circle me-2 icon-user" style="font-size: 24px; color: #223381;"></i>
+                            </div>
+                            <div class="img-bubble mb-3">
+                                <img src="${item.foto_banding}" alt="Bukti Banding" width="350" class="img-fluid rounded-3" style="margin-left: 5px;">
+                            </div>
+                        `;
+                        riwayatContainer.appendChild(imgBubble);
+                    }
+                });
+
+                // Tampilkan modal
+                const riwayatModal = new bootstrap.Modal(document.getElementById('riwayatModalTUV02'));
+                riwayatModal.show();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat mengambil riwayat aju banding.');
+            });
+    });
 });
 
   </script>
@@ -930,10 +930,28 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
   </div>
 
   <div class="modal-body" style="padding-top: 10px; padding-bottom: 10px;">
-  <!-- Konten Pesan -->
-  <div class="flex-grow-1">
-    <!-- Kontainer untuk menampilkan riwayat -->
+    <!-- Konten Pesan -->
+    <div class="flex-grow-1">
+      <!-- Kontainer untuk menampilkan riwayat -->
+    </div>
   </div>
+  <div class="modal fade" id="riwayatModalTUV02" tabindex="-1" aria-labelledby="riwayatModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="riwayatModalLabel">Riwayat Aju Banding</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="flex-grow-1">
+                    <!-- Konten riwayat akan dimasukkan di sini -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 

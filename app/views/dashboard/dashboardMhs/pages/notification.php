@@ -58,7 +58,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
-<div class="min-height-200 position-absolute w-100" style="background-color: #223381;"></div>
+  <div class="min-height-200 position-absolute w-100" style="background-color: #223381;"></div>
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -244,10 +244,10 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
     <!-- End Navbar -->
 
     <div class="container my-5">
-  <div id="notificationsContainer" class="row">
-    <!-- Notifikasi akan dimuat di sini -->
-  </div>
-</div>
+      <div id="notificationsContainer" class="row">
+        <!-- Notifikasi akan dimuat di sini -->
+      </div>
+    </div>
 
 
 
@@ -266,26 +266,26 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
   <script src="../../../../../public/js/argon-dashboard.min.js?v=2.1.0"></script>
 
   <script>
-  // Fungsi untuk mengambil notifikasi mahasiswa
-  function fetchNotifications() {
-  const nim = '2341760020'; // Ganti dengan sesi login jika tersedia
+    // Fungsi untuk mengambil notifikasi mahasiswa
+    function fetchNotifications() {
+      const nim = '2341760020'; // Ganti dengan sesi login jika tersedia
 
-  fetch(`http://localhost/PBL/Project%20Web/app/controllers/fetchNotificationsMhs.php?nim=${nim}`)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      const notificationsContainer = document.getElementById('notificationsContainer');
-      notificationsContainer.innerHTML = ''; // Kosongkan kontainer sebelumnya
+      fetch(`http://localhost/PBL/Project%20Web/app/controllers/fetchNotificationsMhs.php?nim=${nim}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          const notificationsContainer = document.getElementById('notificationsContainer');
+          notificationsContainer.innerHTML = ''; // Kosongkan kontainer sebelumnya
 
-      if (data && data.length > 0) {
-        data.forEach(notification => {
-          const notificationCard = document.createElement('div');
-          notificationCard.classList.add('card', 'shadow-sm', 'mb-4');
-          notificationCard.innerHTML = `
+          if (data && data.length > 0) {
+            data.forEach(notification => {
+              const notificationCard = document.createElement('div');
+              notificationCard.classList.add('card', 'shadow-sm', 'mb-4');
+              notificationCard.innerHTML = `
             <div class="card-body">
               <h5 class="card-title ${notification.status_notifikasi === 'Unread' ? 'text-primary' : 'text-secondary'}">${notification.isi}</h5>
               <p class="card-text">${notification.waktu_dibuat}</p>
@@ -294,33 +294,32 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
               </button>
             </div>
           `;
-          notificationsContainer.appendChild(notificationCard);
+              notificationsContainer.appendChild(notificationCard);
+            });
+
+            // Tambahkan event listener untuk tombol "Lihat Detail"
+            document.querySelectorAll('.view-pdf').forEach(button => {
+              button.addEventListener('click', event => {
+                const pdfUrl = event.target.getAttribute('data-pdf');
+                window.open(pdfUrl, '_blank'); // Buka PDF di tab baru
+              });
+            });
+          } else {
+            const noNotificationsMessage = document.createElement('p');
+            noNotificationsMessage.innerText = 'Tidak ada notifikasi baru.';
+            notificationsContainer.appendChild(noNotificationsMessage);
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching notifications:', error);
+          const notificationsContainer = document.getElementById('notificationsContainer');
+          notificationsContainer.innerHTML = '<p class="text-danger">Gagal memuat notifikasi. Silakan coba lagi.</p>';
         });
+    }
 
-        // Tambahkan event listener untuk tombol "Lihat Detail"
-        document.querySelectorAll('.view-pdf').forEach(button => {
-          button.addEventListener('click', event => {
-            const pdfUrl = event.target.getAttribute('data-pdf');
-            window.open(pdfUrl, '_blank'); // Buka PDF di tab baru
-          });
-        });
-      } else {
-        const noNotificationsMessage = document.createElement('p');
-        noNotificationsMessage.innerText = 'Tidak ada notifikasi baru.';
-        notificationsContainer.appendChild(noNotificationsMessage);
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching notifications:', error);
-      const notificationsContainer = document.getElementById('notificationsContainer');
-      notificationsContainer.innerHTML = '<p class="text-danger">Gagal memuat notifikasi. Silakan coba lagi.</p>';
-    });
-}
-
-// Panggil fungsi untuk mengambil notifikasi saat halaman dimuat
-window.onload = fetchNotifications;
-
-</script>
+    // Panggil fungsi untuk mengambil notifikasi saat halaman dimuat
+    window.onload = fetchNotifications;
+  </script>
 
 </body>
 
