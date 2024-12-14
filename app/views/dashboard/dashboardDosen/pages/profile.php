@@ -86,6 +86,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
           </a>
         </li>
 
+        
 
         <li class="nav-item">
           <a class="nav-link" href="../pages/history.php">
@@ -174,9 +175,9 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="NIDN" class="form-control-label"
-                      style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600;">NIDN</label>
-                    <input class="form-control" type="text" id="NIDN_admin" readonly
+                    <label for="nip" class="form-control-label"
+                      style="font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600;">NIP</label>
+                    <input class="form-control" type="text" id="nip_admin" readonly
                       style="font-family: 'Poppins', sans-serif;">
                   </div>
                 </div>
@@ -242,8 +243,8 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="editNIM" class="form-control-label">NIDN</label>
-                        <input type="text" class="form-control" id="editNIDN" value="2341760020">
+                        <label for="editNIM" class="form-control-label">NIP</label>
+                        <input type="text" class="form-control" id="editNIP" value="2341760020">
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -258,7 +259,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
                       <div class="form-group">
                         <label for="editGender" class="form-control-label">Jenis Kelamin</label>
                         <select class="form-control" id="editGender">
-                          <option value="Laki - laki" selected>Laki - laki</option>
+                          <option value="Laki-laki" selected>Laki - laki</option>
                           <option value="Perempuan">Perempuan</option>
                         </select>
                       </div>
@@ -314,7 +315,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         // Ambil data admin dari server
-        fetch('http://localhost/PBL/Project%20Web/app/controllers/getDosenData.php')
+        fetch('http://localhost/PBL/Project%20Web/app/controllers/getAdminData.php')
           .then(response => response.json())
           .then(data => {
             if (data.error) {
@@ -323,7 +324,7 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
               // Isi data ke dalam elemen input
               document.getElementById('nama_admin').innerText = data.nama_pgw || '';
               document.getElementById('role_admin').innerText = 'Dosen'; // Ganti sesuai role jika diperlukan
-              document.getElementById('NIDN_admin').value = data.nidn || '';
+              document.getElementById('nip_admin').value = data.nip || '';
               // document.getElementById('nama_admin_input').value = data.nama_pgw || '';
               document.getElementById('jk_admin').value = data.jk_pegawai || '';
               document.getElementById('nohp_admin').value = data.nohp_pgw || '';
@@ -339,13 +340,13 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
       document.getElementById('editProfileBtn').addEventListener('click', function() {
         // Ambil data dari elemen profil
         const nama = document.getElementById('nama_admin').innerText;
-        const NIDN = document.getElementById('NIDN_admin').value;
+        const nip = document.getElementById('nip_admin').value;
         const email = document.getElementById('email_admin').value;
         const gender = document.getElementById('jk_admin').value;
         const phone = document.getElementById('nohp_admin').value;
 
         // Isi data ke dalam form di modal
-        document.getElementById('editNIDN').value = nidn;
+        document.getElementById('editNIP').value = nip;
         document.getElementById('editEmail').value = email;
         document.getElementById('editGender').value = gender;
         document.getElementById('editPhone').value = phone;
@@ -354,52 +355,52 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
 
       document.querySelector('.modal-footer .btn-primary').addEventListener('click', function() {
         const updatedData = {
-          NIDN: document.getElementById('editNIDN').value,
+          nip: document.getElementById('editNIP').value,
           email: document.getElementById('editEmail').value,
           gender: document.getElementById('editGender').value,
           phone: document.getElementById('editPhone').value,
         };
 
-          fetch('http://localhost/PBL/Project%20Web/app/controllers/updateDataDosen.php', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(updatedData),
-            })
-            .then(response => {
-              console.log('Response status:', response.status);
-              return response.text(); // Ambil respons mentah
-            })
-            .then(data => {
-              console.log('Raw response:', data); // Log respons mentah
-              try {
-                const jsonData = JSON.parse(data); // Parsing respons
-                if (jsonData.success) {
-                  Swal.fire({
-                    title: 'Update Data Profil!',
-                    text: 'Data Profil Anda telah berhasil diubah.',
-                    icon: 'success',
-                    showConfirmButton: false,
-                    timer: 3000,
+        fetch('http://localhost/PBL/Project%20Web/app/controllers/updateDataPegawai.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedData),
+          })
+          .then(response => {
+            console.log('Response status:', response.status);
+            return response.text(); // Ambil respons mentah
+          })
+          .then(data => {
+            console.log('Raw response:', data); // Log respons mentah
+            try {
+              const jsonData = JSON.parse(data); // Parsing respons
+              if (jsonData.success) {
+                Swal.fire({
+                  title: 'Update Data Profil!',
+                  text: 'Data Profil Anda telah berhasil diubah.',
+                  icon: 'success',
+                  showConfirmButton: false,
+                  timer: 3000,
 
-                  }).then(() => {
-                    // Reload atau arahkan ke halaman lain jika perlu
-                    window.location.href = 'profile.php';
-                  });
-                } else {
-                  alert('Gagal memperbarui profil: ' + (jsonData.error || 'Error tidak diketahui.'));
-                }
-              } catch (e) {
-                console.error('JSON Parsing Error:', e);
-                alert('Terjadi kesalahan saat memperbarui profil. Respons tidak valid.');
+                }).then(() => {
+                  // Reload atau arahkan ke halaman lain jika perlu
+                  window.location.href = 'profile.php';
+                });
+              } else {
+                alert('Gagal memperbarui profil: ' + (jsonData.error || 'Error tidak diketahui.'));
               }
-            })
-            .catch(error => {
-              console.error('Fetch Error:', error);
-              alert('Terjadi kesalahan saat memperbarui profil.');
-            });
-        });
+            } catch (e) {
+              console.error('JSON Parsing Error:', e);
+              alert('Terjadi kesalahan saat memperbarui profil. Respons tidak valid.');
+            }
+          })
+          .catch(error => {
+            console.error('Fetch Error:', error);
+            alert('Terjadi kesalahan saat memperbarui profil.');
+          });
+      });
     </script>
     <!-- Tambahkan SweetAlert2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
