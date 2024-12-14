@@ -945,20 +945,20 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      fetch("http://localhost/PBL/Project%20Web/app/controllers/getReports.php") // Ganti dengan URL yang sesuai
+    fetch("http://localhost/PBL/Project%20Web/app/controllers/getReports.php")
         .then(response => response.json())
         .then(data => {
-          if (data.error) {
-            console.error(data.error);
-            return;
-          }
+            if (data.error) {
+                console.error(data.error);
+                return;
+            }
 
-          // Menampilkan laporan yang diajukan
-          const submittedTableBody = document.querySelector("#submittedReports tbody");
-          submittedTableBody.innerHTML = ""; // Bersihkan baris yang ada
-          data.submitted.forEach(report => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
+            // Menampilkan laporan yang diajukan
+            const submittedTableBody = document.querySelector("#submittedReports tbody");
+            submittedTableBody.innerHTML = ""; // Bersihkan baris yang ada
+            data.submitted.forEach(report => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
                     <td>${report.id_pelanggaran}</td>
                     <td style="max-width: 450px; word-wrap: break-word; white-space: wrap; overflow: hidden; text-overflow: ellipsis;" title="${report.nama_pelanggaran}">
                         ${report.nama_pelanggaran}
@@ -973,15 +973,15 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                         </button>
                     </td>
                 `;
-            submittedTableBody.appendChild(row);
-          });
+                submittedTableBody.appendChild(row);
+            });
 
-          // Menampilkan laporan yang diterima
-          const receivedTableBody = document.querySelector("#receivedReports tbody");
-          receivedTableBody.innerHTML = ""; // Bersihkan baris yang ada
-          data.received.forEach(report => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
+            // Menampilkan laporan yang diterima
+            const receivedTableBody = document.querySelector("#receivedReports tbody");
+            receivedTableBody.innerHTML = ""; // Bersihkan baris yang ada
+            data.received.forEach(report => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
                     <td>${report.id_pelanggaran}</td>
                     <td style="max-width: 450px; word-wrap: break-word; white-space: wrap; overflow: hidden; text-overflow: ellipsis;" title="${report.nama_pelanggaran}">
                         ${report.nama_pelanggaran}
@@ -996,47 +996,47 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                         </button>
                     </td>
                 `;
-            receivedTableBody.appendChild(row);
-          });
-
-          // Menambahkan event listener untuk tombol CHECK
-          const checkButtons = document.querySelectorAll('.check');
-          checkButtons.forEach(button => {
-            button.addEventListener('click', function() {
-              const status = this.getAttribute('data-status');
-              const id = this.getAttribute('data-id');
-              showModal(status, id);
+                receivedTableBody.appendChild(row);
             });
-          });
+
+            // Menambahkan event listener untuk tombol CHECK
+            const checkButtons = document.querySelectorAll('.check');
+            checkButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const status = this.getAttribute('data-status');
+                    const id = this.getAttribute('data-id');
+                    showModal(status, id);
+                });
+            });
         })
         .catch(error => console.error('Error fetching reports:', error));
-    });
+});
 
-    // Function to get badge class based on status
-    function getBadgeClass(status) {
-      switch (status.toLowerCase()) {
+// Function to get badge class based on status
+function getBadgeClass(status) {
+    switch (status.toLowerCase()) {
         case 'pending':
-          return 'bg-warning';
+            return 'bg-warning';
         case 'valid':
-          return 'bg-success';
+            return 'bg-success';
         case 'reject':
-          return 'bg-danger';
+            return 'bg-danger';
         default:
-          return 'bg-secondary';
-      }
+            return 'bg-secondary';
     }
+}
 
-    // Function to show the appropriate modal based on status
-    function showModal(status, id) {
-      let modalContent = '';
-      if (status.toLowerCase() === 'reject') {
+// Function to show the appropriate modal based on status
+function showModal(status, id) {
+    let modalContent = '';
+    if (status.toLowerCase() === 'reject') {
         modalContent = `
-            <div class="modal fade" id="detailModalGHI03" tabindex="-1" aria-labelledby="detailModalLabelGHI03" aria-hidden="true">
+           <div class="modal fade" id="detailModalGHI03" tabindex="-1" aria-labelledby="detailModalLabelGHI03" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="detailModalLabelGHI03" style="font-size: 20px; font-weight: 600px; color: #223381;">Detail Pelanggaran</h5>
-                            <button type=" button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="row">
@@ -1069,20 +1069,21 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
-                                <button class="btn btn-primary rounded-3 me-2" style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-10px);" data-bs-toggle="modal">Tutup</button>
+                                <button class="btn btn-primary rounded-3 me-2" style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-10px);" data-bs-toggle="modal" data-bs-target="#ajuBandingModal">Aju Banding</button>
+                                <button class="btn btn-primary rounded-3" style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" id="submitBtn" data-id="${id}">Terima</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         `;
-      } else if (status.toLowerCase() === 'valid') {
+    } else if (status.toLowerCase() === 'valid') {
         modalContent = `
             <div class="modal fade" id="detailModalDEF02" tabindex="-1" aria-labelledby="detailModalLabelDEF02" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="detailModalLabelDEF02" style="font-size: 20px; font-weight: 600px; color: #223381;">Detail Pelanggaran</h5>
+                                                       <h5 class="modal-title" id="detailModalLabelDEF02" style="font-size: 20px; font-weight: 600px; color: #223381;">Detail Pelanggaran</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -1113,15 +1114,6 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                                         <label class="form-label" style="font-weight: 600px; color: #223381;">Lokasi</label>
                                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">Di Area Kampus</p>
                                     </div>
-                                    <div class="mb-3">
-                                        <label class="form-label fw-bold" style="color: #223381;">Download Berita Acara</label>
-                                        <div class="form-control d-flex align-items-center justify-content-between" style="border: 1px solid #ced4da; border-radius: 4px; padding: 8px 12px;">
-                                            <span style="font-size: 13px;">Berita Acara - ABC03</span>
-                                            <button class="btn btn-primary btn-xs d-flex align-items-center px-2 py-1" onclick="downloadBeritaAcara()" style="font-size: 14px; font-weight: 600; background-color: #fff; color: #223381; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: box-shadow 0.3s ease;">
-                                                <i class="fas fa-download me-1" style="font-weight: 600;"></i> Unduh
-                                            </button>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1132,7 +1124,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                 </div>
             </div>
         `;
-      } else if (status.toLowerCase() === 'pending') {
+    } else if (status.toLowerCase() === 'pending') {
         modalContent = `
             <div class="modal fade" id="detailModalABC01" tabindex="-1" aria-labelledby="detailModalLabelABC01" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -1145,7 +1137,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="text-center">
-                                        <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom" class="img-fluid rounded w-100" data-bs-toggle="modal" data-bs-target="#buktiZoomModalABC01" style="cursor: pointer;">
+                                        <img src="../../../../../public/img/student.jpg" alt="Bukti Zoom" class="img-fluid rounded w-100" data-bs-toggle="modal data-bs-target="#buktiZoomModalABC01" style="cursor: pointer;">
                                     </div>
                                 </div>
                                 <div class="col-md-8">
@@ -1173,65 +1165,63 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                             </div>
                             <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
                                 <button class="btn btn-primary rounded-3 me-2" style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#ajuBandingModal">Aju Banding</button>
-                                <button class="btn btn-primary rounded-3" style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" id="submitBtn" data-bs-toggle="modal" data-bs-target="#successModal">Tolak</button>
+                                <button class="btn btn-primary rounded-3" style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" id="submitBtn" data-id="${id}">Terima</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         `;
-      }
-      // Event listener untuk tombol "Kirim" di modal Aju Banding
-      document.getElementById('submitAjuBandingBtn').addEventListener('click', function() {
-        const idPelanggaran = '44';
-        const deskripsiBanding = document.getElementById('deskripsiBanding').value;
-        const fotoBanding = document.getElementById('formFile').files[0];
+    }
 
-        // Buat FormData untuk mengirim data
-        const formData = new FormData();
-        formData.append('idPelanggaran', idPelanggaran);
-        formData.append('deskripsiBanding', deskripsiBanding);
-        if (fotoBanding) {
-          formData.append('fotoBanding', fotoBanding);
-        }
+    // Menampilkan modal
+    const modalContainer = document.createElement('div');
+    modalContainer.innerHTML = modalContent;
+    document.body.appendChild(modalContainer);
+    const modal = new bootstrap.Modal(modalContainer.querySelector('.modal'));
+    modal.show();
 
-        // Kirim data ke backend
-        fetch('http://localhost/PBL/Project%20Web/app/controllers/submitAjuBanding.php', {
-            method: 'POST',
-            body: formData,
-          })
-          .then(response => response.json())
-          .then(data => {
-            if (data.error) {
-              alert('Gagal mengajukan banding: ' + data.error);
-            } else {
-              alert('Banding berhasil diajukan!');
-              // Tutup modal setelah berhasil
-              const ajuBandingModal = bootstrap.Modal.getInstance(document.getElementById('ajuBandingModal'));
-              ajuBandingModal.hide();
-              // Reset form setelah pengiriman
-              document.getElementById('deskripsiBanding').value = '';
-              document.getElementById('formFile').value = '';
-            }
-          })
-          .catch(error => {
-            console.error('Error submitting banding:', error);
-            alert('Terjadi kesalahan saat mengajukan banding.');
-          });
-      });
-      // Menampilkan modal
-      const modalContainer = document.createElement('div');
-      modalContainer.innerHTML = modalContent;
-      document.body.appendChild(modalContainer);
-      const modal = new bootstrap.Modal(modalContainer.querySelector('.modal'));
-      modal.show();
-
-      // Menghapus modal setelah ditutup
-      modalContainer.querySelector('.btn-close').addEventListener('click', () => {
+    // Menghapus modal setelah ditutup
+    modalContainer.querySelector('.btn-close').addEventListener('click', () => {
         modal.hide();
         modalContainer.remove();
-      });
+    });
+
+    // Event listener untuk tombol "Terima"
+    const terimaButton = modalContainer.querySelector('#submitBtn');
+    if (terimaButton) {
+        terimaButton.addEventListener('click', async function() {
+            const idPelanggaran = this.getAttribute('data-id'); // Ambil ID pelanggaran
+
+            try {
+                const response = await fetch('http://localhost/PBL/Project%20Web/app/controllers/updateViolationsStatusMhs.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        id_pelanggaran: idPelanggaran,
+                        status: 'valid'
+                    }),
+                });
+
+                const result = await response.json();
+                if (result.error) {
+                    alert(result.error);
+                } else {
+                    alert('Status pelanggaran berhasil diperbarui menjadi valid.');
+                    // Refresh data atau lakukan tindakan lain setelah status diperbarui
+                                       // Reload halaman untuk memperbarui data
+                                       location.reload(); // Reload halaman untuk memperbarui data
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat memperbarui status pelanggaran.');
+            }
+        });
     }
+}
+   
   </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
