@@ -322,13 +322,13 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="editNIM" class="form-control-label">NIM</label>
-                    <input type="text" class="form-control" id="editNIM" value="2341760020">
+                    <input type="text" class="form-control" id="editNIM" value="" readonly>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="editEmail" class="form-control-label">Alamat Email</label>
-                    <input type="email" class="form-control" id="editEmail" value="suryarahmatfatahillah@gmail.com">
+                    <input type="email" class="form-control" id="editEmail" value="" >
                   </div>
                 </div>
               </div>
