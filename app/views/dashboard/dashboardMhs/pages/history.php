@@ -1069,8 +1069,7 @@ function showModal(status, id) {
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
-                                <button class="btn btn-primary rounded-3 me-2" style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; transform: translateY(-10px);" data-bs-toggle="modal" data-bs-target="#ajuBandingModal">Aju Banding</button>
-                                <button class="btn btn-primary rounded-3" style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" id="submitBtn" data-id="${id}">Terima</button>
+                                <button class="btn btn-primary rounded-3 me-2" style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" data-bs-dismiss="modal">Tutup</button>
                             </div>
                         </div>
                     </div>
