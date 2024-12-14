@@ -16,8 +16,7 @@ $querySubmitted = "
         Pelanggaran.waktu_pelanggaran,
         Pelanggaran.lokasi,
         Pelanggaran.status,
-        TataTertib.nama_pelanggaran,
-        'pelapor' AS role  -- Menandakan bahwa mahasiswa ini adalah pelapor
+        TataTertib.nama_pelanggaran
     FROM Pelanggaran
     INNER JOIN TataTertib ON Pelanggaran.id_tatib = TataTertib.id_tatib
     WHERE Pelanggaran.nim_pelapor = ?  -- NIM pelapor
@@ -31,8 +30,7 @@ $queryReceived = "
         Pelanggaran.waktu_pelanggaran,
         Pelanggaran.lokasi,
         Pelanggaran.status,
-        TataTertib.nama_pelanggaran,
-        'terlapor' AS role  -- Menandakan bahwa mahasiswa ini adalah terlapor
+        TataTertib.nama_pelanggaran
     FROM Pelanggaran
     INNER JOIN TataTertib ON Pelanggaran.id_tatib = TataTertib.id_tatib
     WHERE Pelanggaran.nim = ?  -- NIM terlapor

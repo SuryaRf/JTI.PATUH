@@ -765,7 +765,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
       </div>
     </div>
 
-  
+
     <!-- Modal untuk Zoom Gambar -->
     <div class="modal fade" id="buktiZoomModalABC01" tabindex="-1"
       aria-labelledby="buktiZoomModalLabelABC01" aria-hidden="true">
@@ -788,39 +788,29 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
     </div>
 
     <!-- Modal untuk Aju Banding -->
-    <div class="modal fade" id="ajuBandingModal" tabindex="-1" aria-labelledby="ajuBandingModalLabel"
-      aria-hidden="true" data-bs-dismiss="modal">
+    <div class="modal fade" id="ajuBandingModal" tabindex="-1" aria-labelledby="ajuBandingModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content" style="font-family: 'Poppins', sans-serif;">
           <div class="modal-header">
-            <h4 class="modal-title" id="ajuBandingModalLabel" style="color: #223381; font-size: 20px; ">
-              AJUKAN BANDING</h4>
+            <h4 class="modal-title" id="ajuBandingModalLabel" style="color: #223381; font-size: 20px;">AJUKAN BANDING</h4>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <h6 style="color: #223381; font-size: 16px;">Deskripsi Aju Banding</h6>
-            <textarea class="form-control" rows="8" style="background-color: #eaecef; font-size: 14px;"
-              placeholder="Masukkan banding" required></textarea>
+            <textarea class="form-control" id="deskripsiBanding" rows="8" style="background-color: #eaecef; font-size: 14px;" placeholder="Masukkan banding" required></textarea>
 
-            <h6 class="mt-3" style="color: #223381; font-size: 16px;">Bukti Aju Banding <span
-                style="color: #f05529; font-size: 16px;">*</span></h6>
-            <div class="border p-3 rounded bg-light mb-3 text-center"
-              style="background-color: #f0f0f0;">
+            <h6 class="mt-3" style="color: #223381; font-size: 16px;">Bukti Aju Banding <span style="color: #f05529; font-size: 16px;">*</span></h6>
+            <div class="border p-3 rounded bg-light mb-3 text-center" style="background-color: #f0f0f0;">
               <label for="formFile" class="d-block">
-                <img src="../../../../../public/img/upload-file.png" alt="Upload Icon"
-                  style="width: 30px; height: 30px; margin-bottom: 8px; opacity: 0.5;">
-                <span class="d-block"
-                  style="font-size: 14px; font-weight: normal; color: #6c757d;">Unggah bukti
-                  yang menguatkan Anda disini!</span>
+                <img src="../../../../../public/img/upload-file.png" alt="Upload Icon" style="width: 30px; height: 30px; margin-bottom: 8px; opacity: 0.5;">
+                <span class="d-block" style="font-size: 14px; font-weight: normal; color: #6c757d;">Unggah bukti yang menguatkan Anda disini!</span>
               </label>
-              <input class="form-control d-none" type="file" id="formFile">
+              <input class="form-control d-none" type="file" id="formFile" name="fotoBanding">
             </div>
             <p class="text-warning mb-0" style="font-size: 14px; color: #f05529;">*tidak wajib diisi</p>
           </div>
           <div class="modal-footer">
-            <button type="button"
-              style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;"
-              class="btn btn-primary" id="submitBtn" data-bs-toggle="modal">Kirim</button>
+            <button type="button" class="btn btn-primary" id="submitAjuBandingBtn" style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;">Kirim</button>
           </div>
         </div>
       </div>
@@ -1191,7 +1181,44 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
             </div>
         `;
       }
+      // Event listener untuk tombol "Kirim" di modal Aju Banding
+      document.getElementById('submitAjuBandingBtn').addEventListener('click', function() {
+        const idPelanggaran = '44';
+        const deskripsiBanding = document.getElementById('deskripsiBanding').value;
+        const fotoBanding = document.getElementById('formFile').files[0];
 
+        // Buat FormData untuk mengirim data
+        const formData = new FormData();
+        formData.append('idPelanggaran', idPelanggaran);
+        formData.append('deskripsiBanding', deskripsiBanding);
+        if (fotoBanding) {
+          formData.append('fotoBanding', fotoBanding);
+        }
+
+        // Kirim data ke backend
+        fetch('http://localhost/PBL/Project%20Web/app/controllers/submitAjuBanding.php', {
+            method: 'POST',
+            body: formData,
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.error) {
+              alert('Gagal mengajukan banding: ' + data.error);
+            } else {
+              alert('Banding berhasil diajukan!');
+              // Tutup modal setelah berhasil
+              const ajuBandingModal = bootstrap.Modal.getInstance(document.getElementById('ajuBandingModal'));
+              ajuBandingModal.hide();
+              // Reset form setelah pengiriman
+              document.getElementById('deskripsiBanding').value = '';
+              document.getElementById('formFile').value = '';
+            }
+          })
+          .catch(error => {
+            console.error('Error submitting banding:', error);
+            alert('Terjadi kesalahan saat mengajukan banding.');
+          });
+      });
       // Menampilkan modal
       const modalContainer = document.createElement('div');
       modalContainer.innerHTML = modalContent;
