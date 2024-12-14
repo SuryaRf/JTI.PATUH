@@ -1123,15 +1123,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                                         <label class="form-label" style="font-weight: 600px; color: #223381;">Lokasi</label>
                                         <p class="form-control" style="border: 1px solid #ced4da; border-radius: 4px;">Di Area Kampus</p>
                                     </div>
-                                    <div class="mb-3">
-                                        <label class="form-label fw-bold" style="color: #223381;">Download Berita Acara</label>
-                                        <div class="form-control d-flex align-items-center justify-content-between" style="border: 1px solid #ced4da; border-radius: 4px; padding: 8px 12px;">
-                                            <span style="font-size: 13px;">Berita Acara - ABC03</span>
-                                            <button class="btn btn-primary btn-xs d-flex align-items-center px-2 py-1" onclick="downloadBeritaAcara()" style="font-size: 14px; font-weight: 600; background-color: #fff; color: #223381; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: box-shadow 0.3s ease;">
-                                                <i class="fas fa-download me-1" style="font-weight: 600;"></i> Unduh
-                                            </button>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -1183,7 +1175,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                             </div>
                             <div class="d-flex justify-content-end align-items-start" style="margin-top: 8px;">
                                 <button class="btn btn-primary rounded-3 me-2" style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px; margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#ajuBandingModal">Aju Banding</button>
-                                <button class="btn btn-primary rounded-3" style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" id="submitBtn" data-bs-toggle="modal" data-bs-target="#successModal">Tolak</button>
+                                <button class="btn btn-primary rounded-3" style="font-weight: 600; font-size: 14px; padding: 6px 12px; width: 120px; height: 40px;" id="submitBtn" data-bs-toggle="modal" data-bs-target="#successModal">Batalkan</button>
                             </div>
                         </div>
                     </div>

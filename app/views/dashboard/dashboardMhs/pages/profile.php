@@ -237,7 +237,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Alamat Email</label>
-                      <input class="form-control" type="text" name="email" value="" style="font-family: 'Poppins', sans-serif;" readonly>
+                    <input class="form-control" type="text" name="email" value="" style="font-family: 'Poppins', sans-serif;" readonly>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -265,7 +265,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label"
                       style="font-family: 'Poppins', sans-serif; font-size: 20px font-weight: 600">Jurusan</label>
-                    <input class="form-control" type="text" name="jurusan" value="" style="font-family: 'Poppins', sans-serif;" readonly> 
+                    <input class="form-control" type="text" name="jurusan" value="" style="font-family: 'Poppins', sans-serif;" readonly>
 
                   </div>
                 </div>
@@ -322,7 +322,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="editNIM" class="form-control-label">NIM</label>
-                    <input type="text" class="form-control" id="editNIM" value="2341760020" >
+                    <input type="text" class="form-control" id="editNIM" value="2341760020">
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -337,7 +337,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                   <div class="form-group">
                     <label for="editGender" class="form-control-label">Jenis Kelamin</label>
                     <select class="form-control" id="editGender">
-                      <option value="Laki - laki" selected>Laki - laki</option>
+                      <option value="Laki-laki" selected>Laki - laki</option>
                       <option value="Perempuan">Perempuan</option>
                     </select>
                   </div>
@@ -345,7 +345,7 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="editPhone" class="form-control-label">No. Handphone</label>
-                    <input type="text" class="form-control" id="editPhone" value="08512345678">
+                    <input type="text" class="form-control" id="editPhone" value="">
                   </div>
                 </div>
               </div>
@@ -377,8 +377,11 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary"
-              style="background-color: #223381; border-color: #223381; font-family: 'Poppins', sans-serif;">Simpan</button>
+            <button type="button" class="btn btn-primary" id="saveChangesBtn"
+              style="background-color: #223381; border-color: #223381; font-family: 'Poppins', sans-serif;">
+              Simpan
+            </button>
+
           </div>
         </div>
       </div>
@@ -405,25 +408,58 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
           });
       });
 
-      // Fungsi untuk mengisi form di halaman profil
       function fillProfileForm(data) {
-        const nimInput = document.querySelector("input[name='nim']");
-        const emailInput = document.querySelector("input[name='email']");
-        const jkInput = document.querySelector("input[name='jk']");
-        const nohpInput = document.querySelector("input[name='nohp']");
-        const jurusanInput = document.querySelector("input[name='jurusan']");
-        const prodiInput = document.querySelector("input[name='prodi']");
-        const kelasInput = document.querySelector("input[name='kelas']");
+        // Elemen input di form profil utama
+        document.querySelector("input[name='nim']").value = data.nim || '';
+        document.querySelector("input[name='email']").value = data.email || '';
+        document.querySelector("input[name='jk']").value = data.jk_mhs || '';
+        document.querySelector("input[name='nohp']").value = data.nohp_mhs || '';
+        document.querySelector("input[name='jurusan']").value = data.jurusan || '';
+        document.querySelector("input[name='prodi']").value = data.prodi || '';
+        document.querySelector("input[name='kelas']").value = data.kelas || '';
 
-        // Periksa apakah elemen ditemukan sebelum mengisi nilai
-        if (nimInput) nimInput.value = data.nim || '';
-        if (emailInput) emailInput.value = data.email || '';
-        if (jkInput) jkInput.value = data.jk_mhs || '';
-        if (nohpInput) nohpInput.value = data.nohp_mhs || '';
-        if (jurusanInput) jurusanInput.value = data.jurusan || '';
-        if (prodiInput) prodiInput.value = data.prodi || '';
-        if (kelasInput) kelasInput.value = data.kelas || '';
+        // Elemen input di modal edit
+        document.getElementById('editNIM').value = data.nim || '';
+        document.getElementById('editEmail').value = data.email || '';
+        document.getElementById('editGender').value = data.jk_mhs || '';
+        document.getElementById('editPhone').value = data.nohp_mhs || '';
       }
+
+
+      document.querySelector(".modal-footer .btn-primary").addEventListener("click", function() {
+    const email = document.getElementById("editEmail").value;
+    const nohp = document.getElementById("editPhone").value;
+
+    fetch('http://localhost/PBL/Project%20Web/app/controllers/updateMhsData.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: email,
+            nohp: nohp
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.error) {
+            console.error("Error:", data.error);
+            alert(data.error);
+        } else {
+            alert("Profil berhasil diperbarui!");
+            location.reload();
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+});
+
     </script>
 </body>
 
