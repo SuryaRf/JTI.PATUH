@@ -201,6 +201,12 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
     .left .message-bubble {
       margin-right: 15px;
     }
+
+    .td-nama-pelanggaran {
+      word-wrap: break-word;
+      word-break: break-word;
+      white-space: normal;
+    }
   </style>
 </head>
 
@@ -596,18 +602,19 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
               const badgeClass = getBadgeClass(violation.status);
               const row = document.createElement('tr');
               row.innerHTML = `
-            <td class="text-center">${violation.id_pelanggaran}</td>
-            <td>${violation.nama_pelanggaran}</td>
-            <td class="text-center"><span class="${badgeClass}">${violation.status}</span></td>
-            <td class="text-center">
-              <button class="btn btn-primary py-1 px-4 fs-7 w-100 check" 
-                      data-bs-toggle="modal" 
-                      data-id="${violation.id_pelanggaran}" 
-                      data-status="${violation.status}">
-                CHECK
-              </button>
-            </td>
-          `;
+  <td class="text-center">${violation.id_pelanggaran}</td>
+  <td class="td-nama-pelanggaran">${violation.nama_pelanggaran}</td>
+  <td class="text-center"><span class="${badgeClass}">${violation.status}</span></td>
+  <td class="text-center">
+    <button class="btn btn-primary py-1 px-4 fs-7 w-100 check" 
+            data-bs-toggle="modal" 
+            data-id="${violation.id_pelanggaran}" 
+            data-status="${violation.status}">
+      CHECK
+    </button>
+  </td>
+`;
+
               tbody.appendChild(row);
             });
 
@@ -804,7 +811,6 @@ $nim = $_SESSION['nim']; // Ambil NIM dari sesi
         alert('Terjadi kesalahan saat mengajukan banding.');
       }
     });
-
   </script>
 
   <script>

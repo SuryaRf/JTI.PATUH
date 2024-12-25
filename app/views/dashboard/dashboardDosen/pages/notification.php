@@ -283,12 +283,14 @@
                 
                 <!-- Tombol untuk melihat detail jika ada PDF -->
                 ${notification.pdf_url ? `
-                    <button class="btn btn-info text-white fw-bold view-pdf" data-pdf="${notification.pdf_url}" style="background-color: #223381; border-color: #223381;">
-                        Lihat Detail
-                    </button>` : `
-                    <button class="btn btn-info text-white fw-bold view-pdf" data-pdf="${notification.pdf_url}" style="background-color: #223381; border-color: #223381;">
-                        Lihat Detail
-                    </button>`}
+    <button class="btn btn-info text-white fw-bold view-pdf" data-pdf="${notification.pdf_url}" style="background-color: #223381; border-color: #223381;">
+        Lihat Detail
+    </button>` : `
+    <button class="btn btn-info text-white fw-bold view-pdf" data-href="history.php" style="background-color: #223381; border-color: #223381;">
+        Lihat Detail
+    </button>`}
+
+
             </div>
         `;
 
@@ -304,6 +306,25 @@
           console.error('Fetch error:', error);
         });
     }
+    // Tangani klik pada tombol "Lihat Detail"
+    document.addEventListener('DOMContentLoaded', function() {
+      // Tangani klik pada tombol "Lihat Detail"
+      document.querySelectorAll('.view-pdf').forEach(button => {
+        button.addEventListener('click', function() {
+          const pdfUrl = this.getAttribute('data-pdf');
+          const historyUrl = this.getAttribute('data-href');
+
+          if (pdfUrl) {
+            // Jika ada PDF, buka PDF tersebut
+            window.open(pdfUrl, '_blank');
+          } else if (historyUrl) {
+            // Jika tidak ada PDF, arahkan ke history.php
+            window.location.href = historyUrl;
+          }
+        });
+      });
+    });
+
 
     // Panggil fungsi loadNotifications saat halaman selesai dimuat
     document.addEventListener('DOMContentLoaded', loadNotifications);
