@@ -161,8 +161,11 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
       color: #223381;
     }
 
-
-
+    .btn {
+      padding-top: 1px;
+      padding-bottom: 1px;
+    }
+    
     .badge {
       font-size: 0.875rem;
       padding: 0.5em 0.75em;
@@ -633,15 +636,19 @@ $id_pegawai = $_SESSION['id_pegawai']; // Ambil id_pegawai dari sesi
         ${violation.status}
       </span>
     </td>
-    <td class="text-center rounded-end">
+    <td class="text-center">
       <div class="d-flex justify-content-center gap-2">
-        <button class="btn btn-primary py-1 px-4 fs-7 rounded-3 check" 
+        <button class="btn btn-primary py-1 px-4 fs-7 rounded-3 check"
                 data-bs-toggle="modal"
                 data-bs-target="#detailModal"
                 data-id="${violation.id_pelanggaran}">
           CHECK
         </button>
-        <button class="btn btn-success py-1 px-4 fs-7 rounded-3 edit" 
+        </div>
+        </td>
+        <td class="text-center rounded-end">
+        <div class="d-flex justify-content-center gap-2">
+        <button class="btn btn-success px-4 fs-6 rounded-3 edit"
                 data-bs-toggle="modal"
                 data-bs-target="#editModal"
                 data-id="${violation.id_pelanggaran}">
